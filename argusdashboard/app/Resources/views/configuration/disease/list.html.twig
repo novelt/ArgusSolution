@@ -1,0 +1,127 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_id 'configuration_disease_list' %}
+
+{% block configuration %}
+
+    <h2>{{ 'Configuration.Titles.DiseaseList' | trans({}, 'configuration_labels') }}</h2>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <a href="{{ path('configuration_disease_add') }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Configuration.Buttons.AddDisease' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_diseases_load') }}"><button class="btn btn-sm btn-info"><i class="fa fa-upload"></i> {{ 'Configuration.Buttons.LoadFromXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_diseases_save') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_diseases_save_csv') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToCSV' | trans({}, 'configuration_labels') }}</button></a>
+        </div>
+    </div>
+
+    <table id="diseases-datatable" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>{{ 'Configuration.Diseases.Disease'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Diseases.Name'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Diseases.Keyword'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Diseases.Position'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Diseases.Values'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Diseases.Constraints'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Diseases.Actions'|trans({}, 'configuration_labels') }}</th>
+        </tr>
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery("#diseases-datatable").DataTable({
+                    columns: [
+                        {
+                            data: "dt_disease_id",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_disease_ref",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_disease_name",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_disease_keyWord",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_disease_position",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            className: "center",
+                            render: function (data, type, row) {
+                                var route_values_view = Routing.generate('configuration_disease_values', {diseaseId: data.dt_disease_id});
+                                return ('<a href="'+route_values_view+'"><button class="btn btn-xs btn-info"><i class="fa fa-eye"></i> {{ 'View' | trans({}, 'messages') }}</button></a>');
+                            }
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            className: "center",
+                            render: function (data, type, row) {
+                                var route_constraint_add = Routing.generate('configuration_disease_constraint_add', {diseaseId: data.dt_disease_id});
+                                return ('<a href="'+route_constraint_add+'"><button class="btn btn-xs btn-info"><i class="fa fa-plus"></i> {{ 'Add' | trans({}, 'messages') }}</button></a>');
+                            }
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            className: "center",
+                            render: function (data, type, row) {
+                                var route_disease_edit = Routing.generate('configuration_disease_edit', {diseaseId: data.dt_disease_id});
+
+                                var actions = '<a href="'+ route_disease_edit +'" ' +
+                                        'data-toggle="tooltip" ' +
+                                        'title="{{ 'Configuration.Buttons.EditDisease'| trans({}, 'configuration_labels') }}">' +
+                                        '<button class="btn btn-info btn-xs"><i class="fa fa-edit"></i>' +
+                                        '</button></a>';
+
+                                var route_remove = Routing.generate('configuration_disease_remove', {diseaseId: data.dt_disease_id});
+
+                                return(actions + '<a href="'+ route_remove +'" ' +
+                                        'data-toggle="tooltip" ' +
+                                        'title="{{ 'Configuration.Buttons.RemoveDisease'| trans({}, 'configuration_labels') }}">' +
+                                        '<button class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>' +
+                                        '</button></a>'
+                                );
+                            }
+                        }
+                    ],
+                    "bStateSave": true,
+                    "fnStateSave": function (oSettings, oData) {
+                        localStorage.setItem('offersDataTables', JSON.stringify(oData));
+                    },
+                    "fnStateLoad": function (oSettings) {
+                        return JSON.parse(localStorage.getItem('offersDataTables'));
+                    },
+                    "pageLength": 20,
+                    "ajax": Routing.generate('configuration_diseases_datatable'),
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    "language": {
+                        "url": "{{ path('configuration_get_translations') }}"
+                    }
+                }
+        );
+    </script>
+{% endblock %}

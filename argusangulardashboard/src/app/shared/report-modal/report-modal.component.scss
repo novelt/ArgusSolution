@@ -1,0 +1,52 @@
+@import '~theme/theme-variables.scss';
+
+.modal-lg {
+    width: 98% ;
+    height: 98%;
+}
+
+.modal-dialog {
+    max-width: calc(98%);
+    max-height: calc(98%);
+    margin:0.5em ;
+
+    .modal-content {
+        width: 100%;
+        height:100%;
+
+        app-report-modal{
+            height:100%;
+
+            .modal-container {
+                height:100%;
+                padding:0;
+
+                .modal-header {
+                    height:120px;
+                    background-color: $argus-gray-100;
+                    color: black;
+                    display: block;
+                    text-align: left;
+
+                    h4 {
+                        margin-bottom: 5px;
+                    }
+
+                    h5 {
+                        font-size: 1.1em;
+                    }
+                }
+
+                .modal-body {
+                    height: calc(100% - 120px); // - height of header
+                    padding: 0.2em;
+
+                    iframe {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

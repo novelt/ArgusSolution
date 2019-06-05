@@ -1,0 +1,7 @@
+{
+  "defaultLanguage": "fr",
+  "otherLogo" : "flag.jpg",
+  "serverUrl": "/sesdashboard/web/",
+  "serverReportUrl": "/sesDashboardReports/",
+  "rScriptsUrl": "/ScriptsR/"
+}

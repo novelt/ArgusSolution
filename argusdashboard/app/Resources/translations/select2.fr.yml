@@ -1,0 +1,7 @@
+input_too_short: "La recherche saisie est trop courte"
+input_too_long: "La recherche saisie est trop longue"
+error_loading: "Erreur lors du chargement des résultats"
+loading_more: "Chargement des résultats suivants"
+no_results: "Aucun résultat"
+searching: "Recherche..."
+maximum_selected: "Trop de résultats sélectionés"

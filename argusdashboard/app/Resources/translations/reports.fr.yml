@@ -1,0 +1,87 @@
+# Report Translation
+REPORT:
+  COLUMNS:
+    GLOBAL_PERFORMANCE: Total
+    TOTAL_PERIOD: Total période
+    EXPECTED_REPORTS: Rapports attendus
+    REPORTS_RECEIVED: Rapports reçus
+    REPORTS_VALIDATED: Rapports validés
+    REPORTS_REJECTED: Rapports rejetés
+    REPORTS_PENDING: Rapports en cours
+    REPORTS_NEVER_RECEIVED: Rapports non reçus
+    REPORTS_RECEIVED_ON_TIME: Rapports reçus à temps
+    TIMELINESS_PERCENT: Promptitude (%)
+    COMPLETENESS_PERCENT: Complétude (%)
+    YEAR: Année
+    MONTH: Mois
+    WEEK: Semaine
+    PERIOD: Période
+    SITE: Site
+    RECEPTION_DATE: Date de réception
+    HEALTH_FACILITY_ALERT: CS ayant envoyé l'alerte
+    HEALTH_FACILITY_PARTICIPATING: % de rapports de structures reçus et acceptés
+    LAST_REPORT_RECEIVED: Dernier rapport reçu
+    LAST_MESSAGE_SENT: Dernier message envoyé
+    NUMBER_OF_MESSAGES_SENT: Nombre de message(s) envoyé(s)
+    ALERT_PREFERRED_GATEWAY: Gateway préféré (alertes)
+    ALERT_PREFERRED_GATEWAY_SOURCE : Source du gateway préféré
+    ADDRESSED_REPORTS: Rapports reçus et validés
+    REPORTS_RECEIVED_ADDRESSED_ON_TIME: Rapports reçus et validés à temps
+    CONTACT:
+      NOTE: Note
+      EMAIL: Email
+      PHONE_NUMBER: Téléphone
+      NAME: Nom
+      TYPE: Type
+      ID: ID
+      LATITUDE: Latitude
+      LONGITUDE: Longitude
+      LOCATION_DATE: Date de réception des coordonées
+      IMEI: IMEI
+    LEVEL:
+      COUNTRY: Pays
+      STATE: Région
+      LGA: LGA
+      SITE: Site
+  CHART:
+    CASES: Cas
+    SITE: Site
+    WEEK: Semaine
+    MONTH: Mois
+    EPIDEMIOLOGIC_WEEK: Semaine épidémiologique
+    EVENT_NUMBER: Nombre d'évènements
+    SMS: SMS
+  VARIABLE:
+    SUM_TWIG: '{{sum}}'
+    SITE: '{{Site}}'
+    DISEASES: '{{Diseases}}'
+    RANGE:
+      START: '{{Range.start}}'
+      END: '{{Range.end}}'
+    TWIG_BRACES:
+      OPEN: '{{'
+      CLOSE: '}}'
+  WORD:
+    WEEK: S
+  TITLE:
+    COMPLETENESS: Complétude
+    TIMELINESS: Promptitude
+    TO_A: à
+    EVENT_NUMBER: Nombre d'événements
+    RECEIVED_ALERT: Alertes reçues
+    EVENT_ACCUMULATION: Cumul d'évènements
+    PERFORMANCE_INDICATOR:
+      TRANSMISSION: 'Indicateurs de performance : Promptitude et complétude de transmission des rapports hebdomadaires'
+      VALIDATION: 'Indicateurs de performance : Promptitude et complétude de validation des rapports hebdomadaires'
+  DESCRIPTION:
+    HEALTH_FACILITY_PARTICIPATING: des rapports de structures ont été reçus et acceptés
+Evolution of Completeness And Timeliness per Week: Evolution de la promptitude et complétude hebdomadaire
+Evolution of Completeness And Timeliness per Month: Evolution de la promptitude et complétude mensuelle
+Weekly Completeness And Timeliness: Promptitude et complétude hebdomadaire
+Monthly Completeness And Timeliness: Promptitude et complétude mensuel
+Number of Cases per Disease per Week: Nombre hebdomadaire de cas par maladie
+Number of Cases per Disease per Month: Nombre mensuel de cas par maladie
+Number of Reports : Nombre de Rapports
+SMS Traffic per Gateway per Week: Trafic hebdomadaire de SMS par gateway
+Weekly Reports: Rapports hebdomadaires
+Monthly Reports: Rapports mensuels

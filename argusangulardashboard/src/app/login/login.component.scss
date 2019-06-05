@@ -1,0 +1,113 @@
+@import "src/theme/theme-variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
+.separator {
+  margin: 50px 15px 50px 0;
+}
+
+.argus {
+  font-size: 24px;
+  margin-left: 10px;
+  position: relative;
+  top: 5px;
+}
+
+.argus-logo {
+  width: 50px;
+  margin-left: -8px;
+}
+
+.avadar {
+  font-size: 44px;
+  font-weight: 400;
+}
+
+.huge {
+  font-weight: 300;
+  font-size: 44px;
+}
+
+.big {
+  margin-top: -30px;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.normal {
+  margin-top: 24px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.small {
+  margin-top: 32px;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.login-button {
+  background-color: $form-button-bg-color;
+  color: white;
+  padding: 8px;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.login-label {
+  color: black;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 200;
+}
+
+.login-container {
+  background-image: url(../../assets/login/bg_login_big.jpg) !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: #508eb5;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+.ng-invalid.ng-touched:not(form) {
+  border-left: 4px solid theme-color("danger");
+}
+
+@include media-breakpoint-up(xs) { 
+  .huge, .big, .normal, .small, .separator {
+    display: none;
+  }
+  
+  .login-container {
+    background-size: 100% 100%;
+    background-size: contain;
+  }
+}
+
+@include media-breakpoint-up(sm) { 
+  .huge, .big, .normal, .small, .separator {
+    display: block;
+  }
+
+  .login-container {
+    background-size: 100% 100%;
+  }  
+}
+
+@include media-breakpoint-up(md) { 
+  .huge, .big, .normal, .small, .separator {
+    display: block;
+  }
+
+  .login-container {
+    background-size: 100% 100%;
+  }  
+}
+ 

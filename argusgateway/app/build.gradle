@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    // TODO : add this lib if sdk is for android 6.0. no more "org.apache.http.message.BasicNameValuePair" and many other
+    useLibrary 'org.apache.http.legacy'
+
+    compileSdkVersion 23
+    buildToolsVersion '25.0.2'
+
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+
+    defaultConfig {
+        applicationId "org.argus.gateway"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 7
+        versionName "1.5"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(output.outputFile.parent, applicationId + "-" + versionName + ".apk")
+                }
+            }
+        }
+    }
+
+    repositories{
+        jcenter()
+        maven {
+                url "https://maven.google.com"
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:support-v4:23.0.0'
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.android.support:design:23.0.0'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/commons-cli-1.1.jar')
+    compile files('libs/commons-io-1.2.jar')
+    compile files('libs/httpmime-4.1.2.jar')
+    compile files('libs/rabbitmq-client.jar')
+
+}

@@ -1,0 +1,36 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ImageView
+        android:id="@+id/fragment_dashboard_ImageView_oms"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:scaleType="centerInside"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_oms"/>
+
+    <TextView
+        android:id="@+id/fragment_dashboard_TextView_oms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="3dp"
+        android:paddingRight="3dp"
+        android:layout_toLeftOf="@id/fragment_dashboard_ImageView_oms"
+        android:text="@string/developed_with_oms"
+        android:textAlignment="center"
+        android:textSize="8sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@id/fragment_dashboard_TextView_oms"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/bottom_logo"
+        android:scaleType="centerInside"/>
+</RelativeLayout>

@@ -1,0 +1,207 @@
+{# report template for generating the html document to be converted to pdf #}
+{% extends "html/page.twig" %}
+
+{% set collapse_configuration = is_ready %}
+
+{% block title %}{{ Name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel='stylesheet' href='{{base}}/public/css/report.css' />
+    {% if not nodata %}
+        <link rel='stylesheet' href='{{base}}/public/css/jquery.dataTables.css' />
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{base}}/public/css/daterangepicker-bs3.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="{{base}}/public/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{base}}/public/css/bootstrap-multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="{{base}}/public/css/prettify.css" />
+    <style>
+    /*.daterangepicker_holder {
+        background: white;
+        -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1);
+        -moz-box-shadow: 0 1px 3px rgba(0,0,0,.25), inset 0 -1px 0 rgba(0,0,0,.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1);
+        color: #333;
+        padding: 8px;
+        line-height: 18px;
+        cursor: pointer;
+    }
+    .daterangepicker_holder .caret {
+        margin-top: 8px;
+        margin-left: 2px;
+    }*/
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if has_charts %}
+        <script type="text/javascript" src="{{base}}/public/js/jquery.browser.js"></script>
+        <script type="text/javascript" src="{{base}}/public/js/jquery.iframe-auto-height.plugin.1.9.3.js"></script>
+    {% endif %}
+    {% if not nodata %}
+        <script type='text/javascript' src='{{base}}/public/js/jquery.dataTables.min.js'></script>
+    {% endif %}
+    <script type="text/javascript" src="{{base}}/public/js/moment-with-langs-2.5.1.min.js"></script>
+    <script type="text/javascript" src="{{base}}/public/js/daterangepicker-1.3.2.js"></script>
+    <script type="text/javascript" src="{{base}}/public/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="{{base}}/public/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="{{base}}/public/js/jquery.stickytableheaders.js"></script>
+    <script type="text/javascript" src="{{base}}/public/js/prettify.js"></script>
+    <script type="text/javascript" src="{{base}}/public/js/lang-sql.js"></script>
+    <script type="text/javascript">
+        $("#content").on('click','a[data-role="button"]',function(e) {
+            e.preventDefault();
+        });
+    </script>
+{% endblock %}
+
+{% block header %}
+    <h2 style="text-align: center;">{{ getparam('reportname')|raw }}</h2>
+    <h3 style="text-align: center;">{{ getparam('reportdetails')|raw }} </h3>
+    {% if Description %}
+        <p id='report_description'>{{Description|raw}}</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div id='report_content' style="text-align: center;">
+        {% if not is_ready %}
+            <div class='alert alert-info'>
+            This report needs more information before running.
+            </div>
+        {% else %}
+            
+        {% block chart_area %}
+            {% if has_charts and not no_charts %}
+                <iframe src="{{base}}/report/chart/?{{report_querystring|raw}}" id='chart_container' class="auto-height" scrolling="no" style='width:1210px; height:500px;' frameborder="0"></iframe>
+                <script>
+                    $(function() {
+                        $('iframe#chart_container').iframeAutoHeight();
+
+                        $('#chart_container').load(function() {
+                            // indicate to the pdf converter that the iframe is loaded
+                            window.status = 'iframeLoaded';
+                        });
+                    });
+                </script>
+            {% endif %}
+        {% endblock %}            
+            
+        {% for dataset in DataSets %}
+            {% if dataset.title %}<h3>{{dataset.title}}</h3>{#<h4>Periode: {{ macros.Range[0]|date('d.m.Y') }} - {{ macros.Range[1]|date('d.m.Y') }}</h4>#}{% endif %}
+                {% if DataSets|length > 1 %}
+                        {% block table_download_link %}
+                                {% set dataset_id = loop.index - 1 %}
+                                {% if config.report_formats|length > 1 %}
+                                        <div class="btn-group">
+                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                        <i class='icon-download'></i> Download/show as <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                        {% for format in config.report_formats|keys %}
+                                                                {% if config.report_formats[format] == 'divider' %}
+                                                                        <li class="divider"></li>
+                                                                {% else %}
+                                                                        <li><a href='{{base}}/report/{{format}}/?dataset={{ dataset_id }}&{{report_querystring|raw}}' class='report_link'>{{config.report_formats[format]}}</a></li>
+                                                                {% endif %}
+                                                        {% endfor %}
+                                                </ul>
+                                        </div>
+                                {% else %}
+                                        <a href='{{base}}/report/{{config.report_formats|keys[0]}}/?{{report_querystring|raw}}' class='report_link btn'>
+                                                <i class='icon-download'></i> Download {{config.report_formats[config.report_formats|keys[0]]}}
+                                        </a>
+                                {% endif %}
+                        {% endblock %}
+                {% endif %}
+                {% if not Formatting[loop.index-1].nodata %}
+                <div id="tableArea" style="overflow: visible !important;">
+                <table{% if not inline_email %} id='result_table_{{loop.index}}' class='result_table table table-bordered table-striped'{% else %} border="1" cellspacing="0"{% endif %}>
+                        {% if dataset.vertical %}
+                        <thead>
+                                <tr class='header'>
+                                        {% for value in dataset.vertical[0].values %}
+                                        <th class="{{ value.class }}">
+                                                {% if loop.first %}Key{% else %}Value {{ loop.index -1 }}{% endif %}
+                                        </th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for row in dataset.vertical %}
+                                <tr>
+                                        {% for value in row.values %}
+                                        {% if value.is_header is defined and value.is_header %}{% set tag = 'th' %}{% else %}{% set tag = 'td' %}{% endif %}
+                                        <{{ tag }} class="{{ value.class }}">
+                            {{ value.getValue(true)|raw }}
+                                        </{{ tag }}>
+                                        {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            {% if dataset.footer %}
+                                    {% for row in dataset.footer %}
+                                            <tr>
+                                                    {% for value in row.values %}
+                                                            <td>{{ value.getValue(true)|raw }}</td>
+                                                    {% endfor %}
+                                            </tr>
+                                    {% endfor %}
+                            {% endif %}
+                        </tbody>
+                        {% else %}
+                        <thead>
+                                <tr class='header'>
+                                {% if dataset.selectable and not inline_email %}
+                                        <th> </th>
+                                {% endif %}
+                                {% for value in dataset.rows[0].values %}
+                                        <th class="{{value.class}}">{{value.key}}</th>
+                                {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for row in dataset.rows %}
+                                <tr>
+                                        {% if dataset.selectable and not inline_email %}
+                                                <td style='padding: 0;'>
+                                                        <div style='width:40px;'>
+                                                                <input type='checkbox' class='selectable' style=' vertical-align:middle;' />
+                                                                {% if not loop.last %}
+                                                                <a href='#' class='filldown' title='Fill Down - copy this value to all rows below this' style='text-decoration:none;'>&darr;</a>
+                                                                {% endif %}
+                                                        </div>
+                                                </td>
+                                        {% endif %}
+                                    {% for value in row.values %}
+                                        <td class="{{value.class}}{% if dataset.selectable and value.key == dataset.selectable %} selectable{% endif %}">
+                                        {{ value.getValue(true)|raw }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                                {% if dataset.footer %}
+                                    {% for row in dataset.footer %}
+                                        <tr>
+                                                {% if dataset.selectable and not inline_email %}
+                                                        <td> </td>
+                                                {% endif %}
+                                                {% for value in row.values %}
+                                                        <td>{{ value.getValue(true)|raw }}</td>
+                                                {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}                
+                        </tbody>
+                        {% endif %}
+                </table></div>
+                {% endif %}
+            {% endfor %}
+            
+        {% endif %}
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,16 @@
+
+.wrapper {
+    height: 100%;
+
+    .header {
+        height: 57px;
+        border-bottom: 1px solid white;
+    }
+
+    .main {
+        height: calc(100vh - 57px); // - header + footer
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+    }
+}

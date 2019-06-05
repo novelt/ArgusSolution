@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="header">
+    <div class="desktop">
+      <h1 translate>titles.dashboard</h1>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-primary" *ngFor="let script of scriptList; let i = index"
+        [class.active]="isActive(i)"  (click)="selectScript(i)" >{{ script?.getTitle() }}</button> 
+      </div>
+    </div>
+    <div class="mobile d-flex">
+        <button type="button" class="mr-auto p-2 btn btn-link btn-sm" (click)="goToMenu()" translate>
+            <i class="fa fa-chevron-left pr-2"></i>
+            DASHBOARD
+        </button>
+        <button type="button" class="p-2 btn btn-link btn-sm" (click)="collapseMenuScripts()"
+            [attr.aria-expanded]="!isScriptsCollapsed" aria-controls="scripts">
+            <i class="fa fa-bars pr-2"></i>
+        </button>
+    </div>
+  </div>
+  <div id="collapseScripts" [ngbCollapse]="isScriptsCollapsed" class="menu">
+    <ul>
+      <li *ngFor="let script of scriptList; let i = index">
+          <button type="button" class="btn btn-link" [class.active]="isActive(i)" (click)="selectScript(i)">
+            {{ script?.getTitle() }}
+          </button>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <iframe [src]="scriptUrl | safe" frameBorder="0"></iframe>
+  </div>
+</div>

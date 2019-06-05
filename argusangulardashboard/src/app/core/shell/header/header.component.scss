@@ -1,0 +1,94 @@
+@import "src/theme/theme-variables";
+@import '~bootstrap/scss/mixins';
+
+.overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  background-color: #ccc;
+  opacity: 0.6;
+  z-index: 990;
+}
+
+.navbar {
+ // margin-bottom: $spacer;
+  background-color: $low !important;
+  background-image: url(../../../../assets/header/header_with_argus.jpg) !important;
+  background-repeat: no-repeat;
+
+}
+
+.navbar-side {
+  background-color: $low !important;
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid #ccc;
+  background-color: #f7f7f9;
+  overflow-y: scroll;
+  z-index: 1000;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+  overflow-y:hidden;
+  
+  @include media-breakpoint-up(xs) { width: 80%; } // Small
+  @include media-breakpoint-up(sm) { width: 50%; } // Medium
+  @include media-breakpoint-up(md) { width: 25%; } // Large
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: $high
+  }
+
+  i {
+    margin-right: 20px;
+  }
+}
+
+.navbar-side-item {
+  padding: 1.5rem 0;
+  margin: 0;
+  border-bottom: 2px solid #ccc;
+  height: 5rem;
+}
+
+.side-link {
+  padding-left: 2rem;
+}
+
+.reveal {
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
+.nav-link.dropdown-toggle {
+  cursor: pointer;
+}
+
+@media all and (max-device-width: 480px)
+{
+    /* Vos règles CSS pour les mobiles ici */
+   
+    .navbar {
+        margin-bottom: 0px;
+    }
+
+}

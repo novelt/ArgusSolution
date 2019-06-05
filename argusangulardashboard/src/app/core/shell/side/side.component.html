@@ -1,0 +1,25 @@
+<!-- <div class="container-fluid"> -->
+    <div id="side-menu" class="nav nav-pills align-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="#" routerLinkActive="active current" routerLink="/home" (click)="goToHome($event)"><img class="side-button" src="./assets/sidenav/menu_dashboard.svg" alt="Dashboard"><span translate>titles.dashboard</span>
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li class="nav-item menu-validation">
+            <a class="nav-link" href="#" routerLinkActive="active current" routerLink="/validation" (click)="goToValidation($event)"><img class="side-button" src="./assets/sidenav/menu_validation.svg" alt="Validation"><span translate>titles.validation</span></a>
+        </li>
+        <li class="nav-item menu-analyses">
+            <a class="nav-link" href="#" routerLinkActive="active current" routerLink="/analyses" (click)="goToAnalyses($event)"><img class="side-button" src="./assets/sidenav/menu_analyzes.svg" alt="Analyzes"><span translate>titles.analyses</span></a>
+        </li>
+        <li class="nav-item menu-archives">
+            <a class="nav-link" href="#" routerLinkActive="active current" routerLink="/archives" (click)="goToArchives($event)"><img class="side-button" src="./assets/sidenav/menu_archives.svg" alt="Archives"><span translate>titles.archives</span></a>
+        </li>
+        <li class="nav-item menu-alerts">
+            <a class="nav-link" href="#" routerLinkActive="active current" (click)="goToAlerts($event)"><img class="side-button" src="./assets/sidenav/menu_alertes.svg" alt="Alerts"><span translate>titles.alerts</span></a>
+        </li>
+    </div>
+    <div id="about" class="about">
+        <div class="version">{{ getVersion() }}</div>
+        <div class="mailto"><a href="mailto:argus@novel-t.ch"><i class="fa fa-envelope-o"></i></a></div>
+    </div>
+<!-- </div> -->

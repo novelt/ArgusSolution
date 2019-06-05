@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'config_index' %}
+
+{% block main %}
+
+    <div class="row">
+        <div id="configuration" class="col-xs-12">
+        {% block configuration %}{% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

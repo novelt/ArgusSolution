@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'admin_user_update' %}
+
+{% block main %}
+
+    <div class="well col-lg-7">
+        <h3>{{ 'User.Edit'|trans({}, 'security') }}</h3>
+        {{ form_start(form, {'method': 'post', 'action': path('admin_user_update', {id: user.id})}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-sm btn-danger" type="submit" value="{{ 'General.Action.Update'|trans({}, 'security') }}" />
+            <a href="{{ path('admin_user_list') }}"><input class="btn btn-sm btn-primary" type="button" value="{{ 'General.Action.Cancel'|trans({}, 'security') }}" formnovalidate/></a>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock main %}

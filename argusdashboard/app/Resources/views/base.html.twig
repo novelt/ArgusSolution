@@ -1,0 +1,340 @@
+{#
+   This is the base template used as the application layout which contains the
+   common elements and decorates all the other templates.
+   See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
+#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Reports{% endblock %}</title>
+
+        {% block stylesheets %}
+
+
+                           {% stylesheets filter="scssphp" output="css/app.css"
+                               "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
+                               "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
+                               "%kernel.root_dir%/Resources/assets/css/*.css"
+                               "%kernel.root_dir%/Resources/assets/scss/main.scss"
+                           %}
+
+                           <link rel="stylesheet" href="{{ asset_url }}" />
+                           {% endstylesheets %}
+
+         {#<link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">#}
+         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/stflagiconcss/css/flag-icon.min.css') }}" />
+         <link rel="stylesheet" type="text/css" href="{{ asset('/custom/custom.css') }}">
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {# Google Analytics #}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '{{ google_analytics_account }}']);
+            _gaq.push(['_trackPageview']);
+        </script>
+    </head>
+
+    <body id="{% block body_id %}{% endblock %}">
+
+        {% block header %}
+            <header>
+                <div class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                           {# <a class="navbar-brand" href="#">Brand</a> #}
+                            {{ render(controller('AppBundle:Custom:applicationName')) }}
+                            {{ render(controller('AppBundle:Custom:applicationLogo')) }}
+                        </div>
+
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                                    <li>
+                                        <a href="{{ path('report_index') }}">{{ 'View Reports' | trans }}
+                                            {# <span class="sr-only">(current)</span> #}
+                                        </a>
+                                    </li>
+                                    {% if webmap_url is not null and webmap_url is not empty %}
+                                        <li>
+                                            <a href="{{ app.request.getSchemeAndHttpHost() }}{{ webmap_url }}" target="_blank">{{ 'Map' | trans }}</a>
+                                        </li>
+                                    {% endif  %}
+                                    {% if angular_dashboard_url is not null and angular_dashboard_url is not empty  %}
+                                        <li>
+                                            <a href="{{ app.request.getSchemeAndHttpHost() }}{{ angular_dashboard_url }}?bearer={{ render(controller('AppBundle:Login:token')) }}" target="_blank">{{ 'angular_dashboard' | trans }}</a>
+                                        </li>
+                                    {% endif  %}
+                                {% endif %}
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-institution"></i> {{ 'Admin'| trans }} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{ path('admin_user_list') }}">
+                                                <i class="fa fa-user"></i> {{ 'Users' | trans }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('admin_role_list') }}">
+                                                <i class="fa fa-users"></i> {{ 'Roles' | trans }}
+                                            </a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="{{ path('config_index') }}">
+                                                <i class="fa fa-wrench"></i> {{ 'Configuration' | trans }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('configuration_sites') }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-sitemap"></i>
+                                                <i>{{ 'Configuration.MenuItems.Sites' | trans({}, 'configuration_labels') }}</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('configuration_contacts') }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-exchange"></i>
+                                                <i>{{ 'Configuration.MenuItems.Contacts' | trans({}, 'configuration_labels') }}</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('configuration_contact_types') }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-list-alt"></i>
+                                                <i>{{ 'Configuration.MenuItems.ContactTypes' | trans({}, 'configuration_labels') }}</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('configuration_diseases') }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-stethoscope"></i>
+                                                <i>{{ 'Configuration.MenuItems.Diseases' | trans({}, 'configuration_labels') }}</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('configuration_thresholds') }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-sliders"></i>
+                                                <i>{{ 'Configuration.MenuItems.Thresholds' | trans({}, 'configuration_labels') }}</i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('configuration_save_all_to_xml') }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-save"></i>
+                                                <i>{{ 'Configuration.MenuItems.SaveAllToXml' | trans({}, 'configuration_labels') }}</i>
+                                            </a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="#" onclick="argusContext.exportReportData();">
+                                                <i class="fa fa-download"></i> {{ 'Download Report Data' | trans }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onclick="argusContext.exportAlertData();">
+                                                <i class="fa fa-download"></i> {{ 'Download Alert Data' | trans }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{ app.user.username }} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        {# <li><a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-pencil"></i> {{ 'Profile'| trans }}</a></li>
+                                         <li role="separator" class="divider"></li> #}
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-language"></i> {{ 'Language'| trans }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('configuration_language', {'locale' : 'gb'}) }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="flag-icon flag-icon-gb"></i>
+                                                <i>{{ 'gb' | trans }}</i>
+                                            </a>
+                                             <a href="{{ path('configuration_language', {'locale' : 'fr'}) }}">
+                                                 <i class="fa fa-fw"></i>
+                                                 <i class="flag-icon flag-icon-fr"></i>
+                                                 <i>{{ 'fr' | trans }}</i>
+                                             </a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-user"></i> {{ 'Profile'| trans({}, 'messages' ) }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('fos_user_change_password') }}">
+                                                <i class="fa fa-fw"></i>
+                                                <i class="fa fa-unlock-alt"></i> {{ 'form.password'| trans({}, 'FOSUserBundle' ) }}
+                                            </a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="{{ path('fos_user_security_logout') }}">
+                                                <i class="fa fa-sign-out"></i> {{ 'layout.logout'| trans({}, 'FOSUserBundle' ) }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </header>
+        {% endblock %}
+
+        <div class="container body-container">
+            {% block body %}
+                <div class="row">
+                    <div id="main" class="col-sm-12">
+                        {% block main %}{% endblock %}
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+
+        {% block footer %}
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div id="footer-copyright" class="col-md-6">
+                            <p>&copy; {{ 'now'|date('Y') }} - Novel-T</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+
+{% block javascripts %}
+                     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+		{# uncomment the following lines to combine and minimize JavaScript assets with Assetic output="js/app.js"#}
+            {% javascripts filter="?jsqueeze" output="js/app.js"
+                "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
+                "%kernel.root_dir%/Resources/assets/js/dataTables.js"
+                "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
+                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js"
+                "%kernel.root_dir%/Resources/assets/js/bootstrap-treeview.js"
+                "%kernel.root_dir%/Resources/assets/js/alert.js"
+                "%kernel.root_dir%/Resources/assets/js/bootstrap-switch.js"
+                "%kernel.root_dir%/Resources/assets/js/bootstrap-confirmation.js"
+                "%kernel.root_dir%/Resources/assets/js/sesDashboard.js"
+                "%kernel.root_dir%/Resources/assets/js/moment.js"
+                "%kernel.root_dir%/Resources/assets/js/select2.min.js"
+                "%kernel.root_dir%/Resources/assets/js/daterangepicker.js"
+                "%kernel.root_dir%/Resources/assets/js/appDataTables.js"
+                "%kernel.root_dir%/Resources/assets/js/jquery-ui.min.js"
+			%}
+             <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            {# moment_locale.js can be used from the Angular Dashboard #}
+            {% javascripts filter="?jsqueeze" output="js/moment_locale.js"
+                "%kernel.root_dir%/Resources/assets/js/locale/*.js"
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            <script>
+            $(document).ready(function() {
+                hljs.initHighlightingOnLoad();
+
+                // Init argusContext object
+                argusContext = new ArgusContext();
+                argusContext.init({{ epi_first_day }}, '{{ app.request.locale }}');
+                argusContext.initTreeView('{{ path('site_getJsonSite')}}');
+                argusContext.initListeReport('{{ path('report_listeReport', {'selectedSiteId' : 'HREF', 'display' : 'FILTER_STATUS', 'startDate' : 'STARTDATE', 'endDate' : 'ENDDATE', 'period' : 'PERIOD_TIME' } )}}');
+                argusContext.initListePartReport('{{ path('report_listePartReport', {'fullReportId' : 'FULLREPORTID' }) }}');
+                argusContext.initListeAlert('{{ path('report_listeAlerts', {'selectedSiteId' : 'HREF'} ) }}');
+                argusContext.initExportReportData('{{ path('export_report_data', {'display' : 'FILTER_STATUS', 'startDate' : 'STARTDATE', 'endDate' : 'ENDDATE', 'period' : 'PERIOD_TIME' } ) }}');
+                argusContext.initExportAlertData('{{ path('export_alert_data', {'startDate' : 'STARTDATE', 'endDate' : 'ENDDATE'} ) }}');
+                argusContext.initTwigFilterType('{{ path('report_filterType', {'siteId' : 'SITEID' }) }}');
+                argusContext.initTwigFilterStatus('{{ path('report_filterStatus', {'siteId' : 'SITEID', 'period' : 'PERIOD_TIME' }) }}');
+                argusContext.initTranslationWords('{{ 'Last Week'| trans }}', '{{ 'Last 4 Weeks'| trans }}', '{{ 'Last Month'| trans }}', '{{ 'Year to date'| trans }}',
+                        '{{ 'Choose'| trans }}','{{ 'Cancel'| trans }}', '{{ 'From'| trans }}','{{ 'To'| trans }}', '{{ 'Custom'| trans }}',
+                        '{{ '% of received and validated facilities reports'| trans }}');
+
+                var siteInsertionDom = $('#app_site_insertion_parent');
+                var contactInsertionDom = $('#app_contact_insertion_site');
+                var thresholdInsertionDom = $('#app_threshold_insertion_site');
+
+                if (!!siteInsertionDom
+                    || !!contactInsertionDom
+                    || !!thresholdInsertionDom) {
+                    var opts = {
+                        language: {
+                            inputTooShort: function (args) {
+                                return "{{ 'input_too_short'|trans({}, 'select2') }}";
+                            },
+                            inputTooLong: function (args) {
+                                return "{{ 'input_too_long'|trans({}, 'select2') }}";
+                            },
+                            errorLoading: function () {
+                                return "{{ 'error_loading'|trans({}, 'select2') }}";
+                            },
+                            loadingMore: function () {
+                                return "{{ 'loading_more'|trans({}, 'select2') }}";
+                            },
+                            noResults: function () {
+                                return "{{ 'no_results'|trans({}, 'select2') }}";
+                            },
+                            searching: function () {
+                                return "{{ 'searching'|trans({}, 'select2') }}";
+                            },
+                            maximumSelected: function (args) {
+                                return "{{ 'maximum_selected'|trans({}, 'select2') }}";
+
+                            }
+                        }
+                    };
+                }
+                    $('#app_site_insertion_parent').select2(opts);
+                    $('#app_contact_insertion_site').select2(opts);
+                    $('#app_contact_edition_site').select2(opts);
+                    $('#app_threshold_insertion_site').select2(opts);
+                    $('#app_threshold_edition_site').select2(opts);
+                    $('#app_threshold_insertion_diseaseValue').select2(opts);
+                    $('#app_threshold_edition_diseaseValue').select2(opts);
+                    $('#app_site_alert_recipient_recipientSite').select2(opts);
+                    $('#app_user_site').select2(opts);
+                    $('#app_useredit_site').select2(opts);
+            });
+
+            // Google Analytics
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+            </script>
+
+        {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div class="modal-container">
+    <div class="modal-header">
+        <button type="button" class="close pull-right btn btn-xs" aria-label="Close" (click)="activeModal.close()">
+            <span aria-hidden="true" class="fa fa-remove"></span>
+        </button>
+        <h4 class="modal-title" *ngIf='prefix'><b>{{ prefix }}</b> - {{ name }}</h4>
+        <h4 class="modal-title" *ngIf='! prefix'>{{ name }}</h4>
+        <h5>{{ 'filter.site' | translate  }} : {{ site }}</h5>
+        <h5>{{ 'filter.period' | translate  }} : {{ 'filter.from_date' | translate  }} {{ startDate }} {{ 'filter.to_date' | translate  }} {{ endDate }}</h5>
+    </div>
+    <div class="modal-body">
+        <p>{{ body }}</p>
+        <iframe frameBorder="0" [src]="analyseUrl | safe"></iframe>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close(false)">X</button>
+        <button type="button" class="btn btn-secondary" (click)="activeModal.close(true)">Y</button>
+    </div> -->
+</div>

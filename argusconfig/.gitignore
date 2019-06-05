@@ -1,0 +1,11 @@
+.idea/
+ressources/ArgusWorker/SESImporterPlugin/bin/*
+data/input/*
+data/output/*
+data/processed/*
+logs/*.txt
+logs/gateways/*.txt
+test/gateway/logs/*.txt
+test/gateway/logs/gateways/*.txt
+test/gateway/*.xlsm
+ressources/ArgusSchedulerMonitoring/*.pyc

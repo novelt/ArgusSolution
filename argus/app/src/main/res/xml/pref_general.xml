@@ -1,0 +1,95 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/prefs_category_general">
+        <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+        <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+        <EditTextPreference
+            android:inputType="phone"
+            android:background="@color/oms_white"
+            android:textColor="@color/caldroid_black"
+            android:key="@string/prefs_sms_gateway_out"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/prefs_sms_gateway_out_title"
+            android:defaultValue="@string/prefs_sms_gateway_out_default"/>
+
+        <Preference
+            android:title="@string/synchronization"
+            android:key="@string/prefs_sync">
+        </Preference>
+
+        <EditTextPreference
+            android:inputType="textMultiLine"
+            android:background="@color/oms_white"
+            android:textColor="@color/caldroid_black"
+            android:key="@string/prefs_sms_gateway_in"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:title="@string/prefs_sms_gateway_in_title"
+            android:defaultValue="@string/prefs_sms_gateway_in_default"/>
+
+        <ListPreference
+            android:key="@string/prefs_language"
+            android:title="@string/pref_language_title"
+            android:dialogTitle="@string/pref_language_title"
+            android:entries="@array/prefs_languages_labels_array"
+            android:entryValues="@array/prefs_languages_values_array"
+            android:defaultValue="@string/prefs_languages_values_default" />
+
+        <CheckBoxPreference
+            android:key="@string/prefs_network"
+            android:title="@string/network_lock"/>
+
+        <!-- Preference for debug mode -->
+        <CheckBoxPreference
+            android:key="@string/prefs_test"
+            android:title="@string/test_mode"/>
+
+        <Preference
+            android:title="@string/settings_password"
+            android:key="@string/prefs_settings_password">
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefs_category_config_alert_external"
+        android:title="@string/prefs_category_alert">
+
+        <CheckBoxPreference
+            android:key="@string/prefs_config_alert_external"
+            android:title="@string/prefs_config_alert_external_title"
+            android:defaultValue="@bool/default_config_alert_external" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefs_category_config_sms"
+        android:title="@string/prefs_category_config_SMS">
+
+        <CheckBoxPreference
+            android:key="@string/prefs_config_sms_enable"
+            android:title="@string/prefs_config_sms_enable_title"
+            android:defaultValue="true"
+            />
+
+        <CheckBoxPreference
+            android:key="@string/prefs_config_only_known_gateway"
+            android:title="@string/prefs_config_only_known_gateway_title"
+            android:defaultValue="true"
+            android:dependency="@string/prefs_config_sms_enable"
+            />
+
+        <EditTextPreference
+            android:key="@string/prefs_config_encrypt_security_key"
+            android:defaultValue="@string/default_config_encrypt_security_key"
+            android:title="@string/prefs_config_encrypt_security_key_title"
+            android:dependency="@string/prefs_config_sms_enable"
+            android:singleLine="true"
+            android:background="@color/oms_white"
+            android:textColor="@color/caldroid_black"
+            />
+
+    </PreferenceCategory>
+</PreferenceScreen>

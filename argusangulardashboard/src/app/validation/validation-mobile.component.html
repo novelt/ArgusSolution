@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="header">
+    <app-report-header (isMenuOpen)="menuOpen($event)" [title]="'titles.validation'"></app-report-header>
+  </div>
+  <div class="row" [ngClass]="{ 'hidden': !displayReports() }">
+    <div class="col-12 list">
+      <div class="spinner center" [class.hidden]="!isActive" [class.active]="isActive" ></div>
+      <app-report-list (numberOfReportChange)="changeVisibility($event)" [malihuScroll]="false"></app-report-list>
+    </div>
+  </div>
+  <app-weekly-report class="hidden" [ngClass]="{ 'hidden': !displayWeeklyEpidemiologicReport() }"></app-weekly-report>
+</div>

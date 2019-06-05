@@ -1,0 +1,60 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block body_id 'login' %}
+
+{% block main %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="alert alert-info">
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="row col-sm-offset-3">
+        <div class="col-sm-5">
+            <div class="well">
+                <form action="{{ path('fos_user_security_check') }}" method="post">
+                    <fieldset>
+                        <legend><i class="fa fa-lock"></i> {{ 'Please log in'|trans }}</legend>
+                        <div class="form-group">
+                            <label for="username">{{ 'security.login.username'|trans({},'FOSUserBundle' ) }}</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">{{ 'security.login.password'|trans({},'FOSUserBundle' ) }}</label>
+                            <input type="password" id="password" name="_password" class="form-control" />
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-sign-in"></i>{{ 'security.login.submit'|trans({},'FOSUserBundle' ) }}
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+            $('#username').focus();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,19 @@
+{
+  "Login.application.name": "Argus",
+  "Login.title.first": "SURVEILLANCE",
+  "Login.title.second": "Epidémiologique",
+  "Login.description": "Argus : Faciliter la surveillance intégrée des maladies, la détection et la réponse précoce, par la collecte, la transmission, la gestion et l'analyse des données de surveillance épidémiologique",
+  "Login.copyright": "© 2019",
+  "Login.login": "Connexion",
+  "Login.incorrect" : "Identifiant ou mot de passe incorrect.",
+  "Login.username" : "Identifiant",
+  "Login.username.required": "Identifiant requis",
+  "Login.password": "Mot de passe",
+  "Login.password.required": "Mot de passe requis",
+  "Login.button": "Connexion",
+  "Login.logged": "Connecté en tant que",
+  "Login.logout": "Déconnexion",
+  "About": "A propos",
+  "Home": "Accueil",
+  "Version": "Version"
+}

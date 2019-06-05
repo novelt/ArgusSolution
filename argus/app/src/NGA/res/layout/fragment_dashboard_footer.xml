@@ -1,0 +1,45 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <View android:id="@+id/strut"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/fragment_dashboard_ImageView_oms"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:scaleType="fitEnd"
+        android:layout_alignLeft="@id/strut"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/fragment_dashboard_TextView_oms"
+        android:src="@drawable/ic_oms"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fragment_dashboard_TextView_oms"
+        android:layout_alignRight="@id/strut"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:scaleType="fitStart"
+        android:src="@drawable/bottom_logo"
+        tools:layout_alignParentLeft="false" />
+
+    <TextView
+        android:id="@+id/fragment_dashboard_TextView_oms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="3dp"
+        android:text="@string/developed_with_oms"
+        android:textAlignment="center"
+        android:textSize="8sp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

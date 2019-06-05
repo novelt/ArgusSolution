@@ -1,0 +1,48 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_contact_edit' %}
+
+{% block configuration %}
+
+    <div class="well col-lg-7">
+
+        <h2>{{ 'Configuration.Titles.ContactEdition' | trans({}, 'configuration_labels') }}</h2>
+
+        {{ form_start(form, {'method': 'post', 'action': path('configuration_contact_edit', {contactId: contactId})}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-sm btn-success" type="submit" value="{{ 'Save'|trans }}" />
+            <button
+                    data-href="{{ path('configuration_contact_remove', {contactId: contactId}) }}"
+                    type="button"
+                    id="remove-contact"
+                    class="btn btn-sm btn-danger"
+                    formnovalidate
+            >
+                {{ 'Remove'|trans }}
+            </button>
+            <a href="{{ path('configuration_contacts') }}"><input class="btn btn-sm btn-primary" type="button" value="{{ 'Cancel'|trans }}" formnovalidate/></a>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery("#remove-contact").on('click', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            $.ajax({
+                url: $(this).data('href'),
+                method: 'GET'
+            })
+                .then(function(success) {
+                   location.href = '{{ path('configuration_contacts') }}';
+                });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_site_alert_recipient_list' %}
+
+{% block configuration %}
+
+    <h2>{{ 'Configuration.Titles.SiteAlertRecipientList' | trans({Site: siteName}, 'configuration_labels') }}</h2>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <a href="{{ path('configuration_site_alert_recipient_add', {siteId: siteId}) }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Configuration.Buttons.AddSiteAlertRecipient' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_sites') }}"><button class="btn btn-sm btn-info"><i class="fa fa-angle-double-up"></i> {{ 'Configuration.Buttons.ReturnToSites' | trans({}, 'configuration_labels') }}</button></a>
+        </div>
+    </div>
+
+    {% if pagination.getTotalItemCount %}
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ 'Configuration.SiteAlertRecipients.Path'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.SiteAlertRecipients.Action'|trans({}, 'configuration_labels') }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for siteAlertRecipient in pagination %}
+                <tr>
+                    <td>{{ siteAlertRecipient.id }}</td>
+                    <td>{% if siteAlertRecipient.recipientSite %}{{ siteAlertRecipient.recipientSite.path }}{% endif %}</td>
+                    <td><a href="{{ path('configuration_site_alert_recipient_remove', {siteId: siteId, siteAlertRecipientId: siteAlertRecipient.id}) }}"><button class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> {{ 'Configuration.Buttons.RemoveThreshold' | trans({}, 'configuration_labels') }}</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <p>{{ 'Configuration.SiteAlertRecipients.None'|trans({}, 'configuration_labels') }}</p>
+
+    {% endif %}
+
+    <div class="navigation col-lg-offset-8">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}

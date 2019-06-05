@@ -1,0 +1,10 @@
+<label for="optStatus" class="col-sm-2 control-label">{{ 'Status'|trans }} </label>
+<div class="col-sm-10">
+    <select class="form-control" onchange="argusContext.refreshListReport();" id="optStatus">
+        {% if enableAllStatus %}<option value="ALL">{{ 'All' | trans }}</option>{% endif %}
+        {% if enablePendingStatus %}<option value="PENDING">{{ 'Pending' | trans }}</option>{% endif %}
+        {% if enableValidatedStatus %}<option value="VALIDATED">{{ 'Validated' | trans }}</option>{% endif %}
+        {% if enableConflictingStatus %}<option value="CONFLICTING">{{ 'Conflicting' | trans }}</option>{% endif %}
+        {% if enableRejectedStatus %}<option value="REJECTED">{{ 'Rejected' | trans }}</option>{% endif %}
+    </select>
+</div>

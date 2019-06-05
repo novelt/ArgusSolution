@@ -1,0 +1,293 @@
+@import '~theme/theme-variables.scss';
+
+perfect-scrollbar {
+    max-height: 100%;
+    height: 100%;
+
+    .ps-content {
+        height: 100%;
+    }
+}
+
+.container-fluid {
+    background-color: $argus-gray-100;
+    padding: 5px;
+    margin: 0;
+    height: 100%;
+    display: table;
+}
+
+.header-details {
+    background-color: $argus-gray-500;
+    color:white ;
+    width: 100%;
+    padding: 0;
+    display: table-row; // height auto
+
+    .header-flex {
+        display: flex;
+        flex-flow: row nowrap; /* Align on the same line */
+        justify-content: space-between; /* Equal margin between the child elements */
+
+        .site {
+            padding-left: 5px;
+    
+            .arrow-back {
+                display: none;
+            }
+
+            .title {
+                font-size: 2.0rem;
+                margin-right: 10px;
+            }
+    
+            .badge-title {
+                color: white;
+            }
+        }
+
+        .media  {
+
+            .report-details-img {
+                height:40px;
+                width:40px;
+            }
+
+            h6 {
+                margin-bottom: 5px;
+            }
+
+            p {
+                color: $argus-gray-200;
+                font-size: 0.8em;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        
+        .arrows {
+            margin: 5px;
+            vertical-align: middle;
+
+            .arrow-details {
+                            
+                .arrow-img {
+                    height:30px;
+                    width:30px;
+                    cursor: pointer;
+                }
+
+                .rotate {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}
+
+.version-details {
+    background-color: $argus-gray-300;
+    color:white ;
+    width: 100%;
+    display: table-row;
+
+    .form-inline {
+        padding: 5px;
+
+        select {
+            color: white;
+            background-color: $argus-gray-500;
+        }
+    
+        .title {
+            margin-right: 15px;
+        }
+    }
+
+    .badge-version {
+        margin-left: 10px;
+        color: white;
+    }
+}
+
+.mobile-details {
+    background-color: $argus-gray-100;
+    font-size: 0.8em;
+    display: none;
+
+    .media  {
+        .report-details-img {
+            height: 30px;
+            width: 30px;
+        }
+
+        h6 {
+            margin:0;
+        }
+
+        p {
+            color: $argus-gray-500;
+            font-size: 0.7em;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .btn-details {
+        font-size: 0.8em;
+    }
+}
+
+.main {
+    display: table-row;
+    height: 100%;
+    overflow: auto;
+
+    .diseases {
+        padding: 0;
+        background-color: white;
+        border: 1px solid $argus-gray-300 ;
+        margin-left: 0;
+        margin-right: 0;
+        height: 100%;
+        
+        .disease-details {
+            background-color: white;
+            outline:1px solid $argus-gray-300;
+            padding: 0;
+            margin: 0;
+        }
+    }  
+}
+
+.footer-details {
+    display: table-row;
+
+    .footer-inline {
+        display: inline;
+
+        .validation, .rejection {
+            margin: 10px;
+            float: right;
+        }
+
+        .contact-details {
+            margin: 10px;
+
+            img {
+                height:15px;
+                width:15px;
+            }
+        
+            .contact-name {
+                font-weight: bolder;
+                margin-right: 20px;
+            }
+        }
+    }
+    
+}
+
+@media all and (max-device-width: 480px)
+{
+    /* Vos règles CSS pour les mobiles ici */
+    .container-fluid {
+        padding: 0;
+        display: block;
+    }
+
+    .header-details {
+        display: block;
+        height:46px;
+
+        .site {
+            padding: 0.2rem !important;
+           
+            .arrow-back {
+                display: inline-flex !important;
+            }
+
+            .title {
+                font-size: 7vw !important;
+            }
+
+            .badge {
+                font-size: 3.2vw !important;
+            }
+        }
+
+        > div {
+            padding: 0;
+        }
+
+        .arrows {
+            margin: 0 !important;
+            width: 80px;
+            min-width: 80px;
+        }
+
+        .media {
+            display: none;
+        }
+    }
+
+    .version-details {
+        display: block;
+        height:43px;
+
+        .form-inline {
+            font-size: 4vw;
+            
+            .form-control {
+                font-size: 4vw;
+                padding : 1vw;
+                width:auto;
+                height: auto;
+            }
+
+            .participation, .btn-details {
+                display: none;
+            }
+        } 
+    }
+
+    .mobile-details {
+        display: block;
+        height:41px;
+        border-bottom: 1px solid $argus-gray-300;
+    }
+
+    .main {
+        margin-right: 0px;
+        overflow: auto;
+        display: block;
+        height: calc(100vh - 57px - 46px - 43px - 41px  - 60px);
+        // - header global - header-details - version-details - mobile-details - footer-details
+
+        .diseases {
+            padding: 0;
+            margin:0;
+            border: none;
+
+            .disease-details {
+                outline:1px solid $argus-gray-200;
+            }
+        }
+    }
+
+    .footer-details {
+        display: block;
+        height: 60px;
+
+        .validation {
+            margin:0;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .contact-details {
+            margin:0 0 0 10px !important;
+        }
+    }
+}
+

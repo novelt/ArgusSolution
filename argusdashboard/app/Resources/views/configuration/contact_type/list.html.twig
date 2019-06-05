@@ -1,0 +1,66 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_contact_types_list' %}
+
+{% block configuration %}
+
+    <h2>{{ 'Configuration.Titles.ContactTypeList' | trans({}, 'configuration_labels') }}</h2>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <a href="{{ path('configuration_contact_type_add') }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Configuration.Buttons.AddContactType' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_contact_types_load') }}"><button class="btn btn-sm btn-info"><i class="fa fa-upload"></i> {{ 'Configuration.Buttons.LoadFromXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_contact_types_save') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToXML' | trans({}, 'configuration_labels') }}</button></a>
+            {#
+            <a href="{{ path('configuration_contacts_save_csv') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToCSV' | trans({}, 'configuration_labels') }}</button></a>
+            #}
+        </div>
+    </div>
+
+    {% if pagination.getTotalItemCount %}
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ 'Configuration.ContactTypes.Reference'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.ContactTypes.Name'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.ContactTypes.SendsReports'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.ContactTypes.UseInIndicatorsCalculation'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.ContactTypes.Description'|trans({}, 'configuration_labels') }}</th>
+                <th colspan="2">{{ 'Configuration.ContactTypes.Actions'|trans({}, 'configuration_labels') }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for contactType in pagination %}
+                <tr>
+                    <td>{{ contactType.id }}</td>
+                    <td>{{ contactType.reference }}</td>
+                    <td>{{ contactType.name }}</td>
+                    <td>{{ contactType.sendsReports }}</td>
+                    <td>{{ contactType.useInIndicatorsCalculation }}</td>
+                    <td>{{ contactType.desc }}</td>
+                    <td><a href="{{ path('configuration_contact_type_edit', {contactTypeId: contactType.id}) }}"><button class="btn btn-info btn-xs"><i class="fa fa-edit"></i> {{ 'Configuration.Buttons.EditContactType' | trans({}, 'configuration_labels') }}</button></a></td>
+                    <td>
+                        {% if contactType.getNbContacts() == 0 %}
+                            <a href="{{ path('configuration_contact_type_remove', {contactTypeId: contactType.id}) }}"><button class="btn btn-danger btn-xs"><i class="fa fa-remove"> {{ 'General.Action.Delete' | trans({}, 'security') }}</i></button></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <p>{{ 'Configuration.ContactTypes.None'|trans({}, 'configuration_labels') }}</p>
+
+    {% endif %}
+
+    <div class="navigation col-lg-offset-8">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}

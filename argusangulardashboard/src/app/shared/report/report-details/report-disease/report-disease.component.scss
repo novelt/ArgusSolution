@@ -1,0 +1,88 @@
+@import '~theme/theme-variables.scss';
+
+.align-vertical {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.disease {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    vertical-align: middle;
+
+    .disease-details {
+        padding: 0;
+        margin: 0;
+        border-right:1px dashed $argus-gray-200;
+
+        .disease-name {
+            white-space: normal;
+            padding-left: 5px;
+            font-weight: bolder;
+        
+            .fa {
+                margin-left: 5px;
+                color:red;
+                display: none;
+            }
+        }        
+    }
+
+    .disease-values {
+        padding: 0;
+        margin: 0;
+    }
+
+    .disease-details.threshold {
+        background-color: #ffd9d9;
+
+        .fa {
+            display: inline !important;
+        }
+    }
+
+    .disease-values.threshold {
+        background-color: #ffd9d9;
+    }
+}
+
+.disease-value {
+    font-size:0.9em;
+    padding-left: 5px;
+    color: $argus-gray-300;
+
+    .highlight {
+        color: black;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .fa {
+        color: black;
+    }
+}
+
+.disease-value.threshold {
+    color:red;
+
+    .value.highlight {
+        color:red !important;
+    }
+}
+
+/*.disease-value.new {
+    color:blue !important;
+}*/
+
+@media all and (max-device-width: 480px)
+{
+    .align-vertical {
+        padding: 5px;
+    }
+
+    .disease-details {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}

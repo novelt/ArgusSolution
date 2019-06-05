@@ -1,0 +1,16 @@
+<form>
+    <div class="root">
+        {{ rootSite?.getName() }}
+    </div>
+    <div *ngFor="let site of selectedSites; last as isLast" >
+        <ng-container *ngIf="hasChildren(site) ">
+            <app-site-dropdown-mobile  
+                [sites]="site?.getChildren()" 
+                [currentSiteId]="getSelectedSiteAtLevel(getChildrenLevel(site))"
+                [level]="getChildrenLevel(site)" 
+                [select]="site?.isAccessible()"
+                (selectedSiteChange)="changeSiteSelection($event)">
+            </app-site-dropdown-mobile>
+        </ng-container>
+    </div>
+</form>

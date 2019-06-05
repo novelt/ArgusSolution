@@ -1,0 +1,8 @@
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-outline-primary" [ngClass]="{ 'active' : period == 'Weekly'}" translate>
+        <input type="radio" name="options" id="option1" autocomplete="off" (click)="setPeriod('Weekly')"> filter.period_choice.weekly
+    </label>
+    <label class="btn btn-outline-primary" [ngClass]="{ 'active' : period == 'Monthly'}" translate>
+        <input type="radio" name="options" id="option2" autocomplete="off" (click)="setPeriod('Monthly')"> filter.period_choice.monthly
+    </label>
+</div>

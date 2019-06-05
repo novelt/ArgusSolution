@@ -1,0 +1,23 @@
+<div class="modal-container">
+    <div class="modal-header justify-content-center">
+        <h3 class="modal-title">{{ title }}</h3>
+    </div>
+    <div class="modal-details">
+        <span class="details">{{ details }}</span>
+    </div>
+    <div class="modal-body">
+        <div class="list">
+            <!-- <perfect-scrollbar [config]="config">   -->
+              <div class="list-group">
+                  <div class="list-group-item row" *ngFor="let aggregation of aggregations">
+                    <div class="col-6">{{ aggregation.getSiteName() }}</div>
+                    <div class="col-6"><b>{{ aggregation.getPercentage() }} %</b> ({{ aggregation.getNbParticipatingHF() }}/{{ aggregation.getNbTotalHF() }})</div>
+                  </div>
+              </div>
+            <!-- </perfect-scrollbar> -->
+          </div>
+    </div>
+    <div class="modal-footer justify-content-around">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.close(false)">{{ close | translate }}</button>
+    </div>
+</div>

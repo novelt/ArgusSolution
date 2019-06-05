@@ -1,0 +1,21 @@
+<form class="form-inline">
+    <div class="root">
+        {{ rootSite?.getName() }}
+    </div>
+    <div *ngFor="let site of selectedSites; last as isLast" >
+        <ng-container *ngIf="hasChildren(site) "> <!-- && isOneChildrenAccessible(site)-->
+            <i class="fa fa-angle-right fa-sm p-2"></i>
+            <app-site-dropdown  
+                [sites]="site?.getChildren()" 
+                [currentSiteId]="getSelectedSiteAtLevel(getChildrenLevel(site))"
+                [level]="getChildrenLevel(site)" 
+                [select]="site?.isAccessible()"
+                (selectedSiteChange)="changeSiteSelection($event)">
+            </app-site-dropdown>
+        </ng-container>
+        <!-- <ng-container *ngIf="! isOneChildrenAccessible(site)">
+            <i class="fa fa-angle-right fa-sm p-2"></i>
+            {{ site?.getName() }}
+        </ng-container> -->
+    </div>
+</form>

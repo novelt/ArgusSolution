@@ -1,0 +1,17 @@
+{
+  "generator-ngx-rocket": {
+    "version": "3.1.1",
+    "props": {
+      "appName": "Argus",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "bootstrap",
+      "auth": true,
+      "projectName": "argus",
+      "packageManager": "npm",
+      "mobile": []
+    }
+  }
+}

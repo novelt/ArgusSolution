@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+  <user>
+    <username><![CDATA[User1]]></username>
+    <email><![CDATA[User1@users.com]]></email>
+	<password>aqwd2154</password>
+    <enabled>true</enabled>
+    <first_name><![CDATA[User1]]></first_name>
+    <last_name><![CDATA[User1]]></last_name>
+    <site_reference><![CDATA[District1]]></site_reference>
+    <dashboard_roles>
+      <role>
+        <name><![CDATA[MANAGER_CENTRE_DE_SANTE]]></name>
+      </role>
+    </dashboard_roles>
+  </user>
+  <user>
+    <username><![CDATA[User2]]></username>
+    <email><![CDATA[User2@users.com]]></email>
+	<password>knxp7413</password>
+    <enabled>true</enabled>
+    <first_name><![CDATA[User2]]></first_name>
+    <last_name><![CDATA[User2]]></last_name>
+    <site_reference><![CDATA[Province1]]></site_reference>
+    <dashboard_roles>
+      <role>
+        <name><![CDATA[MANAGER_REGION]]></name>
+      </role>
+    </dashboard_roles>
+  </user>
+</users>

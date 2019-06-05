@@ -1,0 +1,23 @@
+@import "src/theme/theme-variables";
+
+.content {
+    height:100%;
+
+    .who, .other {
+        margin: auto 0 auto 15px;
+        vertical-align: middle;
+    }
+
+    .other {
+        max-height: 100%;
+    }
+
+    .disclaimer {
+        margin: auto 15px auto 0;
+        font-size: 0.8em; 
+
+        span {
+            vertical-align: middle;
+        }
+    }
+}

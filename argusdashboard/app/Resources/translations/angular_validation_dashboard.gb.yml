@@ -1,0 +1,114 @@
+filter:
+  week: Week
+  month: Month
+  year: Year
+  period: Period
+  period_choice:
+    weekly: Weekly
+    monthly: Monthly
+  type: Type
+  site: Site
+  select: Select
+  button:
+    show_filters: Show filters
+    apply: Apply
+  calendar:
+    weekly:
+      last_week: Last Week
+      last_4_weeks: Last 4 Weeks
+      year_to_date: Year to date
+    custom: Custom Range
+    button:
+      apply: Apply
+      cancel: Cancel
+  from_week: From
+  to_week: to
+  from_month: From
+  to_month: to
+  from_date: From
+  to_date: to
+list:
+  sites: Sites
+  site: Site
+  week: Week
+  month: Month
+  year: Year
+  status: Status
+titles:
+  reports: REPORTS
+  analyses: ANALYSIS
+  dashboard: DASHBOARD
+  validation: VALIDATION
+  archives: ARCHIVES
+  alerts: ALERTS
+status:
+  VALIDATED: VALIDATED
+  PENDING: PENDING
+  CONFLICTING: CONFLICTING
+  REJECTED: REJECTED
+  REJECTED FROM ABOVE: REJECTED FROM ABOVE
+details:
+  report: Report
+  versions: version(s)
+  button:
+    details: Details
+    validate: Validate
+    reject: Reject
+  confirm:
+    validation:
+      title: Validation
+      question: Are you sure you want to validate this report ?
+    rejection:
+      title: Rejection
+      question: Are you sure you want to reject this report ?
+  aggregation:
+    hf_proportion: HF Proportion
+    hf_details: % of received and validated facilities report
+analyses:
+  other: Other Analyses
+  summury:
+    title: Weekly epidemiological summary
+    select_period: Select the period
+  reports:
+    title: Completeness and timeliness
+    per_site: Per Site
+    per_time: Per Time
+    data:
+      reporting: Data reporting
+      validation: Data validation
+  cases:
+    title: Number of cases per disease
+    search: search...
+  button:
+    download: Download
+    visualize: Visualize
+  details:
+    prefix:
+      data_reporting: Sending reports
+      data_validation: Validating reports
+    title:
+      weekly_timeliness_completeness: Weekly Timeliness & Completeness Report
+      weekly_timeliness_completeness_trend: Weekly Timeliness & Completeness Report Evolution
+      weekly_number_of_cases : Number of Cases per Disease per Week
+      monthly_timeliness_completeness: Monthly Timeliness & Completeness Report
+      monthly_timeliness_completeness_trend: Monthly Timeliness & Completeness Report Evolution
+      monthly_number_of_cases: Number of Cases per Disease per Month
+  download:
+    weekly_report: Download the weekly epidemiological report
+    weekly_report_file: Weekly Report.pdf
+global:
+  button:
+    yes: Yes
+    no: No
+    close: Close
+  footer:
+    disclaimer: ""
+menu:
+  only_desktop:
+    title: Warning
+    body: Only available on desktop
+rscripts:
+  administrative:
+    title: Administrative report
+  epidemiological:
+    title: Epidemiological report

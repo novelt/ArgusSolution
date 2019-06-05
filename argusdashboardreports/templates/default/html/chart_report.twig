@@ -1,0 +1,115 @@
+{% extends "html/chart_page.twig" %}
+
+{% block content %}
+    {% set index = 1 %}
+	{% for chart in Charts %}
+        <div id="chartarea{{ index  }}" style="width: 94%; height: 400px; margin: 0 auto"></div>
+        {% set index = index + 1 %}
+    {% endfor %}
+
+<script type="text/javascript">
+    {% set index = 1 %}
+
+    {% for chart in Charts %}
+
+    max: 10,$(function () {
+        $('#chartarea{{ index  }}').highcharts({
+            chart: {
+
+                {% if chart.columnToLine != 0  %}
+                    {% if chart.Rows|length >= chart.columnToLine %}
+                type: 'line',
+                    {% else %}
+                type: 'column',
+                    {% endif %}
+
+                {% else %}
+
+                    {% if chart.type == 'ColumnChart' %}
+                type: 'column',
+                    {%  elseif chart.type == 'LineChart' %}
+                type: 'line'
+                    {% endif %}
+
+                {% endif %}
+
+            },
+            title: {
+                text: '{{ chart.title }}'
+            },
+            xAxis: {
+                {% if chart.options.hAxis %}
+                title: {
+                    text: "{{ chart.options.hAxis['title'] }}",
+                },
+                {% endif %}
+                categories: [
+                {% for row in chart.Rows %}
+                    "{{ row.values[0].getChartValue() }}"{% if not loop.last %},{% endif %}
+                {% endfor %}
+                ]
+            },
+            yAxis: {
+                allowDecimals: false,
+            {% if chart.options.vAxis %}
+                title: {
+                    text: "{{ chart.options.vAxis['title'] }}",
+                },
+                min: 0,
+                {% if chart.options.vAxis['title'] == '%' %}
+                max: 100,
+                {% else %}
+                    {% set max = 0 %}
+                    {% for i,v in chart.Rows[0].values %}{% if i > 0 %}
+                        {% for row in chart.Rows %}{% set value = row.values[i] %}
+                        {% set val = value.getValue() %}
+                        {% if val > max %}{% set max = max(val,max) %}{% endif %}
+                        {% endfor %}{% endif %}
+                    {% endfor %}
+                {% if max == 0 %}max: 20,{% endif %}
+                {% endif %}
+            {% else %}
+                min: 0,
+            {% endif %}
+            },
+            plotOptions: {
+                series: {
+                    animation: false
+                },
+                column:{
+                    dataLabels: {
+                        enabled: false,
+                        //formatter: function () {
+                        //    if (this.y == 0) {
+                        //        return this.y;
+                        //    }
+                        //    else return '';
+                       // }
+                    }
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>';
+                }
+            },
+            series: [
+            {% for i,v in chart.Rows[0].values %}
+                {% if i > 0 %}{
+                    name: "{{chart.Rows[0].values[i].key}}",
+                    data: [
+                    {% for row in chart.Rows %}{% set value = row.values[i] %} {%  if value.isNumeric() %} {{ value.getValue() }} {% else %} null {% endif %},  {% endfor %}],
+                }{% if not loop.last %},{% endif %}
+                {% endif %}
+			{% endfor %}
+            ]
+        });
+    });
+
+    {% set index = index + 1 %}
+
+    {% endfor %}
+        
+</script>
+{% endblock %}

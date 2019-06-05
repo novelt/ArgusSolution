@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="OMSCardView" parent="CardView.Base">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+</resources>

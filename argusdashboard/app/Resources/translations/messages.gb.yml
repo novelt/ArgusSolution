@@ -1,0 +1,130 @@
+Welcome to the: Welcome to the
+Ses Application: Ses Application
+Please log in: Please log in
+Admin: Admin
+Users: Users
+Roles: Roles
+Permissions: Permissions
+Configuration: Configuration
+Profile: Profile
+Browse the: Browse the
+public section: public section
+of the application: of the application
+Browse application: Browse application
+admin backend: admin backend
+Browse backend: Browse backend
+Map: Map
+Reports: Reports
+Homepage: Homepage
+Pending: Pending
+Validated: Validated
+Conflicting: Conflicting
+Rejected: Rejected
+All: All
+Status: Status
+Period: Period
+Site: Site
+Current Week: Current Week
+Current Month: Current Month
+Current Year: Current Year
+Type: Type
+Weekly Report: Weekly Report
+Monthly Report: Monthly Report
+Completeness: Completeness
+Timeliness: Timeliness
+Reject: Reject
+Validate: Validate
+Submit Successful: Submit Successful
+Reject Successful: Reject Successful
+Reception ongoing since: Reception ongoing since
+Reception complete on: Reception complete on
+Disease: Disease
+Diseases: Diseases
+Reception: Reception
+Variable: Variable
+Value: Value
+NO DATA: NO DATA
+VALIDATED: VALIDATED
+REJECTED: REJECTED
+PENDING: PENDING
+REJECTED FROM ABOVE: REJECTED FROM ABOVE
+CONFLICTING: CONFLICTING
+Week: Week
+Month: Month
+Year: Year
+Display alerts: Display alerts
+New Alert!: New Alert!
+Received the: Received the
+Add: Add
+Create: Create
+Save: Save
+Remove: Remove
+New Report: New Report
+Start date: Start date
+January: January
+February: February
+March: March
+April: April
+May: May
+June: June
+July: July
+August: August
+September: September
+October: October
+November: November
+December: December
+Last Week: Last Week
+Last 7 Days: Last 7 Days
+Last 30 Days: Last 30 Days
+Last Month: Last Month
+Last 12 Month: Last 12 Month
+Last 4 Weeks: Last 4 Weeks
+Year to date: Year to date
+Choose: Choose
+Cancel: Cancel
+From: From
+To: To
+FromWeek: From
+ToWeek: to
+FromMonth: From
+ToMonth: to
+Custom: Custom
+Impossible to validate this report: Impossible to validate this report
+Impossible to reject this report: Impossible to reject this report
+Weekly Timeliness & Completeness Report: Weekly Timeliness & Completeness Report
+Weekly Timeliness & Completeness Report Evolution: Weekly Timeliness & Completeness Report Evolution
+Monthly Timeliness & Completeness Report: Monthly Timeliness & Completeness Report
+Monthly Timeliness & Completeness Report Evolution: Monthly Timeliness & Completeness Report Evolution
+Number of Cases per Disease per Week: Number of Cases per Disease per Week
+Number of Cases per Disease per Month: Number of Cases per Disease per Month
+Number of %VALUES% for Disease(s) %DISEASES% per Week: Number of %VALUES% for Disease(s) %DISEASES% per Week
+Number of %VALUES% for Disease(s) %DISEASES% per Month: Number of %VALUES% for Disease(s) %DISEASES% per Month
+Are you sure to reject this report?: Are you sure to reject this report?
+Are you sure to validate this report?: Are you sure to validate this report?
+Yes: Yes
+No: No
+Epidemiologic Week: Epidemiologic Week
+Weekly epidemiologic situation summary: Weekly epidemiological situation summary
+HF Proportion: HF Proportion
+% of received and validated facilities reports: % of received and validated facilities reports
+Select the weekly diseases: Select the weekly diseases
+Select the monthly diseases: Select the monthly diseases
+Select the epidemiologic week: Select the epidemiologic week
+View Report: View Report
+Download Report: Download Report
+Download Report Data: Download Report Data
+Download Alert Data: Download Alert Data
+List associated contacts: List of Informants
+List alert recipients: List of Alert Recipients
+Weekly SMS traffic: Weekly SMS traffic
+Monthly SMS traffic: Monthly SMS traffic
+Sending reports: Sending reports
+Validating reports: Validating reports
+Language: Language
+gb: English
+fr: French
+MinimumSearchCharacters: Please enter 2 or more characters
+AutocompleteDiseasePlaceholder: Choose a disease
+View: View
+XML file: XML File
+Deactivated: Deactivated

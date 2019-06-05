@@ -1,0 +1,11 @@
+{% extends "::base.html.twig" %}
+
+{% block main %}
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock main %}
+
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock fos_user_content %}

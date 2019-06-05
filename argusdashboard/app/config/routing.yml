@@ -1,0 +1,547 @@
+
+# These first lines load the all routes defined as @Route() annotations in any
+# controller defined inside the src/AppBundle/Controller/ directory. Controllers
+# are loaded recursively, so you can separate them into subdirectories.
+# If you don't like to add annotations in your applications, you can also define
+# the routes in YAML, XML or PHP files.
+# See http://symfony.com/doc/current/book/routing.html
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# These lines define a route using YAML configuration. The controller used by
+# the route (FrameworkBundle:Template:template) is a convenient shortcut when
+# the template can be rendered without executing any logic in your own controller.
+# See http://symfony.com/doc/current/cookbook/templating/render_without_controller.html
+homepage:
+    path: /
+    defaults:
+        _controller: AppBundle:Login:index
+
+report_submitReport :
+    path : /report/submit/{fullReportId}/{partReportIdToValidate}
+    defaults:
+        _controller : AppBundle:Report:submitReport
+
+report_rejectReport :
+    path : /report/reject/{fullReportId}/{partReportIdToReject}
+    defaults:
+        _controller : AppBundle:Report:rejectReport
+
+report_listeReport :
+    path : /report/listeReport/{selectedSiteId}/{display}/{startDate}/{endDate}/{period}
+    defaults:
+        _controller : AppBundle:Report:listeReport
+
+report_listePartReport :
+    path : /report/listePartReport/{fullReportId}
+    defaults:
+        _controller : AppBundle:Report:listePartReport
+
+report_listeAlerts :
+    path : /report/listeAlert/{selectedSiteId}
+    defaults:
+        _controller : AppBundle:Report:listeAlert
+
+report_readAlert :
+    path : /report/readAlert/{alertId}
+    defaults:
+        _controller : AppBundle:Report:readAlert
+
+report_createDashboardJson :
+    path : /report/createDashboard/{selectedSiteId}/{period}/{weekNumber}/{monthNumber}/{year}
+    defaults:
+        {_controller : AppBundle:Report:createDashboardJson }
+
+report_index :
+    path : /report/{selectedPath}
+    defaults:
+        {_controller : AppBundle:Report:index, selectedPath : "" }
+
+report_filterType :
+    path : /filter/filterType/{siteId}
+    defaults:
+        _controller : AppBundle:Report:filterType
+
+report_filterStatus :
+    path : /filter/filterStatus/{siteId}/{period}
+    defaults:
+        _controller : AppBundle:Report:filterStatus
+
+site_getJsonSite :
+    path : /site/getJsonSite
+    defaults:
+        _controller : AppBundle:Site:getJsonSite
+
+config_index :
+    path : /config
+    defaults :
+        _controller : AppBundle:Config:index
+
+config_translateReport :
+    path : /config/reportTranslate
+    defaults :
+        _controller : AppBundle:Config:reportTranslate
+
+custom_applicationName :
+    path : /custom/applicationName
+    defaults :
+        _controller : AppBundle:Custom:applicationName
+
+custom_applicationLogo :
+    path : /custom/applicationLogo
+    defaults :
+        _controller : AppBundle:Custom:applicationLogo
+
+# -----------------------------------------------
+# Export controller
+export_report_data :
+    path : /export/exportReportData/{display}/{startDate}/{endDate}/{period}
+    defaults :
+        _controller : AppBundle:Export\Export:exportReportData
+
+export_alert_data :
+    path : /export/exportAlertData/{startDate}/{endDate}
+    defaults :
+        _controller : AppBundle:Export\Export:exportAlertData
+
+
+# -----------------------------------------------
+# Configuration of sites
+
+configuration_sites:
+    path: /configuration/sites
+    defaults:
+        _controller: AppBundle:Configuration\Site:list
+
+configuration_sites_load:
+    path: /configuration/sites/load-from-xml
+    defaults:
+        _controller: AppBundle:Configuration\Site:loadListFromXML
+
+configuration_sites_save:
+    path: /configuration/sites/save-to-xml
+    defaults:
+        _controller: AppBundle:Configuration\Site:saveListToXML
+
+configuration_sites_save_csv:
+    path: /configuration/sites/save-to-csv
+    defaults:
+        _controller: AppBundle:Configuration\Site:saveListToCSV
+
+configuration_site_add:
+    path: /configuration/site/add
+    defaults:
+        _controller: AppBundle:Configuration\Site:add
+    options:
+        expose: true
+
+configuration_site_get_all:
+    path: /configuration/site/get-sites
+    defaults:
+        _controller: AppBundle:Configuration\Site:getAllSites
+    options:
+        expose: true
+
+configuration_site_edit:
+    path: /configuration/site/{siteId}/edit
+    requirements:
+        siteId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Site:edit
+    options:
+        expose: true
+
+configuration_site_datatable:
+    path: /configuration/site/datatable
+    defaults:
+        _controller: AppBundle:Configuration\Site:datatable
+    options:
+        expose: true
+
+configuration_site_enable_or_disable:
+    path: /configuration/site/{siteId}/enableOrDisable
+    requirements:
+        siteId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Site:enableOrDisable
+    options:
+        expose: true
+
+configuration_site_add_get_timeliness_values:
+    path: /configuration/site/get-timeliness-values-with-parent/{siteId}
+    defaults:
+        _controller: AppBundle:Configuration\Site:getTimelinessValuesWithParent
+
+configuration_site_same_branch_data_source_config_conflict:
+    path: /configuration/site/get-sites-branch-datasource/{isNewSite}/{siteId}/{reportDataSourceId}
+    defaults:
+        _controller: AppBundle:Configuration\Site:getSitesSameBranchDataSourceConfigConflict
+
+configuration_site_alert_recipients:
+    path: /configuration/site/{siteId}/alert-recipients/{page}
+    requirements:
+        siteId: "\\d+"
+        page: "\\d+"
+    defaults:
+        page: 1
+        _controller: AppBundle:Configuration\SiteAlertRecipient:list
+    options:
+        expose: true
+
+configuration_site_alert_recipient_add:
+    path: /configuration/site/{siteId}/alert-recipient/add/
+    requirements:
+        siteId: "\\d+"
+    defaults:
+        page: 1
+        _controller: AppBundle:Configuration\SiteAlertRecipient:add
+    options:
+        expose: true
+
+configuration_site_alert_recipient_remove:
+    path: /configuration/site/{siteId}/alert-recipient/{siteAlertRecipientId}/remove
+    requirements:
+        siteId: "\\d+"
+        siteAlertRecipientId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\SiteAlertRecipient:remove
+
+# -----------------------------------------------
+# Configuration of contacts
+
+configuration_contacts:
+    path: /configuration/contacts
+    defaults:
+        _controller: AppBundle:Configuration\Contact:list
+    options:
+        expose: true
+
+configuration_get_translations:
+    path: /configuration/all/translations
+    defaults:
+      _controller: AppBundle:Configuration\AllConfiguration:getTranslations
+    options:
+      expose: true
+
+configuration_contacts_datatable:
+    path: /configuration/contact/datatable
+    defaults:
+        _controller: AppBundle:Configuration\Contact:datatable
+    options:
+        expose: true
+
+configuration_contacts_load:
+    path: /configuration/contacts/load-from-xml
+    defaults:
+        _controller: AppBundle:Configuration\Contact:loadListFromXML
+
+configuration_contacts_save:
+    path: /configuration/contacts/save-to-xml
+    defaults:
+        _controller: AppBundle:Configuration\Contact:saveListToXML
+
+configuration_contacts_save_csv:
+    path: /configuration/contacts/save-to-csv
+    defaults:
+        _controller: AppBundle:Configuration\Contact:saveListToCSV
+
+configuration_contact_add:
+    path: /configuration/contact/add
+    defaults:
+        _controller: AppBundle:Configuration\Contact:add
+    options:
+        expose: true
+
+configuration_contact_edit:
+    path: /configuration/contact/{contactId}/edit
+    requirements:
+        contactId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Contact:edit
+    options:
+        expose: true
+
+configuration_contact_enable_or_disable:
+    path: /configuration/contact/{contactId}/enableOrDisable
+    requirements:
+        contactId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Contact:enableOrDisable
+    options:
+        expose: true
+
+configuration_contact_remove:
+    path: /configuration/contact/{contactId}/remove
+    requirements:
+        diseaseId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Contact:remove
+
+# ------------------------------------------------
+# Configuration of ContactType
+configuration_contact_types:
+    path: /configuration/contacttypes/{page}
+    requirements:
+        page: "\\d+"
+    defaults:
+        page: 1
+        _controller: AppBundle:Configuration\ContactType:list
+
+configuration_contact_types_load:
+    path: /configuration/contacttypes/load-from-xml
+    defaults:
+        _controller: AppBundle:Configuration\ContactType:loadListFromXML
+
+configuration_contact_types_save:
+    path: /configuration/contacttypes/save-to-xml
+    defaults:
+        _controller: AppBundle:Configuration\ContactType:saveListToXML
+
+configuration_contact_type_add:
+     path: /configuration/contacttype/add
+     defaults:
+         _controller: AppBundle:Configuration\ContactType:add
+
+configuration_contact_type_edit:
+    path: /configuration/contacttype/{contactTypeId}/edit
+    requirements:
+        contactTypeId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\ContactType:edit
+
+configuration_contact_type_remove:
+    path: /configuration/contacttype/{contactTypeId}/remove
+    requirements:
+        diseaseId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\ContactType:remove
+
+# -----------------------------------------------
+# Configuration of diseases
+
+configuration_diseases:
+    path: /configuration/diseases
+    defaults:
+        _controller: AppBundle:Configuration\Disease:list
+
+configuration_diseases_datatable:
+    path: /configuration/disease/datatable
+    defaults:
+        _controller: AppBundle:Configuration\Disease:datatable
+    options:
+        expose: true
+
+configuration_diseases_load:
+    path: /configuration/diseases/load-from-xml
+    defaults:
+        _controller: AppBundle:Configuration\Disease:loadListFromXML
+
+configuration_diseases_save:
+    path: /configuration/diseases/save-to-xml
+    defaults:
+        _controller: AppBundle:Configuration\Disease:saveListToXML
+
+configuration_diseases_save_csv:
+    path: /configuration/diseases/save-to-csv
+    defaults:
+        _controller: AppBundle:Configuration\Disease:saveListToCSV
+
+configuration_disease_add:
+    path: /configuration/disease/add
+    defaults:
+        _controller: AppBundle:Configuration\Disease:add
+
+configuration_disease_edit:
+    path: /configuration/disease/{diseaseId}/edit
+    requirements:
+        diseaseId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Disease:edit
+    options:
+        expose: true
+
+configuration_disease_remove:
+    path: /configuration/disease/{diseaseId}/remove
+    requirements:
+        diseaseId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Disease:remove
+    options:
+        expose: true
+
+configuration_diseaseValue_get_all:
+    path: /configuration/diseaseValue/get-diseaseValue
+    defaults:
+        _controller: AppBundle:Configuration\DiseaseValue:getAllDiseaseValues
+    options:
+        expose: true
+
+configuration_disease_values:
+    path: /configuration/disease/{diseaseId}/values/{page}
+    requirements:
+        diseaseId: "\\d+"
+        page: "\\d+"
+    defaults:
+        page: 1
+        _controller: AppBundle:Configuration\DiseaseValue:list
+    options:
+        expose: true
+
+configuration_disease_value_add:
+    path: /configuration/disease/{diseaseId}/value/add
+    requirements:
+        diseaseId: "\\d+"
+    defaults:
+        page: 1
+        _controller: AppBundle:Configuration\DiseaseValue:add
+
+configuration_disease_value_edit:
+    path: /configuration/disease/{diseaseId}/value/{diseaseValueId}/edit
+    requirements:
+        diseaseId: "\\d+"
+        diseaseValueId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\DiseaseValue:edit
+
+configuration_disease_value_remove:
+    path: /configuration/disease/{diseaseId}/value/{diseaseValueId}/remove
+    requirements:
+        diseaseId: "\\d+"
+        diseaseValueId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\DiseaseValue:remove
+
+configuration_disease_constraints:
+    path: /configuration/disease/{diseaseId}/constraints/{page}
+    requirements:
+        diseaseId: "\\d+"
+        page: "\\d+"
+    defaults:
+        page: 1
+        _controller: AppBundle:Configuration\DiseaseConstraint:list
+
+configuration_disease_constraint_add:
+    path: /configuration/disease/{diseaseId}/constraint/add
+    requirements:
+        diseaseId: "\\d+"
+    defaults:
+        page: 1
+        _controller: AppBundle:Configuration\DiseaseConstraint:add
+    options:
+        expose: true
+
+configuration_disease_constraint_edit:
+    path: /configuration/disease/{diseaseId}/constraint/{diseaseConstraintId}/edit
+    requirements:
+        diseaseId: "\\d+"
+        diseaseConstraintId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\DiseaseConstraint:edit
+
+configuration_disease_constraint_remove:
+    path: /configuration/disease/{diseaseId}/constraint/{diseaseConstraintId}/remove
+    requirements:
+        diseaseId: "\\d+"
+        diseaseConstraintId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\DiseaseConstraint:remove
+
+configuration_save_all_to_xml:
+    path: /configuration/all/save-to-xml
+    defaults:
+        _controller: AppBundle:Configuration\AllConfiguration:saveListsToXML
+
+# -----------------------------------------------
+# Configuration of thresholds
+
+configuration_thresholds:
+    path: /configuration/thresholds
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:list
+
+configuration_thresholds_datatable:
+    path: /configuration/threshold/datatable
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:datatable
+    options:
+        expose: true
+
+configuration_thresholds_load:
+    path: /configuration/thresholds/load-from-xml
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:loadListFromXML
+
+configuration_thresholds_save:
+    path: /configuration/thresholds/save-to-xml
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:saveListToXML
+
+configuration_thresholds_save_csv:
+    path: /configuration/thresholds/save-to-csv
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:saveListToCSV
+
+configuration_threshold_add:
+    path: /configuration/threshold/add
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:add
+
+configuration_threshold_edit:
+    path: /configuration/threshold/{thresholdId}/edit
+    requirements:
+        thresholdId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:edit
+    options:
+        expose: true
+
+configuration_threshold_remove:
+    path: /configuration/threshold/{thresholdId}/remove
+    requirements:
+        thresholdId: "\\d+"
+    defaults:
+        _controller: AppBundle:Configuration\Threshold:remove
+    options:
+        expose: true
+
+# Language
+configuration_language:
+    path: /language/{locale}
+    defaults:
+         _controller : AppBundle:Configuration\Language:changeLanguage
+
+# -----------------------------------------------
+
+#REST
+rest :
+  type : rest
+  resource : "routing_rest.yml"
+  prefix : /services
+
+#FOS JS ROUTING
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    type : rest
+    prefix : /services
+
+#REST with JWT Authentification
+api:
+    type: rest
+    resource: "routing_api.yml"
+    prefix: /api
+
+# LexikJWTAuthenticationBundle
+api_login_check:
+    path: /api/login_check
+    options: { i18n: false } # No _locale for these routes
+
+# JWTRefreshTokenBundle
+gesdinet_jwt_refresh_token:
+    path: /api/token/refresh
+    defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }
+    options: { i18n: false } # No _locale for these routes
+

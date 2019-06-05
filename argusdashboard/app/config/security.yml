@@ -1,0 +1,86 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+        Symfony\Component\Security\Core\User\User: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: $2y$12$oTUDfBoVpTM6cZvssWXWg.sPMLB70v0tT.fogmyFaRIwnbw7yU26y
+                        roles: 'ROLE_ADMIN'
+
+    # http://symfony.com/doc/current/book/security.html#firewalls-authentication
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/api/login
+            stateless: true
+            anonymous: true
+            form_login:
+                check_path: api_login_check
+                require_previous_session: false
+                username_parameter: username
+                password_parameter: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        refresh_token:
+            pattern:  ^/api/token/refresh
+            stateless: true
+            anonymous: true
+
+        api:
+            pattern:   ^/(api|[a-z][a-z]/api)
+            stateless: true
+            #lexik_jwt:
+            #    authorization_header:   # look for a token as Authorization Header
+            #        enabled: true
+            #        prefix:  Bearer
+            #        name:    Authorization
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        secured_area:
+            # this firewall applies to all URLs but the /sso
+            pattern: ^/(?![a-z][a-z]/sso)
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: security.csrf.token_manager
+                check_path: fos_user_security_check
+                login_path: fos_user_security_login
+            anonymous: ~
+            logout:
+                path : fos_user_security_logout
+                target: fos_user_security_login
+                invalidate_session: false
+            guard:
+                authenticators:     # allow SSO from the Angular Dashboard
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+    access_control:
+        # LexikJWTAuthenticationBundle
+        - { path: ^/api/login,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/token/refresh,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api,        role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/[a-z][a-z]/api,        role: IS_AUTHENTICATED_FULLY }
+
+        - { path: ^/[a-z][a-z]/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[a-z][a-z]/report, role: ROLE_USER }
+        - { path: ^/[a-z][a-z]/config, role: ROLE_ADMIN }
+        - { path: ^/[a-z][a-z]/language/, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/[a-z][a-z]/configuration, role: ROLE_ADMIN }
+        - { path: ^/[a-z][a-z]/admin, role: ROLE_ADMIN }
+        - { path: ^/[a-z][a-z]/profile/, role: IS_AUTHENTICATED_FULLY }

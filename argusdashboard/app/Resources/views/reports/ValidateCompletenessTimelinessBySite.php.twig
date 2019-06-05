@@ -1,0 +1,42 @@
+<?php
+// Validate Completeness And Timeliness By Site
+// INFO: {
+// "created": "2016-02-11"
+// }
+// CHART: {
+//	"columns": [],
+//	"type": "ColumnChart",
+//	"title": "OVERRIDDEN",
+// }
+// VARIABLE: {
+// "name": "Range",
+// "type": "daterange",
+// "default": {
+//   "start": "-1 month",
+//   "end": "now"
+//   }
+// }
+// VARIABLE: {
+// name: "Site",
+// empty: true
+// }
+// VARIABLE: {
+// name: "Period",
+// empty: true
+// }
+// VARIABLE: {
+// name: "Locale",
+// empty: true
+// }
+
+// @dataset true
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, DashboardRestApi::getUrl('ValidateCompletenessTimelinessBySite', $Range, $Site, 'undefined', $Period, $Locale));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$output = curl_exec($ch);
+curl_close($curl);
+
+echo $output ;
+
+?>

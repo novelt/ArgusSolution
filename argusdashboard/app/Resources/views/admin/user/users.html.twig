@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'admin_users' %}
+
+{% block main %}
+    {{ parent() }}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <h2>{{ 'User.List' | trans({}, 'security') }}</h2>
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-xs-12">
+                <a href="{{ path('admin_user_new') }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'User.Add' | trans({}, 'security') }}</button></a>
+                <a href="{{ path('admin_user_load') }}"><button class="btn btn-sm btn-info"><i class="fa fa-upload"></i> {{ 'Configuration.Buttons.LoadFromXML' | trans({}, 'configuration_labels') }}</button></a>
+                <a href="{{ path('admin_user_save') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToXML' | trans({}, 'configuration_labels') }}</button></a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped ">
+            <thead>
+            <tr>
+                <th>{{ 'User.UserName' | trans({}, 'security') }}</th>
+                <th>{{ 'User.Email' | trans({}, 'security') }}</th>
+                <th>{{ 'User.RootSite' | trans({}, 'security') }}</th>
+                <th>{{ 'User.IsAdmin' | trans({}, 'security') }}</th>
+                <th>{{ 'User.Enabled' | trans({}, 'security') }}</th>
+                <th>{{ 'User.Roles' | trans({}, 'security') }}</th>
+                <th>{{ 'User.LastLogin' | trans({}, 'security') }}</th>
+                <th>{{ 'General.Actions' | trans({}, 'security') }}</th>
+            </tr>
+            </thead>
+            {% for user in users %}
+                <tr>
+                    <td><strong><a href="{{ path('admin_user_edit',{id: user.id}) }}">{{ user.username }}</a></strong></td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.siteName }}</td>
+                    <td>{% if  user.isAdmin() %}{{ 'General.Yes' | trans({}, 'security') }}{% else %}{{ 'General.No' | trans({}, 'security') }}{% endif %} </td>
+                    <td>{% if user.enabled %}{{ 'General.Yes' | trans({}, 'security') }}{% else %}{{ 'General.No' | trans({}, 'security') }}{% endif %}</td>
+                    <td>{% for role in  user.getDashboardRoles() %} {{ role.getName() }} <br /> {% endfor %}</td>
+                    <td>{% if user.lastLogin %} {{ user.lastLogin|localizeddate('short', 'short') }} {% endif %}</td>
+                    <td>
+                        <a href="{{ path('admin_user_edit', {id: user.id}) }}"><button class="btn btn-info btn-xs"><i class="fa fa-pencil"> {{ 'General.Action.Edit' | trans({}, 'security') }}</i></button></a>
+                        <a href="{{ path('admin_user_delete', {id: user.id}) }}"><button class="btn btn-danger btn-xs"><i class="fa fa-trash"> {{ 'General.Action.Delete' | trans({}, 'security') }}</i></button></a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}

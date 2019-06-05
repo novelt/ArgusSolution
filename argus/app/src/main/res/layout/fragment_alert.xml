@@ -1,0 +1,57 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <org.argus.sms.app.view.ScrollViewWithScrollListener
+            android:id="@+id/fragment_alert_ScrollView"
+            style="@style/oms_scrollbarstyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/report_button_send_height"
+            android:paddingTop="15dp"
+            tools:context="org.argus.sms.app.fragment.FragmentReportWeekly">
+
+            <LinearLayout
+                android:id="@+id/fragment_alert_LinearLayout_items"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp">
+
+            </LinearLayout>
+        </org.argus.sms.app.view.ScrollViewWithScrollListener>
+
+        <org.argus.sms.app.view.TintImageButton
+            android:id="@+id/fragment_alert_Button_send"
+            style="@style/oms_sendbutton"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragment_alert_TextView_smsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_gravity="right"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
+        android:paddingRight="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="3dp"
+        tools:text="120/150"/>
+
+
+</FrameLayout>

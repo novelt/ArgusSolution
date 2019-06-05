@@ -1,0 +1,21 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_disease_constraint_add' %}
+
+{% block configuration %}
+
+    <div class="well col-lg-7">
+
+        <h2>{{ 'Configuration.Titles.DiseaseConstraintInsertionForDisease' | trans({'Disease': diseaseName}, 'configuration_labels') }}</h2>
+
+        {{ form_start(form, {'method': 'post', 'action': path('configuration_disease_constraint_add', {diseaseId: diseaseId})}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-sm btn-danger" type="submit" value="{{ 'Create'|trans }}" />
+            <a href="{{ path('configuration_disease_constraints', {diseaseId: diseaseId}) }}"><input class="btn btn-sm btn-primary" type="button" value="{{ 'Cancel'|trans }}" formnovalidate/></a>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

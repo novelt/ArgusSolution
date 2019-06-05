@@ -1,0 +1,286 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'report_index' %}
+
+{% block main %}
+
+	{# Context Menus & Iframe Report #}
+	{{ include('report/contextMenu.html.twig') }}
+
+	{# Content #}
+	<div class="row">
+		<div class="col-md-4">
+			<div id="tree"></div>
+		</div>
+		<div class="col-md-5">
+			<div id="divFilters">{{ include('report/filters.html.twig') }}</div>
+			<div id="divListeReport"></div>
+		</div>
+		<div class="col-md-3">
+			<div id="divListeAlerts"></div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block javascripts %}
+	{{ parent() }}
+
+	<script>
+
+		{# Manual Entry functionality deactivated 09/14/2015 #}
+		{#
+		function addEditModal() {
+
+			var pathAddEditReport = "{{ path('report_addEditReport', {'period' : 'PERIOD_TIME' , 'selectedPath' : 'HREF' }) }}";
+
+			var period = $("#optType input[type='radio']:checked").val();
+
+			//Get the selected node
+			var nodes = $('#tree').treeview('getSelected');
+			var args = nodes[0].href ;
+
+			pathAddEditReport = pathAddEditReport.replace('PERIOD_TIME',period );
+			pathAddEditReport = pathAddEditReport.replace('HREF',args );
+
+			$.get(pathAddEditReport, function(data){
+				//debugger ;
+				$("#divAddEditModalContent").html(data);
+				$("#addEditReport").modal();
+			});
+		}
+		#}
+
+		function readAlert(alertId)
+		{
+			$("#pAlert"+alertId).attr("class", "panel panel-warning");
+			$("#pFooterAlert"+alertId).hide();
+
+			var pathReadAlert = "{{ path('report_readAlert', {'alertId' : 'ALERT_ID' } )}}";
+			pathReadAlert = pathReadAlert.replace('ALERT_ID',alertId );
+
+			$.get(pathReadAlert, function(data){
+			});
+		}
+
+		function RejectReports(fullReportId)
+		{
+            var partReportsCheckBox =  $("#accordionFullReport" + fullReportId).find("input[type='checkbox'][name='rejection']");
+			var nbCheckBoxChecked = 0;
+			var idPartReport = null ;
+
+			$(partReportsCheckBox).each(function(){
+				if (this.checked){
+					nbCheckBoxChecked ++;
+					if (null === idPartReport || this.id > idPartReport)
+						idPartReport = this.id;
+				}
+			});
+
+			if (nbCheckBoxChecked == 0)	{
+				displayErrorMessage('{{ 'Impossible to reject this report' | trans }}');
+				return ;
+			}
+
+			var urlReport = "{{ path('report_rejectReport' , {'fullReportId' : 'FULL_REPORT_ID' ,
+																 'partReportIdToReject' : 'PART_REPORT_ID_REJECT'}) }}";
+
+			if (idPartReport == "")
+				idPartReport = 0;
+
+			urlReport = urlReport.replace('FULL_REPORT_ID',fullReportId );
+			urlReport = urlReport.replace('PART_REPORT_ID_REJECT',idPartReport );
+
+			CallAjaxMethod(urlReport);
+		}
+
+		function ValideReports(fullReportId)
+		{
+			var partReportsCheckBox =  $("#accordionFullReport" + fullReportId).find("input[type='checkbox'][name='validation']");
+
+			var nbCheckBoxChecked = 0;
+			var idPartReportToValidate = null ;
+
+			$(partReportsCheckBox).each(function(){
+						if (this.checked){
+							nbCheckBoxChecked ++;
+							if (null === idPartReportToValidate || this.id > idPartReportToValidate) { // More recent part Report
+								idPartReportToValidate = this.id;
+							}
+						}
+					});
+
+			/*if (nbCheckBoxChecked > 1) {
+				displayErrorMessage("Please select only one report !");
+				return ;
+			}*/
+
+			if (nbCheckBoxChecked == 0)	{
+				displayErrorMessage('{{ 'Impossible to validate this report' | trans }}');
+				return ;
+			}
+
+			var urlReport = "{{ path('report_submitReport' , {'fullReportId' : 'FULL_REPORT_ID' ,
+																 'partReportIdToValidate' : 'PART_REPORT_ID_VALIDE'}) }}";
+
+			if (idPartReportToValidate == "")
+				idPartReportToValidate = 0;
+
+			urlReport = urlReport.replace('FULL_REPORT_ID',fullReportId );
+			urlReport = urlReport.replace('PART_REPORT_ID_VALIDE',idPartReportToValidate );
+
+			CallAjaxMethod(urlReport);
+		}
+
+		function CallAjaxMethod(url)
+		{
+            myApp.showPleaseWait();
+
+			$.ajax({
+				type: "POST",
+				url: url,
+				timeout: 20000,
+				dataType: "json",
+				success: function(response) {
+                    myApp.hidePleaseWait();
+					displaySuccessMessage(response.message);
+
+					var fullReportId =  response.data.fullReportId;
+					var cssFullReport = response.data.css;
+					var statusFullReport = response.data.status;
+
+					var fullreport = $("#pFullReport" + fullReportId);
+					fullreport.attr("class", "panel panel-" + cssFullReport);
+					$("#lblStatus" + fullReportId).html(statusFullReport);
+
+					response.data.partReports.forEach(function(data)
+					{
+						var id =  data.partReportId;
+						var css = data.css;
+						var status = data.status;
+
+						var partReport = $("#pPartReport" + id);
+                        partReport.attr("class", "panel panel-" + css);
+                        $("#lblStatusPartReport" + id).html(status);
+					});
+
+					//$("#btnGroupFullReport"+fullReportId).hide();
+
+				},
+				error:function(xhr, status, error)
+				{
+					myApp.hidePleaseWait();
+					displayErrorMessage(xhr.responseText);
+				}
+			});
+		}
+
+
+		$(document).ready(function() {
+
+			// Init argusContextMenu object
+			argusContextualMenu = new ArgusContextMenu();
+			argusContextualMenu.init('{{ app.request.getSchemeAndHttpHost() }}', '{{ url_ses_reports_reporting_path }}', '{{ url_ses_dashboard_reporting_path }}', '{{ url_ses_dashboard_pdf_path }}');
+			argusContextualMenu.initDiseases('{{ path('services_get_diseases') }}');
+			argusContextualMenu.initDashboard('{{ path('report_createDashboardJson', {'selectedSiteId' : 'HREF', 'period' : 'PERIOD_TIME', 'weekNumber' : 'WEEK_NUMBER', 'monthNumber' : 'MONTH_NUMBER', 'year' : 'YEAR' }) }}')
+			argusContextualMenu.initTranslationWords('{{ 'Site' | trans }}', '{{ 'Period' | trans }}', '{{ 'From'| trans }}',
+					 								'{{ 'To'| trans }}', '{{ 'FromWeek'| trans }}', '{{ 'ToWeek'| trans }}',
+					 								'{{ 'FromMonth'| trans }}', '{{ 'ToMonth'| trans }}', '{{ 'Week'| trans }}');
+
+			 $('#dateRangePicker').daterangepicker({
+				 "showDropdowns": true,
+				 "showWeekNumbers": true,
+				 "ranges": {
+					 "{{ 'Last Week'| trans }}": [moment().subtract(7, 'days').day(argusContext.getEpiFirstDay()), moment().subtract(7, 'days').day(argusContext.getEpiFirstDay() + 6)],
+					 "{{ 'Last 4 Weeks'| trans }}": [moment().subtract(28, 'days').day(argusContext.getEpiFirstDay()), moment().subtract(7, 'days').day(argusContext.getEpiFirstDay() + 6)],
+					 "{{ 'Year to date'| trans }}": [moment().startOf('year').add(3, 'days').day(argusContext.getEpiFirstDay()), moment().day(argusContext.getEpiFirstDay() + 6)]
+				 },
+				 "locale": {
+					 "format": argusContext.getDateFormat(),
+					 "separator": " - ",
+					 "applyLabel": "{{ 'Choose'| trans }}",
+					 "cancelLabel": "{{ 'Cancel'| trans }}",
+					 "fromLabel": "{{ 'From'| trans }}",
+					 "toLabel": "{{ 'To'| trans }}",
+					 "customRangeLabel": "{{ 'Custom'| trans }}"
+				 },
+				 "linkedCalendars": false,
+				 "startDate": moment().subtract(28, 'days').day(argusContext.getEpiFirstDay()),
+				 "endDate": moment().subtract(7, 'days').day(argusContext.getEpiFirstDay() + 6),
+				 "opens": "center"
+			 }, function(start, end, label) {
+				 // Automatically choose complete weeks
+					if (label == "{{ 'Custom'| trans }}" ) {
+
+						$("#rangeStartWeekly").val(start.day(argusContext.getEpiFirstDay()).format('YYYY-MM-DD'));
+
+						if (end.day() == ((argusContext.getEpiFirstDay()+6) % 7))
+							$("#rangeEndWeekly").val(end.format('YYYY-MM-DD'));
+						else
+							$("#rangeEndWeekly").val(end.day(argusContext.getEpiFirstDay()+6).format('YYYY-MM-DD'));
+					}
+				 	else
+					{
+						$("#rangeStartWeekly").val(start.format('YYYY-MM-DD'));
+						$("#rangeEndWeekly").val(end.format('YYYY-MM-DD'));
+					}
+
+				 argusContext.refreshListReport();
+			 });
+
+			$("#rangeStartWeekly").val(moment().subtract(28, 'days').day(argusContext.getEpiFirstDay()).format('YYYY-MM-DD'));
+			$("#rangeEndWeekly").val(moment().subtract(7, 'days').day(argusContext.getEpiFirstDay() + 6).format('YYYY-MM-DD'));
+
+			 $('#dateRangePickerMonthly').daterangepicker({
+				 "showDropdowns": true,
+				 "showWeekNumbers": true,
+				 "ranges": {
+                    "{{ 'Last Month'| trans }}": [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                    "{{ 'Year to date'| trans }}": [moment().startOf('year'), moment().endOf('day')]
+                 },
+				 "locale": {
+					 "format": argusContext.getDateFormat(),
+					 "separator": " - ",
+					 "applyLabel": "{{ 'Choose'| trans }}",
+					 "cancelLabel": "{{ 'Cancel'| trans }}",
+					 "fromLabel": "{{ 'From'| trans }}",
+					 "toLabel": "{{ 'To'| trans }}",
+					 "customRangeLabel": "{{ 'Custom'| trans }}"
+				 },
+				 "linkedCalendars": false,
+				 "startDate": moment().subtract(1, 'month').startOf('month'),
+				 "endDate": moment().subtract(1, 'month').endOf('month'),
+				 "opens": "center"
+			 }, function(start, end, label) {
+				 if (label == "{{ 'Custom'| trans }}" ) {
+					 $("#rangeStartMonthly").val(start.startOf('month').format('YYYY-MM-DD'));
+					 $("#rangeEndMonthly").val(end.endOf('month').format('YYYY-MM-DD'));
+				 }
+				 else {
+					 $("#rangeStartMonthly").val(start.format('YYYY-MM-DD'));
+					 $("#rangeEndMonthly").val(end.format('YYYY-MM-DD'));
+				 }
+
+				 argusContext.refreshListReport();
+			 });
+
+			$("#rangeStartMonthly").val(moment().subtract(1, 'month').startOf('month').format('YYYY-MM-DD'));
+			$("#rangeEndMonthly").val(moment().subtract(1, 'month').endOf('month').format('YYYY-MM-DD'));
+
+			argusContext.displayTreeView() ;
+
+           });
+
+
+	 </script>
+
+ {% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+

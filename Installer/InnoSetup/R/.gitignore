@@ -1,0 +1,11 @@
+*~
+*.html
+.Rproj.user
+*.gz
+.Rhistory
+*.png
+*_files
+*.svg
+src/assets/ne_50m_admin_0_countries.*
+db/db_config
+*.RData

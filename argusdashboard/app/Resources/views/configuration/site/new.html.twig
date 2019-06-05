@@ -1,0 +1,90 @@
+{% extends 'configuration/site/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_id 'configuration_site_add' %}
+
+{% block configuration %}
+    {{ parent() }}
+    <div class="well col-lg-7">
+
+        <h2>{{ 'Configuration.Titles.SiteInsertion' | trans({}, 'configuration_labels') }}</h2>
+
+        {{ form_start(form, {'method': 'post', 'action': path('configuration_site_add'), 'attr': {'onsubmit':"return onSubmitSiteForm(true, $(this), $('#app_site_insertion_parent').val(), $('#app_site_insertion_reportDataSourceId').val(), $('#app_site_insertion_overwriteReportDataSourceId'));"}}) }}
+            {{ form_widget(form) }}
+            <div>
+                <input class="btn btn-sm btn-danger" type="submit" value="{{ 'Create'|trans }}" />
+                <a href="{{ path('configuration_sites') }}"><input class="btn btn-sm btn-primary" type="button" value="{{ 'Cancel'|trans }}" formnovalidate/></a>
+            </div>
+        {{ form_end(form) }}
+        <input type="hidden" id="dummy_route" value="{{ path('configuration_site_add_get_timeliness_values', {'siteId': 'SITE_ID'}) }}">
+
+    </div>
+    <div class="loader-modal"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        (function() {
+            jQuery('#app_site_insertion_parent').on("select2:select", function() {
+
+                myApp.showPleaseWait();
+
+                var datasBinded = jQuery(this).select2('data');
+                var id = datasBinded[0].id;
+                var dummyDOM = jQuery('#dummy_route');
+                var dummyRoute = dummyDOM.val();
+                var pattern = "SITE_ID";
+                var finalRoute = dummyRoute.replace(pattern, id);
+
+                jQuery.ajax({
+                            url: finalRoute,
+                            async: false,
+                            type: 'GET'
+                        })
+                        .done(function(values) {
+                            $("#app_site_insertion_weeklyTimelinessMinutes").val(values.week);
+                            $("#app_site_insertion_monthlyTimelinessMinutes").val(values.month);
+
+                            myApp.hidePleaseWait();
+                        });
+            });
+        })();
+
+        function charactersDictionary() {
+            return {
+                'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'À': 'A', 'Á': 'A', 'Å': 'A',
+                'Æ': 'AE', 'Ç': 'C', 'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E',
+                'Ì': 'I', 'Í': 'I', 'Î': 'I', 'Ï': 'I', 'Ð': 'D', 'Ñ': 'N',
+                'Ò': 'O', 'Ó': 'O', 'Ô': 'O', 'Õ': 'O', 'Ö': 'O', 'Ø': 'O',
+                'Ù': 'U', 'Ú': 'U', 'Û': 'U', 'Ü': 'U', 'Ý': 'Y',
+                'Þ': 'p', 'ß': 'B', 'à': 'a', 'á': 'a', 'â': 'a', 'ã': 'a',
+                'ä': 'a', 'å': 'a', 'æ': 'ae', 'ç': 'c', 'è': 'e',
+                'é': 'e', 'ê': 'e', 'ë': 'e', 'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+                'ð': 'o', 'ñ': 'n', 'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ø': 'o',
+                'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u', 'ý': 'y', 'þ': 'p', 'ÿ': 'y'
+            }
+        }
+
+        $(document).ready(function() {
+            var nameDOMElement = $("#app_site_insertion_name");
+            var referenceDOMElement = $("#app_site_insertion_reference");
+            nameDOMElement.on("blur", function() {
+                if (referenceDOMElement.val().length == 0) {
+                    var dict = charactersDictionary();
+                    var nameValue = nameDOMElement.val();
+                    nameValue = nameValue.replace(/ /g,"_");
+                    nameValue = nameValue.replace(/[^\w\s]/gi, function(char) {
+                        return dict[char] || '';
+                    });
+                    referenceDOMElement.val(nameValue.toUpperCase());
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

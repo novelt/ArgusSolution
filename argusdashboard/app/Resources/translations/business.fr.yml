@@ -1,0 +1,18 @@
+contactType:
+    short:
+        CI: RC
+        HW: AS
+        DSNO: RSND
+        SI: SI
+        HF: CS
+    long:
+        CI: Relais communautaire
+        informants: Relais
+        HW: Agent de santé
+        DSNO: Responsable Surveillance au Niveau du District
+        SI: Relais spécial
+        HF: Centre de santé
+
+disease:
+    ALERT: Alerte
+    AFP: PFA

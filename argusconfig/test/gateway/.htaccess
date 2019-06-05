@@ -1,0 +1,8 @@
+SetEnvIf Request_URI "/gateway.php$" gatewaytest
+
+Order allow,deny
+# Uncomment the line below to authorize Argus Gateway to push messages to the server
+# Allow from env=gatewaytest
+Allow from 127.0.0.1
+Allow from ::1
+Satisfy Any

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prefs_sms_gateway_out_title">Numéro du Gateway</string>
+    <string name="prefs_sms_gateway_in_title">Numéros de Gateway connus</string>
+    <string name="pref_language_title">Langue</string>
+    <string name="action_settings">Réglages</string>
+    <string name="report_weekly">Rapport Hebdomadaire</string>
+    <string name="report_weekly_short">Rapport Hebdo</string>
+    <string name="report_monthly">Rapport Mensuel</string>
+    <string name="report_monthly_short">@string/report_monthly</string>
+    <string name="alert">Alerte</string>
+    <string name="history">Historique</string>
+    <string name="history_ressend_confirmation">Voulez vous renvoyer ce rapport ?\n%1$s</string>
+    <string name="title_activity_activity_settings">@string/action_settings</string>
+    <string name="title_activity_activity_report_weekly">@string/report_weekly</string>
+    <string name="title_activity_activity_report_monthly">@string/report_monthly</string>
+    <string name="title_activity_activity_report_detail">Détail rapport</string>
+    <string name="title_activity_activity_alert">@string/alert</string>
+    <string name="title_activity_activity_history">@string/history</string>
+    <string name="title_activity_activity_historydetail">Detail historique</string>
+    <string name="title_activity_activity_synchronisation">@string/synchronization</string>
+    <string name="send_report">Envoyer</string>
+    <string name="synchronization">Synchronisation</string>
+    <string name="aucun_serveur_configure">Aucun serveur configuré</string>
+    <string name="sending_alert">Alerte en cours d\'envoi</string>
+    <string name="sent_alert">Alerte envoyée</string>
+    <string name="sending_report_weekly">Rapport hebdomadaire en cours d\'envoi</string>
+    <string name="sent_report_weekly">Rapport hebdomadaire envoyé</string>
+    <string name="sending_report_monthly">Rapport mensuel en cours d\'envoi</string>
+    <string name="sent_report_monthly">Rapport mensuel envoyé</string>
+    <string name="sent_report_errors">Le rapport n\'a pas pu être envoyé entièrement. Essayer de renvoyer les messages en erreur via l\'hitorique</string>
+    <string name="missing_fields">Veuillez renseigner tous les champs obligatoires</string>
+    <string name="epidemiologique_week">Semaine\népidémiologique</string>
+    <string name="epidemiologique_month">Mois</string>
+    <string name="zero">zéro cas et décès</string>
+    <string name="unknown">Inconnu</string>
+    <string name="week">semaine</string>
+    <string name="month">mois</string>
+    <string name="sync_in_progress_since">Synchronisation en cours depuis %1$s. %2$d messages reçus.</string>
+    <string name="last_sync">"Dernière synchronisation le %s "</string>
+    <string name="sms_count">%1$d/%2$d</string>
+    <string name="limit_reached">Nombre maximum de caractères dépassé</string>
+    <string name="format_week_from">du %1$d/%2$d/%3$d</string>
+    <string name="format_week_to">au %1$d/%2$d/%3$d</string>
+    <string name="report_not_sent">Rapport non envoyé</string>
+    <string name="alert_not_sent">Alerte non envoyée</string>
+    <string name="sync">Sync</string>
+    <string name="minus">-</string>
+    <string name="ok">OK</string>
+    <string name="plus">+</string>
+    <string name="reminder_send_report_for_week">Veuillez envoyer le rapport pour la semaine %d</string>
+    <string name="reminder_send_report_for_month">Veuillez envoyer le rapport pour le mois %d</string>
+    <string name="annuler">Annuler</string>
+    <string name="send_report_weekly">Envoyer le rapport hebdomadaire de la semaine %1$d - %2$d?\n%3$s</string>
+    <string name="send_report_monthly">Envoyer le rapport mensuel du %1$02d - %2$d ?\n%3$s</string>
+    <string name="field_wrong">Merci de vérifier que le champs est correctement rempli, puis réessayez.</string>
+    <string name="month_year">%1$02d/%2$d</string>
+    <string name="no_network">Aucun réseau téléphonique disponible</string>
+    <string name="no_network_alert">Aucun réseau téléphonique disponible, le rapport ne pourra pas être envoyé</string>
+    <string name="title_activity_activity_push">Notifications</string>
+    <string name="developed_with_oms"></string>
+    <string name="skip">Passer</string>
+
+    <string-array name="prefs_languages_labels_array">
+        <item name="english">Anglais</item>
+        <item name="french">Français</item>
+    </string-array>
+
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="sure_quit_report">Le rapport n\'a pas été envoyé, quitter la page ?</string>
+    <string name="sure_quit_alert">L\'alerte n\'a pas été envoyée, quitter la page ?</string>
+    <string name="warning">Attention</string>
+    <string name="information">Information</string>
+    <string name="sync_restart">Synchronisation réussie, l\'application va redémarrer.</string>
+    <string name="warning_already_sent">Attention, le rapport pour cette date a déjà été envoyé.</string>
+    <string name="test_mode">Mode test</string>
+    <string name="warning_test_mode">Attention, Argus est en mode test. Le sms sera ignoré par le serveur.</string>
+    <string name="sms_not_sent">Envoi annulé.</string>
+    <string name="superior">supérieur à</string>
+    <string name="superior_equals">supérieur ou égal à</string>
+    <string name="inferior">infèrieur à</string>
+    <string name="inferior_equals">inférieur ou égal à</string>
+    <string name="different">différent de</string>
+    <string name="field_constraint_error_prefix">Ce champ doit être</string>
+    <string name="fake_synch">Fake synchronisation</string>
+    <string name="network_lock">Bloquer les sms si pas de réseau</string>
+    <string name="error_title">Erreur</string>
+    <string name="check_credit">Erreur réseau GSM. Veuillez vérifier votre crédit ou contacter votre opérateur</string>
+    <string name="enter_password">Saisir le mot de passe</string>
+    <string name="wrong_password">Mot de passe éroné</string>
+    <string name="settings_password">Modifier le Mot de passe</string>
+    <string name="enter_new_password">Saisir un nouveau mot de passe</string>
+    <string name="confirm_new_password">Confirmez le nouveau mot de passe</string>
+    <string name="define_new_password">Définir un nouveau mot de passe</string>
+    <string name="passwords_do_not_match">Les mots de passe ne correspondent pas</string>
+    <string name="password_cannot_be_empty">Le mot de passe ne peut pas être vide</string>
+    <string name="password_changed">Le mot de passe a été modifié</string>
+
+    <string name="warning_identical_report_title">Rapport identique</string>
+    <string name="warning_identical_report_message">Attention, un rapport identique a déjà été envoyé</string>
+    <string name="warning_identical_report_send_history_message">Un rapport identique a déjà été envoyé mais est en erreur. Seuls les messages en erreurs seront renvoyés.</string>
+
+    <string name="warning_external_argus_alert_not_found">L\'application Argus Alert n\'est pas instalée</string>
+
+    <!-- General configuration -->
+    <string name="prefs_category_general">Configuration générale</string>
+
+    <!-- Alert Configuration -->
+    <string name="prefs_category_alert">Configuration des alertes</string>
+    <string name="prefs_config_alert_external_title">Utiliser Argus Alert Application</string>
+
+    <!-- SMS Configuration -->
+    <string name="prefs_category_config_SMS">Configuration par SMS</string>
+    <string name="prefs_config_sms_enable_title">Activer la configuration par SMS</string>
+    <string name="prefs_config_only_known_gateway_title">Gateways connus seulement</string>
+    <string name="prefs_config_encrypt_security_key_title">Clef de sécurité</string>
+</resources>

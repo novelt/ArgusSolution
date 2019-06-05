@@ -1,0 +1,139 @@
+{# Modal Popup for Weekly diseases #}
+<div id="modalWeeklyDiseases" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #e5e5e5;">
+                <a href="#" class="btn btn-xs btn-primary pull-right" data-dismiss="modal" aria-label="Close"><span class="fa fa-remove"></span> </a>
+                <h4 class="modal-title">{{ 'Select the weekly diseases' | trans() }}</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    {% for disease in diseasesWeekly  %}
+                        {% if (loop.index % 2) == 1   %}
+                            <tr>
+                        {% endif %}
+                            <td><input type="checkbox" data-value="{{ disease.id }}" {% if loop.first %}checked="true" {% endif %} />&nbsp;{{ disease.name }}</td>
+                            {% if loop.last and (loop.index % 2 != 0) %}
+                                {%  set loopIndex = loop.index % 2 %}
+                                {% for i in loopIndex..2 %}
+                                    <td></td>
+                                {% endfor %}
+                            {% endif  %}
+                        {% if (loop.index % 2) == 0 or loop.last %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalViewReportWeekly">{{ 'View Report' | trans() }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Modal Popup for Monthly diseases #}
+<div id="modalMonthlyDiseases" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #e5e5e5;">
+                <a href="#" class="btn btn-xs btn-primary pull-right" data-dismiss="modal" aria-label="Close"><span class="fa fa-remove"></span></a>
+                <h4 class="modal-title">{{ 'Select the monthly diseases' | trans() }}</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    {% for disease in diseasesMonthly  %}
+                        {% if (loop.index % 2) == 1   %}
+                            <tr>
+                        {% endif %}
+                        <td><input type="checkbox" data-value="{{ disease.id }}" {% if loop.first %}checked="true" {% endif %} />&nbsp;{{ disease.name }}</td>
+                        {% if loop.last and (loop.index % 2 != 0) %}
+                            {%  set loopIndex = loop.index % 2 %}
+                            {% for i in loopIndex..2 %}
+                                <td></td>
+                            {% endfor %}
+                        {% endif  %}
+                        {% if (loop.index % 2) == 0 or loop.last %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalViewReportMonthly">{{ 'View Report' | trans() }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Modal Popup for Weekly Resume #}
+<div id="modalWeeklyResume" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #e5e5e5;">
+                <a href="#" class="btn btn-xs btn-primary pull-right" data-dismiss="modal" aria-label="Close"><span class="fa fa-remove"></span></a>
+                <h4 class="modal-title">{{ 'Select the epidemiologic week' | trans() }}</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="optResumeWeeklyWeek">{{ 'Week' | trans }} :</label>
+                        <select id="optResumeWeeklyWeek" class="form-control" onchange="argusContextualMenu.setWeeklyResumeLabels();">
+                            {% for i in 1..currentWeek %}
+                                <option value="{{ i }}" {% if i == currentWeek %} selected {% endif %}>{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="optResumeWeeklyYear"> {{ 'Year' | trans }} :</label>
+                        <select id="optResumeWeeklyYear" class="form-control" onchange="argusContextualMenu.setDropDownValuesForWeeklyResumePopup();">
+                            {% for y in 2015..currentYear %}
+                                <option value="{{ y }}" {% if y == currentYear %} selected {% endif %}>{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <p class="form-control-static">&nbsp;&nbsp;&nbsp;</p>
+                    <div class="form-group">
+                        <label for="lblResumeWeeklyFrom">{{ 'From' | trans }}</label>&nbsp;<label style="font-size: larger;" id="lblResumeWeeklyFrom"></label>
+                        <label for="lblResumeWeeklyTo">{{ 'To' | trans }}</label>&nbsp;<label style="font-size: larger;" id="lblResumeWeeklyTo"></label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalDownloadWeeklyResume">{{ 'Download Report' | trans() }}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalViewWeeklyResume">{{ 'View Report' | trans() }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ {# Load the reportMenu contained in the instances folder #}
+ {{ include('@instance/report/reportMenu.html.twig') }}
+
+ {# Iframe in Modal div to display the reports #}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 98%; height: calc(100% - 60px); padding: 0;">
+        <div class="modal-content" style="height: 99%;">
+
+            <div class="modal-header" style="background-color: #e5e5e5; padding-bottom: 0; height: 110px;">
+                <a id="myModalClose" href="#" class="btn btn-xs btn-primary pull-right" data-dismiss="modal" aria-label="Close"><span class="fa fa-remove"></span> </a>
+                <h3 id="reportTitle" style="margin-top:0;"></h3>
+                <h4 id="reportSite"></h4>
+                <h4 id="reportPeriod"></h4>
+            </div>
+
+            <div class="modal-body" style="padding-top:10px; padding-left:5px; padding-right:0px; padding-bottom:0px; height: calc(100% - 110px)">
+                <h3 id="fullTitle" style="text-align: center; margin-top:0; height: 25px;"></h3>
+                <h3 id="fullTitleDetails" style="text-align: center; margin-top:0; height: 25px;"></h3>
+                <iframe id="iFrameReport"
+                        frameborder="0" style=" height:calc(100% - 68px); width:100%; overflow-x: hidden;"
+                        name="targetframe" allowtransparency="true">
+                </iframe> <!-- target iframe -->
+
+            </div>
+        </div>
+    </div>
+</div>

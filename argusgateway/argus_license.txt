@@ -1,0 +1,59 @@
+﻿Argus
+TERMS OF USE AND SOFTWARE LICENSE AGREEMENT
+Please read these Terms of Use and Software License Agreement (the “Agreement”) carefully before installing Argus.
+By installing and/or using Argus, you (the “Licensee”) enter into an agreement with the World Health Organization (“WHO”), and you accept and agree to comply with this Terms of Use and Software License Agreement.  
+
+1. Components of Argus
+1.1. Argus contains software developed by WHO, and has three components available: 
+(i) a software to be installed on Android phones by final users (“Argus Android”); 
+(ii) a software to be installed on a server (“Argus Server”); and 
+(iii) a software to be installed on Android phones to operate at SMS gateways for the server (“Argus Gateway”).
+This Agreement governs your use of whichever component of Argus you have downloaded and/or used through an online platform.  References to “Argus” in the remainder of this Agreement apply to any Argus component, as applicable in your particular case.  
+
+2. Third-Party Software  
+2.1. Third-party software needed to use Argus Server.  In order to run Argus, you will need to install and/or use the following third party software (i) PHP reports, (ii) MySql, (iii) Python 2.7 using Tcl/Tk and Tkinter libraries, (iv) Symphony 2 framework, (v) R, (vi) Pandoc, (vii) C3.js, (viii) D3js, and (ix) Angular (each of the above, “third-party software”). 
+2.2. WHO disclaimers for third-party software. WHO makes no warranties whatsoever, and specifically disclaims any and all warranties, express or implied, that any third-party software is free of defects, virus free, able to operate on an uninterrupted basis, merchantable, fit for a particular purpose, accurate, non-infringing, or appropriate for your technical system.  
+2.3. Third-party software user license(s) and use.  To the extent you are required to enter into a user license in order to use any third-party software, WHO is not a party to any such license, and WHO therefore disclaims all liability, responsibility, and/or involvement with any such license. WHO shall not be held liable or responsible for either any breach of any of the terms and conditions of any third-party software user licenses by you, or any damages arising from your use of any third-party software.
+2.4. No WHO endorsement of third-party software.  The use of any third-party software does not imply that these products are endorsed or recommended by WHO in preference to others of a similar nature.
+3. License and Terms of Use for Argus
+3.1. Copyright and license. Argus is copyright (©) World Health Organization, 2019, and is distributed under the terms of the GNU Affero General Public License (AGPL), version 3 (https://www.gnu.org/licenses/agpl.html).  As stated in the source code for Argus, Argus incorporates or makes reference to other open source software, issued under multiple license types (including the “GPL version 2”, the “LGPL version 3”, the “BSD license”, the “BSD 3 license”, “the Python Software license”, and the “MIT license”), and WHO issues Argus under AGPL “version 3” in part to comply with the terms of those software. WHO disclaims any responsibility or liability with respect to the use or completeness of such license. 
+3.2. Modified Versions to Argus.  In the event that you convey or otherwise disseminate a modified version of Argus: 
+(i) Your modified work must carry prominent notices stating that you modified Argus (as provided for under the terms of the GNU Affero General Public License discussed in paragraph 3.1 above); 
+
+(ii) You must include the following disclaimer/explanatory text: 
+
+This software is a modified version of the World Health Organization’s “Argus” software. This software is not the product of, is not provided by, and is not endorsed or affiliated with, the World Health Organization.  The original Argus software is © the World Health Organization. 
+
+(iii) Your modified work and your dissemination of it must comply with the terms of paragraph 5.1 below, including, without limitation, that you must not use the WHO name or logo or imply any relation to WHO other than including the disclaimer text of paragraph 3.2(ii) above. 
+
+4. Retained Rights and Limitations on Use
+4.1. Retained Rights. Except as otherwise indicated herein, WHO owns and shall retain all right, title and interest in and to Argus, including all intellectual property rights embodied therein, including (i) all of the service marks, trademarks, trade names or any other designations associated with Argus; and (ii) all copyrights, patent rights, trade secret rights, and other proprietary rights relating to Argus. Nothing contained in this License shall be deemed to convey to you any title or ownership in Argus or the related documentation. 
+4.2. Technical limitations of Use. You shall not remove any WHO identification or notices of any proprietary, patent or copyright restrictions from Argus, or any support material such as the related documentation.  
+
+5. Acknowledgment and Prohibition on Use of WHO Name and/or Emblem 
+5.1. WHO does not provide any content to Argus, you shall not state or imply that results from Argus are WHO’s products, opinion, or statements. Further, you shall not (i) in connection with your use of Argus, state or imply that WHO endorses or is affiliated with you or your use of Argus, or that WHO endorses any entity, organization, company, or product, or (ii) use the name or emblem of WHO in any way. All requests to use the WHO name and/or emblem require advance written approval of WHO.
+
+6. Disclaimers by WHO 
+6.1. No WHO warranties.  WHO makes no warranty with respect to Argus, and disclaims all statutory or implied warranties, expressed or implied, as to the accuracy, completeness or usefulness of any information, apparatus, product, or process related to Argus, including, without limitation, to any warranty of design or fitness for a particular purpose, even if WHO has been informed of such purpose. WHO does not represent that the use of Argus would not infringe third parties' proprietary rights.  WHO provides Argus “as is”, and does not represent that Argus is operational, free of defects, virus free, able to operate on an uninterrupted basis, or appropriate for your technical system. 
+6.2. Mentions of companies or products. Any mention of specific companies or of certain manufacturers’ products does not imply that they are endorsed or recommended by the World Health Organization in preference to others of a similar nature that are not mentioned. Errors and omissions excepted, the names of proprietary products are distinguished by initial capital letters.
+
+7. Limitation of WHO’s Liability
+7.1. WHO shall not be liable for any loss or damage arising directly or indirectly in connection with, or resulting from, your use of Argus.
+7.2. WHO further expressly excludes liability for any indirect, special, incidental or consequential damages which may arise in respect of Argus and its use or the results thereof. 
+
+8. Your Indemnification of WHO  
+8.1. You shall indemnify, hold harmless, and defend at your own expense WHO, its officers, agents, and employees from and against any claims, demands, causes of action, and liability of any nature or kind resulting from or relating to your use of Argus.
+
+9. Term and Termination of this Agreement
+9.1. This Agreement shall remain in effect so long as you hold any copy of Argus on any of your computer systems or storage media. This Agreement, including the rights granted under it, shall terminate automatically upon any breach by you of any of its terms. Further, WHO may terminate this Agreement, including the rights granted under it, at any time, with immediate effect, for any reason, by written notice to you.  This Agreement is the entire agreement between you and WHO with respect to its subject matter.  This Agreement may only be amended by mutual written agreement of you and WHO. 
+9.2. Upon termination of this License for any reason whatsoever, you shall immediately cease all use of Argus and destroy and/or remove all copies of Argus from your computer systems and storage media.
+
+10. General Provisions 
+10.1. You may not assign this Agreement without the prior written agreement of WHO (such agreement not to be unreasonably withheld).
+10.2. This Agreement may not be supplemented, modified, amended, released or discharged, unless approved in writing by WHO. WHO reserves the right to make changes and updates to this Agreement without prior notification. Such changes and updates shall be applied as of the date of their issuance. Any waiver by WHO of any default or breach hereunder shall not constitute a waiver of any provision of this Agreement or of any subsequent default or breach of the same or a different kind.
+10.3. If any provision of this Agreement is invalid or unenforceable, it is to that extent to be deemed omitted. The remainder of the Agreement shall be valid and enforceable to the maximum extent possible. 
+10.4. Paragraph headings in this Agreement are for reference only. 
+10.5. Any matter relating to the interpretation or application of this Agreement which is not covered by its terms shall be resolved by reference to Swiss law. Any dispute relating to the interpretation or application of this Agreement shall, unless amicably settled, be subject to conciliation. In the event of failure of the latter, the dispute shall be settled by arbitration. The arbitration shall be conducted in accordance with the modalities to be agreed upon by the parties or, in the absence of agreement, in accordance with the UNCITRAL Arbitration Rules. The parties shall accept the arbitral award as final.
+
+11. Privileges and Immunities of WHO
+11.1. Nothing contained herein or in any license or terms of use related to the subject matter herein (including, without limitation, the GNU Affero General Public License discussed in paragraph 3.1 above) shall be construed as a waiver of any of the privileges and immunities enjoyed by the World Health Organization under national or international law, and/or as submitting the World Health Organization to any national court jurisdiction.

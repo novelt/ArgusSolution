@@ -1,0 +1,7 @@
+input_too_short: "Search terms are too shorts."
+input_too_long: "Search terms are too longs."
+error_loading: "The results could not be loaded."
+loading_more: "Loading more results…"
+no_results: "No results found."
+searching: "Searching…"
+maximum_selected: "Too many items selected."

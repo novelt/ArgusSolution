@@ -1,0 +1,625 @@
+{
+    "project": {
+        "name": "argus",
+        "description": "",
+        "version": "1.0.1",
+        "url": ""
+    },
+    "files": {
+        "src\\app\\about\\about.component.ts": {
+            "name": "src\\app\\about\\about.component.ts",
+            "modules": {},
+            "classes": {
+                "AboutComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\authentication\\authentication.service.ts": {
+            "name": "src\\app\\core\\authentication\\authentication.service.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\http\\http-cache.service.ts": {
+            "name": "src\\app\\core\\http\\http-cache.service.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\http\\http.service.ts": {
+            "name": "src\\app\\core\\http\\http.service.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\http\\request-options-args.ts": {
+            "name": "src\\app\\core\\http\\request-options-args.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\i18n.service.ts": {
+            "name": "src\\app\\core\\i18n.service.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\logger.service.ts": {
+            "name": "src\\app\\core\\logger.service.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\route-reusable-strategy.ts": {
+            "name": "src\\app\\core\\route-reusable-strategy.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\core\\route.service.ts": {
+            "name": "src\\app\\core\\route.service.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\app\\home\\home.component.ts": {
+            "name": "src\\app\\home\\home.component.ts",
+            "modules": {},
+            "classes": {
+                "HomeComponent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\polyfills.ts": {
+            "name": "src\\polyfills.ts",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "AboutComponent": {
+            "name": "AboutComponent",
+            "shortname": "AboutComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\app\\about\\about.component.ts",
+            "line": 5,
+            "description": "About class component.",
+            "is_constructor": 1
+        },
+        "HomeComponent": {
+            "name": "HomeComponent",
+            "shortname": "HomeComponent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\app\\home\\home.component.ts",
+            "line": 7,
+            "description": "Home page class component.",
+            "implements": "OnInit",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src\\app\\core\\authentication\\authentication.service.ts",
+            "line": 19,
+            "description": "Provides a base for authentication workflow.\nThe Credentials interface as well as login/logout methods should be replaced with proper implementation.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\authentication\\authentication.service.ts",
+            "line": 35,
+            "description": "Authenticates the user.",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "The login parameters.",
+                    "type": "LoginContext"
+                }
+            ],
+            "return": {
+                "description": "The user credentials.",
+                "type": "Observable<Credentials>"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\authentication\\authentication.service.ts",
+            "line": 50,
+            "description": "Logs out the user and clear credentials.",
+            "return": {
+                "description": "True if the user was logged out successfully.",
+                "type": "Observable<boolean>"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\authentication\\authentication.service.ts",
+            "line": 60,
+            "description": "Checks is the user is authenticated.",
+            "return": {
+                "description": "True if the user is authenticated.",
+                "type": "Boolean"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\authentication\\authentication.service.ts",
+            "line": 68,
+            "description": "Gets the user credentials.",
+            "return": {
+                "description": "The user credentials or null if the user is not authenticated.",
+                "type": "Credentials"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\authentication\\authentication.service.ts",
+            "line": 76,
+            "description": "Sets the user credentials.\nThe credentials may be persisted across sessions by setting the `remember` parameter to true.\nOtherwise, the credentials are only persisted for the current session.",
+            "params": [
+                {
+                    "name": "credentials",
+                    "description": "The user credentials.",
+                    "type": "Credentials="
+                },
+                {
+                    "name": "remember",
+                    "description": "True to remember credentials across sessions.",
+                    "type": "Boolean="
+                }
+            ],
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http-cache.service.ts",
+            "line": 15,
+            "description": "Provides a cache facility for HTTP requests with configurable persistence policy.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http-cache.service.ts",
+            "line": 28,
+            "description": "Sets the cache data for the specified request.",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "The request URL.",
+                    "type": "!string"
+                },
+                {
+                    "name": "params",
+                    "description": "Optional request query parameters.",
+                    "type": "Any"
+                },
+                {
+                    "name": "data",
+                    "description": "The received data.",
+                    "type": "ResponseOptions"
+                },
+                {
+                    "name": "lastUpdated",
+                    "description": "The cache last update, current date is used if not specified.",
+                    "type": "Date="
+                }
+            ],
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http-cache.service.ts",
+            "line": 45,
+            "description": "Gets the cached data for the specified request.",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "The request URL.",
+                    "type": "!string"
+                },
+                {
+                    "name": "params",
+                    "description": "Optional request query parameters.",
+                    "type": "Any="
+                }
+            ],
+            "return": {
+                "description": "The cached data or null if no cached data exists for this request.",
+                "type": "?ResponseOptions"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http-cache.service.ts",
+            "line": 63,
+            "description": "Gets the cached entry for the specified request.",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "The request URL.",
+                    "type": "!string"
+                },
+                {
+                    "name": "params",
+                    "description": "Optional request query parameters.",
+                    "type": "Any="
+                }
+            ],
+            "return": {
+                "description": "The cache entry or null if no cache entry exists for this request.",
+                "type": "?HttpCacheEntry"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http-cache.service.ts",
+            "line": 73,
+            "description": "Clears the cached entry (if exists) for the specified request.",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "The request URL.",
+                    "type": "!string"
+                },
+                {
+                    "name": "params",
+                    "description": "Optional request query parameters.",
+                    "type": "Any="
+                }
+            ],
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http-cache.service.ts",
+            "line": 85,
+            "description": "Cleans cache entries older than the specified date.",
+            "params": [
+                {
+                    "name": "expirationDate",
+                    "description": "The cache expiration date. If no date is specified, all cache is cleared.",
+                    "type": "Date="
+                }
+            ],
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http-cache.service.ts",
+            "line": 102,
+            "description": "Sets the cache persistence policy.\nNote that changing the cache persistence will also clear the cache from its previous storage.",
+            "params": [
+                {
+                    "name": "persistence",
+                    "description": "How the cache should be persisted, it can be either local or session\n  storage, or if no value is provided it will be only in-memory (default).",
+                    "type": "'local'|'session'="
+                }
+            ],
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http.service.ts",
+            "line": 18,
+            "description": "Provides a base framework for http service extension.\nThe default extension adds support for API prefixing, request caching and default error handler.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\http.service.ts",
+            "line": 32,
+            "description": "Performs any type of http request.\nYou can customize this method with your own extended behavior.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\http\\request-options-args.ts",
+            "line": 1,
+            "description": "Cache policy for HTTP requests.\nWith the value 'Never' the request is always made and the cache is not used.\nWith the value 'Always' the request result is fetched from cache if possible, or the request is made and cached.\nIf the value 'Update' is used, a request will be forced and the cache entry updated.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\i18n.service.ts",
+            "line": 12,
+            "description": "Pass-through function to mark a string for translation extraction.\nRunning `npm translations:extract` will include the given string by using this.",
+            "params": [
+                {
+                    "name": "s",
+                    "description": "The string to extract for translation.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The same string.",
+                "type": "String"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\i18n.service.ts",
+            "line": 34,
+            "description": "Initializes i18n for the application.\nLoads language from local storage if present, or sets default language.",
+            "params": [
+                {
+                    "name": "defaultLanguage",
+                    "description": "The default language to use.",
+                    "type": "!string"
+                },
+                {
+                    "name": "supportedLanguages",
+                    "description": "The list of supported languages.",
+                    "type": "Array.<String>"
+                }
+            ],
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\i18n.service.ts",
+            "line": 49,
+            "description": "Sets the current language.\nNote: The current language is saved to the local storage.\nIf no parameter is specified, the language is loaded from local storage (if present).",
+            "params": [
+                {
+                    "name": "language",
+                    "description": "The IETF language code to set.",
+                    "type": "String"
+                }
+            ],
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\i18n.service.ts",
+            "line": 75,
+            "description": "Gets the current language.",
+            "return": {
+                "description": "The current language code.",
+                "type": "String"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 1,
+            "description": "Simple logger system with the possibility of registering custom outputs.\n\n4 different log levels are provided, with corresponding methods:\n- debug   : for debug information\n- info    : for informative status of the application (success, ...)\n- warning : for non-critical errors that do not prevent normal application behavior\n- error   : for critical errors that prevent normal application behavior\n\nExample usage:\n```\nimport { Logger } from 'app/core/logger.service';\n\nconst log = new Logger('myFile');\n...\nlog.debug('something happened');\n```\n\nTo disable debug and info logs in production, add this snippet to your root component:\n```\nexport class AppComponent implements OnInit {\n  ngOnInit() {\n    if (environment.production) {\n      Logger.enableProductionMode();\n    }\n    ...\n  }\n}\n\nIf you want to process logs through other outputs than console, you can add LogOutput functions to Logger.outputs.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 33,
+            "description": "The possible log levels.\nLogLevel.Off is never emitted and only used with Logger.level property to disable logs.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 45,
+            "description": "Log output handler function.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 52,
+            "description": "Current logging level.\nSet it to LogLevel.Off to disable logs completely.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 58,
+            "description": "Additional log outputs.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 63,
+            "description": "Enables production mode.\nSets logging level to LogLevel.Warning.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 73,
+            "description": "Logs messages or objects  with the debug level.\nWorks the same as console.log().",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 81,
+            "description": "Logs messages or objects  with the info level.\nWorks the same as console.log().",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 89,
+            "description": "Logs messages or objects  with the warning level.\nWorks the same as console.log().",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\logger.service.ts",
+            "line": 97,
+            "description": "Logs messages or objects  with the error level.\nWorks the same as console.log().",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\route-reusable-strategy.ts",
+            "line": 3,
+            "description": "A route strategy allowing for explicit route reuse.\nUsed as a workaround for https://github.com/angular/angular/issues/18374\nTo reuse a given route, add `data: { reuse: true }` to the route definition.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\route.service.ts",
+            "line": 6,
+            "description": "Provides helper methods to create routes.",
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\app\\core\\route.service.ts",
+            "line": 11,
+            "description": "Creates routes using the shell component and authentication.",
+            "params": [
+                {
+                    "name": "routes",
+                    "description": "The routes to add."
+                }
+            ],
+            "return": {
+                "description": "The new routes using shell as the base.",
+                "type": "Routes"
+            },
+            "class": "HomeComponent"
+        },
+        {
+            "file": "src\\polyfills.ts",
+            "line": 1,
+            "description": "This file includes polyfills needed by Angular and is loaded before the app.\nYou can add your own extra polyfills to this file.\n\nThis file is divided into 2 sections:\n  1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.\n  2. Application imports. Files imported after ZoneJS that should be loaded before your main\n     file.\n\nThe current setup is for so-called \"evergreen\" browsers; the last versions of browsers that\nautomatically update themselves. This includes Safari >= 10, Chrome >= 55 (including Opera),\nEdge >= 13 on the desktop, and iOS 10 and Chrome on mobile.\n\nLearn more in https://angular.io/docs/ts/latest/guide/browser-support.html",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nProvides a base for authentication workflow.\nThe Credentials interface as well as login/logout methods should be replaced with proper implementation.",
+            "line": " src\\app\\core\\authentication\\authentication.service.ts:19"
+        },
+        {
+            "message": "Missing item type\nAuthenticates the user.",
+            "line": " src\\app\\core\\authentication\\authentication.service.ts:35"
+        },
+        {
+            "message": "Missing item type\nLogs out the user and clear credentials.",
+            "line": " src\\app\\core\\authentication\\authentication.service.ts:50"
+        },
+        {
+            "message": "Missing item type\nChecks is the user is authenticated.",
+            "line": " src\\app\\core\\authentication\\authentication.service.ts:60"
+        },
+        {
+            "message": "Missing item type\nGets the user credentials.",
+            "line": " src\\app\\core\\authentication\\authentication.service.ts:68"
+        },
+        {
+            "message": "Missing item type\nSets the user credentials.\nThe credentials may be persisted across sessions by setting the `remember` parameter to true.\nOtherwise, the credentials are only persisted for the current session.",
+            "line": " src\\app\\core\\authentication\\authentication.service.ts:76"
+        },
+        {
+            "message": "Missing item type\nProvides a cache facility for HTTP requests with configurable persistence policy.",
+            "line": " src\\app\\core\\http\\http-cache.service.ts:15"
+        },
+        {
+            "message": "Missing item type\nSets the cache data for the specified request.",
+            "line": " src\\app\\core\\http\\http-cache.service.ts:28"
+        },
+        {
+            "message": "Missing item type\nGets the cached data for the specified request.",
+            "line": " src\\app\\core\\http\\http-cache.service.ts:45"
+        },
+        {
+            "message": "Missing item type\nGets the cached entry for the specified request.",
+            "line": " src\\app\\core\\http\\http-cache.service.ts:63"
+        },
+        {
+            "message": "Missing item type\nClears the cached entry (if exists) for the specified request.",
+            "line": " src\\app\\core\\http\\http-cache.service.ts:73"
+        },
+        {
+            "message": "Missing item type\nCleans cache entries older than the specified date.",
+            "line": " src\\app\\core\\http\\http-cache.service.ts:85"
+        },
+        {
+            "message": "Missing item type\nSets the cache persistence policy.\nNote that changing the cache persistence will also clear the cache from its previous storage.",
+            "line": " src\\app\\core\\http\\http-cache.service.ts:102"
+        },
+        {
+            "message": "Missing item type\nProvides a base framework for http service extension.\nThe default extension adds support for API prefixing, request caching and default error handler.",
+            "line": " src\\app\\core\\http\\http.service.ts:18"
+        },
+        {
+            "message": "Missing item type\nPerforms any type of http request.\nYou can customize this method with your own extended behavior.",
+            "line": " src\\app\\core\\http\\http.service.ts:32"
+        },
+        {
+            "message": "Missing item type\nCache policy for HTTP requests.\nWith the value 'Never' the request is always made and the cache is not used.\nWith the value 'Always' the request result is fetched from cache if possible, or the request is made and cached.\nIf the value 'Update' is used, a request will be forced and the cache entry updated.",
+            "line": " src\\app\\core\\http\\request-options-args.ts:1"
+        },
+        {
+            "message": "Missing item type\nPass-through function to mark a string for translation extraction.\nRunning `npm translations:extract` will include the given string by using this.",
+            "line": " src\\app\\core\\i18n.service.ts:12"
+        },
+        {
+            "message": "Missing item type\nInitializes i18n for the application.\nLoads language from local storage if present, or sets default language.",
+            "line": " src\\app\\core\\i18n.service.ts:34"
+        },
+        {
+            "message": "Missing item type\nSets the current language.\nNote: The current language is saved to the local storage.\nIf no parameter is specified, the language is loaded from local storage (if present).",
+            "line": " src\\app\\core\\i18n.service.ts:49"
+        },
+        {
+            "message": "Missing item type\nGets the current language.",
+            "line": " src\\app\\core\\i18n.service.ts:75"
+        },
+        {
+            "message": "Missing item type\nSimple logger system with the possibility of registering custom outputs.\n\n4 different log levels are provided, with corresponding methods:\n- debug   : for debug information\n- info    : for informative status of the application (success, ...)\n- warning : for non-critical errors that do not prevent normal application behavior\n- error   : for critical errors that prevent normal application behavior\n\nExample usage:\n```\nimport { Logger } from 'app/core/logger.service';\n\nconst log = new Logger('myFile');\n...\nlog.debug('something happened');\n```\n\nTo disable debug and info logs in production, add this snippet to your root component:\n```\nexport class AppComponent implements OnInit {\n  ngOnInit() {\n    if (environment.production) {\n      Logger.enableProductionMode();\n    }\n    ...\n  }\n}\n\nIf you want to process logs through other outputs than console, you can add LogOutput functions to Logger.outputs.",
+            "line": " src\\app\\core\\logger.service.ts:1"
+        },
+        {
+            "message": "Missing item type\nThe possible log levels.\nLogLevel.Off is never emitted and only used with Logger.level property to disable logs.",
+            "line": " src\\app\\core\\logger.service.ts:33"
+        },
+        {
+            "message": "Missing item type\nLog output handler function.",
+            "line": " src\\app\\core\\logger.service.ts:45"
+        },
+        {
+            "message": "Missing item type\nCurrent logging level.\nSet it to LogLevel.Off to disable logs completely.",
+            "line": " src\\app\\core\\logger.service.ts:52"
+        },
+        {
+            "message": "Missing item type\nAdditional log outputs.",
+            "line": " src\\app\\core\\logger.service.ts:58"
+        },
+        {
+            "message": "Missing item type\nEnables production mode.\nSets logging level to LogLevel.Warning.",
+            "line": " src\\app\\core\\logger.service.ts:63"
+        },
+        {
+            "message": "Missing item type\nLogs messages or objects  with the debug level.\nWorks the same as console.log().",
+            "line": " src\\app\\core\\logger.service.ts:73"
+        },
+        {
+            "message": "Missing item type\nLogs messages or objects  with the info level.\nWorks the same as console.log().",
+            "line": " src\\app\\core\\logger.service.ts:81"
+        },
+        {
+            "message": "Missing item type\nLogs messages or objects  with the warning level.\nWorks the same as console.log().",
+            "line": " src\\app\\core\\logger.service.ts:89"
+        },
+        {
+            "message": "Missing item type\nLogs messages or objects  with the error level.\nWorks the same as console.log().",
+            "line": " src\\app\\core\\logger.service.ts:97"
+        },
+        {
+            "message": "Missing item type\nA route strategy allowing for explicit route reuse.\nUsed as a workaround for https://github.com/angular/angular/issues/18374\nTo reuse a given route, add `data: { reuse: true }` to the route definition.",
+            "line": " src\\app\\core\\route-reusable-strategy.ts:3"
+        },
+        {
+            "message": "Missing item type\nProvides helper methods to create routes.",
+            "line": " src\\app\\core\\route.service.ts:6"
+        },
+        {
+            "message": "Missing item type\nCreates routes using the shell component and authentication.",
+            "line": " src\\app\\core\\route.service.ts:11"
+        },
+        {
+            "message": "Missing item type\nThis file includes polyfills needed by Angular and is loaded before the app.\nYou can add your own extra polyfills to this file.\n\nThis file is divided into 2 sections:\n  1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.\n  2. Application imports. Files imported after ZoneJS that should be loaded before your main\n     file.\n\nThe current setup is for so-called \"evergreen\" browsers; the last versions of browsers that\nautomatically update themselves. This includes Safari >= 10, Chrome >= 55 (including Opera),\nEdge >= 13 on the desktop, and iOS 10 and Chrome on mobile.\n\nLearn more in https://angular.io/docs/ts/latest/guide/browser-support.html",
+            "line": " src\\polyfills.ts:1"
+        }
+    ]
+}

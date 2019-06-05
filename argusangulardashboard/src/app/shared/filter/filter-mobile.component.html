@@ -1,0 +1,7 @@
+<div class="filter">
+    <app-period-mobile (selectedPeriodChange)="selectedPeriodChange($event)"></app-period-mobile>
+    <app-weekly-date-picker-mobile (selectedDateRangeChange)="selectedDateRangeChange($event)"></app-weekly-date-picker-mobile>
+    <app-site-cascade-mobile (selectedSitesChange)="selectedSitesChange($event)"></app-site-cascade-mobile>
+
+    <button class="apply btn btn-success" (click)="applyMobileFilters($event)" translate>filter.button.apply</button>
+</div>

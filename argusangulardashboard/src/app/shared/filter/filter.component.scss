@@ -1,0 +1,83 @@
+@import '~theme/theme-variables.scss';
+
+.filter {
+    width: 100%;
+    height: 48px;
+
+    .header {
+        width: 100%;
+        height: 100%;
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+        background-color: $argus-gray-300;
+        color: white;
+    
+        >div {
+            margin-left: 1em;
+            margin-right: 1em;
+            margin-top: auto;
+            margin-bottom: auto;
+            vertical-align: middle;
+        }
+    
+        .time, .period {
+            background-color: $argus-gray-500;
+            border-radius: 12px;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+            padding-top: 0.3em;
+            padding-bottom: 0.3em;
+            font-size:0.9em;
+        }
+    
+        .btn-filter {
+            font-size:0.9em;
+            color:white;
+            border: white 1px solid;
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+        }
+    
+        .btn-filter:hover {
+            background-color: $argus-gray-500;
+        }
+    }
+    
+    .content {
+        display: none;
+        width: 100%;
+        padding: 0.8em;
+        background-color: $argus-gray-500;
+        color: white;
+        border-radius: 0 0 8px 8px;
+        z-index: 999;
+
+        .element-filter {
+            display: none;
+            margin-right: 20px;
+
+            .title {
+                font-size: 1.3em;
+                font-weight: 100;
+            }
+        }
+
+        .element-filter.show {
+            display: block;
+        }
+    
+        .apply {
+            font-size:0.9em;
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    }
+
+    .content.show {
+        display: block; 
+        position: relative;
+    }
+}
+

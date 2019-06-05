@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import>
+  <contacts>
+    <contact>
+      <phone_number><![CDATA[+228000001]]></phone_number>
+      <site_reference><![CDATA[Site10]]></site_reference>
+      <name><![CDATA[Contact 10]]></name>
+      <enabled><![CDATA[Yes]]></enabled>
+      <note><![CDATA[]]></note>
+    </contact>
+	<contact>
+      <phone_number><![CDATA[+228000002]]></phone_number>
+      <site_reference><![CDATA[Site11]]></site_reference>
+      <name><![CDATA[Contact 11]]></name>
+      <enabled><![CDATA[Yes]]></enabled>
+      <note><![CDATA[]]></note>
+    </contact>
+	<contact>
+      <phone_number><![CDATA[+228000003]]></phone_number>
+      <site_reference><![CDATA[Site20]]></site_reference>
+      <name><![CDATA[Contact 20]]></name>
+      <enabled><![CDATA[Yes]]></enabled>
+      <note><![CDATA[]]></note>
+    </contact>
+	<contact>
+      <phone_number><![CDATA[+228000004]]></phone_number>
+      <site_reference><![CDATA[Site21]]></site_reference>
+      <name><![CDATA[Contact 21]]></name>
+      <enabled><![CDATA[Yes]]></enabled>
+      <note><![CDATA[]]></note>
+    </contact>
+	<contact>
+      <phone_number><![CDATA[+228000005]]></phone_number>
+      <site_reference><![CDATA[Country]]></site_reference>
+      <name><![CDATA[Alert Receiver Country]]></name>
+      <enabled><![CDATA[Yes]]></enabled>
+      <note><![CDATA[]]></note>
+    </contact>
+  </contacts>
+</import>

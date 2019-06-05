@@ -1,0 +1,130 @@
+@import "src/theme/theme-variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
+#side-menu .side-button {
+    width: 40px; 
+    height: 40px;
+    margin-top: 10px;
+}
+
+#side-menu .nav-item {
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#side-menu span {
+    font-size: 12px;
+}
+
+#side-menu li {
+    margin-bottom: 10px;
+}
+
+.menu-alerts  {
+    display: none;
+    .nav-link {
+        background-color: gray;
+        cursor: none;
+    }
+}
+
+ .nav-link  {
+    background-color: #e2e2e2;
+    padding: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 0.5em;
+}
+
+#about {   
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    padding-right: 10px;
+
+    .version {
+        font-size: 0.9em;
+    }
+
+    .mailto {
+        a {
+            color:white;
+        }
+    }   
+}
+
+@media all and (max-device-width: 480px)
+{
+    #side-menu {
+        height: 100%;
+        flex-flow: row wrap;
+        justify-content: space-around;
+
+        .nav-item {
+            width: auto;
+            height: auto;
+
+            .nav-link {
+                color: white;
+                background-color: $violet;
+                width:150px;
+                height: 150px;
+    
+                img {
+                    margin: auto;
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+
+    #side-menu .side-button {
+        width: 100px; 
+        height: 100px;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+    #side-menu li {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 10px;
+    }
+
+    .menu-analyses  {
+        .nav-link {
+            background-color: gray !important;
+            cursor: none;
+        }
+    }
+
+    /*.menu-archives  {
+        .nav-link {
+            background-color: gray !important;
+            cursor: none;
+        }
+    }*/
+}
+
+@media all and (max-device-width: 342px)
+{
+    #side-menu .side-button {
+        width: 60px; 
+        height: 60px;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+    #side-menu li {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+    }
+}
+
+

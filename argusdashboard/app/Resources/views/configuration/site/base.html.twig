@@ -1,0 +1,109 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block configuration %}
+    <div id="dialog-only-one-site-in-branch" title="Configuration conflict">
+        <p></p>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        /**
+         * This is a custom function that we use to update or create a new site.
+         * Because we have to do some checks in AJAX during the submit of the form.
+         * This function has to be called from the form's attribute "onSubmit":
+         *  - it this function returns true --> the form is submitted
+         *  - else, it returns false to block the form submission, and it displays a dialog box
+         *
+         *  @param isNewSite: boolean. Indicates if this is the creation of a new site
+         *  @param form: jQuery instance of the form that is being submitted
+         *  @param siteId: if we are in edition: id of the edited site. Else, parent of the new site.
+         *  @param reportDataSourceId: id of the chosen report data source dropdown list
+         *  @param overwriteReportDataSourceCheckbox: jQuery instance of the overwrite checkbox checkbox
+         */
+        function onSubmitSiteForm(isNewSite, form, siteId, reportDataSourceId, overwriteReportDataSourceCheckbox) {
+            //If the hidden input's value if not "true", the siteId and reportDataSourceId have a value
+            if(overwriteReportDataSourceCheckbox.val() != 1  && siteId !== null && siteId !== undefined && siteId !== "" && reportDataSourceId !== null && reportDataSourceId !== undefined && reportDataSourceId !== "") {
+                //Check in AJAX that no site in the same branch already have this report data source configured
+                var result = checkSitesSameBranchDataSourceConfigConflictAction(isNewSite, siteId, reportDataSourceId, overwriteReportDataSourceCheckbox);
+
+                //If the result indicates that yes, we have a configuration conflict: display a dialog to ask the user to confirm his action
+                if(result !== null && result !== undefined && result.conflict === true) {
+                    //display the dialog box. The content of the dialog box is returned by the ajax response.
+                    buildDialogOnlyOneSiteInBranch(form, result.msg, overwriteReportDataSourceCheckbox);
+                    //block the submission
+                    return false;
+                }
+            }
+
+            //allow the submission
+            return true;
+        }
+
+        /**
+         * Returns a result that indicates if other sites belonging to the given siteId's branch have the given reportDataSourceId
+         * @param isNewSite: boolean. Indicates if this is the creation of a new site
+         * @param siteId
+         * @param reportDataSourceId
+         */
+        function checkSitesSameBranchDataSourceConfigConflictAction(isNewSite, siteId, reportDataSourceId) {
+            myApp.showPleaseWait();
+
+            var url = '{{ path('configuration_site_same_branch_data_source_config_conflict', {'isNewSite': 'isNewSite', 'siteId': 'siteId', 'reportDataSourceId':'reportDataSourceId'}) }}';
+            var finalRoute = url.replace('isNewSite', isNewSite).replace('siteId', siteId).replace('reportDataSourceId', reportDataSourceId);
+            var result = null;
+
+            jQuery.ajax({
+                url: finalRoute,
+                async:false,
+                type: 'GET'
+            })
+            .done(function(values) {
+                result = values;
+            })
+
+            myApp.hidePleaseWait();
+            return result;
+        }
+
+        /**
+         * Display a dialog box, with the given content
+         * @param form
+         * @param dialogContent
+         * @param overwriteReportDataSourceCheckbox
+         */
+        function buildDialogOnlyOneSiteInBranch(form, dialogContent, overwriteReportDataSourceCheckbox) {
+            $("#dialog-only-one-site-in-branch p").html(dialogContent);
+
+            $("#dialog-only-one-site-in-branch").dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: [
+                    {
+                        text: '{{ 'Configuration.FormItems.Site.DialogOverwriteReportDataSource.Confirm' | trans({}, 'configuration_labels') }}',
+                        click: function () {
+                            //set the value of the hidden input to "true"
+                            overwriteReportDataSourceCheckbox.val(1);
+                            //re-submit the form. By simulating a click on the submit button, so that we inherit the html 5 form validation --> form.submit() does not trigger the validation
+                            form.find(':submit').click();
+                            $(this).dialog("close");
+                        }
+                    },
+                    {
+                        text: '{{ 'Configuration.FormItems.Site.DialogOverwriteReportDataSource.Cancel' | trans({}, 'configuration_labels') }}',
+                        click: function () {
+                            //set the value of the hidden input to "false"
+                            overwriteReportDataSourceCheckbox.val(0);
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+        }
+
+    </script>
+{% endblock %}

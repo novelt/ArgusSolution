@@ -1,0 +1,7 @@
+.idea/
+reports/SESReports/*.sql
+reports/SESReports/*.php
+reports/DashboardReports/*.php
+dashboards/*.json
+cache/
+vendor/

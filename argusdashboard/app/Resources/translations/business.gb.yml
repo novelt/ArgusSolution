@@ -1,0 +1,18 @@
+contactType:
+    short:
+        CI: CI
+        HW: HW
+        DSNO: DSNO
+        SI: SI
+        HF: HF
+    long:
+        CI: Community Informant
+        informants: Informants
+        HW: Health Worker
+        DSNO: Disease Surveillance and Notification Officer
+        SI: Special Informant
+        HF: Health Facility
+
+disease:
+    ALERT: Alert
+    AFP: AFP

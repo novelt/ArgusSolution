@@ -1,0 +1,7 @@
+# File used to configure R script configuration
+
+parameters:
+    rscripts:
+        - { title: 'rscripts.administrative.title', directory: 'argus/dashboards/reports', file: 'admin_dashboard.html' }
+        - { title: 'rscripts.epidemiological.title', directory: 'argus/dashboards/reports', file: 'epi_dashboard.html' }
+    analysesRscripts: 'C:/xampp/htdocs/ScriptsR/reports'

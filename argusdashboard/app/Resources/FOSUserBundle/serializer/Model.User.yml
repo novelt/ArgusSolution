@@ -1,0 +1,18 @@
+FOS\UserBundle\Model\User:
+    exclusion_policy: ALL
+    properties:
+        username:
+            expose: true
+        email:
+            expose: true
+        roles:
+            expose: true
+            xml_list:
+                entry_name: role
+            type: array<string>
+        enabled:
+            expose: true
+        plainPassword:
+            expose: true
+            serialized_name: password
+            type: string

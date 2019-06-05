@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'admin_permission_new' %}
+
+{% block main %}
+
+    <div class="well col-lg-7">
+        <h3>{{ 'Permission.Add'|trans({}, 'security') }}</h3>
+        {{ form_start(form, {'method': 'post', 'action': path('admin_permission_create', {id:role.getId()}) }) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-sm btn-danger" type="submit" value="{{ 'General.Action.Add'|trans({}, 'security') }}" />
+            <a href="{{ path('admin_permissions_list', {id:role.getId()}) }}"><input class="btn btn-sm btn-primary" type="button" value="{{ 'General.Action.Cancel'|trans({}, 'security') }}" formnovalidate/></a>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock main %}
+
+{%  block javascripts  %}
+    {{ parent() }}
+    <script>
+
+        $('#app_permission_ressource').change(function(){
+            var choice = {};
+
+            switch($(this).val()){
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionRessource::RESSOURCE_ANY') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionRessource::RESSOURCE_ALERT') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionRessource::RESSOURCE_DASHBOARD_REPORT') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_DOWNLOAD')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_DOWNLOAD') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_UPLOAD')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_UPLOAD') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionRessource::RESSOURCE_MONTHLY_REPORT') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VALIDATE')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VALIDATE') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_REJECT')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_REJECT') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionRessource::RESSOURCE_WEEKLY_REPORT') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VALIDATE')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VALIDATE') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_REJECT')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_REJECT') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionRessource::RESSOURCE_ANGULAR_DASHBOARD') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_DOWNLOAD')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_DOWNLOAD') }}',
+                    };
+                    break;
+            }
+
+            var $actionSelect = $('#app_permission_action');
+
+            $actionSelect.empty();
+            $.each(choice, function(key, value) {
+                $actionSelect.append($('<option/>', {
+                    value: value,
+                    text: key
+                }))
+            });
+        });
+
+        $('#app_permission_action').change(function(){
+            var choice = {};
+
+            switch($(this).val()){
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VIEW') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_PENDING')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_PENDING') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_VALIDATED')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_VALIDATED') }}',
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_REJECTED')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_REJECTED') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_VALIDATE') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_REJECT') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY') }}',
+                    };
+                    break;
+                case '{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionAction::ACTION_DOWNLOAD') }}':
+                    choice = {
+                        '{{ ('Permission.Choices.' ~ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY')) | trans({}, 'security') }}':'{{ constant('AppBundle\\Entity\\Security\\SesDashboardPermissionState::STATE_ANY') }}',
+                    };
+                    break;
+            }
+
+            var $actionState = $('#app_permission_state');
+
+            $actionState.empty();
+            $.each(choice, function(key, value) {
+                $actionState.append($('<option/>', {
+                    value: value,
+                    text: key
+                }))
+            });
+        });
+
+
+        $(document).ready(function(){
+            // And now fire change event when the DOM is ready
+            $('#app_permission_ressource').trigger('change');
+        });
+
+    </script>
+{%  endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'admin_roles' %}
+
+{% block main %}
+    {{ parent() }}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <h2>{{ 'Role.List' | trans({}, 'security') }}</h2>
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-xs-12">
+                <a href="{{ path('admin_role_new') }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Role.Add' | trans({}, 'security') }}</button></a>
+                <a href="{{ path('admin_role_load') }}"><button class="btn btn-sm btn-info"><i class="fa fa-upload"></i> {{ 'Configuration.Buttons.LoadFromXML' | trans({}, 'configuration_labels') }}</button></a>
+                <a href="{{ path('admin_role_save') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToXML' | trans({}, 'configuration_labels') }}</button></a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped ">
+            <thead>
+            <tr>
+                <th>{{ 'Role.Name' | trans({}, 'security') }}</th>
+                <th>{{ 'Role.Users' | trans({}, 'security') }}</th>
+                <th>{{ 'Role.Permissions' | trans({}, 'security') }}</th>
+                <th colspan="3">{{ 'General.Actions' | trans({}, 'security') }}</th>
+            </tr>
+            </thead>
+            {% for role in roles %}
+                <tr>
+                    <td><strong><a href="{{ path('admin_role_edit',{id: role.id}) }}">{{ role.getName() }}</a></strong></td>
+                    <td>{{ role.getNbUsers() }}</td>
+                    <td>{{ role.getNbPermissions() }}</td>
+                    <td><a href="{{ path('admin_role_edit', {id: role.id}) }}"><button class="btn btn-info btn-xs"><i class="fa fa-pencil"> {{ 'General.Action.Edit' | trans({}, 'security') }}</i></button></a></td>
+                    <td><a href="{{ path('admin_permissions_list', {id: role.id}) }}"><button class="btn btn-info btn-xs"><i class="fa fa-pencil"> {{ 'Role.Action.Manage.Permissions' | trans({}, 'security') }}</i></button></a></td>
+                    {# {{ path('admin_indicators_list', {id: role.id}) }} #}
+                    <td>
+                        {% if role.getNbUsers() == 0 %}
+                            <a href="{{ path('admin_role_delete', {id: role.id}) }}"><button class="btn btn-danger btn-xs"><i class="fa fa-remove"> {{ 'General.Action.Delete' | trans({}, 'security') }}</i></button></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}

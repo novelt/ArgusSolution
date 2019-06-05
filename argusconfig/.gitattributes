@@ -1,0 +1,2 @@
+ressources/config_xampp.txt text eol=lf
+vc_redist*.exe filter=lfs diff=lfs merge=lfs -text

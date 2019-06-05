@@ -1,0 +1,9 @@
+@import '~theme/theme-variables.scss';
+
+select {
+    height: auto !important;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    background-color: $violet;
+    color:white;
+    margin-bottom: 10px;
+}

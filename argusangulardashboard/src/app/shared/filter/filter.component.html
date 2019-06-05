@@ -1,0 +1,38 @@
+<div class="filter">
+    <div class="header d-flex">
+        <div class="site-breadcrumb">
+            <span *ngFor="let site of selectedSites; last as isLast">
+                {{ site?.getName() }}
+                <i *ngIf="!isLast" class="fa fa-angle-right fa-sm p-1"></i>
+            </span>
+        </div>
+        <div class="period">
+            {{ 'filter.period_choice.' + selectedPeriod.toLowerCase() | translate }}
+        </div>
+        <div class="time">
+            {{ selectedDateRange?.dateStart.format('L') }} ({{ 'filter.week' | translate}} {{ startWeekNumber }}) - {{ selectedDateRange?.dateEnd.format('L') }} ({{ 'filter.week' | translate}} {{ endWeekNumber }})
+        </div>
+        <div class="ml-auto" >
+            <button type="button" class="btn-filter btn btn-outline-secondary" (click)="showFilterContent($event)" translate>filter.button.show_filters</button>
+        </div>
+    </div>
+    <div class="content" [ngClass]="{ 'show': showFilter }">
+        <div class="d-flex">
+            <div class="element-filter" [ngClass]="{ 'show': showTypeFilter } ">
+                <div class="title" translate>filter.type</div>
+                <app-period (selectedPeriodChange)="selectedPeriodChange($event)"></app-period>           
+            </div>
+            <div class="element-filter show">
+                <div class="title" translate>filter.period</div>
+                <app-weekly-date-picker (selectedDateRangeChange)="selectedDateRangeChange($event)"></app-weekly-date-picker>
+            </div>
+        </div>
+        <div class="element-filter show">
+            <div class="title" translate>filter.site</div>
+            <div class="d-flex">
+                <app-site-cascade (selectedSitesChange)="selectedSitesChange($event)"></app-site-cascade>
+                <button class="ml-auto apply btn btn-success" (click)="applyFilters($event)" translate>filter.button.apply</button>
+            </div>
+        </div>
+    </div>
+</div>

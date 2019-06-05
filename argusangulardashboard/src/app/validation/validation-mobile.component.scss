@@ -1,0 +1,30 @@
+.container-fluid, {
+    background-color: white;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 3em;
+}
+
+.row {
+    height: calc(100% - 3em);
+    margin: 0;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+}
+
+.list, .details {
+    height:100%;
+    // padding-bottom: 10px;
+}
+
+.spinner {
+    top: auto;
+    z-index: inherit;
+}

@@ -1,0 +1,400 @@
+Configuration:
+
+    # Page titles
+
+    Titles:
+        SiteList: Site List
+        SiteAlertRecipientList: Site: Alert Recipient List
+        ContactList: Contact List
+        ContactTypeList: Contact Type List
+        DiseaseList: Disease List
+        ThresholdList: Threshold List
+        DiseaseValueListForDisease: Value List For “Disease”
+        DiseaseValueInsertionForDisease: New Value for “Disease”
+        DiseaseValueEditionForDisease: Disease: Edition Of “Value”
+        DiseaseConstraintListForDisease: Constraint List For “Disease”
+        DiseaseConstraintInsertionForDisease: New Constraint for “Disease”
+        DiseaseConstraintEditionForDisease: Disease: Edition Of Constraint
+        SiteEdition: Site Edit
+        ContactEdition: Contact Edit
+        ContactTypeEdition: Contact Type Edition
+        DiseaseEdition: Disease Edit
+        ThresholdEdition: Threshold Edit
+        SiteInsertion: New Site
+        SiteAlertRecipientInsertion: "Site: New Alert Recipient"
+        ContactInsertion: New Contact
+        ContactTypeInsertion: New Contact Type
+        DiseaseInsertion: New Disease
+        ThresholdInsertion: New Threshold
+        SiteConfirmDisable: Disabling a Site
+        ContactConfirmDisable: Disabling a Contact
+        SiteConfirmEnable: Enabling a Site
+        ContactConfirmEnable: Enabling a Contact
+        SiteListXmlLoad: Load a Site List
+        ContactListXmlLoad: Load a Contact List
+        ContactTypeListXmlLoad: Load a Contact Type List
+        DiseaseListXmlLoad: Load a Disease List
+        ThresholdListXmlLoad: Load a Threshold List
+        RoleListXmlLoad: Load a Role List
+        UserListXmlLoad: Load an User List
+        SiteListXmlSave: Save a Site List
+        ContactListXmlSave: Save a Contact List
+        DiseaseListXmlSave: Save a Disease List
+        ThresholdListXmlSave: Save a Threshold List
+        AllListsXmlSave: Save All Lists
+
+    # Dropdown menu in the navbar
+
+    MenuItems:
+        Sites: Sites
+        Contacts: Contacts
+        ContactTypes: Contact types
+        Diseases: Diseases
+        Thresholds: Thresholds
+        SaveAllToXml: Synchronize configuration
+
+    # All kinds of buttons, at all levels
+
+    Buttons:
+        Cancel: Cancel
+        AddSite: Add site
+        AddSubSite: Add sub site
+        AddSiteAlertRecipient: Add an alert recipient
+        AddContact: Add contact
+        AddContactType : Add Contact Type
+        AddDisease: Add disease
+        AddDiseaseValue: Add disease value
+        AddDiseaseConstraint: Add disease constraint
+        AddThreshold: Add threshold
+        EditSite: edit
+        EditContact: edit
+        EditContactType: edit
+        EditDisease: edit
+        EditDiseaseValue: edit
+        EditDiseaseConstraint: edit
+        EditThreshold: edit
+        EnabledSite: enabled
+        EnabledContact: enabled
+        DisabledSite: disabled
+        DisabledContact: disabled
+        RemoveDisease: remove
+        RemoveDiseaseValue: remove
+        RemoveDiseaseConstraint: remove
+        RemoveThreshold: remove
+        RemoveContact: remove
+        LoadFromXML: load from XML
+        SaveToXML: Export XML
+        SaveToCSV: Export CSV
+        Save: Save
+        Disable: Disable
+        Enable: Enable
+        Remove: Remove
+        ReturnToSites: Return to sites
+        ReturnToContacts: Return to contacts
+        ReturnToDiseases: Return to diseases
+        ReturnToDiseaseValues: Return to values of “disease”
+
+    # Labels that are specific to the "site list" page
+
+    Select2:
+        Choose:
+            Site: Choose a site
+            Disease&Value: Choose a disease & a disease Value
+    Sites:
+        # Column names:
+        Name: Site name
+        Reference: Ref.
+        ParentReference: Parent Ref.
+        Longitude: Longitude
+        Latitude: Latitude
+        #WeeklyReminderOverrunMinutes: Weekly R. O. M.
+        #MonthlyReminderOverrunMinutes: Monthly R. O. M.
+        WeeklyTimelinessMinutes: Weekly report delay (Minutes)
+        MonthlyTimelinessMinutes: Monthly report delay (Minutes)
+        ParentID: Parent ID
+        Level: Level
+        Path: Path
+        Scopes: Scopes
+        AlertRecipients: Alert recipients
+        CascadingAlertRecipients: Auto cascading recipients
+        AlertPreferredGateway: Alert preferred gateway
+        Enabled: Enabled
+        Actions: Actions
+        # Message if no item:
+        None: No site to display.
+        EnabledChildren: Active sites children
+        DisabledChildren: Inactive sites children
+        # ContactsCount: Associated contacts count
+        ContactTypes: Contacts types
+        Timezone: Time zone
+        Language: Language
+        ReportDataSource: Reports data source
+
+    # Labels that are specific to the "site alert recipient list" page
+
+    SiteAlertRecipients:
+        # Column names:
+        Path: Path
+        Action: Action
+        # Message if no item:
+        None: No recipient to display.
+
+    # Labels that are specific to the "contact list" page
+
+    Contacts:
+        # Column names:
+        Name: Contact Name
+        SiteReference: Site Ref.
+        PhoneNumber: Phone Number
+        Type: Type
+        Imei: IMEI
+        Imei2: IMEI 2
+        Email: Email
+        Note: Note
+        AlertPreferredGateway: Alert preferred gateway
+        Enabled: Enabled
+        Actions: Actions
+        # Message if no item:
+        None: No contact to display.
+
+    # Labels that are specific to the "contact type list" page
+    ContactTypes:
+        Name: Contact Type Name
+        Reference: Reference
+        Description: Contact Type Description
+        SendsReports: Sends Report Submissions
+        UseInIndicatorsCalculation: Use in indicators calculation
+        Actions: Actions
+        # Message if no item:
+        None: No contact type to display.
+
+    # Labels that are specific to the "disease list" page
+
+    Diseases:
+        # Column names:
+        Name: Disease Name
+        Disease: Disease Ref.
+        Keyword: Keyword
+        Position: Position
+        Values: Values
+        Constraints: Constraints
+        Actions: Actions
+        # Message if no item:
+        None: No disease to display.
+
+    # Labels that are specific to the "disease value list" page
+
+    DiseaseValues:
+        # Column names:
+        Reference: Reference
+        Period: Period
+        Position: Position
+        Type: Type
+        Mandatory: Mandatory
+        Keyword: Keyword
+        Actions: Actions
+        # Message if no item:
+        None: No value to display.
+
+    # Labels that are specific to the "disease constraint list" page
+
+    DiseaseConstraints:
+        # Column names:
+        ReferenceValueFrom: Reference value from
+        Operator: Operator
+        ReferenceValueTo: Reference value to
+        Period: Period
+        Actions: Actions
+        # Message if no item:
+        None: No constraint to display.
+
+    # Labels that are specific to the "threshold list" page
+
+    Thresholds:
+        # Column names:
+        Site: Site
+        Disease: Disease
+        Period: Period
+        WeekNumber: Week Number
+        MonthNumber: Month Number
+        Year: Year
+        MaxValue: Max. Value
+        Value: Value
+        Actions: Actions
+        # Message if no item:
+        None: No threshold to display.
+
+    # General messages
+
+    Messages:
+        NonEmptySiteList: The current site list isn't empty.
+
+    # Labels of form elements (fields, choices in drop-down boxes, ...)
+
+    FormItems:
+
+        # Common to several forms
+
+        Common:
+
+            # Scalar fields
+
+            Id:
+                Label: Id
+            Name:
+                Label: Name
+            Description:
+                Label: Description
+            Note:
+                Label: Note
+            Parent:
+                Label: Parent
+            Reference:
+                Label: Reference
+
+            # Fields with choices
+
+            Operator:
+                Label: Operator
+                Choices:
+                    GREATER: Greater
+                    GREATER_EQUAL: Greater or equal
+                    LESS: Less
+                    LESS_EQUAL: Less or equal
+                    NOT_EQUAL: Not equal
+            Period:
+                Label: Period
+                Choices:
+                    None: None
+                    Weekly: Weekly
+                    Monthly: Monthly
+            Priority:
+                Label: Priority
+                Choices:
+                    Primary: Primary
+                    Secondary: Secondary
+            Type:
+                Label: Type
+                Choices:
+                    Integer: Integer
+                    String: String
+                    Date: Date
+
+            ReportDataSource:
+                Label: Reports data source
+                InheritedValue: Inherited from parent
+
+        # Specific to contact forms
+
+        Contact:
+            Email:
+                Label: Email
+            PhoneNumber:
+                Label: Phone Number
+            Type:
+                Label: Type
+            Imei:
+                Label: IMEI
+            Imei2:
+                Label: IMEI 2
+            PreferredGateway:
+                Label: Preferred Gateway
+            Site:
+                Label: Site
+            SiteReference:
+                Label: Site Reference
+
+        # Specific to contact type forms
+        ContactType:
+            SendsReports:
+                Label: Sends Report Submissions
+            UseInIndicatorsCalculation:
+                Label: Use in indicators calculation
+
+
+        # Specific to disease forms
+
+        Disease:
+            Reference:
+                Label: Reference # Called "disease" in the xml file.
+            KeyWord:
+                Label: KeyWord
+            Position:
+                Label: Position
+
+        # Specific to disease constraint forms
+
+        DiseaseConstraint:
+            ReferenceValueFrom:
+                Label: Reference Value From
+            ReferenceValueTo:
+                Label: Reference Value To
+
+        # Specific to disease value forms
+
+        DiseaseValue:
+            Value:
+                Label: Value
+            Position:
+                Label: Position
+            Mandatory:
+                Label: Mandatory
+            KeyWord:
+                Label: KeyWord
+
+        # Specific to site forms
+
+        Site:
+            Latitude:
+                Label: Latitude
+            Longitude:
+                Label: Longitude
+            PreferredGateway:
+                Label: Preferred Gateway
+            #MonthlyReminderOverrunMinutes:
+            #    Label: Monthly Reminder Overrun Minutes
+            #WeeklyReminderOverrunMinutes:
+            #    Label: Weekly Reminder Overrun Minutes
+            MonthlyTimelinessMinutes:
+                Label: Monthly report delay (minutes)
+            WeeklyTimelinessMinutes:
+                Label: Weekly report delay (minutes)
+            Timezone:
+                Label: Time zone
+                InheritedValue: Inherited from parent
+            Language:
+                Label: Language
+                InheritedValue: Inherited from parent
+            OverwriteReportDataSourceCheckbox:
+                Label: Overwrite reports data source configuration
+            CascadingAlert:
+                Label: Parent's sites contacts are alert recipients
+            DialogOverwriteReportDataSource:
+                Confirm: Confirm
+                Cancel: Cancel
+                Content:
+                    EXCEL: Only one site per branch in the hierarchical tree can be configured for file upload. The site %site_name% is already configured for file upload. It will be unset if you confirm.
+
+        # Specific to site alert recipient forms
+
+        SiteAlertRecipient:
+            RecipientPath:
+                Label: Recipient Path
+
+        # Specific to threshold forms
+
+        Threshold:
+            Site:
+                Label: Site
+            SiteReference:
+                Label: Site Reference
+            Disease&Value:
+                Label: Disease / Value
+            WeekNumber:
+                Label: Week Number
+            MonthNumber:
+                Label: Month Number
+            Year:
+                Label: Year
+            MaxValue:
+                Label: Max. Value

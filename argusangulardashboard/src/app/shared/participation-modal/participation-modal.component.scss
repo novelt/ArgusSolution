@@ -1,0 +1,32 @@
+@import '~theme/theme-variables.scss';
+
+.modal-details {
+    font-weight: bold;
+
+    .details {
+        padding-left: 0.8em;
+    }
+}
+
+.modal-body {
+    padding:0;
+    text-align:left;
+    max-height: 480px;
+    overflow: auto;
+
+    .list-group-item {
+        padding:0.5em;
+        margin:0;
+        display: inherit;
+        border:none;
+        border-bottom: 1px solid $argus-gray-200;
+
+    }
+}
+
+@media all and (max-device-width: 480px)
+{
+    .modal-body {
+        max-height: 360px;
+    }
+}

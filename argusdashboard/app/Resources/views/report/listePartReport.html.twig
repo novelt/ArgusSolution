@@ -1,0 +1,102 @@
+{% for partReport in partReports %}
+
+    <div class="panel panel-{{ partReport.getCss() }}" id="pPartReport{{ partReport.getId() }}">
+        <div class="panel-heading" role="tab">
+            <div {% if partReport.isAggregate() %} rel="popover" id="{{ partReport.id }}" {% endif %}>
+                <h6 class="panel-title ">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionFullReport{{ fullReport.id }}" href="#collapsePartReport{{ fullReport.id }}{{ partReport.id }}" >
+                        {% if app.debug %} ( {{ partReport.id }} - {{ partReport.getAndroidReportId() }} ) {% endif %}
+                        {% if not partReport.isAggregate() %}
+                            {{  partReport.getContactName() }} - {{  partReport.getContactPhoneNumber() }}
+                        {% else %}
+                            <i id="lblStatusPartReport{{ partReport.id }}"> {{ partReport.getDisplayStatus() | trans }}</i>
+                            - {{ 'HF Proportion' | trans  }} : {{ partReport.getNbAggregateReports() }} / {{ nbOfChildrenLeaf }}
+                        {% endif %}
+                    </a>
+
+                    <div  class="pull-right" >
+                        <input type="checkbox" name="validation" id="{{ partReport.id }}"
+                               partReportId="{{ partReport.id }}" {{ partReport.getCheckBoxStatusForValidation() }} style="display: none;">
+                        <input type="checkbox" name="rejection" id="{{ partReport.id }}"
+                               partReportId="{{ partReport.id }}" {{ partReport.getCheckBoxStatusForRejection() }} style="display: none;">
+                    </div>
+                    {% if not partReport.isAggregate() %}
+                        {% if partReport.getNbOfValues() < fullReport.getNbOfDiseaseValues() %}
+                            <span class="label label-danger pull-right" data-toggle="tooltip" data-placement="right" title="{{ 'Reception ongoing since' | trans }}&nbsp;{{ partReport.getDateOfFirstReport()|localizeddate('short', 'short') }}">
+                                                            {{ 'Incomplete' | trans }}
+                                                        </span>
+                        {% else %}
+                            <span class="label label-success pull-right" data-toggle="tooltip" data-placement="right" title="{{ 'Reception complete on' | trans }}&nbsp;{{ partReport.getDateOfLastReport()|localizeddate('short', 'short') }}">
+                                                            {{ 'Complete' | trans }}
+                                                        </span>
+                        {% endif %}
+                    {% endif %}
+                </h6>
+                {# Add Div with popover content data.. #}
+                <div style="display: none; font-size: small;" rel="popover-content-{{ partReport.id }}"> {#   #}
+                    <table>
+                        {% for child in activeChildrenRelationShip %}
+                            <tr>
+                                {% if child %}
+                                    <td style="white-space: nowrap">{{ child.name }} : </td>
+                                    {% set nbOfParticipatingHc = partReport.getNbOfParticipatingHC(child.site) %}
+                                    {% set nbOfChildrenLeafPop =  numberOfChildrenLeaves[child.getId()] %}
+                                     {% if nbOfChildrenLeafPop > 0 %}
+                                        <td style="white-space: nowrap">&nbsp;{{ (nbOfParticipatingHc * 100 / nbOfChildrenLeafPop)|number_format(0) }} %</td>
+                                        <td style="white-space: nowrap; font-size: smaller;">&nbsp;({{ nbOfParticipatingHc }}/{{ nbOfChildrenLeafPop }})</td>
+                                     {% else  %}
+                                       {# <td style="white-space: nowrap; column-span: 2"> {{ 'Deactivated' | trans}}</td> #}
+                                        <td style="white-space: nowrap">&nbsp;0 %</td>
+                                        <td style="white-space: nowrap; font-size: smaller;">&nbsp;(0/0)</td>
+                                    {% endif %}
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="collapsePartReport{{ fullReport.id }}{{ partReport.id }}" class="panel-collapse collapse {% if partReport.isFirstVisible() %} in {% endif %}" role="tabpanel" aria-labelledby="headingOne" >
+            <div class="panel-body" style="max-height: 450px; overflow-y: scroll;" {% if partReport.isAggregate() %} rel="popover" id="{{ partReport.id }}" {% endif %}>
+                <table class="table table-condensed table-striped" >
+                    <thead>
+                        <tr>
+                            <th>{{ 'Disease' | trans }}</th>
+                            <th>{{ 'Variable' | trans }}</th>
+                            <th>{{ 'Value' | trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ses_report in partReport.getOrderReports() %}
+                            <tr {% if ses_report.surpassThresholdMaxValue() %} style="font-weight: bolder; font-size: larger;"  {% endif %}>
+                                <td>
+                                    {{ ses_report.getDiseaseName()}}
+                                    {% if ses_report.surpassThresholdMaxValue() %}
+                                        <i style="color: red;" class="fa fa-exclamation-triangle"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% for ses_reportValue in ses_report.reportValues %}
+                                        {{ ses_reportValue.getKeyForDisplay()}}<br />
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for ses_reportValue in ses_report.reportValues %}
+                                        {% if ses_reportValue.surpassThresholdMaxValue() %}
+                                                <span style="color: red; font-weight: bolder;">{{ ses_reportValue.getValue()}}</span>
+                                        {% else %}
+                                            {{ ses_reportValue.getValue()}}
+                                        {% endif %}
+                                        <br />
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}

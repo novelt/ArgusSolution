@@ -1,0 +1,148 @@
+/*
+ * Global application theme.
+ * Framework overrides and customization goes here.
+ */
+
+//html {
+    //position: relative;
+//    min-height: 100%;
+//}
+
+html,
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #d6d6d6;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+a,
+a:hover,
+a:focus {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+*:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+input {
+    background-color: $form-input-bg-color;
+    height: 55px;
+}
+
+hr {
+    border-bottom: 1px solid rgba(255,255,255,.3);
+}
+
+.btn:disabled {
+    opacity: 0.25;
+}
+
+
+/* 
+    Boostrap 
+*/
+.breadcrumb {
+    border-radius: 0 !important;
+    border-bottom: 1px solid #7a7a7a;
+}
+.breadcrumb-item a {
+    color: white;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    color: white;
+    content: ">";
+}
+.breadcrumb-item.active a {
+    color: white;
+    font-weight: bold;
+}
+
+.jumbotron {
+    background-color: white;
+}
+
+/*
+    Modal
+*/
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal-container {
+    padding: 0.4em;
+}
+
+.modal-header {
+    background-color: $argus-gray-500;
+    color:white;
+}
+
+.modal-details {
+    background-color: $argus-gray-100;
+    text-align: left;
+    padding: 0.6em;
+}
+
+.modal-content, .modal-header {
+    border-radius: unset;
+}
+  
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-body {
+    padding: 2em;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    vertical-align: middle;
+ }
+
+ .modal-footer {
+     background-color: $argus-gray-100; 
+     border: 0;
+
+     .btn {
+         width:6em;
+     }
+ }
+
+
+ @media all and (max-device-width: 480px)
+{
+    /** 
+        Modal
+    */
+    .modal-dialog {
+        width: inherit;
+    }
+
+    /* 
+        Spinner
+    */
+    .lds-roller {
+        left:42% !important;
+    }
+}

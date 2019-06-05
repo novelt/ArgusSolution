@@ -1,0 +1,6 @@
+services:
+
+    # SiteDimDateService
+    SiteDimDateService:
+      class: AppBundle\Services\DimDate\PreviousRangeDimDateService
+      arguments: ['@logger', '@IndicatorDimDateService']

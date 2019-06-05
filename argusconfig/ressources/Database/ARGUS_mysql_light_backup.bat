@@ -1,0 +1,2 @@
+C:\xampp\mysql\bin\mysqldump --no-data --routines --skip-extended-insert --routines --default-character-set=utf8 --quick --user=root --password="WriteHereThePassword" --single-transaction --quote-names --triggers --comments argus > c:\temp\argus.sql
+C:\xampp\mysql\bin\mysqldump --ignore-table=argus.sesdashboard_indicatordata --ignore-table=argus.sesdashboard_log --routines --skip-extended-insert --default-character-set=utf8 --quick --user=root --password="" --single-transaction --quote-names --triggers --comments argus >> c:\temp\argus.sql

@@ -1,0 +1,236 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_id 'configuration_sites_list' %}
+
+{% block configuration %}
+
+    <h2>{{ 'Configuration.Titles.SiteList' | trans({}, 'configuration_labels') }}</h2>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <a href="{{ path('configuration_site_add') }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Configuration.Buttons.AddSite' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_sites_load') }}"><button class="btn btn-sm btn-info"><i class="fa fa-upload"></i> {{ 'Configuration.Buttons.LoadFromXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_sites_save') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_sites_save_csv') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToCSV' | trans({}, 'configuration_labels') }}</button></a>
+        </div>
+    </div>
+
+    <table id="sites-datatable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ 'Configuration.Sites.Name'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.Longitude'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.Latitude'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.WeeklyTimelinessMinutes'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.MonthlyTimelinessMinutes'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.Level'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.Reference'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.ReportDataSource'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.Scopes'|trans({}, 'configuration_labels') }}</th>
+                {# <th>{{ 'Configuration.Sites.ContactTypes'|trans({}, 'configuration_labels') }}</th> #}
+                <th>{{ 'Configuration.Sites.AlertPreferredGateway'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.AlertRecipients'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Sites.Actions'|trans({}, 'configuration_labels') }}</th>
+            </tr>
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+    function enableOrDisable(element, event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        var href = getHrefAttribute(element);
+
+        jQuery.ajax({
+            url: href,
+            method: 'GET'
+        })
+                .done(function(data) {
+                    window.location.href = data.returnUrl;
+                });
+    }
+
+    function getHrefAttribute(element) {
+        if (!(!!element.attr('href'))) {
+            return element.parent('a').attr('href');
+        }
+        return element.attr('href');
+    }
+</script>
+    <script>
+        var table = jQuery("#sites-datatable").DataTable({
+            fnInitComplete: function(oSettings, json) {
+                $('.popoverPath').popover();
+            },
+            columns: [
+                {
+                    data: 'dt_site_id',
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_site_name",
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_site_long",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: "dt_site_lat",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: "dt_site_weekly_delay",
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_site_monthly_delay",
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_site_level",
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_site_path",
+                    orderable: false,
+                    "render": function (data, type, full, meta) {
+                        return '<span data-toggle="popover" class="popoverPath" data-trigger="hover" data-placement="top" rel="popover" data-content="' + full.dt_site_full_path + '">' + data + '</span>';
+                    },
+                    className: "left"
+                },
+                {
+                    data: "dt_site_data_source",
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_subsites_contacts_count",
+                    orderable: false,
+                    render: function(data, type, row) {
+                        return '<span>' +
+                                    '<span ' +
+                                        'class="enabled-children" ' +
+                                        'data-toggle="tooltip" ' +
+                                        'title="{{ 'Configuration.Sites.EnabledChildren'|trans({}, 'configuration_labels') }}">' + data.enabledChildren + '</span> / ' +
+                                    '<span ' +
+                                        'class="disabled-children" ' +
+                                        'data-toggle="tooltip" ' +
+                                        'title="{{ 'Configuration.Sites.DisabledChildren'|trans({}, 'configuration_labels') }}">' + data.disabledChildren + '</span> ' +
+                                    {#'<span ' +#}
+                                        {#'class="contacts-count" ' +#}
+                                        {#'data-toggle="tooltip" ' +#}
+                                        {#'title="{{ 'Configuration.Sites.ContactsCount'|trans({}, 'configuration_labels') }}">' + data.contactsCount + '</span>' +#}
+                                '</span>';
+                    }
+                },
+                {
+                    data: "dt_site_alert_pref_gateway",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: null,
+                    orderable: false,
+                    className: "center",
+                    render: function (data, type, row) {
+
+                        if (data.dt_cascading_alert == true) {
+                            return (' {{ 'Configuration.Sites.CascadingAlertRecipients'|trans({}, 'configuration_labels') }} ');
+                        } else if  (0 < data.dt_alert_recipient_count) {
+                            var route_alert_edit = Routing.generate('configuration_site_alert_recipients', {siteId: data.dt_site_id});
+                            return ('<a href="'+route_alert_edit+'">' +
+                                        '<button class="btn btn-xs btn-info"><i class="fa fa-search"></i> {{ 'View' | trans({}, 'messages') }}</button>' +
+                                    '</a><br />' +
+                                    '{{ 'Configuration.Sites.AlertRecipients'|trans({}, 'configuration_labels') }} : '+ data.dt_alert_recipient_count);
+                        } else {
+                            var route_alert_add = Routing.generate('configuration_site_alert_recipient_add', {siteId: data.dt_site_id});
+                            return ('<a href="' + route_alert_add + '">' +
+                                '<button class="btn btn-xs btn-info"><i class="fa fa-plus"></i> {{ 'Add' | trans({}, 'messages') }}</button>' +
+                                '</a>');
+                        }
+                    }
+                },
+                {
+                    data: null,
+                    orderable: false,
+                    className: "center",
+                    render: function (data, type, row) {
+                        var route_site_edit = Routing.generate('configuration_site_edit', {siteId: data.dt_site_id});
+                        var route_prepopulated_contact_add = Routing.generate('configuration_contact_add', {siteId: data.dt_site_id});
+                        var route_prepopulated_site_add = Routing.generate('configuration_site_add', {siteId: data.dt_site_id});
+
+                        var actions = '<a href="'+ route_site_edit +'" ' +
+                                        'data-toggle="tooltip" ' +
+                                        'title="{{ 'Configuration.Buttons.EditSite'| trans({}, 'configuration_labels') }}">' +
+                                '<button class="btn btn-info btn-xs"><i class="fa fa-edit"></i>' +
+                                '</button></a>';
+                        actions += '<a href="'+ route_prepopulated_contact_add +'" ' +
+                                    'data-toggle="tooltip" ' +
+                                    'title="{{ 'Configuration.Buttons.AddContact'| trans({}, 'configuration_labels') }}">' +
+                                '<button class="btn btn-info btn-xs"><i class="fa fa-plus"></i>' +
+                                '</button></a>';
+                        actions += '<a href="'+ route_prepopulated_site_add +'" ' +
+                                'data-toggle="tooltip" ' +
+                                'title="{{ 'Configuration.Buttons.AddSubSite'| trans({}, 'configuration_labels') }}">' +
+                                '<button class="btn btn-info btn-xs"><i class="fa fa-plus-square"></i>' +
+                                '</button></a>';
+
+                        var route_enable = Routing.generate('configuration_site_enable_or_disable', {siteId: data.dt_site_id});
+
+                        if (data.dt_site_deleted) {
+                            return(actions + '<a href="'+ route_enable +'" ' +
+                                    'data-toggle="tooltip" ' +
+                                    'title="{{ 'Configuration.Buttons.DisabledSite'| trans({}, 'configuration_labels') }}">' +
+                                    '<button class="btn btn-danger btn-xs" onclick="enableOrDisable($(this), event); return false;"><i class="fa fa-toggle-off"></i>' +
+                                    '</button></a>'
+                            );
+                        } else {
+                            return(actions + '<a href="'+ route_enable +'" ' +
+                                    'data-toggle="tooltip" ' +
+                                    'title="{{ 'Configuration.Buttons.EnabledSite'| trans({}, 'configuration_labels') }}">' +
+                                    '<button class="btn btn-success btn-xs" onclick="enableOrDisable($(this), event); return false;"><i class="fa fa-toggle-on"></i>' +
+                                    '</button></a>'
+                            );
+                        }
+                    }
+                }
+            ],
+            "bStateSave": true,
+            "fnStateSave": function (oSettings, oData) {
+                localStorage.setItem('offersDataTables', JSON.stringify(oData));
+            },
+            "fnStateLoad": function (oSettings) {
+                return JSON.parse(localStorage.getItem('offersDataTables'));
+            },
+            "pageLength": 20,
+            "ajax": Routing.generate('configuration_site_datatable'),
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "language": {
+                "url": "{{ path('configuration_get_translations') }}"
+            },
+            drawCallback: function() {
+                $(".popoverPath").popover();
+            }
+        });
+    </script>
+
+{% endblock %}

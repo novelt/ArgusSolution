@@ -1,0 +1,40 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_load_users_from_xml' %}
+
+{% block configuration %}
+
+    <div class="well col-lg-7">
+
+        <h2>{{ 'Configuration.Titles.UserListXmlLoad' | trans({}, 'configuration_labels') }}</h2>
+
+        {{ form_start(form, {'method': 'post', 'action': path('admin_user_load')}) }}
+        {{ form_errors(form) }}
+
+        <div class="row"><div class="col-xs-12">&nbsp;</div></div>
+
+        <div class="row">
+            <div class="col-xs-2">
+                {{ form_label(form.file) }}
+            </div>
+            <div class="col-xs-10">
+                <div class="bg-warning">{{ form_errors(form.file) }}</div>
+                {{ form_widget(form.file) }}
+            </div>
+        </div>
+
+        <div class="row"><div class="col-xs-12">&nbsp;</div></div>
+
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-10">
+                {{ form_widget(form.load, {'attr': {'class': 'btn-sm btn-danger'}}) }}
+                {{ form_widget(form.cancel, {'attr': {'class': 'btn-sm btn-primary'}}) }}
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

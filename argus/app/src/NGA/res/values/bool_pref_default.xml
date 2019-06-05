@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool translatable="false" name="default_config_alert_external">true</bool>
+</resources>
