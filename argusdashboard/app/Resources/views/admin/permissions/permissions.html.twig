@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'admin_permissions' %}
+
+{% block main %}
+    {{ parent() }}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <h2>{{ 'Permission.List' | trans({}, 'security') }}</h2>
+
+        <a href="{{ path('admin_permission_new', {id : role.getId()}) }}"><button class="btn btn-sm btn-info"  style="margin-bottom: 20px;"><i class="fa fa-plus"></i> {{ 'Permission.Add' | trans({}, 'security') }}</button></a>
+
+        <table class="table table-bordered table-striped ">
+            <thead>
+            <tr>
+                <th>{{ 'Permission.Ressource' | trans({}, 'security') }}</th>
+                <th>{{ 'Permission.Action' | trans({}, 'security') }}</th>
+                <th>{{ 'Permission.State' | trans({}, 'security') }}</th>
+                <th>{{ 'Permission.Level' | trans({}, 'security') }}</th>
+                <th>{{ 'Permission.Type' | trans({}, 'security') }}</th>
+                <th>{{ 'Permission.Scope' | trans({}, 'security') }}</th>
+                <th>{{ 'General.Actions' | trans({}, 'security') }}</th>
+            </tr>
+            </thead>
+            {% for permission in permissions %}
+                <tr>
+                    <td>{{ ('Permission.Choices.' ~ permission.getRessource()) | trans({}, 'security') }}</td>
+                    <td>{{ ('Permission.Choices.' ~ permission.getAction()) | trans({}, 'security') }}</td>
+                    <td>{{ ('Permission.Choices.' ~ permission.getState()) | trans({}, 'security') }}</td>
+                    <td>{{ permission.getLevel() }}</td>
+                    <td>{{ ('Permission.Choices.' ~ permission.getType()) | trans({}, 'security')}}</td>
+                    <td>{{ ('Permission.Choices.' ~ permission.getScope()) | trans({}, 'security')}}</td>
+                    <td>
+                        <a href="{{ path('admin_permission_delete', {id : role.getId(), permissionId: permission.getId()}) }}"><button class="btn btn-danger btn-xs"><i class="fa fa-trash"> {{ 'General.Action.Delete' | trans({}, 'security') }}</i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}

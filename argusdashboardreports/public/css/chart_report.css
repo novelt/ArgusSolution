@@ -1,0 +1,133 @@
+.chartarea {
+    min-width: 310px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.chartarea .c3-title {
+    font-size: 18px;
+}
+
+.chartarea .c3-xgrid, .chartarea .c3-ygrid {
+    stroke-dasharray: 0 0;
+    stroke: #ff0000;
+    fill: #ff0000;
+}
+
+.chartarea .c3-grid line {
+    stroke: #e6e6e6;
+}
+
+.chartarea .c3-axis-y text
+{
+    font-size: 11px;
+    color: #666666;
+    fill: #666666;
+}
+
+.chartarea .c3-axis-x text
+{
+    font-size: 11px;
+    color: #666666;
+    fill: #666666;
+}
+
+.chartarea .c3-texts {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.chartarea .c3-subtitle {
+    color: #666666;
+    fill: #666666;
+    font-size: 16px;
+}
+
+
+/* Lines style customization */
+
+.chartarea .c3-line {
+    stroke-width: 2;
+}
+
+.chartarea .line-Solid {
+}
+
+.chartarea .line-Dash {
+    stroke-dasharray: 8, 6;
+}
+
+.chartarea .line-ShortDash {
+    stroke-dasharray: 6, 2;
+}
+
+.chartarea .line-ShortDot {
+    stroke-dasharray: 2,2;
+}
+
+.chartarea .line-ShortDashDot {
+    stroke-dasharray: 6, 2, 2, 2;
+}
+
+.chartarea .line-ShortDashDotDot {
+    stroke-dasharray: 6, 2, 2, 2, 2, 2;
+}
+
+.chartarea .line-Dot {
+    stroke-dasharray: 2, 6;
+}
+
+.chartarea .line-LongDash {
+    stroke-dasharray: 16, 6;
+}
+
+.chartarea .line-DashDot {
+    stroke-dasharray: 8, 6, 2, 6;
+}
+
+.chartarea .line-LongDashDot {
+    stroke-dasharray: 16, 6, 2, 6;
+}
+
+.chartarea .line-LongDashDotDot {
+    stroke-dasharray: 16, 6, 2, 6, 2, 6;
+}
+
+/* Legends */
+.legend {
+    list-style: none;
+    text-align: center;
+}
+.legend li {
+    display: inline;
+    font: 10px sans-serif;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.legend li span {
+    padding-left: 4px;
+}
+
+/* PDF export */
+.chartarea_pdf {
+    width: 700px;
+    height: 400px;
+}
+
+.chartarea_pdf .legend li {
+    font-size: 15px;
+}
+
+.chartarea_pdf .c3-axis-x text {
+    /*font-size: 15px;*/
+}
+
+.chartarea_pdf .c3-axis-y text {
+    /*font-size: 20px;*/
+}
+
+/* Some workarounds */
+.c3-title-hide {
+    display:none;
+}

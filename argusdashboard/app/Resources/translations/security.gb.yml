@@ -1,0 +1,96 @@
+General:
+  Action:
+    Add: Add
+    Cancel: Cancel
+    Delete: Delete
+    Update: Update
+    Edit: Edit
+  Select2:
+    Choose:
+      Site: Choose a site
+  Actions: Actions
+  Yes: Yes
+  No: No
+User:
+  List: Users
+  Add: Add a user
+  Edit: Update a user
+  UserName: User name
+  Email: Email
+  RootSite: Site
+  IsAdmin: Admin?
+  Enabled: Enabled
+  Roles: Roles
+  LastLogin: Last login
+  FirstName: First name
+  LastName: Last name
+  Password: Password
+  AdminRights: Admin rights
+  Created: New user '%userName%' was created!
+  Updated: The user '%userName%' was updated!
+  Deleted: The user '%userName%' was deleted!
+Role:
+  List: Roles
+  Add: Add a role
+  Edit: Update a role
+  Name: Name
+  Users: Users
+  Permissions: Permissions
+  Indicators: Indicators
+  AccessAngularModules: Modules
+  AuthorizedIndicatorsDataExport: Can download indicators data export
+  AuthorizedConfidentialCasesData: Display confidential cases data
+  AuthorizedCasesDataExport: Can download cases data export
+  AuthorizedCasesDataEdit: Can edit cases
+  AuthorizedCasesDataSoftDelete: Can soft delete cases
+  Action:
+    Manage:
+      Permissions: Manage permissions
+  Created: New role '%roleName%' was created!
+  Updated: The role '%roleName%' was updated!
+  Deleted: The role '%roleName%' was deleted!
+  Module:
+    DASHBOARD: Dashboard
+    CASES: Cases
+Permission:
+  List: Permissions
+  Add: Add a permission
+  Action: Action
+  Ressource: Ressource
+  State: State
+  Level: Level
+  Type: Type
+  Scope: Scope
+  Created: New permission created!
+  Deleted: Permission was deleted!
+  Choices:
+    VIEW: View
+    VALIDATE: Validation
+    REJECT: Rejection
+    DOWNLOAD: Download
+    UPLOAD: Upload
+    ANY: Any
+    ALERT: Alerts
+    MONTHLY_REPORT: Monthly reports
+    WEEKLY_REPORT: Weekly reports
+    DASHBOARD_REPORT: Dashboard reports
+    ANGULAR_DASHBOARD: Dashboard
+    PENDING: Pending
+    VALIDATED: Validated
+    REJECTED: Rejected
+    ALLOW: Allow
+    DENY: Deny
+    ALL: All
+    SINGLE: Single
+Indicators:
+  ExpectedLeafReports: Expected leaf reports
+  ReceivedLeafReports: Received leaf reports
+  OnTimeReceivedLeafReports: On time received leaf reports
+  CompletenessLeafReports: Completeness leaf reports
+  TimelinessLeafReports: Timeliness leaf reports
+  NumberOfEvents: Number of events
+  NumberOfZeroEvents: Zero reports submitted
+  InvestigationRate: Investigation rate
+  DiseaseConfirmationRate: Disease confirmation rate
+  NumberOfDiseaseValues: Number of diseases values
+

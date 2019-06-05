@@ -1,0 +1,31 @@
+/app/bootstrap.php.cache
+/app/cache/
+/app/config/parameters.yml
+/app/config/configRoot.yml
+/app/logs/*
+!app/logs/.gitkeep
+/app/work/reports/**/*.xml
+/app/phpunit.xml.dist
+/app/uploads/**/*.xml
+/bin/
+/vendor/
+/web/bundles/
+/web/exports/*.xlsx
+/web/js/*.js
+!/web/js/app.js
+!/web/js/moment_locale.js
+.idea
+
+# vs code
+.vscode/
+*.code-workspace 
+
+# vim
+*.swp
+
+# For mac users
+.DS_Store
+
+/web/imports/**/*.csv
+
+/web/exports/**/*.xlsx

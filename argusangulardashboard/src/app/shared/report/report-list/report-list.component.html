@@ -1,0 +1,21 @@
+<div class="container-fluid table-responsive-sm" id="listReports" >
+    <h4 class="text-center" translate>list.sites</h4>
+    <div class="table">
+      <div class="header">
+        <div class="header-content" translate>list.site</div>
+        <div class="header-content" >{{ 'list.' + getPeriodColumnName().toLowerCase() | translate }}</div>
+        <div class="header-content" translate>list.year</div>
+        <div class="header-content" translate>list.status</div>
+      </div>
+      <div class="content">
+        <div class="item" *ngFor="let report of reportList" [ngClass]= "{'highlight': selectedReport?.id == report.id}" (click)="highlightAndGo(report)">
+          <div class="item-content">{{ report.getSiteName() }}</div>
+          <div class="item-content">{{ getPeriodColumnValue(report) }}</div>
+          <div class="item-content">{{ report.getYear() }}</div>
+          <div class="item-content">
+            <span class="badge badge-{{report.status | lowercase}}">{{'status.' + report.getStatus() | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

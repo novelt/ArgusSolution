@@ -1,0 +1,156 @@
+@import '~theme/theme-variables.scss';
+
+.container-fluid {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+
+    h1 {
+        padding: 20px;
+    }
+
+    .analyses {
+        padding: 1em;
+        text-align: center;
+        margin: auto;
+
+        .otherAnalyses {
+            font-weight: bolder;
+            margin-right: 1em;
+        }
+
+        .chooseAnalyse {
+            margin-right: 1em;
+        }
+
+        .dlAnalyse {
+            padding-bottom: 0.1em;
+        }
+    }
+   
+    .content {
+        margin: 0;
+        height: calc(100% - 48px - 6em); // - filtre - h1
+        overflow: auto;
+
+        >div {
+            padding-bottom: 10px;
+        }
+
+        .report-container {
+            background-color: $argus-gray-100;
+            text-align: center;
+            padding: 10px;
+            height: 100%;
+
+            .row {
+                margin: 0;
+            }
+
+            .container-title {
+                display: block;
+                height: 45px;
+                font-size: 1.4em;
+                width: 100%;
+            }
+
+            .reports {
+                background-color: white;  
+                text-align: initial;
+                height: calc(100% - 45px); // - .container-title height
+                
+                .chart {
+                    text-align: center;
+                    padding-bottom: 50px;
+                }
+               
+                .report-site {
+                    border-right: 2px dashed $argus-gray-100;
+
+                    .row {
+                        padding-bottom: 10px;
+                    }
+                }
+
+                .report-site, .report-time {
+                    display: inline-block;
+                    width:50%;
+                }
+
+                .report-diseases {
+                    padding:10px;
+                    height: 100%;
+
+                    .search {
+                        background-color: $argus-gray-100;
+                        height: auto !important;
+                        padding: 0.8em;
+                        border-radius: 18px;
+                        border: none;
+                    }
+
+                    .list-diseases {
+                        margin-top: 20px;
+                        border-bottom: 1px solid $argus-gray-100;
+                        height: 230px;
+                        overflow-y: auto;
+
+                        .disease {
+                            width : 100%;
+                            margin:0;
+                            padding-bottom: 4px;
+
+                            .form-check-label {
+                                width: 90%;
+                            }
+
+                            .form-check-input {
+                                height: auto;
+                                width: 10%;
+                                margin:0;
+                            }
+                        }
+                    }
+                }
+
+                .report-epidemiologic {
+                    padding:10px;
+                    height: 100%;
+                  
+                    .select-period {
+                        padding: 0.8em;
+                        font-weight: bold;
+                    }
+
+                    .time-epidemiologic {
+                        margin-top: 20px;
+                        height: 230px;
+
+                        >div:last-child {
+                            padding-top: 5px;
+                        }
+                    }
+
+                    .download {
+                        padding-left:15px;
+                        margin-top: 10px;
+                        
+                        img {
+                            padding-right: 15px;
+                        }
+                    }
+                }
+            }
+
+            .btn-view {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    iframe {
+        height: calc(100% - 120px);
+        width: 100%;
+      }
+}

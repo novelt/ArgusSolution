@@ -1,0 +1,48 @@
+{
+    "name": "jdorn/php-reports",
+    "description": "A PHP framework for displaying reports from any data source, including SQL and MongoDB",
+    "homepage": "http://jdorn.github.com/php-reports/",
+    "keywords": ["reports", "mongodb", "sql", "reporting", "csv", "database"],
+    "license": "LGPL-3.0+",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "mikecao/flight",
+                "version": "dev-master",
+                "source": {
+                    "url": "git://github.com/mikecao/flight.git",
+                    "type": "git",
+                    "reference": "d0818793794a36a55741771675ad573fa59cd568"
+                }
+            }
+        }
+    ],
+    "authors": [
+        {
+            "name": "Jeremy Dorn",
+            "email": "jeremy@jeremydorn.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "1.*",
+        "swiftmailer/swiftmailer": "5.*",
+        "mikecao/flight": "dev-master",
+        "jdorn/sql-formatter": "dev-master",
+        "jdorn/file-system-cache": "dev-master",
+        "phpoffice/phpexcel": "dev-develop",
+        "adodb/adodb-php": "dev-master",
+        "lespoilus/spyc": "dev-master",
+        "google/apiclient": "1.0.*@beta"
+    },
+    "autoload": {
+        "files": [
+            "vendor/mikecao/flight/flight/Flight.php",
+            "lib/adodb/pivottable.inc.php"
+        ],
+        "classmap": [
+            "vendor/jdorn/file-system-cache/"
+        ]
+    },
+    "minimum-stability": "dev"
+}

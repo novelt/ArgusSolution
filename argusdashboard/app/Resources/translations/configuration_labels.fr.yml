@@ -1,0 +1,399 @@
+Configuration:
+
+    # Page titles
+
+    Titles:
+        SiteList: Liste de sites
+        SiteAlertRecipientList: Site: liste des destinataires d'alertes
+        ContactList: Liste des contacts
+        ContactTypeList: Liste des types de contact
+        DiseaseList: Liste des maladies
+        ThresholdList: Liste des seuils
+        DiseaseValueListForDisease: Liste des valeurs pour “Disease”
+        DiseaseValueInsertionForDisease: Nouvelle valeur pour “Disease”
+        DiseaseValueEditionForDisease: Disease : édition de “Value”
+        DiseaseConstraintListForDisease: Liste de contraintes pour “Disease”
+        DiseaseConstraintInsertionForDisease: Nouvelle contrainte pour “Disease”
+        DiseaseConstraintEditionForDisease: Disease : édition de contrainte
+        SiteEdition: Edition d'un site
+        ContactEdition: Edition d'un contact
+        ContactTypeEdition: Edition d'un type de contact
+        DiseaseEdition: Edition d'une maladie
+        ThresholdEdition: Edition d'un seuil
+        SiteInsertion: Nouveau site
+        SiteAlertRecipientInsertion: "Site : nouveau destinataire d'alerte"
+        ContactInsertion: Nouveau contact
+        ContactTypeInsertion: Nouveau type de contact
+        DiseaseInsertion: Nouvelle maladie
+        ThresholdInsertion: Nouveau seuil
+        SiteConfirmDisable: Désactivation d'un site
+        ContactConfirmDisable: Désactivation d'un contact
+        SiteConfirmEnable: Activation d'un site
+        ContactConfirmEnable: Activation d'un contact
+        SiteListXmlLoad: Chargement d'une liste de sites
+        ContactListXmlLoad: Chargement d'une liste de contacts
+        ContactTypeListXmlLoad: Chargement d'une liste de types de contact
+        DiseaseListXmlLoad: Chargement d'une liste de maladies
+        ThresholdListXmlLoad: Chargement d'une liste de seuils
+        RoleListXmlLoad: Chargement d'une liste de roles
+        UserListXmlLoad: Chargement d'une liste d'utilisateurs
+        SiteListXmlSave: Sauvegarde d'une liste de sites
+        ContactListXmlSave: Sauvegarde d'une liste de contacts
+        DiseaseListXmlSave: Sauvegarde d'une liste de maladies
+        ThresholdListXmlSave: Sauvegarde d'une liste de seuils
+        AllListsXmlSave: Sauvegarder toutes les listes
+
+    # Dropdown menu in the navbar
+
+    MenuItems:
+        Sites: Sites
+        Contacts: Contacts
+        ContactTypes: Types de contact
+        Diseases: Maladies
+        Thresholds: Seuils
+        SaveAllToXml: Synchroniser la configuration
+
+    # All kinds of buttons, at all levels
+
+    Buttons:
+        Cancel: Annuler
+        AddSite: Ajouter un site
+        AddSubSite: Ajouter un site enfant
+        AddSiteAlertRecipient: Ajouter un destinataire d'alerte
+        AddContact: Ajouter un contact
+        AddContactType : Ajouter un type de contact
+        AddDisease: Ajouter une maladie
+        AddDiseaseValue: Ajouter une valeur de maladie
+        AddDiseaseConstraint: Ajouter une contrainte de maladie
+        AddThreshold: Ajouter un seuil
+        EditSite: éditer
+        EditContact: éditer
+        EditContactType: éditer
+        EditDisease: éditer
+        EditDiseaseValue: éditer
+        EditDiseaseConstraint: éditer
+        EditThreshold: éditer
+        EnabledSite: activé
+        EnabledContact: activé
+        DisabledSite: désactivé
+        DisabledContact: désactivé
+        RemoveDisease: supprimer
+        RemoveDiseaseValue: supprimer
+        RemoveDiseaseConstraint: supprimer
+        RemoveThreshold: supprimer
+        RemoveContact: supprimer
+        LoadFromXML: Charger depuis XML
+        SaveToXML: Exporter vers XML
+        SaveToCSV: Exporter vers CSV
+        Save: Sauvegarder
+        Disable: Désactiver
+        Enable: Activer
+        Remove: Supprimer
+        ReturnToSites: Retourner aux sites
+        ReturnToContacts: Retourner aux contacts
+        ReturnToDiseases: Retourner aux maladies
+        ReturnToDiseaseValues: Retourner aux valeurs de “disease”
+
+    # Labels that are specific to the "site list" page
+
+    Select2:
+        Choose:
+            Site: Choisir un site
+            Disease&Value: Choisir une maladie et sa valeur
+    Sites:
+        # Column names:
+        Name: Nom du site
+        Reference: Réf.
+        ParentReference: Réf. parent
+        Longitude: Longitude
+        Latitude: Latitude
+        #WeeklyReminderOverrunMinutes: Minutes dép. rappel hebdo.
+        #MonthlyReminderOverrunMinutes: Minutes dép. rappel mensuel
+        WeeklyTimelinessMinutes: Delai limite de réception hebdomadaire (Minutes)
+        MonthlyTimelinessMinutes: Delai limite de réception mensuel (Minutes)
+        ParentID: ID du parent
+        Level: Niveau
+        Path: Chemin
+        Scopes: Scopes
+        AlertRecipients: Destinataires d'alertes
+        CascadingAlertRecipients: Configuration en cascade
+        AlertPreferredGateway: Gateway préféré (alertes)
+        Enabled: Activé
+        Actions: Actions
+        # Message if no item:
+        None: Aucun site à afficher.
+        EnabledChildren: Sites enfants activés
+        DisabledChildren: Sites enfants désactivés
+        # ContactsCount: Nombre de contacts associés
+        ContactTypes: Types de contacts
+        Timezone: Fuseau horaire
+        Language: Langue
+        ReportDataSource: Source de données rapports
+
+    # Labels that are specific to the "site alert recipient list" page
+
+    SiteAlertRecipients:
+        # Column names:
+        Path: Chemin
+        Action: Action
+        # Message if no item:
+        None: Aucun destinataire à afficher.
+
+    # Labels that are specific to the "contact list" page
+
+    Contacts:
+        # Column names:
+        Name: Nom du contact
+        SiteReference: Réf. site
+        PhoneNumber: Téléphone
+        Type: Type
+        Imei: IMEI
+        Imei2: IMEI 2
+        Email: E-mail
+        Note: Note
+        AlertPreferredGateway: Gateway préféré (alertes)
+        Enabled: Activé
+        Actions: Actions
+        # Message if no item:
+        None: Aucun contact à afficher.
+
+    # Labels that are specific to the "contact type list" page
+
+    ContactTypes:
+        Name: Contact Type Nom
+        Reference: Référence
+        Description: Contact Type Description
+        SendsReports: Soumet des Rapports
+        UseInIndicatorsCalculation: Utiliser dans le calcule des indicateurs
+        Actions: Actions
+        # Message if no item:
+        None: Aucun type de contact à afficher.
+
+    # Labels that are specific to the "disease list" page
+
+    Diseases:
+        # Column names:
+        Name: Nom de la maladie
+        Disease: Réf. maladie
+        Keyword: Mot-clé
+        Position: Position
+        Values: Valeurs
+        Constraints: Contraintes
+        Actions: Actions
+        # Message if no item:
+        None: Aucune maladie à afficher.
+
+    # Labels that are specific to the "disease value list" page
+
+    DiseaseValues:
+        # Column names:
+        Reference: Référence
+        Period: Période
+        Position: Position
+        Type: Type
+        Mandatory: Obligatoire
+        Keyword: Mot-clé
+        Actions: Actions
+        # Message if no item:
+        None: Aucune valeur à afficher.
+
+    # Labels that are specific to the "disease constraint list" page
+
+    DiseaseConstraints:
+        # Column names:
+        ReferenceValueFrom: Valeur de réf. "de"
+        Operator: Opérateur
+        ReferenceValueTo: Valeur de réf. "à"
+        Period: Période
+        Actions: Actions
+        # Message if no item:
+        None: Aucune contrainte à afficher.
+
+    # Labels that are specific to the "threshold list" page
+
+    Thresholds:
+        # Column names:
+        Site: Site
+        Disease: Maladie
+        Period: Période
+        WeekNumber: N° de semaine
+        MonthNumber: N° de mois
+        Year: Année
+        MaxValue: Valeur max.
+        Value: Valeur
+        Actions: Actions
+        # Message if no item:
+        None: Aucun seuil à afficher.
+
+    # General messages
+
+    Messages:
+        NonEmptySiteList: Le présent site n'est pas vide.
+
+    # Labels of form elements (fields, choices in drop-down boxes, ...)
+
+    FormItems:
+
+        # Common to several forms
+
+        Common:
+
+            # Scalar fields
+
+            Id:
+                Label: Id
+            Name:
+                Label: Nom
+            Description:
+                Label: Description
+            Note:
+                Label: Note
+            Parent:
+                Label: Parent
+            Reference:
+                Label: Référence
+
+            # Fields with choices
+
+            Operator:
+                Label: Opérateur
+                Choices:
+                    GREATER: Supérieur
+                    GREATER_EQUAL: Supérieur ou égal
+                    LESS: Inférieur
+                    LESS_EQUAL: Inférieur ou égal
+                    NOT_EQUAL: Différent
+            Period:
+                Label: Période
+                Choices:
+                    None: Aucune
+                    Weekly: Hebdomadaire
+                    Monthly: Mensuelle
+            Priority:
+                Label: Priorité
+                Choices:
+                    Primary: Primaire
+                    Secondary: Secondaire
+            Type:
+                Label: Type
+                Choices:
+                    Integer: Entier
+                    String: Chaîne de caractères
+                    Date: Date
+            ReportDataSource:
+                Label: Source de données pour les rapports
+                InheritedValue: Hérité du parent
+
+        # Specific to contact forms
+
+        Contact:
+            Email:
+                Label: E-mail
+            PhoneNumber:
+                Label: N° de téléphone
+            Type:
+                Label: Type
+            Imei:
+                Label: IMEI
+            Imei2:
+                Label: IMEI 2
+            PreferredGateway:
+                Label: Gateway préféré
+            Site:
+                Label: Site
+            SiteReference:
+                Label: Référence de site
+
+        # Specific to contact type forms
+        ContactType:
+            SendsReports:
+                Label: Soumet des Rapports
+            UseInIndicatorsCalculation:
+                Label: Utiliser dans le calcule des indicateurs
+
+        # Specific to disease forms
+
+        Disease:
+            Reference:
+                Label: Référence # Called "disease" in the xml file.
+            KeyWord:
+                Label: Mot-clé
+            Position:
+                Label: Position
+
+        # Specific to disease constraint forms
+
+        DiseaseConstraint:
+            ReferenceValueFrom:
+                Label: Valeur de réf. "de"
+            ReferenceValueTo:
+                Label: Valeur de réf. "à"
+
+        # Specific to disease value forms
+
+        DiseaseValue:
+            Value:
+                Label: Valeur
+            Position:
+                Label: Position
+            Mandatory:
+                Label: Obligatoire
+            KeyWord:
+                Label: Mot-clé
+
+        # Specific to site forms
+
+        Site:
+            Latitude:
+                Label: Latitude
+            Longitude:
+                Label: Longitude
+            PreferredGateway:
+                Label: Gateway préféré
+            #MonthlyReminderOverrunMinutes:
+            #    Label: Minutes de dépassement du rappel mensuel
+            #WeeklyReminderOverrunMinutes:
+            #    Label: Minutes de dépassement du rappel hebdomadaire
+            MonthlyTimelinessMinutes:
+                Label: Delai limite de réception d'un rapport mensuel (minutes)
+            WeeklyTimelinessMinutes:
+                Label: Delai limite de réception d'un rapport hebdomadaire (minutes)
+            Timezone:
+                Label: Fuseau horaire
+                InheritedValue: Hérité du parent
+            Language:
+                Label: Langue
+                InheritedValue: Hérité du parent
+            OverwriteReportDataSourceCheckbox:
+                Label: Ecraser la configuration de la source de données pour les rapports
+            CascadingAlert:
+                Label: Les contacts des sites parents sont destinataires des alertes.
+            DialogOverwriteReportDataSource:
+                Confirm: Confirmer
+                Cancel: Annuler
+                Content:
+                    EXCEL: Seulement un site par branche hiérarchique peut être configuré pour l'import de fichier. Le site %site_name% est déjà configuré pour l'import de fichier. La configuration sera supprimée si vous confirmez.
+
+        # Specific to site alert recipient forms
+
+        SiteAlertRecipient:
+            RecipientPath:
+                Label: Chemin du destinataire
+
+        # Specific to threshold forms
+
+        Threshold:
+            Site:
+                Label: Site
+            SiteReference:
+                Label: Référence de site
+            Disease&Value:
+                Label: Maladie / Valeur
+            WeekNumber:
+                Label: N° de semaine
+            MonthNumber:
+                Label: N° de mois
+            Year:
+                Label: Année
+            MaxValue:
+                Label: Valeur maximale

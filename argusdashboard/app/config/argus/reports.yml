@@ -1,0 +1,31 @@
+# This file contains reports parameters
+parameters:
+    # Dashboard Config to allow Auto Validation / Aggregation
+    configuration_dashboard:
+        auto_validation: false
+        auto_aggregation: false
+
+    argus_reports:
+        global:
+            percent_decimal: 0
+
+        # weekly_reports:
+        #    - {File: 'WeeklyTimelinessCompletenessBySite.php', Period: 'Weekly', Title: 'Weekly Timeliness & Completeness Report', Enabled: true}
+        #    - {File: 'WeeklyTimelinessCompletenessByWeek.php', Period: 'Weekly', Title: 'Weekly Timeliness & Completeness Report Evolution', Enabled: true}
+
+        # Dashboard config to display/hide Contact List Report reports
+        contact_list_report:
+            enabled: false
+            column_config:
+                level_1:
+                    display: true
+                    column: COUNTRY
+                level_2:
+                    display: true
+                    column: STATE
+                level_3:
+                    display: true
+                    column: LGA
+                level_4:
+                    display: true
+                    column: SITE

@@ -1,0 +1,131 @@
+Welcome to the: Bienvenue sur
+Ses Application: L'Application SES
+Please log in: Veuillez vous authentifier
+Admin: Admin
+Users: Utilisateurs
+Roles: Roles
+Permissions: Permissions
+Configuration: Configuration
+Profile: Profil
+Browse the: Parcourir
+public section: la partie publique
+of the application: de l'application
+Browse application: Parcourir l'application
+admin backend: la partie privée
+Browse backend: Parcourir le back-office
+Map: Carte
+Reports: Rapports
+Homepage: Accueil
+Pending: En cours
+Validated: Accepté
+Conflicting: Mis à jour
+Rejected: Rejeté
+All: Tous
+Status: Statut
+Period: Période
+Site: Site
+Current Week: Semaine courante
+Current Month: Mois courant
+Current Year: Année courante
+Type: Type
+Weekly Report: Rapport hebdomadaire
+Monthly Report: Rapport mensuel
+Completeness: Complétude
+Timeliness: Promptitude
+Reject: Rejeter
+Validate: Accepter
+Submit Successful: Validation Effectuée
+Reject Successful: Rejet Effectué
+Reception ongoing since: Réception en cours depuis le
+Reception complete on: Réception complétée le
+Disease: Maladie
+Diseases: Maladies
+Reception: Réception
+Variable: Variable
+Value: Valeur
+NO DATA: AUCUNE DONNEE
+VALIDATED: ACCEPTE
+REJECTED: REJETE
+PENDING: EN COURS
+REJECTED FROM ABOVE: REJETE NIVEAU SUP
+CONFLICTING: MIS A JOUR
+Week: Semaine
+Month: Mois
+Year: Année
+Display alerts: Visualiser les alertes
+New Alert!: Nouvelle Alerte !
+Received the: Receptionnée le
+Add: Nouveau
+Create: Création
+Save: Enregistrer
+Remove: Supprimer
+New Report: Nouveau rapport
+Start date: Date
+January: Janvier
+February: Février
+March: Mars
+April: Avril
+May: Mai
+June: Juin
+July: Juillet
+August: Août
+September: Septembre
+October: Octobre
+November: Novembre
+December: Décembre
+Last Week: Semaine Précédente
+Last 7 Days: 7 Derniers Jours
+Last 30 Days: 30 Derniers Jours
+Last Month: Mois Précédent
+Last 12 Month: 12 Derniers Mois
+Last 4 Weeks: 4 Dernières Semaines
+Year to date: Année en cours
+Choose: Choisir
+Cancel: Annuler
+From: Du
+To: au
+FromWeek: De la
+ToWeek: à la
+FromMonth: De
+ToMonth: à
+Custom: Selection Manuelle
+Impossible to validate this report: Impossible de valider le rapport
+Impossible to reject this report: Impossible de rejeter le rapport
+Weekly Timeliness & Completeness Report: Rapport de promptitude et complétude hebdomadaire
+Weekly Timeliness & Completeness Report Evolution : Evolution de la promptitude et complétude hebdomadaire
+Monthly Timeliness & Completeness Report: Rapport de promptitude et complétude mensuel
+Monthly Timeliness & Completeness Report Evolution: Evolution de la promptitude et complétude mensuelle
+Number of Cases per Disease per Week: Nombre hebdomadaire de cas par maladie
+Number of Cases per Disease per Month: Nombre mensuel de cas par maladie
+Number of %VALUES% for Disease(s) %DISEASES% per Week: Nombre hebdomadaire de %VALUES% pour la(les) maladie(s) %DISEASES%
+Number of %VALUES% for Disease(s) %DISEASES% per Month: Nombre mensuel de %VALUES% pour la(les) maladie(s) %DISEASES%
+Are you sure to reject this report?: Confirmez-vous le rejet du rapport ?
+Are you sure to validate this report?: Confirmez-vous la validation du rapport ?
+Yes: Oui
+No: Non
+Epidemiologic Week: Semaine épidémiologique
+Weekly epidemiologic situation summary: Résumé Situation épidémiologique hebdomadaire
+HF Proportion: Proportion de CS
+% of received and validated facilities reports: % de rapports de structures reçus et acceptés
+Select the weekly diseases: Selectionnez les maladies hebdomadaires
+Select the monthly diseases: Selectionnez les maladies mensuelles
+Select the epidemiologic week: Selectionnez votre semaine épidémiologique
+View Report: Visualiser le rapport
+Download Report: Télécharger le rapport
+Download Report Data: Télécharger les données
+Download Alert Data: Télécharger les alertes
+List associated contacts: Liste des relais
+List alert recipients: Liste des receveurs d'alertes
+Weekly SMS traffic: Trafic hebdomadaire des SMS
+Monthly SMS traffic: Trafic mensuel des SMS
+Sending reports: Envoi des rapports
+Validating reports: Validation des rapports
+Language: Langue
+fr: Français
+gb: Anglais
+MinimumSearchCharacters: Saisir 2 caractères minimum pour lancer la recherche
+AutocompleteDiseasePlaceholder: Choisir une maladie
+View: Voir
+Load: Charger
+XML file: Fichier XML
+Deactivated: Désactivé

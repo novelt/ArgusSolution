@@ -1,0 +1,13 @@
+site:
+  reference:
+    unique: This reference already exists.
+disease:
+  reference:
+    unique: This reference already exists.
+  keyword:
+    unique: This keyword already exists.
+disease_value:
+  reference:
+    unique: This reference already exists for one of these disease's values.
+  keyword:
+    unique: This keyword already exists for one of these disease's values.

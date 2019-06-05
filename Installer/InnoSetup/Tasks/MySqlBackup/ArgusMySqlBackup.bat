@@ -1,0 +1,1 @@
+powershell .\MySQLBackupArgus.ps1

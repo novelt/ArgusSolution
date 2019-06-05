@@ -1,0 +1,166 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_id 'configuration_contacts_list' %}
+
+{% block configuration %}
+
+    <h2>{{ 'Configuration.Titles.ContactList' | trans({}, 'configuration_labels') }}</h2>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <a href="{{ path('configuration_contact_add') }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Configuration.Buttons.AddContact' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_contacts_load') }}"><button class="btn btn-sm btn-info"><i class="fa fa-upload"></i> {{ 'Configuration.Buttons.LoadFromXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_contacts_save') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_contacts_save_csv') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToCSV' | trans({}, 'configuration_labels') }}</button></a>
+        </div>
+    </div>
+
+    <table id="contacts-datatable" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>{{ 'Configuration.Contacts.Name'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Contacts.SiteReference'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Contacts.PhoneNumber'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Contacts.Email'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Contacts.Imei'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Contacts.Imei2'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Contacts.AlertPreferredGateway'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Contacts.Note'|trans({}, 'configuration_labels') }}</th>
+            <th>{{ 'Configuration.Sites.Actions'|trans({}, 'configuration_labels') }}</th>
+        </tr>
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        function enableOrDisable(element, event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var href = getHrefAttribute(element);
+
+            jQuery.ajax({
+                url: href,
+                method: 'GET'
+            })
+                .done(function(data) {
+                    window.location.href = data.returnUrl;
+                });
+        }
+
+        function getHrefAttribute(element) {
+            if (!(!!element.attr('href'))) {
+                return element.parent('a').attr('href');
+            }
+            return element.attr('href');
+        }
+    </script>
+    <script>
+
+        jQuery("#contacts-datatable").DataTable({
+            columns: [
+                {
+                    data: 'dt_contact_id',
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_name",
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_site_ref",
+                    orderable: true,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_phone",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_email",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_imei1",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_imei2",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_alert_pref_gateway",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: "dt_contact_note",
+                    orderable: false,
+                    className: "right"
+                },
+                {
+                    data: null,
+                    orderable: false,
+                    className: "center",
+                    render: function (data, type, row) {
+                        var route_contact_edit = Routing.generate('configuration_contact_edit', {contactId: data.dt_contact_id});
+
+                        var actions = '<a href="'+ route_contact_edit +'" ' +
+                                'data-toggle="tooltip" ' +
+                                'title="{{ 'Configuration.Buttons.EditSite'| trans({}, 'configuration_labels') }}">' +
+                                '<button class="btn btn-info btn-xs"><i class="fa fa-edit"></i>' +
+                                '</button></a>';
+
+                        var route_enable = Routing.generate('configuration_contact_enable_or_disable', {contactId: data.dt_contact_id});
+
+                        if (data.dt_contact_deleted) {
+
+                            return(actions + '<a href="'+ route_enable +'" ' +
+                                    'data-toggle="tooltip" ' +
+                                    'title="{{ 'Configuration.Buttons.DisabledSite'| trans({}, 'configuration_labels') }}">' +
+                                    '<button class="btn btn-danger btn-xs" onclick="enableOrDisable($(this), event); return false;"><i class="fa fa-toggle-off"></i>' +
+                                    '</button></a>'
+                            );
+                        } else {
+
+                            return(actions + '<a href="'+ route_enable +'" ' +
+                                    'data-toggle="tooltip" ' +
+                                    'title="{{ 'Configuration.Buttons.EnabledSite'| trans({}, 'configuration_labels') }}">' +
+                                    '<button class="btn btn-success btn-xs" onclick="enableOrDisable($(this), event); return false;"><i class="fa fa-toggle-on"></i>' +
+                                    '</button></a>'
+                            );
+                        }
+                    }
+                }
+            ],
+            "bStateSave": true,
+            "fnStateSave": function (oSettings, oData) {
+                localStorage.setItem('offersDataTables', JSON.stringify(oData));
+            },
+            "fnStateLoad": function (oSettings) {
+                return JSON.parse(localStorage.getItem('offersDataTables'));
+            },
+            "pageLength": 20,
+            "ajax": Routing.generate('configuration_contacts_datatable'),
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "language": {
+                "url": "{{ path('configuration_get_translations') }}"
+            }
+        });
+    </script>
+{% endblock %}

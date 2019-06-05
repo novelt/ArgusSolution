@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen 
+        android:key="slave01"
+        android:title="Gateway Slave 1"
+        android:summary="...">
+    </PreferenceScreen>            
+    <PreferenceScreen 
+        android:key="slave02"
+        android:title="Gateway Slave 2"
+        android:summary="...">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="slave03"
+        android:title="Gateway Slave 3"
+        android:summary="...">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="slave04"
+        android:title="Gateway Slave 4"
+        android:summary="...">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="slave05"
+        android:title="Gateway Slave 5"
+        android:summary="...">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="slave06"
+        android:title="Gateway Slave 6"
+        android:summary="...">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="slave07"
+        android:title="Gateway Slave 7"
+        android:summary="...">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="slave08"
+        android:title="Gateway Slave 8"
+        android:summary="...">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="slave09"
+        android:title="Gateway Slave 9"
+        android:summary="...">
+    </PreferenceScreen>
+</PreferenceScreen>

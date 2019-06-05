@@ -1,0 +1,118 @@
+<div class="container-fluid">
+    <app-filter></app-filter>
+    <div class="d-flex">
+        <h1 translate>titles.analyses</h1>
+        <div class="ml-auto">
+            <div class="analyses form-inline">
+                <div class="otherAnalyses form-group">
+                    <label for="otherAnalyses" translate>analyses.other</label>
+                </div>
+                <div class="chooseAnalyse form-group">
+                    <select id="otherAnalyses" class="form-control" [(ngModel)]="selectedAnalyse">
+                        <option *ngFor="let analyse of analyseList" [ngValue]="analyse">{{ analyse.getTitle() }}.{{ analyse.getExtension()}} ( {{ analyse.getSize()}} ko) {{ analyse.getDate()}}</option>
+                    </select>
+                </div>
+                <div class="dlAnalyse form-group">
+                    <button type="button" class="btn btn-outline-primary btn-view" (click)="downloadAnalyse()" [disabled]="! isAnalyseSelected()" translate>analyses.button.download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row content">
+        <div class="col-12 col-xl-3">
+            <div class="report-container">
+                <span class="container-title" translate>analyses.summury.title</span>
+                <div class="reports">
+                    <div class="report-epidemiologic">
+                        <div class="select-period">
+                            <span translate>analyses.summury.select_period</span>
+                        </div>
+                        <div class="time-epidemiologic">
+                            <div class="form-group row">
+                                <label for="epidemiologicYear" class="col-sm-2 col-form-label" translate>filter.year</label>
+                                <div class="col-sm-10">
+                                    <select id="epidemiologicYear" class="form-control" [(ngModel)]="selectedYear" (change)="changeYear()">
+                                        <option *ngFor="let year of years">{{ year }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="epidemiologicWeek" class="col-sm-2 col-form-label" translate>filter.week</label>
+                                <div class="col-sm-10">
+                                    <select id="epidemiologicWeek" class="form-control" [(ngModel)]="selectedWeek">
+                                        <option *ngFor="let week of weeks">{{ week }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="download" (click)="downloadReport($event)">
+                            <img src="./assets/weekly-report/pdf.png">
+                            <button type="button" class="btn btn-outline-primary" translate>analyses.button.download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-6">
+            <div class="report-container">
+                <span class="container-title" translate>analyses.reports.title</span>
+                <div class="reports row">
+                    <div class="col-12 col-md-6 col-xl-6 report-site">
+                        <h1 translate>analyses.reports.per_site</h1>
+                        <div class="chart">
+                            <img src="./assets/analysis/bar-chart.jpg">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span translate>analyses.reports.data.reporting</span>
+                                <button type="button" class="btn btn-outline-primary btn-view" (click)="viewReport(1)" translate>analyses.button.visualize</button>
+                            </div>
+                            <div class="col-6">
+                                <span translate>analyses.reports.data.validation</span>
+                                <button type="button" class="btn btn-outline-primary btn-view" (click)="viewReport(3)" translate>analyses.button.visualize</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6 report-time">
+                        <h1 translate>analyses.reports.per_time</h1>
+                        <div class="chart">
+                            <img src="./assets/analysis/line-chart.jpg">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span translate>analyses.reports.data.reporting</span>
+                                <button type="button" class="btn btn-outline-primary btn-view" (click)="viewReport(2)" translate>analyses.button.visualize</button>
+                            </div>
+                            <div class="col-6">
+                                <span translate>analyses.reports.data.validation</span>
+                                <button type="button" class="btn btn-outline-primary btn-view" (click)="viewReport(4)" translate>analyses.button.visualize</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-3">
+            <div class="report-container">
+                <span class="container-title" translate>analyses.cases.title</span>
+                <div class="reports">
+                    <div class="report-diseases">
+                        <input class="form-control search" type="text" placeholder="{{ 'analyses.cases.search' | translate }}" (input)="filterDiseases($event.target.value)">
+                        <div class="list-diseases" id="listDiseases">
+                            <div class="disease form-check form-check-inline" *ngFor="let disease of diseases">
+                                <label class="form-check-label" for="{{ disease.getReference() }}">
+                                   {{ disease.getName() }}
+                                </label>
+                                <input class="form-check-input" type="checkbox" value="" 
+                                    id="{{ disease.getReference() }}" 
+                                    (change)="selectDisease($event.target.checked, disease.getId())"
+                                    [checked]="isDiseaseSelected(disease.getId())">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-view" (click)="viewDiseaseReport()" [disabled]="! isAtLeastOneDiseaseSelected()" translate>analyses.button.visualize</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

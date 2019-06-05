@@ -1,0 +1,194 @@
+{% extends "html/chart_page.twig" %}
+
+{#{% set pdfExport = true %}#}
+
+{% block content %}
+    {% set index = 1 %}
+    {% for chart in Charts %}
+        <div id="chartarea{{ index  }}" class="chartarea {% if pdfExport == true %}chartarea_pdf{% endif %}"></div>
+        {% set index = index + 1 %}
+    {% endfor %}
+
+<script type="text/javascript">
+    {% set index = 1 %}
+
+    {% for chart in Charts %}
+
+    {% if chart.columnToLine != 0  %}
+        {% if chart.Rows|length >= chart.columnToLine %}
+            {% set chartType = 'line' %}
+        {% else %}
+            {% set chartType = 'bar' %}
+        {% endif %}
+    {% else %}
+        {% if chart.type == 'ColumnChart' %}
+            {% set chartType = 'bar' %}
+        {%  elseif chart.type == 'LineChart' %}
+            {% set chartType = 'line' %}
+        {% endif %}
+    {% endif %}
+
+    {% if chart.options.className and chart.options.className and chartType == 'line'%}
+        {% set buildCustomLegend = true %}
+    {% else %}
+        {% set buildCustomLegend = false %}
+    {% endif %}
+
+    var chart = c3.generate({
+        bindto: '#chartarea{{ index  }}',
+        padding: {
+            top:5,
+            right:5
+        },
+        data: {
+            columns: [
+                {% for i,v in chart.Rows[0].values %}
+                    {% if i > 0 %}
+                        ['{{chart.Rows[0].values[i].key}}', {% for row in chart.Rows %}{% set value = row.values[i] %} {%  if value.isNumeric() %} {{ value.getValue() }} {% else %} null {% endif %},  {% endfor %}]
+                    {% if not loop.last %},{% endif %}
+                    {% endif %}
+                    {% endfor %}
+            ],
+            type: '{{ chartType }}',
+
+            {%  if chartType == 'bar' %}
+            labels: true
+            {% endif %}
+        },
+        title: {
+            text: "."
+        },
+        {%  if buildCustomLegend %}
+        legend: {
+            show: false
+        },
+        {% endif %}
+        {%  if chartType == 'bar' %}
+        bar: {
+            width: {
+                ratio: 0.5
+            }
+        },
+        {% endif %}
+        axis: {
+            x: {
+                {% if chart.options.hAxis %}
+                label: {
+                    text: "{{ chart.options.hAxis['title']|raw }}",
+                    position: 'outer-center'
+                },
+                {% endif %}
+                type: 'category',
+                {% if pdfExport == true %}
+                tick: {
+                    rotate: 45
+                },
+                height: 100,
+                {% endif %}
+                categories: [
+                    {% for row in chart.Rows %}
+                    "{{ row.values[0].getChartValue() }}"{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ]
+            },
+            y: {
+                {% if chart.options.vAxis %}
+                    label: {
+                        text: "{{ chart.options.vAxis['title']|raw }}",
+                        position: 'outer-middle'
+                    },
+                    min: 0,
+                    {% if chart.options.vAxis['title'] == '%' %}
+                    max: 100,
+                    {% else %}
+                        {% set max = 0 %}
+                        {% for i,v in chart.Rows[0].values %}{% if i > 0 %}
+                            {% for row in chart.Rows %}{% set value = row.values[i] %}
+                                {% set val = value.getValue() %}
+                                {% if val > max %}{% set max = max(val,max) %}{% endif %}
+                            {% endfor %}{% endif %}
+                        {% endfor %}
+                    {% if max == 0 %}max: 20,{% endif %}
+                    {% endif %}
+                {% else %}
+                    min: 0,
+                {% endif %}
+                padding:0
+            }
+        },
+        grid: {
+            lines: {
+                front: false
+            },
+            y: {
+                show:true
+            }
+        }
+    });
+
+    //Manually create a new text for the title, because it was not aligned in the way as the sub-title: difference between Chrome and Firefox and dis-alignment when we resize the window
+    //The title option of c3 is not used.
+    d3.selectAll('.c3-title').classed('c3-title-hide', true);
+
+    {% if chart.title %}
+    var svg = d3.select("#chartarea{{ index }} svg");
+    svg.append("text")
+        .text("{{ chart.title }}")
+        .attr("class", "c3-title")
+        .attr('text-anchor', 'middle')
+        .attr("x", '50%')
+        .attr("y", 18);
+    {% endif %}
+
+    //The sub-title option does not exist with c3:
+    {% if chart.subtitle %}
+    var svg = d3.select("#chartarea{{ index }} svg");
+    svg.append("text")
+        .text("{{ chart.subtitle }}")
+        .attr("class", "c3-title c3-subtitle")
+        .attr('text-anchor', 'middle')
+        .attr("x", '50%')
+        .attr("y", 38);
+    {% endif %}
+
+    {% if buildCustomLegend %}
+        d3.select('#chartarea{{ index }}')
+            .append('div').attr('id', 'legend{{ index }}').attr('class', 'legend')
+            .append('ul').attr('id', 'ul-legend{{ index }}');
+
+        //Apply a style to the lines and legends
+        {% for i,v in chart.Rows[0].values %}
+            {% if i > 0 %}
+                {% if chart.options.className and chart.options.className[i] is defined %}
+                    {% set lineClassName = chart.options.className[i] %}
+
+                    {% if chart.dashStyle and chart.dashStyle[i] is defined %}
+                        {% set dashStyle = chart.dashStyle[i] %}
+                    {% else %}
+                        {% set dashStyle = "Solid" %}
+                    {% endif %}
+
+                    //Style for the lines
+                    d3.selectAll("#chartarea{{ index }} .c3-line-{{ lineClassName }}").classed("line-{{ dashStyle }}", true);
+
+                    //Build and stylize the legend
+                    //Add an <ul>, with an svg element to draw the line
+                    d3.select('#ul-legend{{ index }}').append('li').attr('id', 'ul-legend{{ index }}-li-{{ lineClassName }}').append('svg')
+                        .attr("width", '50').attr("height", '10')
+                        .append("line")
+                        .attr("x1", '0').attr("x2", '50').attr("y1", '4').attr("y2", '4').attr("class", d3.selectAll("#chartarea{{ index }} .c3-line-{{ lineClassName }}").attr("class")).attr("style", d3.selectAll("#chartarea{{ index }} .c3-line-{{ lineClassName }}").attr("style"))
+                    ;
+
+                    //Add the text next to the line
+                    d3.select('#ul-legend{{ index }}-li-{{ lineClassName }}').append('span').html("{{chart.Rows[0].values[i].key}}");
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% set index = index + 1 %}
+
+    {% endfor %}
+        
+</script>
+{% endblock %}

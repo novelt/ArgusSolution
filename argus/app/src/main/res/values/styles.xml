@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/oms_primarydark</item>
+        <item name="colorPrimaryDark">@color/oms_primary</item>
+    </style>
+
+
+    <style name="OMSCardView" parent="CardView.Base">
+        <!--<item name="foreground">?android:attr/selectableItemBackground</item>-->
+    </style>
+
+    <style name="CardView.Base" parent="CardView.Light">
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
+    <style name="oms_scrollbarstyle">
+        <item name="android:fadeScrollbars">false</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_thumb</item>
+        <item name="android:scrollbarSize">8dp</item>
+    </style>
+
+    <style name="oms_sendbutton">
+        <item name="android:background">@drawable/ic_button_blue</item>
+        <item name="android:src">@drawable/ic_action_send</item>
+        <item name="android:layout_height">@dimen/report_button_send_height</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+
+
+    <!-- Specific Style overriden in flavors-->
+    <style name="text_sync_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>

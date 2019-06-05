@@ -1,0 +1,37 @@
+{# Report Context Menu Weekly #}
+<ul id="contextMenuWeekly" class="dropdown-menu" role="menu" style="display: none; position: absolute;" >
+    <li><a href="#" id="aSendWeeklyCompletenessTimelinessBySite"><b>{{ 'Sending reports' | trans }}</b> - {{ 'Weekly Timeliness & Completeness Report' | trans }}</a></li>
+    <li><a href="#" id="aSendWeeklyCompletenessTimelinessByWeek"><b>{{ 'Sending reports' | trans }}</b> - {{ 'Weekly Timeliness & Completeness Report Evolution' | trans }}</a></li>
+    <li id="dividerWeeklyReport" class="divider"></li>
+    <li><a href="#" id="aValidateWeeklyCompletenessTimelinessBySite"><b>{{ 'Validating reports' | trans }}</b> - {{ 'Weekly Timeliness & Completeness Report' | trans }}</a></li>
+    <li><a href="#" id="aValidateWeeklyCompletenessTimelinessByWeek"><b>{{ 'Validating reports' | trans }}</b> - {{ 'Weekly Timeliness & Completeness Report Evolution' | trans }}</a></li>
+    <li class="divider"></li>
+    <li>
+        <a href="#" id="aDiseases" format-title="{{ 'Number of %VALUES% for Disease(s) %DISEASES% per Week' | trans }}" >{{ 'Number of Cases per Disease per Week' | trans }}</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a href="#" id="aResumeWeekly" >{{ 'Weekly epidemiologic situation summary' | trans }}</a>
+    </li>
+    <li id="dividerWeeklyReport" class="divider"></li>
+    <li>
+        <a href="#" id="aWeeklySMSTraffic" >{{ 'Weekly SMS traffic' | trans }}</a>
+    </li>
+ </ul>
+
+{# Report Context Menu Monthly #}
+<ul id="contextMenuMonthly" class="dropdown-menu" role="menu" style="display: none; position: absolute;" >
+    <li><a href="#" id="aSendMonthlyCompletenessTimelinessBySite">{{ 'Sending reports' | trans }} - {{ 'Monthly Timeliness & Completeness Report' | trans }}</a></li>
+    <li><a href="#" id="aSendMonthlyCompletenessTimelinessByMonth">{{ 'Sending reports' | trans }} - {{ 'Monthly Timeliness & Completeness Report Evolution' | trans }}</a></li>
+    <li id="dividerMonthlyReport" class="divider"></li>
+    <li><a href="#" id="aValidateMonthlyCompletenessTimelinessBySite">{{ 'Validating reports' | trans }} - {{ 'Monthly Timeliness & Completeness Report' | trans }}</a></li>
+    <li><a href="#" id="aValidateMonthlyCompletenessTimelinessByMonth">{{ 'Validating reports' | trans }} - {{ 'Monthly Timeliness & Completeness Report Evolution' | trans }}</a></li>
+    <li class="divider"></li>
+    <li>
+        <a href="#" id="aDiseasesMonthly" format-title="{{ 'Number of %VALUES% for Disease(s) %DISEASES% per Month' | trans }}">{{ 'Number of Cases per Disease per Month' | trans }}</a>
+    </li>
+    {# <li id="dividerMonthlyReport" class="divider"></li>
+    <li>
+        <a href="#" id="aMonthlySMSTraffic" >{{ 'Monthly SMS traffic' | trans }}</a>
+    </li> #}
+</ul>

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'config_index' %}
+
+{% block main %}
+
+    <div class="jumbotron">
+        <h2>Application Setup</h2>
+        <p></p>
+        <a type="button" class="btn btn-sm btn-primary" href="{{ path('config_translateReport') }}">Report Translation</a>
+       {# <a type="button" class="btn btn-sm btn-primary" href="{{ path('config_fillCalendarTable') }}">Fill Calendar Table</a> #}
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="">
+        <tr>
+            <th>Reports</th>
+            <th>Translated</th>
+            {#  <th>Action</th> #}
+        </tr>
+        </thead>
+        <tbody>
+        {% for report in Reports  %}
+            <tr>
+                <td>{{ report.Template  }}</td>
+                <td>{% if report.Translated == 1 %} OK {% else %} NOK <i class="fa fa-exclamation-triangle text-danger"></i>{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
+{% block sidebar %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+

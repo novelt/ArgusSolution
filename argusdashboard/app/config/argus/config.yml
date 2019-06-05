@@ -1,0 +1,9 @@
+imports:
+    - { resource: ../configRoot.yml }
+    - { resource: ../config.yml }
+    - { resource: ../parameters.yml }
+    - { resource: services.yml }
+    - { resource: reports.yml }
+    - { resource: rscript.yml }
+
+

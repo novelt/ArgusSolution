@@ -1,0 +1,147 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:descendantFocusability="blocksDescendants"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/list_item_history_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        card_view:cardBackgroundColor="@color/oms_primary">
+
+        <TextView
+            android:id="@+id/list_item_history_header_TextView"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
+            android:shadowColor="@color/oms_grey"
+            android:shadowDy="-1"
+            android:shadowRadius="1"
+            android:textColor="@color/oms_white"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold"
+            tools:text="OCTOBRE 2014"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="@dimen/card_elevation">
+
+        <LinearLayout
+            android:id="@+id/list_item_cardView_cell"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_round_rect_red"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
+            android:paddingTop="10dp">
+
+            <org.argus.sms.app.view.CardViewDontPressWithParent
+                android:id="@+id/list_item_history_CardView_Calendar"
+                style="@style/OMSCardView"
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/list_item_history_image"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp" />
+
+                    <TextView
+                        android:id="@+id/list_item_history_TextView_dateText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textSize="10sp"
+                        tools:text="semaine">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/list_item_history_TextView_dateNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_big"
+                        tools:text="31">
+                    </TextView>
+                </LinearLayout>
+            </org.argus.sms.app.view.CardViewDontPressWithParent>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/list_item_history_TextView_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:textSize="@dimen/text_big"
+                    android:textDirection="@integer/omsTextDirection"
+                    tools:text="Rapport hébdomadaire"/>
+
+                <TextView
+                    android:id="@+id/list_item_history_TextView_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_normal"
+                    android:textDirection="@integer/omsTextDirection"
+                    tools:text="Meningite - Coqueluche"/>
+
+                <TextView
+                    android:id="@+id/list_item_history_TextView_errorText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/oms_red"
+                    android:textSize="@dimen/text_normal"
+                    android:textDirection="@integer/omsTextDirection"
+                    tools:text="Recu en erreur"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/list_item_history_summary_CardView_status"
+                style="@style/OMSCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/list_item_history_summary_ImageView_status"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"/>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

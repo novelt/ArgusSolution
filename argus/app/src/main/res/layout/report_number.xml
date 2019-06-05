@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="@dimen/report_number_height"
+              android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/report_number_TextView_text"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:textDirection="@integer/omsTextDirection"
+        android:gravity="center_vertical"
+        tools:text="Cas"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/report_number_CardView_minus"
+        style="@style/OMSCardView"
+        android:layout_width="@dimen/report_number_plus_minus_height"
+        android:layout_height="@dimen/report_number_plus_minus_height"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/minus"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        style="@style/OMSCardView"
+        android:layout_width="@dimen/report_number_height"
+        android:layout_height="@dimen/report_number_height"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp">
+
+        <EditText
+            android:id="@+id/report_number_EditText_count"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:inputType="number"
+            android:layout_gravity="center"
+            android:textColor="@color/oms_grey"
+            android:maxLength="4"
+            android:hint="-"
+            android:gravity="center"
+            android:background="@color/oms_transparent"
+            tools:text="43"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/report_number_CardView_plus"
+        style="@style/OMSCardView"
+        android:layout_width="@dimen/report_number_plus_minus_height"
+        android:layout_height="@dimen/report_number_plus_minus_height"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/plus"/>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

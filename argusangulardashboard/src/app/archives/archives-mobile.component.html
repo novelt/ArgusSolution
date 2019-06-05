@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="header">
+    <app-report-header (isMenuOpen)="menuOpen($event)" [title]="'titles.archives'" [withFilters]="true"></app-report-header>
+  </div>
+  <div class="row">
+    <div class="col-12 list">
+      <div class="spinner center" [class.hidden]="!isActive" [class.active]="isActive" ></div>
+      <app-report-list [malihuScroll]="false"></app-report-list>
+    </div>
+  </div>
+</div>

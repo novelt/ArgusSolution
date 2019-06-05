@@ -1,0 +1,316 @@
+parameters:
+    app.notifications.email_sender: anonymous@example.com
+
+services:
+    # first we define some basic services to make these utilities available in
+    # the entire application
+
+    parser:
+      class: AppBundle\Utils\Parser
+      arguments: ['@logger']
+
+    dbConstant:
+        class:  AppBundle\Services\DbConstant
+        arguments: ["%epi_first_day%", "%minutes_before_rejecting_report%"]
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+
+    SplitAlertService:
+        class:  AppBundle\Services\SplitAlertService
+        tags:
+             - { name: doctrine.event_listener, event: postLoad }
+
+    ReportService:
+        class: AppBundle\Services\ReportService
+        arguments: ["@doctrine.orm.entity_manager", "@IndicatorDimDateService"]
+
+    ImportService:
+        class: AppBundle\Services\ImportService
+        arguments: ["@doctrine.orm.entity_manager", '@logger', '@BackendService', '@SiteService', '@ReportService', '@DiseaseService', '@jms_serializer', '@LockService', '%xml_reports_file_path%', '%xsd_report_file%', '%configuration_dashboard%', '%import_service_lock_timeout%', '%import_service_size_of_file_batches%']
+
+    PaginatorBookmarkService:
+        class: AppBundle\Services\PaginatorBookmarkService
+        arguments: ["@session"]
+
+    DiseaseService:
+        class: AppBundle\Services\DiseaseService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    DiseaseValueService:
+        class: AppBundle\Services\DiseaseValueService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    DiseaseValueKeywordService:
+        class: AppBundle\Services\DiseaseValueKeywordService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    DiseaseConstraintService:
+        class: AppBundle\Services\DiseaseConstraintService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    SiteService:
+        class: AppBundle\Services\SiteService
+        arguments: ["@logger", "@doctrine.orm.entity_manager", '@LocaleService', '@translator', '@IndicatorDimDateService', '@SiteDimDateService', '@ReportDataSourceService', '%epi_first_day%', '%site_services_get_children_sites_log_level%']
+
+    SiteAlertRecipientService:
+        class: AppBundle\Services\SiteAlertRecipientService
+        arguments: ["@logger", '@SesDashboardSiteAlertRecipientRepository']
+
+    ContactService:
+        class: AppBundle\Services\ContactService
+        arguments: ["@logger", '@SesDashboardContactRepository']
+
+    ContactTypeService:
+        class: AppBundle\Services\ContactTypeService
+        arguments: ["@logger", "@SesDashboardContactTypeRepository"]
+
+    ThresholdService:
+        class: AppBundle\Services\ThresholdService
+        arguments: ["@doctrine.orm.entity_manager", "@SiteService"]
+
+    CaseService:
+        class: AppBundle\Services\CaseService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    SecurityService:
+        class: AppBundle\Services\SecurityService
+        arguments: ["@doctrine.orm.entity_manager", "@SiteService", "@fos_user.user_manager"]
+
+    DashboardService:
+        class: AppBundle\Services\DashboardService
+        arguments: ["@doctrine.orm.entity_manager", "@IndicatorDimDateService", "@SiteService", "@DiseaseService", '%epi_first_day%', '%path_dashboards%']
+
+    LocaleService:
+        class: AppBundle\Services\LocaleService
+        arguments: ['@logger', '%translation_folders_paths%', '%locale%']
+        
+    TimezoneService:
+        class: AppBundle\Services\Timezone\TimezoneService
+        arguments: ["@logger"]
+
+    #Gateway Service
+    GatewayQueueService:
+        class: AppBundle\Services\Gateway\GatewayQueueService
+        arguments: ['@logger', '@GatewayQueueRepository']
+
+    GatewayDeviceService:
+        class: AppBundle\Services\Gateway\GatewayDeviceService
+        arguments: ['@logger', '@GatewayDeviceRepository', '@SiteService', '@ContactService']
+
+    #Backend Service
+    BackendService:
+        class: AppBundle\Services\BackendService
+        arguments: ['@doctrine.orm.entity_manager', '@logger', '@SiteService']
+
+    IndicatorDimDateService:
+       class: AppBundle\Services\IndicatorsCalculation\IndicatorDimDateService
+       arguments: ['@logger', '@SesDashboardIndicatorDimDateRepository', '@IndicatorDimDateTypeService', '%indicator_dim_date_from%', '%indicator_dim_date_to%', '%epi_first_day%']
+
+    IndicatorDimDateTypeService:
+       class: AppBundle\Services\IndicatorsCalculation\IndicatorDimDateTypeService
+       arguments: ['@logger', '@SesDashboardIndicatorDimDateTypeRepository']
+
+    InformationService:
+       class: AppBundle\Services\Common\InformationService
+       arguments: ['@logger', '%locale%', '%epi_first_day%', '%version%', '@translator']
+
+    LogLevelService:
+        class: AppBundle\Services\LogLevelService
+        arguments: ['@logger', '@SesDashboardLogLevelRepository']
+
+    LogService:
+        class: AppBundle\Services\LogService
+        arguments: ['@logger', '@SesDashboardLogRepository']
+
+    app.command.migrationSiteDimDate:
+        class: AppBundle\Command\DataMigration\SiteDimDateMigrationCommand
+        arguments: ['@logger', '@parser', '@SiteService', '@SiteDimDateService']
+        tags:
+          - { name: console.command }
+
+    app.command.dimdate:
+        class: AppBundle\Command\DimDateGeneratorCommand
+        arguments: ['@logger', '@parser', '@IndicatorDataCalculationService']
+        tags:
+          - { name: console.command }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+    #Form types
+    app.form.type.sitetimezone:
+        class: AppBundle\Form\SiteTimezoneType
+        arguments: ['%locales_supported%', '@translator', '@TimezoneService']
+        tags:
+            - { name: form.type }
+
+    app.form.type.sitereportdatasource:
+        class: AppBundle\Form\SiteReportDataSourceType
+        arguments: ['%locales_supported%', '@translator', '@ReportDataSourceService']
+        tags:
+            - { name: form.type }
+
+    app.form.type.diseasereportdatasource:
+        class: AppBundle\Form\DiseaseReportDataSourceType
+        arguments: ['%locales_supported%', '@translator', '@ReportDataSourceService']
+        tags:
+            - { name: form.type }
+
+    app.form.type.sitelanguage:
+            class: AppBundle\Form\SiteLanguageType
+            arguments: ['%locales_supported%', '@translator', '@LocaleService']
+            tags:
+                - { name: form.type }
+
+    app.form.type.gatewaydevice:
+        class: AppBundle\Form\GatewayDeviceType
+        arguments: ['%locales_supported%', '@GatewayDeviceService']
+        tags:
+            - { name: form.type }
+
+    ContactTypeDTOService:
+        class: AppBundle\Services\ContactType\DTO\ContactTypeDTOService
+        arguments: ['@logger', '@translator', '@ContactTypeService']
+
+    ContactDTOService:
+        class: AppBundle\Services\Contact\DTO\ContactDTOService
+        arguments: ['@logger', '@ContactService', '@ContactTypeService', '@SiteService']
+
+    ReportDataSourceService:
+        class: AppBundle\Services\ReportDataSourceService
+        arguments: ['@logger', '@SesDashboardReportDataSourceRepository']
+
+    LockService:
+        class: AppBundle\Services\LockService
+        arguments: ['@logger', '@SesDashboardLockRepository']
+
+    IndicatorDataCalculationService:
+        class: AppBundle\Services\IndicatorsCalculation\IndicatorDataCalculationService
+        arguments: ['@logger',  '@IndicatorDimDateTypeService', '@IndicatorDimDateService','@LogService']
+
+  # -- Repositories --
+
+    # Uncomment the following lines to define a service for the Post Doctrine repository.
+    # It's not mandatory to create these services, but if you use repositories a lot,
+    # these services simplify your code:
+    #
+    # post_repository:
+    #     class:     Doctrine\ORM\EntityRepository
+    #     factory:   ["@doctrine.orm.entity_manager", getRepository]
+    #     arguments: [AppBundle\Entity\Post]
+    #
+    # // traditional code inside a controller
+    # $em = $this->getDoctrine()->getManager();
+    # $posts = $em->getRepository('AppBundle:Post')->findAll();
+    #
+    # // same code using repository services
+    # $posts = $this->get('post_repository')->findAll();
+    GatewayQueueRepository:
+        class: AppBundle\Repository\Gateway\GatewayQueueRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Gateway\GatewayQueue
+
+    SesDashboardIndicatorDimDateRepository:
+        class: AppBundle\Repository\SesDashboardIndicatorDimDateRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\SesDashboardIndicatorDimDate
+
+    SesDashboardIndicatorDimDateTypeRepository:
+        class: AppBundle\Repository\SesDashboardIndicatorDimDateTypeRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\SesDashboardIndicatorDimDateType
+
+    SesDashboardSiteRepository:
+        class: AppBundle\Repository\SesDashboardSiteRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\SesDashboardSite
+
+    SesDashboardSiteRelationShipRepository:
+        class: AppBundle\Repository\SesDashboardSiteRelationShipRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\SesDashboardSiteRelationShip
+
+    SesDashboardContactTypeRepository:
+        class: AppBundle\Repository\SesDashboardContactTypeRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\SesDashboardContactType
+
+    SesDashboardContactRepository:
+        class: AppBundle\Repository\SesDashboardContactRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\SesDashboardContact
+
+    SesFullReportRepository:
+        class: AppBundle\Repository\SesFullReportRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+             - AppBundle\Entity\SesFullReport
+
+    SesDashboardLogLevelRepository:
+          class: AppBundle\Repository\SesDashboardLogLevelRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+            - AppBundle\Entity\SesDashboardLogLevel
+
+    SesDashboardLogRepository:
+          class: AppBundle\Repository\SesDashboardLogRepository
+          factory: ['@doctrine.orm.default_entity_manager', getRepository]
+          arguments:
+             - AppBundle\Entity\SesDashboardLog
+
+    IncomingSmsRepository:
+      class: AppBundle\Repository\Messages\IncomingSmsRepository
+      factory: ['@doctrine.orm.default_entity_manager', getRepository]
+      arguments:
+        - AppBundle\Entity\Messages\IncomingSms
+
+    GatewayDeviceRepository:
+        class: AppBundle\Repository\Gateway\GatewayDeviceRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AppBundle\Entity\Gateway\GatewayDevice
+
+    SesDashboardSiteAlertRecipientRepository:
+      class: AppBundle\Repository\SesDashboardSiteAlertRecipientRepository
+      factory: ['@doctrine.orm.default_entity_manager', getRepository]
+      arguments:
+        - AppBundle\Entity\SesDashboardSiteAlertRecipient
+
+    SesDashboardReportDataSourceRepository:
+      class: AppBundle\Repository\SesDashboardReportDataSourceRepository
+      factory: ['@doctrine.orm.default_entity_manager', getRepository]
+      arguments:
+        - AppBundle\Entity\SesDashboardReportDataSource
+
+    SesDashboardLockRepository:
+      class: AppBundle\Repository\SesDashboardLockRepository
+      factory: ['@doctrine.orm.default_entity_manager', getRepository]
+      arguments:
+         - AppBundle\Entity\SesDashboardLock
+      calls:
+         - [setEntityManager, ['@doctrine.orm.lock_entity_manager']]
+         - [setEntityManagerName, ['lock']]
+         - [setDoctrine, ['@doctrine']]
+
+ # LexikJWTAuthenticationBundle services
+    acme_api.event.authentication_success_listener:
+        class: AppBundle\EventListener\JWT\AuthenticationSuccessListener
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+        arguments: ['@InformationService']
+
+ # FOSUserBundle Event Listener
+    app.password_updating:
+        class: AppBundle\EventListener\FOSUserBundle\PasswordUpdatingListener
+        arguments: ['@router']
+        tags:
+            - { name: kernel.event_subscriber }

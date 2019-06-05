@@ -1,0 +1,4 @@
+<select *ngIf="existSites()" class="form-control" (change)="onSiteChange($event.target.value)" [(ngModel)]="currentSiteId" name="siteDdl" [disabled]="!isOneSiteAccessible()">
+    <option value="-1" *ngIf="select">Select</option>
+    <option *ngFor="let site of sites" value="{{ site?.getId() }}" [disabled]="! siteOrChildrenAreAccessible(site)">{{ site?.getName() }}</option>
+</select>

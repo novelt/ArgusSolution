@@ -1,0 +1,60 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_save_contacts_to_xml' %}
+
+{% block configuration %}
+
+    <div class="well col-lg-7">
+
+        <h2>{{ titleKey | trans({}, 'configuration_labels') }}</h2>
+
+        {{ form_start(form, {'method': 'post', 'action': path(actionPathKey)}) }}
+        {{ form_errors(form) }}
+        {% if success %}
+            <p class="bg-success">
+                {{ success }}
+            </p>
+        {% endif %}
+
+        {# todo use css instead #}
+        <div class="row"><div class="col-xs-12">&nbsp;</div></div>
+
+        <div class="row">
+            <div class="col-xs-2">
+                {{ form_label(form.path) }}
+            </div>
+            <div class="col-xs-10">
+                <div class="bg-warning">{{ form_errors(form.path) }}</div>
+                {{ form_widget(form.path) }}
+            </div>
+        </div>
+
+        {# todo use css instead #}
+        <div class="row"><div class="col-xs-12">&nbsp;</div></div>
+
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-10">
+                {% if success %}
+                    {% if cancelOrReturnPath %}
+                        {{ form_widget(form.cancel, {'attr': {'class': ' btn-sm btn-primary'}, 'label': 'Return to list'}) }}
+                    {% else %}
+                        {{ form_widget(form.cancel, {'attr': {'class': 'hidden'}}) }}
+                    {% endif %}
+                    {{ form_widget(form.save, {'attr': {'class': 'hidden'}}) }}
+                {% else %}
+                    {{ form_widget(form.save, {'attr': {'class': 'btn-sm btn-danger'}}) }}
+                    {% if cancelOrReturnPath %}
+                        <a href="{{ path(cancelOrReturnPath) }}">{{ form_widget(form.cancel, {'attr': {'class': 'btn-sm btn-primary'}}) }}</a>
+                    {% else %}
+                        {{ form_widget(form.cancel, {'attr': {'class': 'hidden'}}) }}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

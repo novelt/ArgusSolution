@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="header">
+    <app-report-header [displayHomeSiteName]="true"></app-report-header>
+  </div>
+  <div class="row" [ngClass]="{ 'hidden': !displayReports() }">
+    <div class="col-12 col-xl-5 list">
+      <app-report-list (numberOfReportChange)="changeVisibility($event)"></app-report-list>
+    </div>
+    <div class="col-12 col-xl-7 details">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <app-weekly-report class="hidden" [ngClass]="{ 'hidden': !displayWeeklyEpidemiologicReport() }"></app-weekly-report>
+</div>

@@ -1,0 +1,14 @@
+android.support.v4.preference
+org.argus.sms.app
+org.argus.sms.app.activity
+org.argus.sms.app.adapter
+org.argus.sms.app.config
+org.argus.sms.app.fragment
+org.argus.sms.app.helper
+org.argus.sms.app.model
+org.argus.sms.app.parser
+org.argus.sms.app.provider
+org.argus.sms.app.receiver
+org.argus.sms.app.service
+org.argus.sms.app.utils
+org.argus.sms.app.view

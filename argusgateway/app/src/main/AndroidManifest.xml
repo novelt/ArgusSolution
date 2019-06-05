@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="org.argus.gateway"
+      android:versionCode="30"
+      android:versionName="1.0">
+         
+    <uses-sdk android:minSdkVersion="4" />
+         
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />              
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />              
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />     
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application android:name="org.argus.gateway.App"
+        android:icon="@drawable/argusgatway_logo" android:label="@string/app_name" android:exported="true">
+        <activity android:name="org.argus.gateway.ui.Main" android:label="@string/app_name" android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>        
+
+        <activity android:name="org.argus.gateway.ui.LogView" android:label="@string/log_view_title" android:launchMode="singleInstance">
+        </activity>        
+
+        <activity android:name="org.argus.gateway.ui.Help" android:label="@string/help_title">
+        </activity>        
+
+        <activity android:name="org.argus.gateway.ui.TestPhoneNumbers" android:label="@string/test_phone_numbers_title">
+        </activity>                
+        
+        <activity android:name="org.argus.gateway.ui.IgnoredPhoneNumbers" android:label="@string/ignored_phone_numbers_title">
+        </activity>                        
+        
+        <activity android:name="org.argus.gateway.ui.MessagingSmsInbox" android:label="@string/forward_saved_title">
+        </activity>        
+
+        <activity android:name="org.argus.gateway.ui.MessagingMmsInbox" android:label="@string/forward_saved_title">
+        </activity>        
+        
+        <activity android:name="org.argus.gateway.ui.MessagingSentSms" android:label="@string/forward_saved_title">
+        </activity>
+        
+        <activity android:name="org.argus.gateway.ui.PendingMessages" android:label="@string/pending_messages_title">
+        </activity>
+
+        <activity android:name="org.argus.gateway.ui.Prefs" android:label="@string/settings_title">
+        </activity>
+        
+        <activity android:name="org.argus.gateway.ui.Slave" android:label="...">
+        </activity>        
+
+        <receiver android:name="org.argus.gateway.receiver.SmsReceiver"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="101">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+            </intent-filter>
+        </receiver> 	
+        
+        <receiver android:name="org.argus.gateway.receiver.OutgoingSmsReceiver">
+            <intent-filter>
+                <action android:name="org.argus.gateway.OUTGOING_SMS" />
+                <data android:scheme="content" />
+            </intent-filter>            
+        </receiver>
+        
+        <receiver android:name="org.argus.gateway.receiver.MessageStatusNotifier" android:exported="true">
+            <intent-filter>
+                <action android:name="org.argus.gateway.MESSAGE_STATUS" />
+                <data android:scheme="content" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="org.argus.gateway.receiver.NudgeReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="org.argus.gateway.NUDGE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" /> 
+            </intent-filter>
+        </receiver>       
+        
+        <!-- 
+            we don't really use message delivery notifications yet...
+            
+        <receiver android:name=".receiver.MessageDeliveryNotifier" android:exported="true">
+            <intent-filter>
+                <action android:name="org.argus.gateway.MESSAGE_DELIVERY" />
+                <data android:scheme="content" />
+            </intent-filter>
+        </receiver>
+        -->
+
+        <receiver android:name="org.argus.gateway.receiver.DequeueOutgoingMessageReceiver">
+        </receiver>
+
+        <receiver android:name="org.argus.gateway.receiver.OutgoingMessageTimeout">
+        </receiver>
+
+        <receiver android:name="org.argus.gateway.receiver.OutgoingMessagePoller">
+        </receiver>
+
+        <receiver android:name="org.argus.gateway.receiver.OutgoingMessageRetry">
+        </receiver>        
+        
+        <receiver android:name="org.argus.gateway.receiver.IncomingMessageRetry">
+        </receiver>            
+        
+        <receiver android:name="org.argus.gateway.receiver.ReenableWifiReceiver">
+        </receiver>
+
+        <!-- Disable Amqp  -->
+
+        <!--
+        <receiver android:name="org.argus.gateway.receiver.StartAmqpConsumer">
+       </receiver>
+        -->
+
+       <receiver android:name="org.argus.gateway.receiver.SlaveInstallReceiver">
+           <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+           </intent-filter>
+       </receiver>
+
+       <receiver android:name="org.argus.gateway.receiver.ConnectivityChangeReceiver" >
+           <intent-filter>
+               <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+           </intent-filter>
+       </receiver>
+
+       <receiver android:name="org.argus.gateway.receiver.DeviceStatusReceiver">
+           <intent-filter>
+               <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+               <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+               <action android:name="android.intent.action.BATTERY_LOW" />
+               <action android:name="android.intent.action.BATTERY_OKAY" />
+           </intent-filter>
+       </receiver>
+
+        <receiver android:name="org.argus.gateway.receiver.DeviceStatusPoller">
+        </receiver>
+
+       <service android:name="org.argus.gateway.service.CheckMessagingService">
+       </service>
+
+       <service android:name="org.argus.gateway.service.EnabledChangedService">
+       </service>
+
+       <service android:name="org.argus.gateway.service.ForegroundService">
+       </service>
+
+       <!-- Disable Amqp  -->
+
+        <!-- <service android:name="org.argus.gateway.service.AmqpConsumerService">
+        </service>
+        -->
+
+        <!--
+        <service android:name="org.argus.gateway.service.AmqpHeartbeatService">
+        </service>
+        -->
+
+        <!-- Empty object to become the default SMS App -->
+
+        <activity android:name="org.argus.gateway.empty.EmptyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="org.argus.gateway.empty.EmptyService"
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="org.argus.gateway.empty.EmptyMMSReceiver"
+            android:permission="android.permission.BROADCAST_WAP_PUSH">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest> 

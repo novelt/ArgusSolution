@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.argus.sms.app.activity.ActivityReportDetail" >
+    <item android:id="@+id/action_zero"
+        android:title="@string/zero"
+        android:icon="@drawable/ic_action_zero"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+</menu>

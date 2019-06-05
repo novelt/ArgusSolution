@@ -1,0 +1,13 @@
+@import '~theme/theme-variables.scss';
+
+input {
+  border-radius: 4px;
+  padding: 0.3em;
+  border: 1px ;
+  background-color: $violet;
+  height: inherit;
+  margin-bottom: 1.3em;
+  width: 100%;
+  color: white;
+  text-align: center;
+}

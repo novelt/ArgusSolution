@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string translatable="false" name="prefs_sms_gateway_out">prefs_sms_gateway_out</string>
+    <string translatable="false" name="prefs_sms_gateway_in">prefs_sms_gateway_in</string>
+    <string translatable="false" name="prefs_sync">prefs_sync</string>
+    <string translatable="false" name="prefs_language">prefs_language</string>
+    <string translatable="false" name="prefs_health_facility">prefs_health_facility</string>
+    <string translatable="false" name="prefs_network">prefs_network</string>
+    <string translatable="false" name="prefs_test">prefs_test</string>
+    <string translatable="false" name="prefs_settings_password">prefs_settings_password</string>
+    <string translatable="false" name="prefs_config_sms_enable">prefs_config_sms_enable</string>
+    <string translatable="false" name="prefs_config_alert_external">prefs_config_alert_external</string>
+    <string translatable="false" name="prefs_config_only_known_gateway">prefs_config_only_known_gateway</string>
+    <string translatable="false" name="prefs_config_encrypt_security_key">prefs_config_encrypt_security_key</string>
+
+</resources>

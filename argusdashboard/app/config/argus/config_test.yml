@@ -1,0 +1,37 @@
+imports:
+    - { resource: config_dev.yml }
+
+parameters:
+    database_name: argus-test
+    event_type_code_locationReport: 'LocationReportTest'
+    event_type_code_alert: 'AlertTest'
+    epi_first_day: 1
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
+
+# It's recommended to use a separate database for tests. This allows to have a
+# fixed and known set of data fixtures, it simplifies the code of tests and it
+# makes them more robust.
+# In this case we just need to define a different path for the application database.
+doctrine:
+    dbal:
+        path: "%kernel.root_dir%/data/blog_test.sqlite"
+
+# this configuration simplifies testing URLs protected by the security mechanism
+# See http://symfony.com/doc/current/cookbook/testing/http_authentication.html
+security:
+    firewalls:
+        secured_area:
+            http_basic: ~

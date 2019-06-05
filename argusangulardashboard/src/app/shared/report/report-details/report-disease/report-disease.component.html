@@ -1,0 +1,23 @@
+<div class="row disease">
+  <div class="col-7 disease-details row" [class.threshold]="diseaseSurpassThreshold()">
+    <div class="align-vertical col-12">
+      <div class="disease-name">
+        <b>{{ reportDisease?.getName() }}</b><i class="fa fa-exclamation-triangle"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-5 disease-values row" [class.threshold]="diseaseSurpassThreshold()">
+    <div class="align-vertical col-12">
+      <div *ngFor="let diseaseValue of reportDisease?.getDiseaseValues()" 
+        class="disease-value" [class.threshold]="valueSurpassThreshold(diseaseValue)"> <!--  [class.new]="diseaseValue?.isNewValue()"-->
+        <span class="value" [class.highlight]="isHighlighted(diseaseValue)">{{ diseaseValue?.getValue() }}</span>
+        <span class="name">{{ diseaseValue?.getName() }}</span>
+        <i *ngIf="diseaseValue?.isMoreValue()" class="fa fa-arrow-circle-o-up fa-lg"></i>
+        <i *ngIf="diseaseValue?.isLessValue()" class="fa fa-arrow-circle-o-down fa-lg"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ 

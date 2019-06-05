@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!--  Common enumeration definitions  -->
+  <xsd:simpleType name="PeriodEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Weekly"/>
+      <xsd:enumeration value="Monthly"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!--  Root node - Mandatory and single -->
+  <xsd:element name="export">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="reports" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="report" type="reportDefinition" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="alerts" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="alert" type="alertDefinition" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!--  Report definition  -->
+  <xsd:complexType name="reportDefinition">
+    <xsd:sequence>
+      <xsd:element name="contact" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="phone_number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="site" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="reception_date" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="disease" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="period" type="PeriodEnum" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="start_date" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="week" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="month" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="year" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="report_id" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="values" minOccurs="1" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="value" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="value_reference" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                  <xsd:element name="data" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!--  Alert definition  -->
+  <xsd:complexType name="alertDefinition">
+    <xsd:sequence>
+      <xsd:element name="contact" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="phone_number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="site" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="reception_date" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>
+
+
+
+
+
+

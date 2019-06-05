@@ -1,0 +1,278 @@
+# This is the main configuration file of your application. It stores all the
+# common options for every execution environment ('prod', 'dev', 'test').
+
+# To avoid creating configuration files that are too long, we first import some
+# files that define the values for important parts of the Symfony application,
+# such as the security component and the dependency injection services
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+parameters:
+    version: '1.0.0'
+    indicator_dim_date_from: '1969/12/01' #First day of week 1 for year 1970 is in year 1969
+    indicator_dim_date_to: '2030/12/31'
+    indicators_calculation_log_level: INFO #You can give Monolog log levels
+    site_services_get_children_sites_log_level: INFO #You can give Monolog log levels
+    translation_folders_paths: ['%kernel.root_dir%/Resources/translations']
+    import_service_lock_timeout: 300
+    import_service_size_of_file_batches: 10
+
+# Basic configuration for the Symfony framework features
+framework:
+    # Uncomment the 'ide' option to turn all of the file paths in an exception
+    # page into clickable links that open the given file using your favorite IDE.
+    # Supported values are 'textmate', 'macvim', 'emacs' and 'sublime' shortcuts
+    # and any custom configuration string, such as: "phpstorm://open?file=%%f&line=%%l"
+    # See http://symfony.com/doc/current/reference/configuration/framework.html#ide
+    ide: sublime
+
+    # esi:             ~
+    translator:
+        fallback: gb
+        paths:
+            - '%kernel.root_dir%/instances/%instance%/Resources/translations'
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        assets_version: "%version%"
+        assets_version_format: '%%s?v=%%s'
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration (used for rendering application templates)
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+        - "bootstrap_3_horizontal_layout.html.twig"
+        - 'TetranzSelect2EntityBundle:Form:fields.html.twig'
+    paths:
+        '%kernel.root_dir%/instances/%instance%/Resources/views': instance
+
+# Assetic Configuration (used for managing web assets: CSS, JavaScript, Sass, etc.)
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    filters:
+        cssrewrite: ~
+        jsqueeze: ~
+        scssphp:
+            # the formatter must be the FQCN (don't use the 'compressed' value)
+            formatter: "Leafo\\ScssPhp\\Formatter\\Compressed"
+
+# Doctrine Configuration (used to access databases and manipulate their information)
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            #the default connection
+            default:
+                # instead of configuring the database access options in this file, we pull
+                # them from the app/config/parameters.yml file. The reason is that config.yml
+                # stores options that change the application behavior and parameters.yml
+                # stores options that change from one server to another
+                server_version: "%version%"
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                #TODO: unify the collation. Configure it there, and remove the "collate" options in entities' Doctrine annotations
+                charset:  utf8
+                options:
+                    1002: "SET NAMES 'UTF8' COLLATE 'utf8_general_ci'"
+                mapping_types:
+                    bit: boolean
+
+            #this one is only used for the lock mechanism
+            lock:
+                server_version: "%version%"
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                #TODO: unify the collation. Configure it there, and remove the "collate" options in entities' Doctrine annotations
+                charset:  utf8
+                options:
+                    1002: "SET NAMES 'UTF8' COLLATE 'utf8_general_ci'"
+                mapping_types:
+                    bit: boolean
+
+    orm:
+        default_entity_manager: default
+        auto_generate_proxy_classes: "%kernel.debug%"
+        entity_managers:
+            default:
+                connection: default
+                dql:
+                    string_functions:
+                        GROUP_CONCAT : AppBundle\Doctrine\Query\GroupConcat
+            #    mappings:
+            #        gedmo_loggable:
+            #            type: annotation
+            #            prefix: Gedmo\Loggable\Entity
+            #            dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+            #            is_bundle: false
+                mappings:
+                     AppBundle:  ~
+                     RefreshToken:
+                         type: annotation
+                         prefix: Gesdinet\JWTRefreshTokenBundle\Entity\
+                         dir: "%kernel.root_dir%/../vendor/gesdinet/jwt-refresh-token-bundle/Entity/"
+                         is_bundle: false
+
+            lock:
+                connection: lock
+                dql:
+                    string_functions:
+                        GROUP_CONCAT : AppBundle\Doctrine\Query\GroupConcat
+                mappings:
+                     AppBundle:  ~
+
+# Swiftmailer Configuration (used to send emails)
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+#FOSUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: secured_area
+    user_class: AppBundle\Entity\Security\SesDashboardUser
+    from_email:
+      address: "argus@novel-t.ch"
+      sender_name: "ARGUS"
+
+# FOSRestBundle Configuration
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        mime_types:
+            json: ['application/json; charset=UTF-8']
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+# Stof Doctrine extensions
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            blameable: true
+        #    loggable: true
+
+# JMSI18nRoutingBundle
+jms_i18n_routing:
+    default_locale: %locale%
+    locales: %locales_supported%
+    strategy: prefix
+    cookie:
+        enabled: false
+
+monolog:
+    channels: ['open_rosa_logger', 'incoming_sms_logger']
+    handlers:
+        # this "file_log" key could be anything
+        main:
+            type: stream
+            # log to app/logs/(environment).log
+            path: %kernel.logs_dir%/%kernel.environment%.log
+            # log *all* messages (debug is lowest level)
+            level: info
+            channels: ['!open_rosa_logger', '!incoming_sms_logger']
+        open_rosa_logger:
+            type: stream
+            path: %kernel.logs_dir%/openrosa.log
+            level: 200
+            channels: open_rosa_logger
+        incoming_sms_logger:
+            type: stream
+            path: %kernel.logs_dir%/incomingsms.log
+            level: 200
+            channels: incoming_sms_logger
+        syslog_handler:
+            type: syslog
+            # log error-level messages and higher
+            level: error
+
+# LexikJWTAuthenticationBundle
+lexik_jwt_authentication:
+    private_key_path: '%jwt_private_key_path%'
+    public_key_path:  '%jwt_public_key_path%'
+    pass_phrase:      '%jwt_key_pass_phrase%'
+    token_ttl:        '%jwt_token_ttl%'
+
+    # token extraction settings
+    token_extractors:
+        authorization_header:      # look for a token as Authorization Header
+            enabled: true
+            prefix:  Bearer
+            name:    Authorization
+        query_parameter:           # check token in query string parameter
+            enabled: true
+            name:    bearer
+        cookie:                    # check token in a cookie
+            enabled: true
+            name:    BEARER
+
+
+# NelmioCorsBundle
+nelmio_cors:
+    #defaults:
+    #    allow_credentials: false
+    #    allow_origin: []
+    #    allow_headers: []
+    #    allow_methods: []
+    #    expose_headers: []
+    #    max_age: 0
+    paths:
+        '^/api':
+            expose_headers: ['*', 'Content-Disposition']
+            allow_origin: ['*']
+            allow_headers: ['*']
+            allow_methods: ['POST','GET', 'OPTIONS', 'DELETE']
+            max_age: 3600
+        '^/[a-z][a-z]/api':
+            expose_headers: ['*', 'Content-Disposition']
+            allow_origin: ['*']
+            allow_headers: ['*']
+            allow_methods: ['POST','GET', 'OPTIONS', 'DELETE']
+            max_age: 3600
+
+# jms_serializer
+jms_serializer:
+    metadata:
+        directories :
+            - { path: %kernel.root_dir%/Resources/FOSUserBundle/serializer, namespace_prefix: 'FOS\UserBundle' }

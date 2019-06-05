@@ -1,0 +1,9 @@
+# Maintenance Rules
+
+ RewriteEngine On
+ RewriteCond %{REQUEST_URI} !/maintenance.html$
+ RewriteCond %{REQUEST_URI} !/ses/argusGateway.php$
+ RewriteCond %{REQUEST_URI} !/ses/argusgateway.php$
+# RewriteCond %{REMOTE_ADDR} !212.147.33.74
+ RewriteCond %{REMOTE_ADDR} !::1
+ RewriteRule .* /maintenance.html [L]

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ArgusGateway</string>
+    <string name="running">ArgusGateway running</string>
+    <string name="disabled">ArgusGateway disabled</string>
+    <string name="started">ArgusGateway started.</string>
+    <string name="stopped">ArgusGateway stopped.</string>
+    <string name="log_view_title">ArgusGateway : Log View</string>
+    <string name="add_phone_title">ArgusGateway : Add Phone</string>
+    <string name="slaves_title">ArgusGateway : SMS Rate Limit</string>
+    <string name="help_title">ArgusGateway : Help</string>
+    <string name='test_phone_numbers_title'>ArgusGateway : Test Phone Numbers</string>
+    <string name='ignored_phone_numbers_title'>ArgusGateway : Ignored Phone Numbers</string>
+    <string name='forward_saved_title'>ArgusGateway : Forward Saved Messages</string>
+    <string name='pending_messages_title'>ArgusGateway : Pending Messages</string>
+    <string name='settings_title'>ArgusGateway : Settings</string>
+    <string name="settings">Settings</string>
+    <string name="test">Test Connection</string>
+    <string name="check_now">Check Messages</string>
+    <string name="help">Help</string>
+    <string name="pending">Pending Msgs...</string>
+    <string name="retry_now">Retry</string>
+    <string name="forward_saved">Fwd Saved...</string>
+    <string name='service_started'>New messages will be forwarded to server</string>
+    <string name='test_phone_numbers'>When running ArgusGateway in Test Mode,
+ArgusGateway will only forward SMS messages from the phone numbers
+listed below. (Incoming SMS messages from other phone numbers will be saved 
+in the normal Messaging inbox.)</string>
+    <string name='ignored_phone_numbers'>
+ArgusGateway will ignore SMS messages from the phone numbers listed below.
+Incoming messages from these senders will be saved in the normal Messaging inbox.</string>
+
+    <string name="wifi_sleep_policies_default_value">never</string>
+    <string name="android_id_field_default_value">ANDROIDID</string>
+</resources>

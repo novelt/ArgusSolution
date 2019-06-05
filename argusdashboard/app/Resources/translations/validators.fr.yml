@@ -1,0 +1,13 @@
+site:
+  reference:
+    unique: Un site possède déjà cette référence.
+disease:
+  reference:
+    unique: Une maladie possède déjà cette référence.
+  keyword:
+    unique: Une maladie possède déjà ce mot-clé.
+disease_value:
+  reference:
+    unique: Une valeur possède déjà cette référence pour cette maladie.
+  keyword:
+    unique: Une valeur possède déjà ce mot-clé pour cette maladie.

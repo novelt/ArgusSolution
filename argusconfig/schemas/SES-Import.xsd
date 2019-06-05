@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <!--  Common enumeration definitions  -->
+  <xsd:simpleType name="YesNoEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Yes"/>
+      <xsd:enumeration value="No"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TypeEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Integer"/>
+      <xsd:enumeration value="String"/>
+	  <xsd:enumeration value="Date"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PeriodEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Weekly"/>
+      <xsd:enumeration value="Monthly"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ConstraintEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="GREATER"/>
+      <xsd:enumeration value="GREATER_EQUAL"/>
+      <xsd:enumeration value="LESS"/>
+      <xsd:enumeration value="LESS_EQUAL"/>
+      <xsd:enumeration value="NOT_EQUAL"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!--  Common complex element definitions  -->
+  <xsd:complexType name="ConstraintsList">
+    <xsd:sequence>
+      <xsd:element name="constraint" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="referencevalue_from" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+            <xsd:element name="operator" minOccurs="1" maxOccurs="1" type="ConstraintEnum"/>
+            <xsd:element name="referencevalue_to" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+            <xsd:element name="period" minOccurs="1" maxOccurs="1" type="PeriodEnum"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!--  Root node - Mandatory and single -->
+  <xsd:element name="import">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="sites" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="site" minOccurs="0" maxOccurs="unbounded" type="siteDefinition"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="contacts" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="contact" type="contactDefinition" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="diseases" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="disease" type="diseaseDefinition" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="thresholds" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="threshold" type="thresholdDefinition" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  
+  <!--  Site definition  -->
+  <xsd:complexType name="siteDefinition">
+    <xsd:sequence>
+      <xsd:element name="reference" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="parent_site_reference" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="name" minOccurs="0" maxOccurs="1"/>
+	  <xsd:element name="longitude" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+	  <xsd:element name="latitude" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+      <xsd:element name="weekly_reminder_overrun_minutes" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger"/>
+      <xsd:element name="monthly_reminder_overrun_minutes" minOccurs="0" maxOccurs="1" type="xsd:nonNegativeInteger"/>
+      <xsd:element name="weekly_timeliness_minutes" minOccurs="0" maxOccurs="1" type="xsd:int"/>
+      <xsd:element name="monthly_timeliness_minutes" minOccurs="0" maxOccurs="1" type="xsd:int"/>
+      <xsd:element name="alert_preferred_gateway" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+      <xsd:element name="cascading_alert" minOccurs="0" maxOccurs="1" type="YesNoEnum"/>
+      <xsd:element name="alert_recipients" minOccurs="0" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="recipient_site_reference" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="report_recipients" minOccurs="0" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="recipient_site_reference" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="threshold_recipients" minOccurs="0" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="recipient_site_reference" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <!--  Contact definition  -->
+  <xsd:complexType name="contactDefinition">
+    <xsd:sequence>
+      <xsd:element type="xsd:string" minOccurs="1" maxOccurs="1" name="phone_number"/>
+      <xsd:element type="xsd:string" minOccurs="1" maxOccurs="1" name="site_reference"/>
+      <xsd:element type="xsd:string" minOccurs="1" maxOccurs="1" name="name"/>
+      <xsd:element type="xsd:string" minOccurs="0" maxOccurs="1" name="imei"/>
+      <xsd:element type="xsd:string" minOccurs="0" maxOccurs="1" name="imei2"/>
+      <xsd:element type="YesNoEnum" minOccurs="0" maxOccurs="1" name="enabled"/>
+      <xsd:element type="xsd:string" minOccurs="0" maxOccurs="1" name="email"/>
+      <xsd:element type="xsd:string" minOccurs="0" maxOccurs="1" name="note"/>
+      <xsd:element type="xsd:string" minOccurs="0" maxOccurs="1" name="alert_preferred_gateway"/>
+      <xsd:element type="xsd:string" minOccurs="0" maxOccurs="1" name="contact_type_reference"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!--  Disease definition  -->
+  <xsd:complexType name="diseaseDefinition">
+    <xsd:sequence>
+      <xsd:element name="reference" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="key_word" type="xsd:string" minOccurs="1" maxOccurs="1" />
+      <xsd:element name="position" type="xsd:int" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="values" minOccurs="0" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="value" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="reference" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                  <xsd:element name="period" type="PeriodEnum" minOccurs="1" maxOccurs="1"/>
+                  <xsd:element name="position" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+                  <xsd:element name="type" type="TypeEnum" minOccurs="0" maxOccurs="1"/>
+                  <xsd:element name="mandatory" type="YesNoEnum" minOccurs="0" maxOccurs="1"/>
+                  <xsd:element name="key_word" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="constraints" minOccurs="0" maxOccurs="1" type="ConstraintsList"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!--  Threshold definition  -->
+  <xsd:complexType name="thresholdDefinition">
+    <xsd:sequence>
+      <xsd:element name="site_reference" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="disease_reference" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="value_reference" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="period" type="PeriodEnum" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="week_number" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="month_number" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="year" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="max_value" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  </xsd:schema>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

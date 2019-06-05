@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "org.argus.gateway"
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 3
+        versionName "1.2"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(output.outputFile.parent, applicationId + "-" + versionName + ".apk")
+                }
+            }
+        }
+    }
+    productFlavors {
+        slave01 {
+            applicationId "org.argus.gateway.slave01"
+        }
+        slave02 {
+            applicationId "org.argus.gateway.slave02"
+        }
+        slave03 {
+            applicationId "org.argus.gateway.slave03"
+        }
+        slave04 {
+            applicationId "org.argus.gateway.slave04"
+        }
+        slave05 {
+            applicationId "org.argus.gateway.slave05"
+        }
+        slave06 {
+            applicationId "org.argus.gateway.slave06"
+        }
+        slave07 {
+            applicationId "org.argus.gateway.slave07"
+        }
+        slave08 {
+            applicationId "org.argus.gateway.slave08"
+        }
+        slave09 {
+            applicationId "org.argus.gateway.slave09"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+}

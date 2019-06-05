@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.argus.gateway">
+
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
+    <application android:allowBackup="true" android:label="ArgusGateway Slave-09"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <receiver android:name="org.argus.gateway.OutgoingSmsReceiver">
+            <intent-filter>
+                <action android:name="org.argus.gateway.slave09.OUTGOING_SMS"/>
+                <data android:scheme="content"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

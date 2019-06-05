@@ -1,0 +1,85 @@
+/*
+ * Application global variables.
+ */
+
+// Set Font Awesome font path
+$fa-font-path: "~font-awesome/fonts";
+
+// ---------------------------------------------------------------------------
+// Bootstrap variables
+//
+// Override Bootstrap variables here to suite your theme.
+// Copy variables you want to customize from node_modules/bootstrap/scss/_variables.scss
+
+//
+// Color system
+//
+
+$white:  #fff;
+$gray-100: #f8f9fa;
+$gray-200: #8B8B8B;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #868e96;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:  #000;
+
+$violet:  #581062;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #e83e8c;
+$red:     #dc3545;
+$orange:  #fd7e14;
+$yellow:  #ffc107;
+$green:   #28a745;
+$teal:    #20c997;
+$cyan:    #17a2b8;
+
+$high: #5A0A69;
+$mid: #3E65A8;
+$low: #62A3CD;
+
+$form-input-bg-color: #e5e5e5;
+$form-button-bg-color: #551061;
+
+// Argus grey
+$argus-gray-500: #474747;
+$argus-gray-300: #868383;
+$argus-gray-200: #c3c3c3;
+$argus-gray-100: #f7f7f7;
+
+// Report Status colors
+$pending:       #6cc1fa;
+$validated:   $green;
+$rejected:  red;
+$updated:   #f2a019;
+$conflicting:   #f2a019;
+$uncomplete:  $gray-600;
+
+$theme-colors: (
+  primary: $violet,
+  secondary: $gray-600,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800,
+  pending:$pending,
+  validated:$validated,
+  rejected:$rejected,
+  conflicting:$conflicting,
+  updated:$updated,
+  uncomplete:$uncomplete
+);
+
+// Use Bootstrap defaults for other variables, imported here so we can access all app variables in one place when used
+// in components.
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+// User imports
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');

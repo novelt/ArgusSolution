@@ -1,0 +1,60 @@
+<div class="panel-group" id="accordionPrincipal" >
+    {% if sesDashboardRelationShips is not empty %}
+        {% for siteRelationShip in sesDashboardRelationShips %}
+            {% if siteRelationShip %}
+                {% for fullReport in siteRelationShip.fullReports %}
+                    {% if loop.first %}
+                        <h4><i>{{ siteRelationShip.name }}</i></h4>
+                    {% endif %}
+
+                    <div class="panel panel-{{  fullReport.getCss() }}" id="pFullReport{{ fullReport.id }}"  >
+                        <div class="panel-heading" >
+                            <h5 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPrincipal" href="#collapseR{{ fullReport.id }}">
+                                    {% if app.debug %} ( {{ fullReport.id }} ) {% endif %}
+                                    {{  fullReport.getDisplayPeriod() | trans }} {{  fullReport.getWeekNumber()  }} {{  fullReport.getMonthName() | trans  }} - {{  fullReport.getYear()  }} - ( {{ fullReport.startDate|localizeddate('short', 'none') }} ) - <i id="lblStatus{{ fullReport.id }}"> {{ fullReport.getDisplayStatus() | trans }} </i>
+                                </a>
+                            </h5>
+                        </div>
+
+                        <div id="collapseR{{ fullReport.id }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                                {% if validMode and (fullReport.canBeValidated() or fullReport.canBeRejected())  %}
+                                    <div>
+                                        <div class="btn-group pull-right" id="btnGroupFullReport{{ fullReport.id }}">
+                                            {% if fullReport.canBeRejected() and enableRejectionAction %}
+                                                <button type="button" class="btn btn-danger btn-xs" data-toggle="confirmation" title="<span style='white-space: nowrap'>{{ 'Are you sure to reject this report?' | trans  }}</span>" data-btn-ok-label="{{ 'Yes' | trans }}"
+                                                        data-btn-cancel-label="{{ 'No' | trans }}" data-type="Reject" data-id="{{ fullReport.id }}" >{{ 'Reject' | trans }}</button> {# onclick="RejectReports('{{ fullReport.id }}' );" #}
+                                            {% endif %}
+                                            {% if fullReport.canBeValidated() and enableValidationAction %}
+                                                <button type="button" class="btn btn-success btn-xs" data-toggle="confirmation" title="<span style='white-space: nowrap'>{{ 'Are you sure to validate this report?' | trans  }}</span>" data-btn-ok-label="{{ 'Yes' | trans }}"
+                                                        data-btn-cancel-label="{{ 'No' | trans }}" data-type="Validate" data-id="{{ fullReport.id }}" >{{ 'Validate' | trans }}</button> {# onclick="ValideReports('{{ fullReport.id }}' );"#}
+                                            {% endif %}
+                                        </div>
+                                        <br/><br/>
+                                    </div>
+                                {% endif %}
+
+                                <div class="panel-group" id="accordionFullReport{{ fullReport.id }}">
+                                    <div style="text-align: center;"><i class="fa fa-refresh fa-spin"></i></div>
+                                    {# Liste Part Reports #}
+                                    {# {{ include('report/listePartReport.html.twig') }} #}
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br/>
+
+                {% endfor %}
+
+            {% else %}
+                {{ 'NO DATA' | trans }}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {{ 'NO DATA' | trans }}
+    {% endif %}
+ </div>

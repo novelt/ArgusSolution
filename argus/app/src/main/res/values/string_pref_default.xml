@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default values in preferences -->
+    <string translatable="false" name="prefs_sms_gateway_out_default"/>
+    <string translatable="false" name="prefs_sms_gateway_in_default"/>
+    <string translatable="false" name="prefs_languages_values_default"/>
+    <string translatable="false" name="default_config_encrypt_security_key">ArG*sS3cur1ty</string>
+
+</resources>

@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <div class="header-details">
+    <div class="header-flex align-items-center">
+      <div class="site mr-auto p-2">
+        <i class="fa fa-chevron-left pr-2 arrow-back" (click)="goToList()"></i>
+        <span class="title" (click)="goToList()">
+            {{ report? report.getSiteName() : '-' }}
+        </span>
+        <span class="badge badge-{{ report?.getStatus() | lowercase }} badge-title">{{ 'status.' + report?.getStatus() | translate }}</span>
+      </div>
+      <div class="media p-2">
+        <img class="report-details-img" src="./assets/report-details/report_details.svg">
+        <div class="media-body">
+          <h6>{{ 'details.report' | translate }} {{ 'filter.week' | translate }} {{ report? report.getWeekNumber() : '-' }}</h6>
+          <p *ngIf="report">{{ report.getStartDate().format('L') }} to {{ report.getEndDate().format('L') }}</p>
+        </div>
+      </div>
+      <div class="arrows p-2">
+        <span class="arrow-details">
+          <img class="rotate arrow-img" src="./assets/report-details/report_arrow.svg" (click)="goToReportIndex(-1)">
+          <img class="arrow-img" src="./assets/report-details/report_arrow.svg" (click)="goToReportIndex(+1)">
+        </span>
+      </div>
+    </div>
+  </div>  
+
+  <div class="version-details">
+    <form class="form-inline">
+      <span class="title">{{ getNumberOfReportVersions() }} {{ 'details.versions' | translate}}</span>
+      <select class="form-control" (change)="onVersionChange($event.target.value)" [(ngModel)]="currentVersionId" name="versionDdl" tabindex="-1">
+          <option *ngFor="let version of reportVersions" value="{{ version?.getId() }}">{{ version?.getVersionDate().format('lll') }}</option>
+      </select>
+      <span class="badge badge-{{ currentVersion?.getStatus() | lowercase }} badge-version mr-auto" *ngIf="currentVersion">{{ 'status.' + currentVersion?.getStatus() | translate }}</span>
+      <span class="participation p-2" *ngIf="currentVersion && report?.isAggregate()">{{ 'details.aggregation.hf_proportion' | translate }} : <b>{{ currentVersion?.getPercentage() }} %</b> ({{ currentVersion?.getParticipatingHF()  }}/{{ currentVersion?.getTotalHF() }})</span>
+      <button type="button" class="btn btn-dark btn-sm btn-details" *ngIf="report?.isAggregate()" (click)="openDetailsParticipation($event)" tabindex="-1" translate>
+        details.button.details
+      </button>
+    </form>
+  </div>
+
+  <div class="mobile-details">
+    <form class="form-inline">
+      <div class="media mr-auto p-1">
+        <img class="report-details-img" src="./assets/report-details/report_details_black.svg">
+        <div class="media-body">
+          <h6>{{ 'details.report' | translate }} {{ 'filter.week' | translate }} {{ report? report.getWeekNumber() : '-' }}</h6>
+          <p *ngIf="report">{{ report.getStartDate().format('L') }} to {{ report.getEndDate().format('L') }}</p>
+        </div>
+      </div>
+      <!-- <span class="participation p-2" *ngIf="currentVersion && report?.isAggregate()">HF Proportion : <b>{{ currentVersion?.getPercentage() }} %</b> ({{ currentVersion?.getParticipatingHF()  }}/{{ currentVersion?.getTotalHF() }})</span> -->
+      <button type="button" class="btn btn-dark btn-sm btn-details m-1" *ngIf="report?.isAggregate()" (click)="openDetailsParticipation($event)">
+        {{ 'details.aggregation.hf_proportion' | translate }} : <b>{{ currentVersion?.getPercentage() }} %</b> ({{ currentVersion?.getParticipatingHF()  }}/{{ currentVersion?.getTotalHF() }})
+      </button>
+    </form>
+  </div>
+
+  <div class="main">
+    <!-- <perfect-scrollbar [config]="config">  -->
+      <div class="row diseases" *ngIf="currentVersion">
+        <app-report-disease *ngFor="let disease of currentVersion.getDiseases()" 
+          [reportDisease]="disease" 
+          class="col-sm-12 col-md-12 col-lg-6 col-xl-6 disease-details"></app-report-disease>
+      </div>
+    <!-- </perfect-scrollbar> -->
+  </div> 
+
+  <div class="footer-details">
+    <div class="footer-inline">
+      <div class="validation">
+        <button type="button" class="btn btn-success" (click)="validateCurrentVersion($event)" [attr.disabled]="canValidate() ? null : ''" appAutofocus translate>
+          <i class="fa fa-check pr-2"></i>
+          details.button.validate
+        </button>
+      </div>
+      <div class="rejection">
+        <button type="button" class="btn btn-danger" (click)="rejectCurrentVersion($event)" [attr.disabled]="canReject() ? null : ''"  translate>
+          <i class="fa fa-close pr-2"></i>
+          details.button.reject
+        </button>
+      </div>
+      <!-- <div class="contact-details" *ngIf="! report?.isAggregate()">
+        <span>
+          <span class="contact-name">{{ currentVersion? currentVersion.getContactName() : '-' }}</span>
+          <img src="./assets/report-details/contact_phone.svg">
+          <span>{{ currentVersion? currentVersion.getContactPhoneNumber() : '-' }}</span>
+        </span>
+      </div> -->
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+</div>

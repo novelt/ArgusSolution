@@ -1,0 +1,19 @@
+{
+  "Login.application.name": "Argus",
+  "Login.title.first": "Public Health",
+  "Login.title.second": "SURVEILLANCE",
+  "Login.description": "Argus: Facilitating integrated disease surveillance and response through the collection, reporting, management and analysis of public health surveillance data",
+  "Login.copyright": "© 2019",
+  "Login.login": "Login",
+  "Login.incorrect" : "Username or password incorrect.",
+  "Login.username" : "Username",
+  "Login.username.required": "Username is required",
+  "Login.password": "Password",
+  "Login.password.required": "Password is required",
+  "Login.button": "Login",
+  "Login.logged": "Logged in as",
+  "Login.logout": "Logout",
+  "About": "About",
+  "Home": "Home",
+  "Version": "Version"
+}

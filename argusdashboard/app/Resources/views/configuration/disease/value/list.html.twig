@@ -1,0 +1,60 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_disease_value_list' %}
+
+{% block configuration %}
+
+    <h2>{{ 'Configuration.Titles.DiseaseValueListForDisease' | trans({'Disease': diseaseName}, 'configuration_labels') }}</h2>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <a href="{{ path('configuration_disease_value_add', {'diseaseId': diseaseId}) }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Configuration.Buttons.AddDiseaseValue' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_diseases') }}"><button class="btn btn-sm btn-info"><i class="fa fa-angle-double-up"></i> {{ 'Configuration.Buttons.ReturnToDiseases' | trans({}, 'configuration_labels') }}</button></a>
+        </div>
+    </div>
+
+    {% if pagination.getTotalItemCount %}
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ 'Configuration.DiseaseValues.Reference'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.DiseaseValues.Period'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.DiseaseValues.Position'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.DiseaseValues.Type'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.DiseaseValues.Mandatory'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.DiseaseValues.Keyword'|trans({}, 'configuration_labels') }}</th>
+                <th colspan="2">{{ 'Configuration.DiseaseValues.Actions'|trans({}, 'configuration_labels') }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                {% for value in pagination %}
+                <tr>
+                    <td>{{ value.id }}</td>
+                    <td>{{ value.reference }}</td>
+                    <td>{{ value.period }}</td>
+                    <td>{{ value.position }}</td>
+                    <td>{{ value.type }}</td>
+                    <td>{{ value.mandatory }}</td>
+                    <td>{{ value.keyword }}</td>
+                    <td><a href="{{ path('configuration_disease_value_edit', {diseaseId: diseaseId, diseaseValueId: value.id}) }}"><button class="btn btn-info btn-xs"><i class="fa fa-edit"></i> {{ 'Configuration.Buttons.EditDiseaseValue' | trans({}, 'configuration_labels') }}</button></a></td>
+                    <td><a href="{{ path('configuration_disease_value_remove', {diseaseId: diseaseId, diseaseValueId: value.id}) }}"><button class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> {{ 'Configuration.Buttons.RemoveDiseaseValue' | trans({}, 'configuration_labels') }}</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <p>{{ 'Configuration.DiseaseValues.None'|trans({}, 'configuration_labels') }}</p>
+
+    {% endif %}
+
+    <div class="navigation col-lg-offset-8">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}

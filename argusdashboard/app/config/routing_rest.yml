@@ -1,0 +1,17 @@
+# REST Routes
+Diseases:
+    type: rest
+    resource:     "@AppBundle/Controller/WebApi/DiseasesRestController.php"
+    name_prefix:  services_
+    options: { i18n: false } # No _locale for these routes
+
+Cases:
+    type: rest
+    resource:     "@AppBundle/Controller/WebApi/CasesRestController.php"
+    name_prefix:  services_
+    options: { i18n: false } # No _locale for these routes
+
+Report:
+    type: rest
+    resource:     "@AppBundle/Controller/WebApi/ReportRestController.php"
+    name_prefix:  services_

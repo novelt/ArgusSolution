@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import>
+  <sites>
+    <site>
+      <reference><![CDATA[Country]]></reference>
+      <parent_site_reference><![CDATA[SitesRoot]]></parent_site_reference>
+      <name><![CDATA[Country]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>2880</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>40320</monthly_timeliness_minutes>
+      <alert_recipients>
+      </alert_recipients>
+    </site>
+    <site>
+      <reference><![CDATA[Province1]]></reference>
+      <parent_site_reference><![CDATA[Country]]></parent_site_reference>
+      <name><![CDATA[Province 1]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>2400</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>30240</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+    <site>
+      <reference><![CDATA[Province2]]></reference>
+      <parent_site_reference><![CDATA[Country]]></parent_site_reference>
+      <name><![CDATA[Province 2]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>2400</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>30240</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+    <site>
+      <reference><![CDATA[District1]]></reference>
+      <parent_site_reference><![CDATA[Province1]]></parent_site_reference>
+      <name><![CDATA[District 1]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>1440</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>20160</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+    <site>
+      <reference><![CDATA[District2]]></reference>
+      <parent_site_reference><![CDATA[Province2]]></parent_site_reference>
+      <name><![CDATA[District 2]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>960</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>10080</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+    <site>
+      <reference><![CDATA[Site10]]></reference>
+      <parent_site_reference><![CDATA[District1]]></parent_site_reference>
+      <name><![CDATA[Site 10]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>960</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>10080</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[District1]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Province1]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+	<site>
+      <reference><![CDATA[Site11]]></reference>
+      <parent_site_reference><![CDATA[District1]]></parent_site_reference>
+      <name><![CDATA[Site 11]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>960</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>10080</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[District1]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Province1]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+	<site>
+      <reference><![CDATA[Site20]]></reference>
+      <parent_site_reference><![CDATA[District2]]></parent_site_reference>
+      <name><![CDATA[Site 20]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>960</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>10080</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[District2]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Province2]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+	<site>
+      <reference><![CDATA[Site21]]></reference>
+      <parent_site_reference><![CDATA[District2]]></parent_site_reference>
+      <name><![CDATA[Site 21]]></name>
+      <weekly_reminder_overrun_minutes>960</weekly_reminder_overrun_minutes>
+      <monthly_reminder_overrun_minutes>3840</monthly_reminder_overrun_minutes>
+      <weekly_timeliness_minutes>960</weekly_timeliness_minutes>
+      <monthly_timeliness_minutes>10080</monthly_timeliness_minutes>
+      <alert_recipients>
+        <recipient_site_reference><![CDATA[District2]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Province2]]></recipient_site_reference>
+        <recipient_site_reference><![CDATA[Country]]></recipient_site_reference>
+      </alert_recipients>
+    </site>
+  </sites>
+</import>

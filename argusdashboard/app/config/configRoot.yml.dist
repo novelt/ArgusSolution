@@ -1,0 +1,5 @@
+# This file is a template for the file configRoot.yml
+
+# instance used for this app : argus / avadar
+parameters:
+  instance: argus

@@ -1,0 +1,23 @@
+.container-fluid {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+
+    .header {
+        height: 5em;
+        padding-left: 1em;
+    }
+
+    .row {
+        height: calc(100% - 48px - 5em); // height of filter
+        padding: 0;
+        margin: 0;
+        overflow: auto;
+
+        .list, .details {
+            height:100%;
+            padding-bottom: 10px;
+        }
+    }
+}

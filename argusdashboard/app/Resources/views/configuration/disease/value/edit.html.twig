@@ -1,0 +1,21 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_disease_value_edit' %}
+
+{% block configuration %}
+
+    <div class="well col-lg-7">
+
+        <h2>{{ 'Configuration.Titles.DiseaseValueEditionForDisease' | trans({'Disease': diseaseName, 'Value': diseaseValue}, 'configuration_labels') }}</h2>
+
+        {{ form_start(form, {'method': 'post', 'action': path('configuration_disease_value_edit', {diseaseId: diseaseId, diseaseValueId: diseaseValueId})}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-sm btn-danger" type="submit" value="{{ 'Save'|trans }}" />
+            <a href="{{ path('configuration_disease_values', {'diseaseId': diseaseId}) }}"><input class="btn btn-sm btn-primary" type="button" value="{{ 'Cancel'|trans }}" formnovalidate/></a>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

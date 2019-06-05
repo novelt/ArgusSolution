@@ -1,0 +1,79 @@
+    <div  style="max-height: 850px; overflow-y: auto; padding: 5px;">
+
+        {% for alert in newAlerts %} {# UnRead alerts #}
+
+            {% if alert.isRead() == false %}
+                <div class="panel panel-danger" id="pAlert{{ alert.id }}">
+                    <div class="panel-heading">
+                        {{ alert.getFrontLineGroupName() }} : <b>{{ 'New Alert!' | trans }}</b><br/>
+                        <i>{{ 'Received the' | trans }}&nbsp;{{ alert.getReceptionDate()|localizeddate('short', 'short') }}</i>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0;">
+                        <table class="table table-condensed table-striped" >
+                            <tbody>
+                            {% for msg in alert.getFormatMessages() %}
+                                <tr>
+                                    <td><b>{{ msg[0] }}</b></td>
+                                    <td><i style="word-break:break-all;">{{ msg[1] }}</i></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer" id="pFooterAlert{{ alert.id }}">
+                        <button type="button" class="btn btn-default btn-xs pull-right" onclick="readAlert({{ alert.id }});">
+                            <span class="fa fa-check" aria-hidden="true"></span> Ok
+                        </button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+        {% for alert in oldAlerts %} {# Read alerts #}
+
+           {% if loop.first %}
+
+               <button type="button" class="btn btn-default btn-xs pull-right" onclick="argusContext.displayOldAlerts(this);">
+                   <span class="fa fa-list-ol" aria-hidden="true"></span> {{ 'Display alerts' | trans }}
+               </button>
+               <div class="clearfix"></div>
+
+               <div class="panel-group" id="accordionAlerts" style="display: none;">
+
+           {% endif %}
+
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordionAlerts" href="#collapseA{{  alert.id  }}"> {{ alert.getFrontLineGroupName() }}</a><br/>
+                                <i style="font-size: smaller">{{ 'Received the' | trans }}&nbsp;{{ alert.getReceptionDate()|localizeddate('short', 'short') }}</i>
+                        </h6>
+                    </div>
+                    <div id="collapseA{{  alert.id  }}" class="panel-collapse collapse {% if loop.first %} in {% endif %}">
+                        <div class="panel-body" style="padding-bottom: 0;">
+                            <table class="table table-condensed table-striped" >
+                                <tbody>
+                                {% for msg in alert.getFormatMessages() %}
+                                    <tr>
+                                        <td><b>{{ msg[0] }}</b></td>
+                                        <td><i style="word-break:break-all;">{{ msg[1] }}</i></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            {% if loop.last %}
+
+            </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>

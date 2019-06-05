@@ -1,0 +1,96 @@
+General:
+  Action:
+    Add: Ajouter
+    Cancel: Annuler
+    Delete: Suppression
+    Update: Mise à jour
+    Edit: Edition
+  Select2:
+    Choose:
+      Site: Choisir un site
+  Actions: Actions
+  Yes: Oui
+  No: Non
+User:
+  List: Utilisateurs
+  Add: Ajouter un utilisateur
+  Edit: Modifier un utilisateur
+  UserName: Compte utilisateur
+  Email: Email
+  RootSite: Site
+  IsAdmin: Administrateur ?
+  Enabled: Actif
+  Roles: Roles
+  LastLogin: Dernière connexion
+  FirstName: Prénom
+  LastName: Nom
+  Password: Mot de passe
+  AdminRights: Droits administrateur
+  Created: Nouvel utilisateur '%userName%' créé !
+  Updated: L'utilisateur '%userName%' a été mis à jour !
+  Deleted: L'utilisateur '%userName%' a été supprimé !
+Role:
+  List: Roles
+  Add: Ajouter un rôle
+  Edit: Modifier un rôle
+  Name: Nom
+  Users: Utilisateurs
+  Permissions: Permissions
+  Indicators: Indicateurs
+  AccessAngularModules: Modules
+  AuthorizedIndicatorsDataExport: Peut télécharger l'export de données des indicateurs
+  AuthorizedConfidentialCasesData: Afficher les données confidentielles des cas
+  AuthorizedCasesDataExport: Peut télécharger l'export de données des cas
+  AuthorizedCasesDataEdit: Peut éditer les cas
+  AuthorizedCasesDataSoftDelete: Peut supprimer (soft) les cas
+  Action:
+    Manage:
+      Permissions: Gérer les permissions
+  Created: Nouveau rôle '%roleName%' créé!
+  Updated: Le rôle '%roleName%' a été mis à jour !
+  Deleted: Le rôle '%roleName%' a été supprimé !
+  Module:
+    DASHBOARD: Dashboard
+    CASES: Cas
+Permission:
+  List: Permissions
+  Add: Ajouter une permission
+  Action: Action
+  Ressource: Ressource
+  State: Etat
+  Level: Niveau
+  Type: Type
+  Scope: Couverture
+  Created: Nouvelle permission créée !
+  Deleted: La permission a été suprimée !
+  Choices:
+    VIEW: Visualisation
+    VALIDATE: Validation
+    REJECT: Rejet
+    DOWNLOAD: Téléchargement
+    UPLOAD: Uploader
+    ANY: Tous
+    ALERT: Alertes
+    MONTHLY_REPORT: Rapports mensuel
+    WEEKLY_REPORT: Rapports hebdomadaires
+    DASHBOARD_REPORT: Statistiques
+    ANGULAR_DASHBOARD: Dashboard
+    PENDING: En cours
+    VALIDATED: Accepté
+    REJECTED: Rejeté
+    ALLOW: Autoriser
+    DENY: Refuser
+    ALL: Tous
+    SINGLE: Personnelle
+Indicators:
+  ExpectedLeafReports: Rapports attendus
+  ReceivedLeafReports: Rapports reçus
+  OnTimeReceivedLeafReports: Rapports reçus à temps
+  CompletenessLeafReports: Complétude
+  TimelinessLeafReports: Promptitude
+  NumberOfEvents: Nombre d'événements
+  NumberOfZeroEvents: Nombre de zéro événements
+  InvestigationRate: Taux d'investigation
+  DiseaseConfirmationRate: Taux de vrai cas
+  NumberOfDiseaseValues: Nombres de maladies
+

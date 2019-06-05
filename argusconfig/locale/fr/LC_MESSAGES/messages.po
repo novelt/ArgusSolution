@@ -1,0 +1,1956 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SES\n"
+"POT-Creation-Date: 2017-03-02 16:30+0100\n"
+"PO-Revision-Date: 2017-03-02 16:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:/xampp/htdocs/ses\n"
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:11
+msgid "Starting processing tasks"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:15
+msgid ""
+"Import configuration files\n"
+"==========================\n"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:27
+msgid ""
+"Export reports\n"
+"==============\n"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:40
+msgid ""
+"Diagnosis\n"
+"=========\n"
+msgstr ""
+"Diagnostics\n"
+"=========\n"
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:44
+#: C:/xampp/htdocs/ses/page_diagnosis.php:10
+#: C:/xampp/htdocs/ses/page_diagnosis.php:35
+#: C:/xampp/htdocs/ses/page_diagnosis.php:60
+#, php-format
+msgid "Results: %d tests run with %d errors"
+msgstr "Résultats: %d test(s) effectué(s), %d erreur(s)"
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:45
+#, php-format
+msgid "Diagnosis: %d tests run with %d errors"
+msgstr "Diagnostics : %d test(s) effectué(s), %d erreur(s)"
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:47
+msgid "ERROR: No test done during diagnosis!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:50
+msgid "No error detected during the diagnosis"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:53
+msgid "ERROR: Please check the detailed diagnosis page!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/action_run_tasks.php:59
+#, php-format
+msgid "End processing tasks in %d seconds"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:8
+msgid "Number of minutes before sending a reminder for the weekly report"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:17
+msgid "Number of minutes before sending a reminder for the monthly report"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:28
+msgid ""
+"Auto insert all diseases for a period with default value when a report is "
+"received"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:39
+msgid "Global keywords for disease"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:48
+msgid "Global keywords for week"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:57
+msgid "Global keywords for month"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:66
+msgid "Global keywords for year"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:75
+msgid "Global keywords for report"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:84
+msgid "Global keywords for alert"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:93
+msgid "Global keywords for Android automatic setup"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:103
+msgid "Default integer and string values for the templates"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:114
+msgid "Prefix for JAVA form weekly report"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:123
+msgid "Prefix for JAVA form monthly report"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:132
+msgid "Name of JAVA form for alert"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:143
+msgid "Enable Test Mode : Incoming test data are not saved"
+msgstr ""
+"Activation du mode Test : Les données provenant d'ARGUS en mode Test ne "
+"seront pas sauvegardées"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:153
+msgid ""
+"Enable Forward Data : Alerts & reports are forwarded to the recipient list"
+msgstr ""
+"Activation du transfert des données : Les alertes et rapports sont "
+"transférés vers les destinataires"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:173
+msgid "Respond to an unknown contact"
+msgstr "Répondre à un contact inconnu"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:182
+msgid "Respond if the message is malformed"
+msgstr "Réponse si le message est mal formé"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:191
+msgid "Respond to an unknown action"
+msgstr "Répondre à une action inconnue"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:200
+msgid "Enable receiving alerts"
+msgstr "Activer la réception des alertes"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:209
+msgid "Enable receiving reports"
+msgstr "Activer la réception des rapports"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:218
+msgid "Enable sending acknowledgement when a report or alert is received"
+msgstr ""
+"Activer l'envoi d'accusés lors de la réception d'un rapport ou d'une alerte"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:227
+msgid "Enable the Android template"
+msgstr "Activer le modèle Android"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:236
+msgid "Enable the AFP ODK reporting"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:247
+msgid "Enable FrontlineSMS diagnosis"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:257
+msgid "Maximum time in minutes for SMS waiting to be sent"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:266
+msgid "Maximum time in minutes for checking for failed SMS"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:275
+msgid "Enable the send/receive SMS tests"
+msgstr "Activer l'envoi / la réception des SMS de test"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:284
+msgid "Interval in minutes between sending SMS for test"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:293
+msgid "Time to wait in minutes for receiving the test SMS"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:302
+msgid ""
+"CSV list of phone numbers connected to the server (international format)"
+msgstr "Liste de numéros de téléphone des modems au format international (CSV)"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:313
+msgid "Maximum length of the SMS messages sent"
+msgstr "Nombre de caractères maximum d'un SMS"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:324
+msgid ""
+"Maximum number of site levels to check when importing the XML configuration"
+msgstr ""
+"Niveau maximum des centres de santés lors de l'import des fichiers de "
+"configuration"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:335
+msgid ""
+"Android App: Delay in minutes and message if the alert confirmation is not "
+"received"
+msgstr ""
+"ARGUS : Délai en minutes et message indiquant que l'alerte n'a pas été reçue"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:340
+msgid "The alert was not received. Contact your supervisor"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:344
+msgid ""
+"Android App: Delay in minutes and message if the week report confirmation is "
+"not received"
+msgstr ""
+"ARGUS : Délai en minutes et message indiquant que le rapport hebdomadaire "
+"n'a pas été reçu"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:349
+msgid "The weekly report was not received. Send it back from history"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:353
+msgid ""
+"Android App: Delay in minutes and message if the month report confirmation "
+"is not received"
+msgstr ""
+"ARGUS : Délai en minutes et message indiquant que le rapport mensuel n'a pas "
+"été reçu"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:358
+msgid "The monthly report was not received. Send it back from history"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:364
+msgid ""
+"Server: Acknowledge message when alert is received but not forwarded to "
+"others contacts"
+msgstr ""
+"SERVEUR : Message de confirmation lorsqu'une alerte est reçue mais non "
+"transférée aux destinataires"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:369
+msgid "The alert was not forwarded to your supervisor, contact her or him"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:373
+#, php-format
+msgid ""
+"Server: Acknowledge message when alert is received and forwarded to others "
+"contacts \n"
+" ** (%1$d) = Number of contact reached"
+msgstr ""
+"SERVEUR : Message de confirmation lorsqu'une alerte est reçue et transférée "
+"aux destinataires\n"
+" ** (%1$d) = Nombre de destinataires cible"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:378
+#, php-format
+msgid "Alert was received and forwarded to %1$d contacts"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:382
+#, php-format
+msgid ""
+"Server: Acknowledge message when disease is received \n"
+" ** (%1$s) = Period \n"
+" ** (%2$s) = Disease \n"
+" ** (%3$s) = Start Date"
+msgstr ""
+"SERVEUR : Message de confirmation lorsqu'une maladie est reçue \n"
+" ** (%1$s) = Période \n"
+" ** (%2$s) = Maladie \n"
+" ** (%3$s) = Date de début"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:387
+#, php-format
+msgid "%1$s Report for disease %2$s starting on %3$s was received"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:391
+#, php-format
+msgid ""
+"Server: Message when alert is forwarded \n"
+" ** (%1$s) = Site \n"
+" ** (%2$s) = Contact Phone Number"
+msgstr ""
+"SERVEUR : Message de notification lors de la réception d'une alerte \n"
+" ** (%1$s) = Site \n"
+" ** (%2$s) = Numéro du contact"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:396
+#, php-format
+msgid "Call site %1$s (%2$s):"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/defaults.php:400
+#, php-format
+msgid ""
+"Server: Message when threshold is reached \n"
+" ** (%1$d) = Threshold max value \n"
+" ** (%2$s) = Disease \n"
+" ** (%3$d) = Threshold value reached \n"
+" ** (%4$s) = Period \n"
+" ** (%5$s) = Start Date"
+msgstr ""
+"SERVEUR : Message envoyé lorsqu'un seuil a été atteint \n"
+" ** (%1$d) = Valeur max du seuil \n"
+" ** (%2$s) = Maladie  \n"
+" ** (%3$d) = Valeur rapportée \n"
+" ** (%4$s) = Période \n"
+" ** (%5$s) = Date de début"
+
+#: C:/xampp/htdocs/ses/config/defaults.php:405
+#, php-format
+msgid ""
+"Warning! The alert threshold has been reached with %3$d cases of \"%2$s\" "
+"the week of %5$s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/config/webpages.php:6
+msgid "Display"
+msgstr "Affichage"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:7
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:8
+msgid "Sites"
+msgstr "Sites"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:9
+msgid "Contacts"
+msgstr "Contacts"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:10
+msgid "Diseases"
+msgstr "Maladies"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:11
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Thresholds"
+msgstr "Seuil"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:12
+msgid "Reports"
+msgstr "Rapports"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:13
+msgid "License"
+msgstr "Licence"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:16
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:17
+msgid "Run tasks"
+msgstr "Import / Export"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:18
+msgid "Detailed diagnosis"
+msgstr "Détails des diagnostics"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:19
+msgid "Change settings"
+msgstr "Modification des paramètres"
+
+#: C:/xampp/htdocs/ses/config/webpages.php:20
+msgid "Setup and backup"
+msgstr "Initialisation et maintenance"
+
+#: C:/xampp/htdocs/ses/index.php:8
+msgid "SES - Web administration interface"
+msgstr "ARGUS - Interface d'administration"
+
+#: C:/xampp/htdocs/ses/menu.php:18
+msgid "Web Administration Tool"
+msgstr "Interface d'administration"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:4
+msgid "Diagnosis tool"
+msgstr "Utilitaire de diagnostic"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:6
+msgid "General diagnosis"
+msgstr "Diagnostics généraux"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:14
+#: C:/xampp/htdocs/ses/page_diagnosis.php:39
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Result"
+msgstr "Résultat"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:14
+#: C:/xampp/htdocs/ses/page_diagnosis.php:39
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Test"
+msgstr "Test"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:14
+#: C:/xampp/htdocs/ses/page_diagnosis.php:39
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Information"
+msgstr "Information"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:18
+#: C:/xampp/htdocs/ses/page_diagnosis.php:43
+#: C:/xampp/htdocs/ses/page_diagnosis.php:68
+msgid "OK"
+msgstr "OK"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:20
+#: C:/xampp/htdocs/ses/page_diagnosis.php:45
+#: C:/xampp/htdocs/ses/page_diagnosis.php:70
+msgid "Error"
+msgstr "Erreur"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:28
+#: C:/xampp/htdocs/ses/page_diagnosis.php:53
+msgid "No test found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:31
+msgid "Frontline diagnosis"
+msgstr "Diagnostics Frontline"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:56
+msgid "Argus Gateway diagnosis"
+msgstr "Diagnostics Passerelles Argus"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Device Id"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+#: C:/xampp/htdocs/ses/page_list_diseases.php:39
+msgid "Operator"
+msgstr "Opérateur"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Manufacturer"
+msgstr "Fabricant"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Model"
+msgstr "Modèle"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Version"
+msgstr "Version"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Battery"
+msgstr "Batterie"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Power"
+msgstr "Alimentation"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Pending Messages"
+msgstr "Messages en attente"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:64
+msgid "Last Update"
+msgstr "Dernière mise à jour"
+
+#: C:/xampp/htdocs/ses/page_diagnosis.php:87
+msgid "No device found!"
+msgstr "Aucun appareil trouvé !"
+
+#: C:/xampp/htdocs/ses/page_license.php:3
+msgid "Software license"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_license.php:4
+msgid "This application is distributed under the following FreeBSD license:"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:15
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:17
+msgid " and "
+msgstr "et"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:16
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:18
+#, php-format
+msgid "for site %s"
+msgstr "du site %s"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:20
+msgid "Contacts list"
+msgstr "Liste de contacts"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:43
+#, php-format
+msgid "%d contacts found:"
+msgstr "%d contacts trouvés :"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Name"
+msgstr "Nom"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+msgid "Phone number"
+msgstr "Numéro de téléphone"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+msgid "IMEI"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+msgid "IMEI2"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+msgid "Active"
+msgstr "Actif"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+msgid "Site reference"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+msgid "Email"
+msgstr "Email"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:46
+msgid "Notes"
+msgstr "Notes"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:54
+#: C:/xampp/htdocs/ses/page_list_diseases.php:23
+#: C:/xampp/htdocs/ses/page_list_diseases.php:85
+msgid "Yes"
+msgstr "Oui"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:56
+#: C:/xampp/htdocs/ses/page_list_diseases.php:25
+#: C:/xampp/htdocs/ses/page_list_diseases.php:87
+#: C:/xampp/htdocs/ses/page_list_reports.php:24
+msgid "No"
+msgstr "Non"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:62
+#: C:/xampp/htdocs/ses/page_list_contacts.php:67
+#: C:/xampp/htdocs/ses/page_list_sites.php:74
+#: C:/xampp/htdocs/ses/page_list_sites.php:87
+#: C:/xampp/htdocs/ses/page_list_sites.php:99
+msgid "None"
+msgstr "Aucun"
+
+#: C:/xampp/htdocs/ses/page_list_contacts.php:74
+msgid "No contact found, please do an import!"
+msgstr "Aucun contact, effectuez un import"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:15
+msgid "Position"
+msgstr "Position"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:15
+#: C:/xampp/htdocs/ses/page_list_diseases.php:39
+msgid "Value"
+msgstr "Valeur"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:15
+#: C:/xampp/htdocs/ses/page_list_diseases.php:91
+msgid "Keywords"
+msgstr "Mots clefs"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:15
+msgid "Type"
+msgstr "Type"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:15
+msgid "Mandatory"
+msgstr "Obligatoire"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:39
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:54
+msgid "Period"
+msgstr "Période"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:54
+msgid "Alert and diseases list"
+msgstr "Liste des maladies et Alertes"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:72
+#, php-format
+msgid "%d definitions found:"
+msgstr "%d definitions trouvées :"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:78
+msgid "Alert message"
+msgstr "Message "
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:85
+#: C:/xampp/htdocs/ses/page_list_diseases.php:87
+msgid "Save reports"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:90
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Reference"
+msgstr "Référence"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:95
+msgid "Weeky values:"
+msgstr "Valeurs hebdomadaires :"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:97
+msgid "Monthly values:"
+msgstr "Valeurs mensuelles :"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:99
+msgid "Alert values:"
+msgstr "Valeurs d'alerte :"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:102
+msgid "Constraints:"
+msgstr "Contraintes :"
+
+#: C:/xampp/htdocs/ses/page_list_diseases.php:106
+msgid "No disease or alert found, please do an import!"
+msgstr "Aucune maladie ou alerte, effectuez un import"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:9
+msgid "List of received reports"
+msgstr "Liste des rapports reçus"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:15
+#, php-format
+msgid ""
+"%d reports and alerts found and sorted as newer first: (display limited to "
+"1000 records)"
+msgstr ""
+"%d rapports et alertes trouvés triés par date décroissante : (affichage "
+"limité à 1000 entrées)"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+msgid "Reception"
+msgstr "Réception"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+msgid "Exported"
+msgstr "Exporté"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+msgid "Source"
+msgstr "Source"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:54
+msgid "Site"
+msgstr "Site"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+msgid "Contact"
+msgstr "Contact"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+msgid "Number"
+msgstr "Nombre"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:54
+msgid "Disease"
+msgstr "Maladie"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+msgid "Start"
+msgstr "Démarrage"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:17
+msgid "Values"
+msgstr "Valeurs"
+
+#: C:/xampp/htdocs/ses/page_list_reports.php:46
+msgid "No reports yet received"
+msgstr "Aucun rapport reçu"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:9
+msgid "Sites list"
+msgstr "Liste des sites"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:40
+#, php-format
+msgid "%d sites found:"
+msgstr "%d sites trouvés :"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Weekly reminder (min)"
+msgstr "Rappel hebdomadaire (min)"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Monthly reminder (min)"
+msgstr "Rappel mensuel (min)"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Active contacts"
+msgstr "Contacts actifs"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Report recipients"
+msgstr "Destinataires des rapports"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:64
+msgid "Alert recipients"
+msgstr "Destinataires des alertes"
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:72
+msgid "See list"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_list_sites.php:120
+msgid "No site found, please do an import!"
+msgstr "Aucun site, effectuez un import"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:22
+msgid "Thresholds list"
+msgstr "Liste des seuils"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:51
+#, php-format
+msgid "%d thresholds found:"
+msgstr "%d seuils trouvés :"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:54
+msgid "Year"
+msgstr "Année"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:54
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:149
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:77
+msgid "Month"
+msgstr "Mois"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:54
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:148
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:76
+msgid "Week"
+msgstr "Semaine"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:54
+msgid "Condition"
+msgstr "Condition"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:58
+msgid "Weekly"
+msgstr "Hebdomadaire"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:60
+msgid "Monthly"
+msgstr "Mensuel"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:62
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: C:/xampp/htdocs/ses/page_list_thresholds.php:83
+msgid "No threshold found, please do an import!"
+msgstr "Aucun seuil, effectuez un import"
+
+#: C:/xampp/htdocs/ses/page_run_tasks.php:3
+msgid "Manual run of the scheduled tasks"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_run_tasks.php:4
+msgid "Output of runned tasks:"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_settings.php:26
+#, php-format
+msgid "%d values has been saved"
+msgstr "%d valeurs sauvegardées"
+
+#: C:/xampp/htdocs/ses/page_settings.php:30
+msgid "Application global parameters"
+msgstr "Paramètres globaux"
+
+#: C:/xampp/htdocs/ses/page_settings.php:34
+#: C:/xampp/htdocs/ses/page_setup.php:144
+msgid "Warning!"
+msgstr "Attention !"
+
+#: C:/xampp/htdocs/ses/page_settings.php:34
+msgid ""
+"Incorrect configuration can prevent the application from working correctly"
+msgstr "Une configuration incorrecte peut entrainer des disfonctionnements"
+
+#: C:/xampp/htdocs/ses/page_settings.php:35
+msgid "Multiple global keywords can be specified using comma \",\""
+msgstr ""
+"Plusieurs mots clefs peuvent être spécifiés en les séparant par une virgule "
+"\",\""
+
+#: C:/xampp/htdocs/ses/page_settings.php:59
+msgid "No integer value for this parameter"
+msgstr "Aucune valeur de type int pour ce paramètre"
+
+#: C:/xampp/htdocs/ses/page_settings.php:67
+msgid "No string value for this parameter"
+msgstr "Aucune valeur de type string pour ce paramètre"
+
+#: C:/xampp/htdocs/ses/page_settings.php:73
+msgid "Save the values"
+msgstr "Enregistrer les paramètres"
+
+#: C:/xampp/htdocs/ses/page_setup.php:4
+msgid "Application setup and maintenance"
+msgstr "Initialisation et maintenance de l'application"
+
+#: C:/xampp/htdocs/ses/page_setup.php:101
+msgid "ERROR: Can't move the uploaded file!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_setup.php:104
+msgid "ERROR: Can't get the uploaded file!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_setup.php:113
+msgid "ERROR: No backup file specified!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_setup.php:121
+#: C:/xampp/htdocs/ses/page_setup.php:180
+msgid "WARNING! Do you confirm the operation?"
+msgstr "ATTENTION ! Confirmez vous l\\'opération ?"
+
+#: C:/xampp/htdocs/ses/page_setup.php:134
+msgid "Results of the action:"
+msgstr "Résultat de l'action :"
+
+#: C:/xampp/htdocs/ses/page_setup.php:144
+msgid "Some maintenance operations can delete all the data stored!"
+msgstr "Les opérations de maintenance peuvent supprimer toutes les données"
+
+#: C:/xampp/htdocs/ses/page_setup.php:147
+msgid "Maintenance operations"
+msgstr "Opérations de maintenance"
+
+#: C:/xampp/htdocs/ses/page_setup.php:149
+msgid "Description"
+msgstr "Description"
+
+#: C:/xampp/htdocs/ses/page_setup.php:149
+#: C:/xampp/htdocs/ses/page_setup.php:164
+msgid "Action"
+msgstr "Action"
+
+#: C:/xampp/htdocs/ses/page_setup.php:150
+msgid "Make a local backup of the MySQL database"
+msgstr "Effectuer une sauvegarde locale de la base de données MySql"
+
+#: C:/xampp/htdocs/ses/page_setup.php:150
+msgid "Backup"
+msgstr "Sauvegarde"
+
+#: C:/xampp/htdocs/ses/page_setup.php:151
+msgid "Delete all received dashboard data"
+msgstr "Supprimer les données du dashboard"
+
+#: C:/xampp/htdocs/ses/page_setup.php:151
+#: C:/xampp/htdocs/ses/page_setup.php:154
+msgid "ALL THE DATA WILL BE DELETED!"
+msgstr "TOUTES LES DONNEES VONT ETRE SUPPRIMEES !"
+
+#: C:/xampp/htdocs/ses/page_setup.php:151
+msgid "Clean"
+msgstr "Nettoyer"
+
+#: C:/xampp/htdocs/ses/page_setup.php:152
+msgid "Delete all Argus Gateway devices"
+msgstr "Supprimer les passerelles Argus"
+
+#: C:/xampp/htdocs/ses/page_setup.php:152
+msgid "Clean Argus Gateway devices"
+msgstr "Supprimer les passerelles Argus"
+
+#: C:/xampp/htdocs/ses/page_setup.php:154
+msgid "Application initialization:"
+msgstr "Initialisation de l'application"
+
+#: C:/xampp/htdocs/ses/page_setup.php:154
+msgid "Initialize"
+msgstr "Initialiser"
+
+#: C:/xampp/htdocs/ses/page_setup.php:155
+msgid "Application update"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_setup.php:155
+msgid "Update"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_setup.php:159
+msgid "MySQL database restore from local backups"
+msgstr "Restauration d'un backup MySQL provenant du répertoire local de backup"
+
+#: C:/xampp/htdocs/ses/page_setup.php:159
+#: C:/xampp/htdocs/ses/page_setup.php:181
+msgid "ALL DATA WILL BE REPLACED!"
+msgstr "TOUTES LES DONNEES VONT ETRE REMPLACEES !"
+
+#: C:/xampp/htdocs/ses/page_setup.php:164
+msgid "Date"
+msgstr "Date"
+
+#: C:/xampp/htdocs/ses/page_setup.php:164
+msgid "Time"
+msgstr "Temps"
+
+#: C:/xampp/htdocs/ses/page_setup.php:164
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:23
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:32
+msgid "File"
+msgstr "Fichier"
+
+#: C:/xampp/htdocs/ses/page_setup.php:170
+#: C:/xampp/htdocs/ses/page_setup.php:186
+msgid "Restore"
+msgstr "Restauration"
+
+#: C:/xampp/htdocs/ses/page_setup.php:176
+msgid "No local backup found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/page_setup.php:181
+msgid "MySQL database restore from file"
+msgstr "Restauration d'un backup MySQL"
+
+#: C:/xampp/htdocs/ses/page_setup.php:183
+msgid "SQL backup file:"
+msgstr "Fichier de sauvegarde SQL :"
+
+#: C:/xampp/htdocs/ses/page_welcome.php:3
+msgid "Welcome to SES administration tool!"
+msgstr "Bienvenue sur la page d'administration du serveur ARGUS"
+
+#: C:/xampp/htdocs/ses/page_welcome.php:4
+msgid "Welcome text placeholer - A welcome text is expected here"
+msgstr ""
+"Ce site vous permettra d'administrer ARGUS et d'effectuer des opérations de "
+"maintenance"
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:62
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:43
+#, php-format
+msgid "SES: No disease keyword found in the report [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:63
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:89
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:114
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:123
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:132
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:141
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:257
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:269
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:404
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:584
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:148
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:338
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:717
+#: C:/xampp/htdocs/ses/tools/message_handling.php:342
+#: C:/xampp/htdocs/ses/tools/message_handling.php:354
+#: C:/xampp/htdocs/ses/tools/message_handling.php:381
+msgid "Response:"
+msgstr "Réponse:"
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:88
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:53
+#, php-format
+msgid "SES: The disease reference can't be identified [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:110
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:678
+#, php-format
+msgid "SES: No year, month or week keywords are allowed with an alert! [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:112
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:680
+#, php-format
+msgid "SES: Year must be present then only week or month [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:122
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:688
+#, php-format
+msgid "SES: Year must be correctly formatted with 4 valid digits [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:131
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:694
+#, php-format
+msgid "SES: Month must be a numeric value between 1 and 12 [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:140
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:700
+#, php-format
+msgid "SES: Week must be a numeric value between 1 and 53 [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:235
+#, php-format
+msgid "value [%s] is missing"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:241
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:862
+#, php-format
+msgid "value [%s] must be a non-negative integer"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:256
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:868
+#, php-format
+msgid "SES: The report contains errors in values: %s [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:268
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:880
+#, php-format
+msgid "SES: The report contains unexpected keywords: %s [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:329
+#, php-format
+msgid "SES: Alert from site %s (%s): "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:333
+#, php-format
+msgid "SES: Report from site %s for disease %s starting on %s (%s): "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:389
+msgid "SES: Alert was received but not forwarded to others contacts"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:391
+#, php-format
+msgid "SES: Alert was received and forwarded to %d contacts"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:396
+#, php-format
+msgid ""
+"SES: Report for disease %s starting on %s (%s) was received but not "
+"forwarded to others contacts"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:398
+#, php-format
+msgid ""
+"SES: Report for disease %s starting on %s (%s) was received and forwarded to "
+"%d contacts"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:408
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:161
+msgid "Ack not sent (disabled)"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:580
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:334
+#, php-format
+msgid "%d templates has been sent"
+msgstr "%d templates ont étés envoyés"
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV0.0.php:583
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:337
+msgid "SES: No item found for the asked template"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/AndroidVersionning/action_handlingV1.0.php:158
+msgid "Ack not sent because threshold was sent"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/ArgusGateway/ArgusGateway_functions.php:35
+#, php-format
+msgid ""
+"ERROR while creating SMS in the ses_gateway_queue! Number=[%s] Message=[%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/ArgusGateway/ArgusGateway_functions.php:38
+#, php-format
+msgid "<= SMS created in ses_gateway_queue: Number=[%s] Message=[%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/FrontlineSms/frontlinesms_functions.php:40
+#, php-format
+msgid "ERROR while sending SMS using the trigger! Number=[%s] Message=[%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/FrontlineSms/frontlinesms_functions.php:43
+#, php-format
+msgid "<= SMS sent using trigger: Number=[%s] Message=[%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:8
+msgid "Backup of the database"
+msgstr "Sauvegarde de la base de données"
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:16
+#, php-format
+msgid "Backup path %s has been found"
+msgstr "Chemin de sauvegarde %s trouvé"
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:21
+#, php-format
+msgid "ERROR: Backup path %s wasn't found, backup cancelled!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:31
+#, php-format
+msgid "Backup file will be %s"
+msgstr "Fichier de backup : %s"
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:34
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:90
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:158
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:177
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:216
+#, php-format
+msgid "Commandline is %s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:40
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:96
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:164
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:183
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:222
+msgid "Output:"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:46
+msgid "MySQLdump has been executed without error"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:55
+#, php-format
+msgid "Cleaning backup file %s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:57
+#, php-format
+msgid "ERROR: Cleaning backup file %s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:64
+#, php-format
+msgid "ERROR: MySQLdump exitcode=%d"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:68
+msgid "First initialization, no backup possible"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:82
+#, php-format
+msgid "Cleaning the database with file %s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:101
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:169
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:188
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:227
+msgid "MySQL has been executed without error"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:104
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:172
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:191
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:230
+#, php-format
+msgid "ERROR: MySQL exitcode=%d"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:108
+msgid "ERROR: The cleaning file can't be used!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:152
+#, php-format
+msgid "Initializing Database"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/backup_functions.php:234
+msgid "ERROR: The file can't be used!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/config_functions.php:21
+#, php-format
+msgid "No integer default value found for key [%s]!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/config_functions.php:58
+#, php-format
+msgid "No string default value found for key [%s]!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:14
+msgid "Directory exists"
+msgstr "Existence du répertoire"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:14
+msgid "Directory"
+msgstr "Répertoire"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:23
+msgid "File exists"
+msgstr "Existence du fichier"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:32
+msgid "Files content"
+msgstr "Contenu du fichier"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:64
+msgid "FrontlineSMS trigger"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:64
+msgid "URL"
+msgstr "URL"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:77
+msgid "MySQL connection"
+msgstr "Connexion MySQL "
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:77
+msgid "Login"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:89
+msgid "MySQL schema exists"
+msgstr "Existence du schema MySQL "
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:89
+msgid "Schema"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:103
+msgid "MySQL schema version"
+msgstr "Version du schema MySQL "
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:103
+msgid "Expected"
+msgstr "Attendu"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:103
+msgid "Actual"
+msgstr "Actuellement"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:125
+msgid "SMS in sending queue"
+msgstr "SMS dans la file d'attente"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:125
+#, php-format
+msgid "%d SMS are in the sending queue for more than %d minutes"
+msgstr "%d SMS sont dans la file d'attente depuis plus de %d minutes"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:147
+msgid "SMS failed to be sent"
+msgstr "SMS non envoyés"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:147
+#, php-format
+msgid "%d SMS failed to be sent in the last %d minutes"
+msgstr "%d SMS en erreur d'envoi dans les dernières %d minutes"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:158
+msgid "SMS send and receive test"
+msgstr "SMS test d'envoi et de réception"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:159
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:273
+msgid "Nothing"
+msgstr "Rien"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:202
+#, php-format
+msgid "Test message received on time - Return trip was %d seconds"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:206
+#, php-format
+msgid "Test message received but in late - Return trip was %d seconds"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:212
+#, php-format
+msgid "Test message sent %d seconds ago not yet received"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:216
+#, php-format
+msgid "Test message sent %d seconds ago wasn't received on time!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:222
+#, php-format
+msgid ""
+"The server phone number [%s] isn't in correct format, check the settings."
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:226
+msgid "The test is disabled, see settings."
+msgstr "Le test est désactivé (voir paramètres)"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:273
+msgid "Check server phone numbers"
+msgstr "Vérifier les numéros de téléphone serveur"
+
+#: C:/xampp/htdocs/ses/tools/diagnosis.php:289
+#, php-format
+msgid "%d server phone number found (%d valid)"
+msgstr "%d numéros de téléphone serveur trouvés (%d valides)"
+
+#: C:/xampp/htdocs/ses/tools/export_reports.php:17
+#, php-format
+msgid "Exporting %d reports or alerts in XML file [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/export_reports.php:74
+#, php-format
+msgid "%d reports exported"
+msgstr "%d rapports exportéss"
+
+#: C:/xampp/htdocs/ses/tools/export_reports.php:107
+#, php-format
+msgid "%d alerts exported"
+msgstr "%d alertes exportées"
+
+#: C:/xampp/htdocs/ses/tools/export_reports.php:114
+msgid "End of export"
+msgstr "Fin de l'export"
+
+#: C:/xampp/htdocs/ses/tools/export_reports.php:119
+msgid "No report to export"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:5
+msgid "Database records count summary:"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:9
+#, php-format
+msgid "* %d sites"
+msgstr "* %d sites"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:11
+#, php-format
+msgid "* %d contacts"
+msgstr "* %d contacts"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:13
+#, php-format
+msgid "* %d diseases"
+msgstr "* %d maladies"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:15
+#, php-format
+msgid "* %d thresholds"
+msgstr "* %d seuils"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:32
+#, php-format
+msgid "New XML file [%s] found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:33
+#, php-format
+msgid "Trying to import with schema [%s]..."
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:40
+#, php-format
+msgid "%d ERRORS were found during import and saved in file [%s]"
+msgstr ""
+"%d ERREURS ont été trouvées durant l'import et sauvegardées dans le fichier "
+"[%s]"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:44
+#, php-format
+msgid "%d errors while importing file %s"
+msgstr "%d erreurs lors de l'import du fichier %s"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:47
+msgid "No error found during import"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:48
+#, php-format
+msgid "File %s was imported"
+msgstr "Fichier %s a été importé"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:53
+#, php-format
+msgid "The imported file has been moved to [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:59
+#, php-format
+msgid "%d files has been processed"
+msgstr "%d fichiers ont étés traités"
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:61
+#, php-format
+msgid "No XML files found in [%s], nothing to import"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:115
+msgid "ERROR ImportConfiguration: the <import> XML root node was not found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_configuration.php:119
+#, php-format
+msgid ""
+"ERROR ImportConfiguration: the XML file [%s] failed the validation with the "
+"schema [%s]!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_contacts.php:49
+#, php-format
+msgid ""
+"ERROR ImportContacts: The phone number [%s] for contact [%s] isn't correclty "
+"formatted (+XXXX expected)"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_contacts.php:54
+#, php-format
+msgid ""
+"ERROR ImportContacts: The phone number [%s] for contact [%s] is already "
+"declared (must be unique)"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_contacts.php:59
+#, php-format
+msgid ""
+"ERROR ImportContacts: The site reference [%s] for contact [%s] isn't existing"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_contacts.php:104
+msgid "ERROR ImportContacts: No database updates as errors were found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:155
+#, php-format
+msgid ""
+"ERROR ImportDiseases: A value with an empty reference was found for disease "
+"%s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:161
+#, php-format
+msgid ""
+"ERROR ImportDiseases: The value %s for the period %s already exist for "
+"disease %s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:173
+msgid "ERROR ImportDiseases: A disease with an empty reference was found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:178
+#, php-format
+msgid ""
+"ERROR ImportDiseases: A disease with the reference %s was already defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:199
+msgid ""
+"ERROR ImportDiseases: An alert defintion must contain at last one value with "
+"None as period (and no Weekly or Monthly period)"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:206
+#, php-format
+msgid ""
+"ERROR ImportDiseases: The disease %s definition must contain at last one "
+"value with Weekly or Monthly as period (and no None period)"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:228
+#, php-format
+msgid ""
+"ERROR ImportDiseases: A Period must be defined in the constraint for disease "
+"%s "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:234
+#, php-format
+msgid ""
+"ERROR ImportDiseases: An operator must be defined in the constraint for "
+"disease %s "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:240
+#, php-format
+msgid ""
+"ERROR ImportDiseases: A reference value From must be defined in the "
+"constraint for disease %s "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:248
+#, php-format
+msgid ""
+"ERROR ImportDiseases: The reference value From %s is unknown for the "
+"constraint for disease %s "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:254
+#, php-format
+msgid ""
+"ERROR ImportDiseases: A reference value To must be defined in the constraint "
+"for disease %s "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:262
+#, php-format
+msgid ""
+"ERROR ImportDiseases: The reference value To %s is unknown for the "
+"constraint for disease %s "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:277
+#, php-format
+msgid "ERROR ImportDiseases: A constraint for disease %s already exists "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:305
+#, php-format
+msgid ""
+"ERROR ImportDiseases: The disease keyword %s for disease %s is already "
+"defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:321
+#, php-format
+msgid ""
+"ERROR ImportDiseases: The weekly value keyword %s for disease %s is already "
+"defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:333
+#, php-format
+msgid ""
+"ERROR ImportDiseases: The monthly value keyword %s for disease %s is already "
+"defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:345
+#, php-format
+msgid "ERROR ImportDiseases: The alert value keyword %s is already defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_diseases.php:459
+msgid "ERROR ImportDiseases: No database updates as errors were found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:73
+msgid "ERROR ImportSites: a site with an empty reference was found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:77
+#, php-format
+msgid ""
+"ERROR ImportSites: The site reference [%s] contains the invalid / character!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:81
+#, php-format
+msgid ""
+"ERROR ImportSites: The site reference [%s] has an empty parent reference!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:85
+#, php-format
+msgid "ERROR ImportSites: a site with the reference [%s] is already defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:115
+#, php-format
+msgid "ERROR ImportSites: The parent site [%s] was not found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:128
+#, php-format
+msgid "ERROR ImportSites: The site [%s] can't go up to [SitesRoot]!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:143
+#, php-format
+msgid ""
+"ERROR ImportSites: The alert recipient site [%s] in site [%s] was not found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:149
+#, php-format
+msgid ""
+"ERROR ImportSites: The report recipient site [%s] in site [%s] was not found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:155
+#, php-format
+msgid ""
+"ERROR ImportSites: The threshold recipient site [%s] in site [%s] was not "
+"found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_sites.php:223
+msgid "ERROR ImportSites: No database updates as errors were found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:54
+#, php-format
+msgid ""
+"ERROR ImportThresholds: An invalid year has been found for site %s, disease "
+"%s and Period %s!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:64
+#, php-format
+msgid ""
+"ERROR ImportThresholds: A monthNumber has been found for site %s, disease "
+"%s, year %s and Period %s!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:74
+#, php-format
+msgid ""
+"ERROR ImportThresholds: An invalid weekNumber has been found for site %s, "
+"disease %s and Period %s!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:80
+#, php-format
+msgid ""
+"ERROR ImportThresholds: A weekNumber has been found for site %s, disease %s, "
+"year %s and Period %s!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:90
+#, php-format
+msgid ""
+"ERROR ImportThresholds: An invalid monthNumber has been found for site %s, "
+"disease %s and Period %s!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:95
+#, php-format
+msgid ""
+"ERROR ImportThresholds: An invalid period [%s] has been found for site %s "
+"and disease %s!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:102
+#, php-format
+msgid "Site=%s, Disease=%s, Period=%s, WeekNumber=%s, MonthNumber=%s, Year=%s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:107
+msgid "ERROR ImportThresholds: The site reference can't be empty!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:113
+msgid "ERROR ImportThresholds: The site reference isn't defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:122
+msgid ""
+"ERROR ImportThresholds: The disease reference can't be empty or an alert "
+"reference!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:129
+msgid "ERROR ImportThresholds: The disease reference isn't defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:138
+msgid "ERROR ImportThresholds: No value found for the threshold!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:159
+#, php-format
+msgid ""
+"ERROR ImportThresholds: The value [%s] isn't defined for the disease or it "
+"isn't an integer!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:167
+msgid ""
+"ERROR ImportThresholds: A threshold for these site/disease/period/Week or "
+"Month/Year has been already defined!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/import_thresholds.php:204
+msgid "ERROR ImportThresholds: No database updates as errors were found!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:33
+#, php-format
+msgid "The shorcut file %s has been removed"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:53
+#, php-format
+msgid "The shorcut file %s has been created"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:99
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:169
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:190
+msgid "Step #1 - Make a backup"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:102
+msgid "Step #2 - Remove log files"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:108
+#, php-format
+msgid "The log file %s has been removed"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:131
+msgid "Step #3 - Restore an empty database"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:140
+msgid "Step #4 - Update configuration files"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:142
+msgid "Apache configuration copied"
+msgstr "Configuration Apache copiée"
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:144
+msgid "ERROR while copying Apache configuration!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:147
+msgid "PHP configuration copied"
+msgstr "Fichier de configuration PHP copié"
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:149
+msgid "ERROR while copying PHP configuration!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:152
+msgid "MySQL configuration copied"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:154
+msgid "ERROR while copying MySQL configuration!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:158
+msgid "THE END - Please restart Apache, MySQL and FrontlineSMS!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:173
+msgid "Step #2 - Clean database"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:194
+msgid "Step #2 - Clean Argus Gateway Devices"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:235
+msgid "Step #1 - Check the version of the application"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:242
+msgid "Current version of the database schema : "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:243
+msgid "Version of the Application : "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:246
+msgid "Application Need to be updated !"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:248
+msgid "No update needed "
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:249
+msgid "END"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:254
+msgid "Step #2 - Make a backup"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:258
+msgid "Step #3 - Find sql update files"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:275
+msgid " will not be run"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:278
+msgid " has to be run"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/initialization_functions.php:281
+msgid " not applicable"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/logging_functions.php:7
+#, php-format
+msgid "Impossible to write log in file [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/logging_functions.php:17
+msgid "Fatal error from the application"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:214
+#, php-format
+msgid "=> SMS received from %s (%s), message=[%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:219
+msgid "Nothing done"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:226
+msgid "Binary message - Maybe a JAVA form response"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:234
+msgid "Expected test message from the server received"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:238
+msgid "Unknown message received from the server!"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:341
+#, php-format
+msgid "SES: Invalid action [%s] received"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:346
+msgid "No valid action found, no response as setup"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:353
+#, php-format
+msgid "ARGUS: Your message is malformed [%s]"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:358
+msgid "Parsing error, no response as setup"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:364
+msgid " Try to process an ODK Message"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:380
+msgid "Your phone number is not registered in the system"
+msgstr "Votre numéro de téléphone n'est pas déclaré dans le système"
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:385
+msgid "Invalid contact, no response as setup"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/message_handling.php:391
+#, php-format
+msgid "Processing SMS from %s: %s"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/mysql_functions.php:15
+msgid "ERROR MySQL: Can't connect to database"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/mysql_functions.php:32
+msgid "ERROR MySQL: Simple query"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/mysql_functions.php:53
+msgid "ERROR MySQL: Get array"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/mysql_functions.php:135
+msgid "ERROR Parameter type can be WRITE or READ"
+msgstr ""
+
+#: C:/xampp/htdocs/ses/tools/mysql_functions.php:143
+#: C:/xampp/htdocs/ses/tools/mysql_functions.php:156
+msgid "ERROR with Parameter tables"
+msgstr ""
+
+#~ msgid "Your phone number isn't declared in the system"
+#~ msgstr "Votre numéro de téléphone n'est pas déclaré dans le system"
+
+#~ msgid "Enable receiving nothing to report"
+#~ msgstr "Activer la réception de non rapport"
+
+#~ msgid "Enable the instructions"
+#~ msgstr "Activer les instructions"
+
+#~ msgid "Enable the weekly template"
+#~ msgstr "Activer le modèle hebdomadaire"
+
+#~ msgid "Enable the weekly test template"
+#~ msgstr "Activer le modèle hebdomadaire de test"
+
+#~ msgid "Enable the monthly template"
+#~ msgstr "Activer le template mensuel"
+
+#~ msgid "Enable the monthly test template"
+#~ msgstr "Activer le template mensuel de test"
+
+#~ msgid "Enable the alert template"
+#~ msgstr "Activer le modèle d'alerte"
+
+#~ msgid "Enable the week info answer"
+#~ msgstr "Activer la réponse concernant l'information hebdomadaire"
+
+#~ msgid "Application root path"
+#~ msgstr "Chemin racine de l'application"
+
+#~ msgid "Application root URL"
+#~ msgstr "URL racine de l'application"

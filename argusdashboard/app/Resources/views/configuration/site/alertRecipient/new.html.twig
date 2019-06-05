@@ -1,0 +1,21 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block body_id 'configuration_site_alert_recipient_add' %}
+
+{% block configuration %}
+
+    <div class="well col-lg-7">
+
+        <h2>{{ 'Configuration.Titles.SiteAlertRecipientInsertion' | trans({Site: siteName}, 'configuration_labels') }}</h2>
+
+        {{ form_start(form, {'method': 'post', 'action': path('configuration_site_alert_recipient_add', {siteId: siteId})}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-sm btn-danger" type="submit" value="{{ 'Create'|trans }}" />
+            <a href="{{ path('configuration_site_alert_recipients', {siteId: siteId}) }}"><input class="btn btn-sm btn-primary" type="button" value="{{ 'Cancel'|trans }}" formnovalidate/></a>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+SetEnvIf Request_URI "/argusGateway.php$" argus_Gateway
+SetEnvIf Request_URI "/argusgateway.php$" argus_gateway
+SetEnvIf Request_URI "/page_gateways.php" page_gateways
+
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine On
+# Rewrite Url with Iso 3 ccountry code
+
+RewriteRule ^nga/(.*)$ /ses/$1?phoneCode=234 [NC,NE,R,L]
+RewriteRule ^cmr/(.*)$ /ses/$1?phoneCode=237 [NC,NE,R,L]
+RewriteRule ^sle/(.*)$ /ses/$1?phoneCode=232 [NC,NE,R,L]
+RewriteRule ^tcd/(.*)$ /ses/$1?phoneCode=235 [NC,NE,R,L]
+RewriteRule ^ner/(.*)$ /ses/$1?phoneCode=227 [NC,NE,R,L]
+RewriteRule ^lbr/(.*)$ /ses/$1?phoneCode=231 [NC,NE,R,L]
+RewriteRule ^cod/(.*)$ /ses/$1?phoneCode=243 [NC,NE,R,L]
+RewriteRule ^ssd/(.*)$ /ses/$1?phoneCode=211 [NC,NE,R,L]
+RewriteRule ^bfa/(.*)$ /ses/$1?phoneCode=226 [NC,NE,R,L]
+RewriteRule ^mli/(.*)$ /ses/$1?phoneCode=223 [NC,NE,R,L]
+</IfModule>
+
+<FilesMatch "\.css">
+Satisfy Any
+</FilesMatch>
+
+<FilesMatch "page_gateways\.php">
+AuthName "Member Only"
+AuthType Basic
+AuthUserFile "C:\xampp\security\gateway.users"
+require valid-user
+Order allow,deny
+Allow from 127.0.0.1
+Allow from ::1
+Satisfy Any
+</FilesMatch>
+
+AuthName "ARGUS user"
+AuthType Basic
+AuthUserFile "C:\xampp\security\argus.users"
+require valid-user
+Order allow,deny
+#Uncomment the 2 lines below to authorize Argus Gateway to push messages to the server
+Allow from env=argus_Gateway
+Allow from env=argus_gateway
+Allow from env=page_gateways
+Allow from 127.0.0.1
+Allow from ::1
+Satisfy Any

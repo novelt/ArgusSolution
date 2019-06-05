@@ -1,0 +1,56 @@
+Sites:
+    type: rest
+    resource:     "@AppBundle/Controller/WebApi/SitesRestController.php"
+    name_prefix:  api_
+    options: { i18n: false } # No _locale for these routes
+
+DashboardMap:
+    type: rest
+    resource:     "@AppBundle/Controller/WebApi/DashboardMapRestController.php"
+    name_prefix:  api_
+
+# Custom routes for Dashboard Maps
+api_get_contact_location:
+    path: /dashboardMapRest/contactLocations/{siteId}
+    defaults: { _controller: AppBundle:WebApi\DashboardMapRest:getContactLocations }
+
+Information:
+    type: rest
+    resource:     "@AppBundle/Controller/WebApi/ApiInfoRestController.php"
+    name_prefix:  api_
+    options: { i18n: false } # No _locale for these routes
+
+Diseases:
+   type: rest
+   resource:     "@AppBundle/Controller/WebApi/DiseasesRestController.php"
+   name_prefix:  api_
+
+ContactTypes:
+   type: rest
+   resource:     "@AppBundle/Controller/WebApi/ContactTypesRestController.php"
+   name_prefix:  api_
+
+ReportData:
+    type: rest
+    resource: "@AppBundle/Controller/WebApi/ReportData/ReportDataRestController.php"
+    name_prefix:  api_
+
+ReportDataVersion:
+    type: rest
+    resource: "@AppBundle/Controller/WebApi/ReportData/ReportDataVersionRestController.php"
+    name_prefix:  api_
+
+ThresholdDataVersion:
+    type: rest
+    resource: "@AppBundle/Controller/WebApi/ReportData/ThresholdDataRestController.php"
+    name_prefix:  api_
+
+EpidemiologicReport:
+    type: rest
+    resource: "@AppBundle/Controller/WebApi/ReportData/EpidemiologicReportController.php"
+    name_prefix:  api_
+
+RScript:
+    type: rest
+    resource: "@AppBundle/Controller/WebApi/RScript/RScriptRestController.php"
+    name_prefix:  api_

@@ -1,0 +1,131 @@
+{% extends 'configuration/index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_id 'configuration_threshold_list' %}
+
+{% block configuration %}
+
+    <h2>{{ 'Configuration.Titles.ThresholdList' | trans({}, 'configuration_labels') }}</h2>
+
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <a href="{{ path('configuration_threshold_add') }}"><button class="btn btn-sm btn-info"><i class="fa fa-plus"></i> {{ 'Configuration.Buttons.AddThreshold' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_thresholds_load') }}"><button class="btn btn-sm btn-info"><i class="fa fa-upload"></i> {{ 'Configuration.Buttons.LoadFromXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_thresholds_save') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToXML' | trans({}, 'configuration_labels') }}</button></a>
+            <a href="{{ path('configuration_thresholds_save_csv') }}"><button class="btn btn-sm btn-info"><i class="fa fa-download"></i> {{ 'Configuration.Buttons.SaveToCSV' | trans({}, 'configuration_labels') }}</button></a>
+        </div>
+    </div>
+        <table id="thresholds-datatable" class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ 'Configuration.Thresholds.Site'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.Disease'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.Value'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.Period'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.WeekNumber'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.MonthNumber'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.Year'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.MaxValue'|trans({}, 'configuration_labels') }}</th>
+                <th>{{ 'Configuration.Thresholds.Actions'|trans({}, 'configuration_labels') }}</th>
+            </tr>
+            </thead>
+        </table>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        jQuery("#thresholds-datatable").DataTable({
+                    columns: [
+                        {
+                            data: "dt_threshold_id",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_site",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_disease",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_value",
+                            orderable: true,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_period",
+                            orderable: false,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_week_number",
+                            orderable: false,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_month_number",
+                            orderable: false,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_year",
+                            orderable: false,
+                            className: "right"
+                        },
+                        {
+                            data: "dt_threshold_max_value",
+                            orderable: false,
+                            className: "right"
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            className: "center",
+                            render: function (data, type, row) {
+                                var route_threshold_edit = Routing.generate('configuration_threshold_edit', {thresholdId: data.dt_threshold_id});
+
+                                var actions = '<a href="'+ route_threshold_edit +'" ' +
+                                        'data-toggle="tooltip" ' +
+                                        'title="{{ 'Configuration.Buttons.EditThreshold'| trans({}, 'configuration_labels') }}">' +
+                                        '<button class="btn btn-info btn-xs"><i class="fa fa-edit"></i>' +
+                                        '</button></a>';
+
+                                var route_remove = Routing.generate('configuration_threshold_remove', {thresholdId: data.dt_threshold_id});
+
+                                return(actions + '<a href="'+ route_remove +'" ' +
+                                        'data-toggle="tooltip" ' +
+                                        'title="{{ 'Configuration.Buttons.RemoveThreshold'| trans({}, 'configuration_labels') }}">' +
+                                        '<button class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>' +
+                                        '</button></a>'
+                                );
+                            }
+                        }
+                    ],
+                    "bStateSave": true,
+                    "fnStateSave": function (oSettings, oData) {
+                        localStorage.setItem('offersDataTables', JSON.stringify(oData));
+                    },
+                    "fnStateLoad": function (oSettings) {
+                        return JSON.parse(localStorage.getItem('offersDataTables'));
+                    },
+                    "pageLength": 20,
+                    "ajax": Routing.generate('configuration_thresholds_datatable'),
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                    "language": {
+                        "url": "{{ path('configuration_get_translations') }}"
+                    }
+                }
+        );
+    </script>
+{% endblock %}

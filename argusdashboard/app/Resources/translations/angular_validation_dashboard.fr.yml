@@ -1,0 +1,114 @@
+filter:
+  week: Semaine
+  month: Mois
+  year: Année
+  period: Période
+  period_choice:
+    weekly: Hebdomadaire
+    monthly: Mensuel
+  type: Type
+  site: Site
+  select: Choix
+  button:
+    show_filters: Filtres
+    apply: Soumettre
+  calendar:
+    weekly:
+      last_week: Semaine Précédente
+      last_4_weeks: 4 Dernières Semaines
+      year_to_date: Année en cours
+    custom: Sélection Manuelle
+    button:
+      apply: Choisir
+      cancel: Annuler
+  from_week: De la
+  to_week: à la
+  from_month: Du
+  to_month: au
+  from_date: Du
+  to_date: au
+list:
+  sites: Sites
+  site: Site
+  week: Semaine
+  month: Mois
+  year: Année
+  status: Statut
+titles:
+  reports: RAPPORTS
+  analyses: ANALYSES
+  dashboard: DASHBOARD
+  validation: VALIDATION
+  archives: ARCHIVES
+  alerts: ALERTES
+status:
+  VALIDATED: ACCEPTE
+  PENDING: EN COURS
+  CONFLICTING: MIS A JOUR
+  REJECTED: REJETE
+  REJECTED FROM ABOVE: REJETE NIVEAU SUP
+details:
+  report: Rapport
+  versions: version(s)
+  button:
+    details: Details
+    validate: Valider
+    reject: Rejeter
+  confirm:
+    validation:
+      title: Validation
+      question: Etes vous sûr de vouloir valider ce rapport ?
+    rejection:
+      title: Rejet
+      question: Etes vous sûr de vouloir rejeter ce rapport ?
+  aggregation:
+    hf_proportion: Proportion de CS
+    hf_details: % de rapports de structures reçus et acceptés
+analyses:
+  other: Autres analyses
+  summury:
+    title: Résumé épidémiologique hebdomadaire
+    select_period: Selectionner la période
+  reports:
+    title: Complétude et promptitude
+    per_site: Par Site
+    per_time: Par Période
+    data:
+      reporting: Envoi des rapports
+      validation: Validation des rapports
+  cases:
+    title: Nombre de cas par maladie
+    search: recherche...
+  button:
+    download: Télécharger
+    visualize: Visualiser
+  details:
+    prefix:
+      data_reporting: Envoi des rapports
+      data_validation: Validation des rapports
+    title:
+      weekly_timeliness_completeness: Rapport de promptitude et complétude hebdomadaire
+      weekly_timeliness_completeness_trend: Evolution de la promptitude et de la complétude hebdomadaire
+      weekly_number_of_cases : Nombre hebdomadaire de cas par maladie
+      monthly_timeliness_completeness: Rapport de promptitude et de complétude mensuelle
+      monthly_timeliness_completeness_trend: Evolution de la promptitude et de la complétude mensuelle
+      monthly_number_of_cases: Nombre mensuel de cas par maladie
+  download:
+    weekly_report: Télécharger le résumé épidémiologique hebdomadaire
+    weekly_report_file: Résumé Epidémiologique.pdf
+global:
+  button:
+    yes: Oui
+    no: Non
+    close: Fermer
+  footer:
+    disclaimer: ""
+menu:
+  only_desktop:
+    title: Attention
+    body: Accessible sur la version desktop
+rscripts:
+  administrative:
+    title: Rapport Administratif
+  epidemiological:
+    title: Rapport Epidémiologique
