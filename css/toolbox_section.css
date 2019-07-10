@@ -1,0 +1,50 @@
+
+/*
+ Toolbox CSS
+*/
+
+.toolbox {
+	padding: 30px 0px 15px 0px;
+}
+
+.toolbox-a {
+	color: black;
+	text-decoration: none;
+}
+
+.toolbox-a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.toolbox-title {
+  font-family: 'Roboto Medium', arial;
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 0 10px;
+  position: relative;
+}
+
+.toolbox-description {
+	font-family: 'Roboto Medium', arial;
+	text-align: center;
+	font-size: 24px;
+}
+
+.toolbox-img {
+	background:transparent url('../img/toolbox/toolbox.png') no-repeat center;
+	width: 128px;
+	height: 114px;
+}
+
+.toolbox-element {
+	margin-top: 50px;
+	text-align: center;
+}
+
+.toolbox-p {
+	font-family: 'Roboto Regular', arial;
+	text-align: center;
+	font-size: 22px;
+}

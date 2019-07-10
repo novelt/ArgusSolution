@@ -1,0 +1,57 @@
+
+/*
+ Header CSS
+*/
+.header {
+	margin:0;
+	padding:0;
+}
+  
+.header-row {
+	width: 100%;
+	background:transparent url('../img/header/header.jpg') no-repeat 100% center;
+	margin:0;
+	padding:0;		
+}
+
+.header-left {
+	background-color: #561062;
+	padding-top: 20px;
+}
+
+.header-left-img {
+	background-image: url('../img/header/logo.png');
+	height: 150px;
+	width: 402px;
+	margin-bottom: 30px;
+	margin-left: 30px;
+}
+
+.header-left-content {
+	color: white;
+	font-family: 'Roboto Medium', arial;
+	font-size: 24px;
+	text-align: left;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-bottom : 25px;
+}
+
+.header-middle {
+	background-image: url('../img/header/phone.png');	
+	height: 411px;
+	width: 372px;
+	background-color: transparent;
+}
+
+.header-right {
+}
+
+.header-right-img {
+	background-image: url('../img/header/IDS.png');
+	height: 262px;
+	width: 198px;
+	float:right;
+	margin-top: 25px;
+	margin-right: 80px;
+}
