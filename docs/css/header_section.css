@@ -55,3 +55,14 @@
 	margin-top: 25px;
 	margin-right: 80px;
 }
+
+
+@media screen and (max-width: 600px) {
+	.header-left-img {
+		display:none;
+	}
+	
+	.header-left-content {
+		text-align: center;
+	}
+}
