@@ -1,0 +1,29 @@
+
+/*
+ Download CSS
+*/
+
+.download {
+	padding-bottom: 0px;
+	padding: 30px 0px;
+	margin-bottom: 30px;
+}
+
+.download-description {
+	font-family: 'Roboto Medium', arial;
+	text-align: center;
+	font-size: 22px;
+}
+
+.download-img {
+	background:transparent url('../img/download/download.png') no-repeat center;
+	width: 83px;
+	height: 83px;
+}
+
+.btn-argus {
+	font-family: 'Roboto Medium', arial;
+	background-color: #561062;
+	color: white;
+	font-size: 28px;
+}
