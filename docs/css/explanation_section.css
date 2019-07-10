@@ -19,3 +19,22 @@
 	font-size: 22px;
 }
 
+@media screen and (max-width: 600px) {
+	.explanation {
+		background-image: none;
+		background-color: #ededed;
+	}
+	
+	.explanation-content {
+		padding-top: 25px;
+	}
+	
+	.explanation-p {
+		text-align: center;
+	}
+	
+	.explanation-img {
+		display: none;
+	}
+}
+
