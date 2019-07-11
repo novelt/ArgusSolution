@@ -12,7 +12,10 @@ It manages all incoming SMS from the client to the server and outgoing SMS from 
 This Android application communicates with the server via Http request to a specific rest end point on the server side via WIFI only.
 + **The Argus Config**. It is a PHP web application processing all incoming and outgoing SMS. It also provides a diagnostic web page showing the status of all connected gateways.
 When a new message reaches the application, ARGUS Config processes it and stores the result in the MySQL database.
-The phone number of the incoming SMS is compared to the phone numbers attached to the database contacts. If the number is unknown, the SMS is not processed and an acknowledgement SMS is sent back to the sender (acknowledgement can be activated or disactivated within the application configuration).
+The phone number of the incoming SMS is compared to the phone numbers attached to the database contacts. 
+If the number is unknown, the SMS is not processed and an error SMS is sent back to the sender.
+If the number is registered, the SMS is processed and receipt confirmation SMS is sent back to the sender.
+Acknowledgement can be activated or deactivated within the application configuration.
 ARGUS Config manages epidemiological weekly and monthly reporting and alert dissemination. Content template of reports must be configured on the application before been sent to the ARGUS Android client application via SMS.
 + **The Argus Dashboard**. It is a PHP web application used to configure the system, manage the user access, display alerts and validate the reports.
 ARGUS Dashboard allows user to manage the configuration of sites, contacts, diseases and thresholds. Once the configuration is ready, the system allow user to synchronize this configuration to ARGUS Config application via Xml files.
