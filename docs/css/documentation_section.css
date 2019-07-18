@@ -14,8 +14,7 @@
 }
 
 .documentation-a:hover {
-	color: black;
-	text-decoration: none;
+	color: #561062;
 }
 
 .documentation-title {
@@ -36,6 +35,12 @@
 
 .documentation-img {
 	background:transparent url('../img/documentation/documentation.png') no-repeat center;
+	width: 128px;
+	height: 114px;
+}
+
+.documentation-img:hover {
+	background:transparent url('../img/documentation/documentation_hover.png') no-repeat center;
 	width: 128px;
 	height: 114px;
 }

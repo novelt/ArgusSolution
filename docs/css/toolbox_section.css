@@ -13,8 +13,7 @@
 }
 
 .toolbox-a:hover {
-	color: black;
-	text-decoration: none;
+	color: #561062;
 }
 
 .toolbox-title {
@@ -34,6 +33,12 @@
 
 .toolbox-img {
 	background:transparent url('../img/toolbox/toolbox.png') no-repeat center;
+	width: 128px;
+	height: 114px;
+}
+
+.toolbox-img:hover {
+	background:transparent url('../img/toolbox/toolbox_hover.png') no-repeat center;
 	width: 128px;
 	height: 114px;
 }
