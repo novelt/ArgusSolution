@@ -4,9 +4,7 @@
 */
 
 .download {
-	padding-bottom: 0px;
-	padding: 30px 0px;
-	margin-bottom: 30px;
+	padding: 40px 0px 60px;
 }
 
 .download-description {
@@ -25,5 +23,10 @@
 	font-family: 'Roboto Medium', arial;
 	background-color: #561062;
 	color: white;
-	font-size: 28px;
+	font-size: 24px;
+	padding: 10px 20px;
+}
+
+.btn-argus:hover {
+	background-color: #8300ba;
 }

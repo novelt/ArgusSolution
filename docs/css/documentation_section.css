@@ -5,45 +5,51 @@
 
 .documentation {
 	background-color: #ededed;
-	padding: 30px 0px 15px 0px;
+	padding: 40px 0px 45px 0px;
 }
 
 .documentation-a {
 	color: black;
-	text-decoration: none;
 }
 
 .documentation-a:hover {
 	color: #561062;
+	text-decoration: none;
+}
+
+.documentation-a:hover .documentation-img-hover {
+	display: inline;
+}
+.documentation-a:hover .documentation-img {
+	display: none;
 }
 
 .documentation-title {
-	font-family: 'Roboto Medium', arial;
-	font-size: 38px;
-	text-align: center;
-	margin-bottom: 25px;
-	padding: 0 10px;
-	position: relative;
+	 font-family: 'Roboto Medium', arial;
+	  font-size: 38px;
+	  text-align: center;
+	  margin-bottom: 5px;
+	  padding: 0 10px;
+	  position: relative;
+	  margin-top: -5px;
+}
+
+.documentation-title:hover {
+	color: #561062;
 }
 
 .documentation-description {
 	font-family: 'Roboto Medium', arial;
 	text-align: center;
 	font-size: 24px;
-	margin-bottom: 45px;
+	padding-top: 30px;
+	margin-bottom: 25px;
 }
 
-.documentation-img {
-	background:transparent url('../img/documentation/documentation.png') no-repeat center;
-	width: 128px;
-	height: 114px;
+.documentation-img-hover {
+	display: none;
 }
 
-.documentation-img:hover {
-	background:transparent url('../img/documentation/documentation_hover.png') no-repeat center;
-	width: 128px;
-	height: 114px;
-}
 
 .documentation-element {
 	margin-top: 50px;
@@ -53,9 +59,9 @@
 .documentation-p {
 	font-family: 'Roboto Regular', arial;
 	text-align: center;
-	font-size: 22px;
+	font-size: 19px;
 }
 
 .documentation-ok {
-	padding-right:20px;
+	padding-right:10px;
 }
