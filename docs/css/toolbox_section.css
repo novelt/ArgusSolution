@@ -9,11 +9,18 @@
 
 .toolbox-a {
 	color: black;
-	text-decoration: none;
 }
 
 .toolbox-a:hover {
 	color: #561062;
+	text-decoration: none;
+}
+
+.toolbox-a:hover .toolbox-img-hover {
+	display: inline;
+}
+.toolbox-a:hover .toolbox-img {
+	display: none;
 }
 
 .toolbox-title {
@@ -23,7 +30,10 @@
   margin-bottom: 5px;
   padding: 0 10px;
   position: relative;
-  margin-top: -20px;
+}
+
+.toolbox-title:hover {
+	color: #561062;
 }
 
 .toolbox-description {
@@ -34,16 +44,8 @@
 	margin-bottom: 25px;
 }
 
-.toolbox-img {
-	background:transparent url('../img/toolbox/toolbox.png') no-repeat center;
-	width: 128px;
-	height: 114px;
-}
-
-.toolbox-img:hover {
-	background:transparent url('../img/toolbox/toolbox_hover.png') no-repeat center;
-	width: 128px;
-	height: 114px;
+.toolbox-img-hover {
+	display: none;
 }
 
 .toolbox-element {
