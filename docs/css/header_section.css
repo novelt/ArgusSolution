@@ -9,22 +9,18 @@
   
 .header-row {
 	width: 100%;
-	background:transparent url('../img/header/header.jpg') no-repeat 100% center;
 	margin:0;
 	padding:0;		
 }
 
 .header-left {
 	background-color: #561062;
-	padding-top: 20px;
 }
 
 .header-left-img {
-	background-image: url('../img/header/logo.png');
-	height: 150px;
-	width: 402px;
-	margin-bottom: 30px;
-	margin-left: 30px;
+	height: auto;
+	width: 50%;
+	padding: 10px;
 }
 
 .header-left-content {
@@ -34,35 +30,34 @@
 	text-align: left;
 	margin-left: 25px;
 	margin-right: 25px;
-	margin-bottom : 25px;
-}
-
-.header-middle {
-	background-image: url('../img/header/phone.png');	
-	height: 411px;
-	width: 372px;
-	background-color: transparent;
+	padding-bottom: 25px;
 }
 
 .header-right {
+	background-color: #561062;
+	overflow: hidden;
+	margin:0;
+	padding:0;
 }
 
 .header-right-img {
-	background-image: url('../img/header/IDS.png');
-	height: 262px;
-	width: 198px;
-	float:right;
-	margin-top: 25px;
-	margin-right: 80px;
+	width: auto;
+	height: 100%;
+	min-width: 100%;
+	float: left;
 }
 
 
-@media screen and (max-width: 600px) {
-	.header-left-img {
-		display:none;
-	}
-	
+@media screen and (max-width: 600px) {	
 	.header-left-content {
 		text-align: center;
+	}
+	
+	.header-left-img {
+		display: none;
+	}
+	
+	.header-right-img {
+		/*float: right;*/
 	}
 }
