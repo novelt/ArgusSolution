@@ -652,11 +652,33 @@ class PhpReports {
 	 * It supports strict JSON as well as javascript syntax (i.e. unquoted/single quoted keys, single quoted values, trailing commmas)
 	 */
 	public static function json_decode($json, $assoc=false) {
-		//replace single quoted values
-		$json = preg_replace('/:\s*\'(([^\']|\\\\\')*)\'\s*([},])/e', "':'.json_encode(stripslashes('$1')).'$3'", $json);
+		//replace single quoted values - match PHP7 changes regarding the "/e" option
+		//$json = preg_replace('/:\s*\'(([^\']|\\\\\')*)\'\s*([},])/e', "':'.json_encode(stripslashes('$1')).'$3'", $json);
+		$json = preg_replace_callback(
+			'/:\s*\'(([^\']|\\\\\')*)\'\s*([},])/',
+			function($matches)
+			{
+				foreach ($matches AS $match)
+				{
+					return ':' . json_encode(stripslashes($match[1])) . $match[3];
+				}
+			},
+			$json
+		);
 		
-		//replace single quoted keys
-		$json = preg_replace('/\'(([^\']|\\\\\')*)\'\s*:/e', "json_encode(stripslashes('$1')).':'", $json);
+		//replace single quoted keys - match PHP7 changes regarding the "/e" option
+		//$json = preg_replace('/\'(([^\']|\\\\\')*)\'\s*:/e', "json_encode(stripslashes('$1')).':'", $json);
+		$json = preg_replace_callback(
+			'/\'(([^\']|\\\\\')*)\'\s*:/',
+			function($matches)
+			{
+				foreach ($matches AS $match)
+				{
+					return json_encode(stripslashes($match[1])) . ':';
+				}
+			},
+			$json
+		);
 		
 		//remove any line breaks in the code
 		$json = str_replace(array("\n","\r"),"",$json);
