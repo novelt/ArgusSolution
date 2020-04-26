@@ -24,7 +24,7 @@ class ReportValue {
 		$this->is_html = false;
 		$this->class = '';
 		
-		$this->type = $this->_getType();
+		$this->type = $this->_getType($value);
 	}
 	
 	public function addClass($class) {
@@ -44,7 +44,7 @@ class ReportValue {
 			$this->html_value = $value;
 		}
 		
-		$this->type = $this->_getType();
+		$this->type = $this->_getType($value);
 	}
 	
 	protected function _getType($value) {
