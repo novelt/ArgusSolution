@@ -119,8 +119,8 @@ class Report {
 		if(!$this->use_cache) {
 			return false;
 		}
-		
-		return FileSystemCache::retrieve($this->getCacheKey(),'results', $this->filemtime);
+
+		return FileSystemCache::retrieve($this->getCacheKey(), $this->filemtime);
 	}
 	
 	protected function storeInCache() {
@@ -131,8 +131,8 @@ class Report {
 			//default to caching things for 10 minutes
 			$ttl = 600;
 		}
-		
-		FileSystemCache::store($this->getCacheKey(), $this->options, 'results', $ttl);
+
+		FileSystemCache::store($this->getCacheKey(), $this->options, $ttl);
 	}
 	
 	protected function parseHeaders() {
@@ -171,7 +171,7 @@ class Report {
 			$has_name_value = preg_match('/^\s*[A-Z0-9_\-]+\s*\:/',$line);
 		
 			//if this is the first header and not in the format name:value, assume it is the report name
-			if(!$has_name_value && $name === null && !$this->options['Name']) {
+			if(!$has_name_value && $name === null && (!isset($this->options['Name']) || (isset($this->options['Name']) && !$this->options['Name']))) {
 				$this->parseHeader('Info',array('name'=>$line));
 			}
 			else {
@@ -205,7 +205,8 @@ class Report {
 		
 		//try to infer report type from file extension
 		if(!isset($this->options['Type'])) {
-			$file_type = array_pop(explode('.',$this->report));
+			$report_explode = explode('.', $this->report);
+			$file_type = array_pop($report_explode);
 			
 			if(!isset(PhpReports::$config['default_file_extension_mapping'][$file_type])) {
 				throw new Exception("Unknown report type - ".$this->report);
@@ -438,7 +439,7 @@ class Report {
 
 	protected function parseDynamicHeaders() {
 		foreach($this->options['DataSets'] as $i=>&$dataset) {
-			if(isset($dataset['headers'])) {
+			if(isset($dataset['headers']) && is_array($dataset['headers'])) {
 				foreach($dataset['headers'] as $j=>$header) {
 					if(isset($header['header']) && isset($header['value'])) {
 						$this->parseHeader($header['header'],$header['value'],$i);
@@ -570,7 +571,7 @@ class Report {
 			}
 			array_unshift($recently_run,$this->report);
 			if(count($recently_run) > 200) $recently_run = array_slice($recently_run,0,200);
-			FileSystemCache::store($recently_run_key,$recently_run);
+			FileSystemCache::store($recently_run_key, $recently_run); // TODO
 		}
 		
 		//call the beforeRender callback for each header

@@ -4,6 +4,7 @@ abstract class XlsReportBase extends ReportFormatBase {
 		$c = intval($c);
 		if ($c <= 0) return '';
 
+        $letter = '';
 		while($c != 0){
 			$p = ($c - 1) % 26;
 			$c = intval(($c - $p) / 26);

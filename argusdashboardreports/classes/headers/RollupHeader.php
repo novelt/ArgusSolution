@@ -82,14 +82,36 @@ class RollupHeader extends HeaderBase {
 				
 				$m[$column] = $params['sum'] = array_sum($real_values);
 				$params['count'] = count($real_values);
-				$params['mean'] = $params['average'] = round($params['sum'] / $params['count'],2);			
-				$params['median'] = ($params['count']%2)? ($real_values[$params['count']/2] + $real_values[$params['count']/2+1])/2 : $real_values[ceil($params['count']/2)];
-				$params['min'] = $real_values[0];
-				$params['max'] = $real_values[$params['count']-1];
+				$params['mean'] = $params['average'] = $params['count'] != 0 ? round($params['sum'] / $params['count'],2) : 0;
+				if (is_numeric($params['count'])) {  // $params['median'] = ($params['count'] % 2) ? ($real_values[$params['count'] / 2] + $real_values[$params['count'] / 2 + 1]) / 2 : $real_values[ceil($params['count'] / 2)];
+				   if (($params['count'] % 2)
+                       && array_key_exists((int)($params['count'] / 2), $real_values)
+                       && array_key_exists((int)($params['count'] / 2 + 1), $real_values)
+                       && is_numeric($real_values[$params['count'] / 2])
+                       && is_numeric($real_values[$params['count'] / 2 + 1])) {
+                       $params['median'] = ($real_values[$params['count'] / 2] + $real_values[$params['count'] / 2 + 1]) / 2;
+                   } else {
+                       $ceil = (int) ceil($params['count'] / 2);
+                       if (array_key_exists($ceil, $real_values)) {
+                           $params['median'] = $real_values[$ceil];
+                       }
+                   }
+                } else {
+                    $params['median'] = '';
+                }
+				$params['min'] = $params['count'] != 0 ? $real_values[0] : 0;
+				$params['max'] = $params['count'] != 0 ? $real_values[$params['count']-1] : 0;
 								
 				$devs = array();
-				foreach($real_values as $v) $devs[] = pow($v - $params['mean'], 2);
-				$params['stdev'] = sqrt(array_sum($devs) / (count($devs) - 1));
+				foreach($real_values as $v) {
+				    if (is_numeric($v)) {
+                        $devs[] = pow($v - $params['mean'], 2);
+                    }
+                }
+
+				if ((count($devs) - 1) != 0) { // avoid division by 0
+                    $params['stdev'] = sqrt(array_sum($devs) / (count($devs) - 1));
+                }
 			}
 		}
 

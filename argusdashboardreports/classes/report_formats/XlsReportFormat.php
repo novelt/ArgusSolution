@@ -12,6 +12,13 @@ class XlsReportFormat extends XlsReportBase {
 
 		if(!$report->options['DataSets']) return;
 
+		// Check titles to not exceed 30 cars here
+        foreach ($report->options['DataSets'] as $key => $dataSet) {
+            if (isset($dataSet['title']) && strlen($dataSet['title']) > 30) {
+                $report->options['DataSets'][$key]['title'] = substr($dataSet['title'], 0, 30);
+            }
+        }
+
 		$objPHPExcel = parent::getExcelRepresantation($report);
 
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
