@@ -2,17 +2,17 @@
 class ReportValue {
 	public $key;
 	public $i;
-	
+
 	public $original_value;
 	public $filtered_value;
 	public $html_value;
 	public $chart_value;
-	
+
 	public $is_html;
 	public $type;
-	
+
 	public $class;
-	
+
 	public function __construct($i, $key, $value) {
 		$this->i = $i;
 		$this->key = $key;
@@ -20,20 +20,20 @@ class ReportValue {
 		$this->filtered_value = is_string($value)? strip_tags($value) : $value;
 		$this->html_value = $value;
 		$this->chart_value = $value;
-		
+
 		$this->is_html = false;
 		$this->class = '';
-		
-		$this->type = $this->_getType();
+
+		$this->type = $this->_getType($value);
 	}
-	
+
 	public function addClass($class) {
 		$this->class = trim($this->class . ' ' .$class);
 	}
-	
-	public function setValue($value, $html = false) {		
+
+	public function setValue($value, $html = false) {
 		if(is_string($value)) $value = trim($value);
-		
+
 		if($html) {
 			$this->is_html = true;
 			$this->html_value = $value;
@@ -43,10 +43,10 @@ class ReportValue {
 			$this->filtered_value = is_string($value)? htmlentities($value) : $value;
 			$this->html_value = $value;
 		}
-		
-		$this->type = $this->_getType();
+
+		$this->type = $this->_getType($value);
 	}
-	
+
 	protected function _getType($value) {
 		if(is_null($value)) return null;
 		elseif(trim($value) === '') return null;
@@ -56,7 +56,7 @@ class ReportValue {
 	}
 	protected function _getDisplayValue($value, $html=false, $date=false) {
 		$type = $this->_getType($value);
-		
+
 		if($type === null) {
 			if($html && $this->is_html) return '&nbsp;';
 			else return null;
@@ -75,7 +75,7 @@ class ReportValue {
 				return utf8_encode($value);
 		}
 	}
-	
+
 	public function getValue($html = false, $date = false) {
 		if($html) {
 			$return = $this->_getDisplayValue($this->html_value, true, $date);
@@ -96,7 +96,7 @@ class ReportValue {
 		$this->type = $this->_getType($this->original_value);
 		return $this->type == 'number';
 	}
-    
+
     public function getString() {
         return $this->html_value;
     }

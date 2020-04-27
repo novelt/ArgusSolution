@@ -21,20 +21,20 @@ class InfoHeader extends HeaderBase {
 			'type'=>'string'
 		)
 	);
-	
+
 	public static function init($params, &$report) {
 		foreach($params as $key=>$value) {
 			$report->options[ucfirst($key)] = $value;
 		}
 	}
-	
+
 	// Accepts shortcut format:
 	// name=My Report,description=This is My Report
 	public static function parseShortcut($value) {
 		$parts = explode(',',$value);
-		
+
 		$params = array();
-		
+
 		foreach($parts as $v) {
 			if(strpos($v,'=')!==false) {
 				list($k,$v) = explode('=',$v,2);
@@ -44,12 +44,12 @@ class InfoHeader extends HeaderBase {
 				$k = $v;
 				$v=true;
 			}
-			
+
 			$k = trim($k);
-			
+
 			$params[$k] = $v;
 		}
-		
+
 		return $params;
 	}
 }
