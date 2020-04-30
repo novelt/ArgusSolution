@@ -32,7 +32,7 @@
     "bootstrap": "4.0.0",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "json2typescript": "^1.0.5",
     "lodash": "^4.17.4",
     "ng2-daterangepicker": "^2.0.12",
