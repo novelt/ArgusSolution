@@ -26,7 +26,7 @@
 		}
 		return($Test);
 	}
-	
+
 	// Check if files content are identical
 	function test_files_content($Path1, $Path2) {
 		$Test=array('Test'=>_("Files content"),'Information'=>_("File").'='.$Path1.', '._("File").'='.$Path2,'OK'=>FALSE);
@@ -35,7 +35,7 @@
 		}
 		return($Test);
 	}
-	
+
 	// Check application path
 	/*function test_application_path() {
 		global $config;
@@ -68,7 +68,7 @@
 		}
 		return($Test);
 	}
-	
+
 	// Check MySQL schema
 	function test_mysql_schema() {
 		global $config;
@@ -114,14 +114,21 @@
 		$return['tests'][]=test_file_exists($config["php_conf_path"]);
 		$return['tests'][]=test_file_exists($config["mysql_conf_path"]);
 		$return['tests'][]=test_file_exists($config["apache_conf_path"]);
-		$return['tests'][]=test_file_exists($config["mysql_exe_path"]);
-		$return['tests'][]=test_file_exists($config["mysql_dump_exe_path"]);
-		$return['tests'][]=test_file_exists($config["xampp_version_path"]);
+		if ($config['php_os'] === 'win') // paths only exist on Windows
+		{
+			$return['tests'][]=test_file_exists($config["mysql_exe_path"]);
+			$return['tests'][]=test_file_exists($config["mysql_dump_exe_path"]);
+			$return['tests'][]=test_file_exists($config["xampp_version_path"]);
+		}
+
 		// Tests - Files content
 		$return['tests'][]=test_files_content($config["php_conf_path"],            $config["path_ressources"].'config_php.txt');
 		$return['tests'][]=test_files_content($config["mysql_conf_path"],       $config["path_ressources"].'config_mysql.txt');
 		$return['tests'][]=test_files_content($config["apache_conf_path"], $config["path_ressources"].'config_apache.txt');
-		$return['tests'][]=test_files_content($config["xampp_version_path"],  $config["path_ressources"].'config_xampp.txt');
+		if ($config['php_os'] === 'win') // paths only exist on Windows
+		{
+			$return['tests'][]=test_files_content($config["xampp_version_path"],  $config["path_ressources"].'config_xampp.txt');
+		}
 
 		// Application path/url
 		//$return['tests'][]=test_application_path();

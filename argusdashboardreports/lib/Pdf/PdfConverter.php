@@ -75,7 +75,7 @@ class PdfConverter
             exec($cmd, $output, $rc);
 
             if ($rc) {
-                print 'Error : PDF conversion error. Error code: $rc';
+                print 'Error : PDF conversion error. Error code: ' . $rc;
                 die();
             }
 

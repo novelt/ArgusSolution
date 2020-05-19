@@ -26,7 +26,7 @@
 		 *  - Step #3 - Restore an empty database
 		 *  - Step #4 - Update configuration files
 		 * --> Do NOT invert these two steps.
-		 * 
+		 *
 		 * This is related to the time zones in MySQL. We have to fill the time_zone* tables in the database 'mysql'
 		 * before setting the parameter 'default-time-zone' in the my.ini file. Otherwise, MySQL will fail to start.
 		 * If in the MySQL logs (mysql_error.log) you see: "Fatal error: Illegal or unknown default time zone 'xxx'":
@@ -47,22 +47,25 @@
         // Restore All files in the Install folders and subfolders
         $Messages=array_merge($Messages,run_install_scripts("Schema"));
 
-		// Copy configuration files
-		$Messages[]=_("Step #4 - Update configuration files");
-		if (copy($config["path_ressources"]."config_apache.txt", $config["apache_conf_path"])) {
-			$Messages[]=_("Apache configuration copied");
-		} else {
-			$Messages[]=_("ERROR while copying Apache configuration!");
-		}
-		if (copy($config["path_ressources"]."config_php.txt", $config["php_conf_path"])) {
-			$Messages[]=_("PHP configuration copied");
-		} else {
-			$Messages[]=_("ERROR while copying PHP configuration!");
-		}
-		if (copy($config["path_ressources"]."config_mysql.txt", $config["mysql_conf_path"])) {
-			$Messages[]=_("MySQL configuration copied");
-		} else {
-			$Messages[]=_("ERROR while copying MySQL configuration!");
+		if ($config['php_os'] === 'win')
+		{
+			// Copy configuration files
+			$Messages[]=_("Step #4 - Update configuration files");
+			if (copy($config["path_ressources"]."config_apache.txt", $config["apache_conf_path"])) {
+				$Messages[]=_("Apache configuration copied");
+			} else {
+				$Messages[]=_("ERROR while copying Apache configuration!");
+			}
+			if (copy($config["path_ressources"]."config_php.txt", $config["php_conf_path"])) {
+				$Messages[]=_("PHP configuration copied");
+			} else {
+				$Messages[]=_("ERROR while copying PHP configuration!");
+			}
+			if (copy($config["path_ressources"]."config_mysql.txt", $config["mysql_conf_path"])) {
+				$Messages[]=_("MySQL configuration copied");
+			} else {
+				$Messages[]=_("ERROR while copying MySQL configuration!");
+			}
 		}
 
 		// End

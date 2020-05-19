@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   version: '(dev)',
-  hostname: 'localhost',
+  hostname: 'subu20.ad.novel-t.ch',
   //defaultLanguage: 'fr',
   supportedLanguages: [
     'gb',

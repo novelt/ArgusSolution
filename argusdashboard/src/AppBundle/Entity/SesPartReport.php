@@ -15,7 +15,7 @@ use Gedmo\Mapping\Annotation as GEDMO; // gedmo annotations
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SesPartReportRepository")
- * @ORM\Table(name="sesdashboard_PartReport", options={"collate"="utf8_general_ci"})
+ * @ORM\Table(name="sesdashboard_partreport", options={"collate"="utf8_general_ci"})
  * @ORM\HasLifecycleCallbacks()
  * @GEDMO\Loggable
  */

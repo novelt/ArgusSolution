@@ -56,7 +56,7 @@ class ConfigController extends Controller
         $directorySqlTemplates = $this->get('kernel')->getRootDir()  . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'reports' ;
         $pathReports = $this->container->getParameter('path_reports') . DIRECTORY_SEPARATOR ;
 
-        $files = glob($directorySqlTemplates."\\*.twig", GLOB_BRACE);
+        $files = glob($directorySqlTemplates."/*.twig", GLOB_BRACE);
         {
             foreach($files as $file) {
                 $fileName = basename($file);
@@ -74,7 +74,7 @@ class ConfigController extends Controller
         $directoryPhpTemplates = $directorySqlTemplates . DIRECTORY_SEPARATOR . 'Dashboard';
         $pathReportsPhp = $this->container->getParameter('path_reports_dashboard') . DIRECTORY_SEPARATOR ;
 
-        $files = glob($directoryPhpTemplates."\\*.{php.twig}", GLOB_BRACE);
+        $files = glob($directoryPhpTemplates."/*.{php.twig}", GLOB_BRACE);
         {
             foreach($files as $file){
                 $fileName = basename($file);

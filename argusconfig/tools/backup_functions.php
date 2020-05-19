@@ -20,7 +20,7 @@
 			// mkdir can't created mutiple sub-directory at once, so, the creation must be manual
 			$Messages[]=sprintf(_("ERROR: Backup path %s wasn't found, backup cancelled!"),$BackupPath);
 		}
-		
+
 		// Continue if backup path is OK
 		if ($PathOK==TRUE) {
 			// Backup file info
@@ -154,7 +154,7 @@
 		$MySQLPath=$config["mysql_exe_path"];
 
 		// Drop Database if exists
-		$cmd='"'.$MySQLPath.'" --user='.$config["mysql_user"].' --password='.$config["mysql_password"].' -e "DROP DATABASE IF EXISTS `'.$config["mysql_db"].'`"' ;
+		$cmd='"'.$MySQLPath.'" --user='.$config["mysql_user"].' --password='.$config["mysql_password"].' -e "DROP DATABASE IF EXISTS '.$config["mysql_db"].'"' ;
 		$Messages[]=sprintf(_("Commandline is %s"),$cmd);
 		unset($output);
 		$exitcode=-1;
@@ -173,7 +173,7 @@
 		}
 
 		// Create DataBase if not exists
-		$cmd='"'.$MySQLPath.'" --user='.$config["mysql_user"].' --password='.$config["mysql_password"].' -e "CREATE DATABASE IF NOT EXISTS `'.$config["mysql_db"].'` CHARACTER SET utf8 COLLATE utf8_general_ci"' ;
+		$cmd='"'.$MySQLPath.'" --user='.$config["mysql_user"].' --password='.$config["mysql_password"].' -e "CREATE DATABASE IF NOT EXISTS '.$config["mysql_db"].' CHARACTER SET utf8 COLLATE utf8_general_ci"' ;
 		$Messages[]=sprintf(_("Commandline is %s"),$cmd);
 		unset($output);
 		$exitcode=-1;

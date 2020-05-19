@@ -186,7 +186,7 @@ class ImportService
     {
         $result = array();
 
-        $files = glob($directorySqlTemplates."\\*.twig", GLOB_BRACE);
+        $files = glob($directorySqlTemplates."/*.twig", GLOB_BRACE);
         {
             foreach($files as $file) {
                 $fileName = basename($file);
@@ -199,7 +199,7 @@ class ImportService
             }
         }
 
-        $files = glob($directoryDashboardTemplates."\\*.{php.twig}", GLOB_BRACE);
+        $files = glob($directoryDashboardTemplates."/*.{php.twig}", GLOB_BRACE);
         {
             foreach($files as $file) {
                 $fileName = basename($file);
@@ -222,7 +222,7 @@ class ImportService
         try {
             $this->logger->info("Start execution: Checking new Xml reports");
 
-            $fileNames = glob($this->pathXmlReports . "\\*.{xml}", GLOB_BRACE);
+            $fileNames = glob($this->pathXmlReports . "/*.{xml}", GLOB_BRACE);
 
             if (count($fileNames) == 0) {
                 $this->logger->info("No Xml reports files founded");
@@ -485,12 +485,12 @@ class ImportService
                         if ($xmlReport->getReportId() == null && $partReport->getAndroidReportId() != null) {
                             continue ;
                         }
-                      
+
                         $existPendingPartReport = $partReport;
                         break;
                     }
-                } 
-              
+                }
+
                 if ($autoValidation && count($partReports) > 0) {// if autovalidation, we take the first existing part report and replace values
                     $partReport = $partReports[count($partReports) - 1];
                 }  else if ( $xmlReport->getReportId() != null || // If Report Id is set, create a new PartReport
@@ -1147,4 +1147,3 @@ class ImportService
         $this->sizeOfFileBatchs = $sizeOfFileBatchs;
     }
 }
-

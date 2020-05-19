@@ -4,12 +4,13 @@
 	require_once ("./tools/web_template.php");
 	require_once ("./tools/string_functions.php");
 	$bdd=db_Open(__FUNCTION__,__LINE__,__FILE__);
-	
+
 	// Header
 	WebHeader(_("List of received reports"));
-	
+
 	// Getting reports
-	$SQL="SELECT *, group_concat(v.key SEPARATOR '|') AS dataKeys, group_concat(v.value SEPARATOR '|') AS dataValues FROM ses_data d INNER JOIN ses_datavalues v ON d.id = v.FK_dataId GROUP BY d.id ORDER BY reception DESC LIMIT 1000;";
+	$tableFields = 'd.id, d.path, d.reception, d.exported, d.contactName, d.contactPhoneNumber, d.disease, d.period, d.periodStart, d.reportId';
+	$SQL="SELECT " . $tableFields . ", group_concat(v.key SEPARATOR '|') AS dataKeys, group_concat(v.value SEPARATOR '|') AS dataValues FROM ses_data d INNER JOIN ses_datavalues v ON d.id = v.FK_dataId GROUP BY d.id ORDER BY reception DESC LIMIT 1000;";
 	$reports=db_GetArray($bdd,$SQL,__FUNCTION__,__LINE__,__FILE__);
 	if (count($reports)>0) {
 		echo('<p>'.sprintf(_("%d reports and alerts found and sorted as newer first: (display limited to 1000 records)"),count($reports)).'</p>');
@@ -51,5 +52,5 @@
 	// End
 	WebFooter();
 	db_Close($bdd);
-	
+
 ?>
