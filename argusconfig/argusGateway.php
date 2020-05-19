@@ -1,6 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+
 /*
  * This example script implements the ArgusSMS API.
  *
@@ -20,14 +19,14 @@ $request = ArgusSMS::get_request();
 
 header("Content-Type: {$request->get_response_type()}");
 
-/*if (!$request->is_validated($config["ArgusSMS_secret"]))
+if (!$request->is_validated($config["ArgusSMS_secret"]))
 {
     header("HTTP/1.1 403 Forbidden");
     LogMessage('messages', 'ArgusSMS : Invalid password');
 
     echo $request->render_error_response("Invalid password");
     return;
-}*/
+}
 
 if (!isset($request->phone_number) || $request->phone_number == null || $request->phone_number == '' )
 {
