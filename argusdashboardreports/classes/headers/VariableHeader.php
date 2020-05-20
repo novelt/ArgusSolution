@@ -100,7 +100,8 @@ class VariableHeader extends HeaderBase {
 		//if the 3rd item is "LIST", use multi-select
 		if(preg_match('/^\s*LIST\s*\b/',$extra)) {
 			$params['multiple'] = true;
-			$extra = array_pop(explode(',',$extra,2));
+            $extra_explode = explode(',', $extra, 2);
+            $extra = array_pop($extra_explode);
 		}
 		
 		//table.column, where clause, ALL
@@ -190,7 +191,14 @@ class VariableHeader extends HeaderBase {
 			}
 
 			//if the type is daterange, parse start and end with strtotime
-			if($params['type'] === 'daterange' && $report->macros[$params['name']][0] && $report->macros[$params['name']][1]) {
+            // if($params['type'] === 'daterange' && $report->macros[$params['name']][0] && $report->macros[$params['name']][1])
+			if(isset($params['type']) &&
+                isset($params['name']) &&
+                isset($report->macros[$params['name']]) &&
+                isset($report->macros[$params['name']][0]) &&
+                isset($report->macros[$params['name']][1]) &&
+			    $params['type'] === 'daterange' &&
+                $report->macros[$params['name']][0] && $report->macros[$params['name']][1]) {
 				$start = date_create($report->macros[$params['name']][0]);
 				if(!$start) throw new Exception($params['display']." must have a valid start date.");
 				date_time_set($start,0,0,0);

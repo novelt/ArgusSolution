@@ -11,9 +11,10 @@ return array(
     'ArgusDashboardHost' => 'http://localhost/sesDashboard/web/',
     'ArgusDashboardReportServices' => '/services/reportRest/',
 
-	// PDF Concerter
+	// PDF Converter
     // wkhtmltopdf path
-    'pdf_converter_path' => 'C:\xampp\htdocs\sesDashboardReports\bin\wkhtmltopdf.exe',
+    'pdf_converter_path_win' => 'C:\xampp\htdocs\sesDashboardReports\bin\wkhtmltopdf.exe',
+    'pdf_converter_path_linux' => 'xvfb-run -- /usr/bin/wkhtmltopdf',
     'report_base_pdf' => 'http://localhost/sesDashboardReports/report/pdfconv/?',
     'dashboard_base_pdf' => 'http://localhost/sesDashboardReports/dashboardPdf/',
 

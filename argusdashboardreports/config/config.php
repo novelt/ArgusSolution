@@ -8,15 +8,16 @@ return array(
 	'dashboardDir' => 'dashboards',
 
 	//Url used to acces Dashboard WebServices
-	'ArgusDashboardHost' => 'http://localhost/sesDashboard/web/',
+	'ArgusDashboardHost' => 'http://localhost/argusdashboard/web/',
 	'ArgusDashboardReportServices' => '/services/reportRest/',
 
-	// PDF Concerter
+	// PDF Converter
 	// wkhtmltopdf path
-	'pdf_converter_path' => 'C:\xampp\htdocs\sesDashboardReports\bin\wkhtmltopdf.exe',
-	'report_base_pdf' => 'http://localhost/sesDashboardReports/report/pdfconv/?',
-	'dashboard_base_pdf' => 'http://localhost/sesDashboardReports/dashboardPdf/',
-	
+	'pdf_converter_path_win' => 'C:\xampp\htdocs\sesDashboardReports\bin\wkhtmltopdf.exe',
+	'pdf_converter_path_linux' => 'xvfb-run -- /usr/bin/wkhtmltopdf',
+	'report_base_pdf' => 'http://localhost/argusdashboardreports/report/pdfconv/?',
+	'dashboard_base_pdf' => 'http://localhost/argusdashboardreports/dashboardPdf/',
+
 	//the directory where things will be cached
 	//this is relative to the project root by default, but can be set to an absolute path too
 	//the cache has some relatively long lived data so don't use /tmp if you can avoid it
@@ -33,10 +34,10 @@ return array(
 		'ado'=>'Ado',
 		'pivot'=>'AdoPivot',
 	),
-	
+
 	//this enables listing different types of download formats on the report page
 	//to change that one can add or remove any format from the list below
-	//in order to create a divider a list entry have to be added with any key name and 
+	//in order to create a divider a list entry have to be added with any key name and
 	//a value of 'divider'
 	'report_formats' => array(
 		'csv'=>'CSV',
@@ -67,23 +68,23 @@ return array(
 	//    'default',
 	//    'amelia', 'cerulean', 'cosmo', 'cyborg', 'flatly', 'journal', 'readable', 'simplex', 'slate', 'spacelab', 'united'
 	//),
-	
+
 	//email settings
 	'mail_settings' => array(
 		//set 'enabled' to true to enable the 'email this report' functionality
 		'enabled'=>false,
-		
+
 		//'from'=>'reports@yourdomain.com',
-		
+
 		//php's mail function
 		//'method'=>'mail'
-		
+
 		//sendmail
 		/*
 		'method'=>'sendmail',
 		'command'=>'/usr/sbin/sendmail -bs' //optional
 		*/
-		
+
 		//smtp
 		/*
 		'method'=>'smtp',
@@ -94,7 +95,7 @@ return array(
 		'encryption'=>'ssl' 				//optional (either 'ssl' or 'tls')
 		*/
 	),
-	
+
 	// Google Analytics API Integration
 	/*
 	'ga_api'=>array(
