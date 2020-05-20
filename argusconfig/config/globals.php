@@ -17,7 +17,7 @@
 	$config["mysql_port"]          = "3306";        // port number
     $config["mysql_db"]            = "argus"; 		// argus
 	$config["mysql_user"]          = "root";
-	$config["mysql_password"]      = "mathieu";
+	$config["mysql_password"]      = "";
 
 	// Applications paths
 	$config["path_base"]           		= getcwd().DIRECTORY_SEPARATOR;
