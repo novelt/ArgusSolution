@@ -508,6 +508,13 @@ configuration_threshold_remove:
     options:
         expose: true
 
+# -----------------------------------------------
+# Configuration of reports / alerts generation
+configuration_generate:
+    path: /configuration/generate
+    defaults:
+        _controller: AppBundle:Configuration\Generate:list
+
 # Language
 configuration_language:
     path: /language/{locale}
@@ -544,4 +551,3 @@ gesdinet_jwt_refresh_token:
     path: /api/token/refresh
     defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }
     options: { i18n: false } # No _locale for these routes
-

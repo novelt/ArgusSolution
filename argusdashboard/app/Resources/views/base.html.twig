@@ -142,6 +142,11 @@
                                         </li>
                                         <li role="separator" class="divider"></li>
                                         <li>
+                                            <a href="{{ path('configuration_generate') }}">
+                                                <i class="fa fa-refresh"></i> {{ 'Configuration.MenuItems.GenerateReportsAlerts' | trans({}, 'configuration_labels') }}
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="#" onclick="argusContext.exportReportData();">
                                                 <i class="fa fa-download"></i> {{ 'Download Report Data' | trans }}
                                             </a>

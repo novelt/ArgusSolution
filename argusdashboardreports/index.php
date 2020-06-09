@@ -25,7 +25,7 @@ if(isset(PhpReports::$config['ga_api'])) {
   if(isset($_GET['code'])) {
     $ga_client->authenticate($_GET['code']);
     $_SESSION['ga_token'] = $ga_client->getAccessToken();
-    
+
     if(isset($_SESSION['ga_authenticate_redirect'])) {
       $url = $_SESSION['ga_authenticate_redirect'];
       unset($_SESSION['ga_authenticate_redirect']);
@@ -33,14 +33,14 @@ if(isset(PhpReports::$config['ga_api'])) {
       exit;
     }
   }
-  if(isset($_SESSION['ga_token'])) {    
+  if(isset($_SESSION['ga_token'])) {
     $ga_client->setAccessToken($_SESSION['ga_token']);
   }
-  elseif(isset(PhpReports::$config['ga_api']['accessToken'])) {    
+  elseif(isset(PhpReports::$config['ga_api']['accessToken'])) {
     $ga_client->setAccessToken(PhpReports::$config['ga_api']['accessToken']);
     $_SESSION['ga_token'] = $ga_client->getAccessToken();
   }
-  
+
   Flight::route('/ga_authenticate',function() use($ga_client) {
     $authUrl = $ga_client->createAuthUrl();
     if(isset($_GET['redirect'])) {
@@ -104,7 +104,7 @@ Flight::route('/set-environment',function() {
 
 //email report
 Flight::route('/email',function() {
-	PhpReports::emailReport();	
+	PhpReports::emailReport();
 });
 
 Flight::start();

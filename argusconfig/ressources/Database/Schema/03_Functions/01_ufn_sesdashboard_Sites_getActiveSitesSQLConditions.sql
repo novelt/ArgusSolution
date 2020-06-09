@@ -22,6 +22,8 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `ufn_sesdashboard_Sites_getActiveSite
 	`dimDateToId` INT,
 	`tableAlias` TEXT
 ) RETURNS longtext CHARSET utf8
+READS SQL DATA
+DETERMINISTIC
 BEGIN
 
 /* The final result that will be returned by the function */
@@ -56,7 +58,7 @@ if (dimDateToId is null) then
 		else
 			SET firstPeriodDimDateId = (SELECT id FROM sesdashboard_indicatordimdate WHERE fullDate = CURDATE());
 		end if;
-		
+
 		SET conditions = CONCAT('(',tableAlias,'.',dimDateToIdColumnName,' IS NULL OR ',tableAlias,'.',dimDateToIdColumnName,' >= ', firstPeriodDimDateId,' )');
 	 else
 		SET conditions = CONCAT('(',tableAlias,'.',dimDateToIdColumnName,' IS NULL OR ',tableAlias,'.',dimDateToIdColumnName,' >= ', dimDateFromId,' )');
@@ -71,6 +73,6 @@ else
 end if;
 
 return conditions;
-	
+
 END//
 DELIMITER ;

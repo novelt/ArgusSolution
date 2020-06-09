@@ -72,7 +72,7 @@ class ConfigurationAbstractType extends AbstractType
     protected function _getFieldOptions($label, $initial = array())
     {
         $initial['label'] = $label;
-        $initial['translation_domain'] = 'configuration_labels';
+        $initial['translation_domain'] = self::TRANSLATION_DOMAIN;
         return $initial;
     }
 

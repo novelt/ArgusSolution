@@ -79,6 +79,18 @@ class SesDashboardDiseaseRepository extends BaseRepository
     }
 
     /**
+     * @return SesDashboardDisease
+     */
+    public function findAlertDisease()
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->where('d.disease = :disease')
+            ->setParameter('disease', Constant::DISEASE_ALERT);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    /**
      * @param $diseaseCode
      * @return QueryBuilder
      */

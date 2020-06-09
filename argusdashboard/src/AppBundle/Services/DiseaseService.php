@@ -117,6 +117,14 @@ class DiseaseService extends BaseRepositoryService
     }
 
     /**
+     * @return SesDashboardDisease
+     */
+    public function getAlertDisease()
+    {
+        return $this->diseaseRepository->findAlertDisease();
+    }
+
+    /**
      * Get Array of Disease rows for CSV Export
      *
      * @return array
