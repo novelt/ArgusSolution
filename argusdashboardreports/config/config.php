@@ -17,7 +17,7 @@ return array(
 	'pdf_converter_path_linux' => 'xvfb-run -- /usr/bin/wkhtmltopdf',
 	'report_base_pdf' => 'http://localhost/argusdashboardreports/report/pdfconv/?',
 	'dashboard_base_pdf' => 'http://localhost/argusdashboardreports/dashboardPdf/',
-
+	
 	//the directory where things will be cached
 	//this is relative to the project root by default, but can be set to an absolute path too
 	//the cache has some relatively long lived data so don't use /tmp if you can avoid it

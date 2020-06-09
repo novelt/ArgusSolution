@@ -31,7 +31,7 @@ class RollupHeader
     public function addRollupPercentColumn($column, $dividend, $divisor, $decimalNumber = 2)
     {
         $this->result['value']['columns'][$column] =
-            sprintf("{{ (row['%1\$s']['sum'] * 100 / row['%2\$s']['sum']) | number_format (%3\$s, '.', '') }}",
+            sprintf("{{ (row['%2\$s']['sum'] != 0 ? (row['%1\$s']['sum'] * 100 / row['%2\$s']['sum']) : 0) | number_format (%3\$s, '.', '') }}",
                 $dividend,
                 $divisor,
                 $decimalNumber

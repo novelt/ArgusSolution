@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SesAlertRepository")
- * @ORM\Table(name="sesdashboard_Alert", options={"collate"="utf8_general_ci"})
+ * @ORM\Table(name="sesdashboard_alert", options={"collate"="utf8_general_ci"})
  * @ORM\HasLifecycleCallbacks()
  */
 class SesAlert

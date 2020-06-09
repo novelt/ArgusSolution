@@ -1,7 +1,7 @@
 <?php
 
 	// We need the default settings definition
-	require_once(__DIR__."\..\config\defaults.php");
+	require_once(__DIR__."/../config/defaults.php");
 
 	// Get an integer configuration value
 	function ConfigGetInteger ($bdd, $Key) {
@@ -63,7 +63,7 @@
 		}
 		return($Value);
 	}
-	
+
 	// Set a string value to a configuration key
 	function ConfigSetString ($bdd, $Key, $Value) {
 		if (db_RowsCount ($bdd,__FUNCTION__,__LINE__,__FILE__,"ses_nvc","collection='CONFIG' and `key`='".$bdd->escape($Key)."'")>0) {
@@ -91,7 +91,7 @@
 		}
 		return($Value);
 	}
-	
+
 	// Get an NVC string value, return a specified value if not found
 	function NvcGetString ($bdd, $Collection, $Key, $NotFound) {
 		global $config_defaults;
@@ -106,7 +106,7 @@
 		}
 		return($Value);
 	}
-	
+
 	// Update or insert an NVC value
 	function NvcSet ($bdd, $Collection, $Key, $Integer, $String) {
 		if (db_RowsCount ($bdd,__FUNCTION__,__LINE__,__FILE__,"ses_nvc","collection='".$bdd->escape($Collection)."' and `key`='".$bdd->escape($Key)."'")>0) {

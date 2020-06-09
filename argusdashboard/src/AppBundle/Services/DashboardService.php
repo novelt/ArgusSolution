@@ -36,7 +36,7 @@ class DashboardService
 
     /** @var  IndicatorDimDateService */
     private $dimDateService;
-    
+
     /** @var GatewayQueueRepository */
     private $gatewayRepository;
 
@@ -1053,7 +1053,7 @@ class DashboardService
         $nbOfHF = $this->getNumberOfExpectedWeeklyReportPeriod($sitesLeaf, date("Y-m-d", $firstDayOfWeekOneTS), date("Y-m-d", $lastDayOfWeekTS));
 
         $nbOfParticipatingReports = $this->getNumberOfParticipatingReportPeriod($sitesLeaf, date("Y-m-d", $firstDayOfWeekOneTS), date("Y-m-d", $lastDayOfWeekTS), Constant::PERIOD_WEEKLY);
-        $participatingHF = round($nbOfParticipatingReports / ($nbOfHF) * 100) . ' % ('.$nbOfParticipatingReports. '/'. ($nbOfHF).')'  ;
+        $participatingHF = ($nbOfHF != 0 ? (round($nbOfParticipatingReports / ($nbOfHF) * 100)) : 0) . ' % ('.$nbOfParticipatingReports. '/'. ($nbOfHF).')';
 
         $reports = array() ;
 

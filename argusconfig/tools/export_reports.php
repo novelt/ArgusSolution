@@ -170,10 +170,11 @@
      */
     function getDataValues($bdd, $period)
     {
-        $SQL="SELECT * ,group_concat(v.key SEPARATOR '|') AS dataKeys, group_concat(v.value SEPARATOR '|') AS dataValues 
-              FROM ses_data d INNER JOIN ses_datavalues v ON d.id = v.FK_dataId 
-              WHERE v.exported IS NULL AND d.period IN ('" . implode( "', '", $period ) . "') 
-              GROUP BY d.id 
+		$tableFields = 'd.id, d.path, d.reception, d.exported, d.contactName, d.contactPhoneNumber, d.disease, d.period, d.periodStart, d.reportId, v.FK_dataId';
+        $SQL="SELECT " . $tableFields . ", group_concat(v.key SEPARATOR '|') AS dataKeys, group_concat(v.value SEPARATOR '|') AS dataValues
+              FROM ses_data d INNER JOIN ses_datavalues v ON d.id = v.FK_dataId
+              WHERE v.exported IS NULL AND d.period IN ('" . implode( "', '", $period ) . "')
+              GROUP BY d.id
               ORDER BY reception ASC;";
         return db_GetArray($bdd,$SQL,__FUNCTION__,__LINE__,__FILE__);
     }

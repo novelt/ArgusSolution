@@ -79,7 +79,7 @@
 			$MainKeyword=CreateKeyword($Message);
 			// No more message content
 			$Message="";
-		}		
+		}
 		// Getting the key=value pairs
 		$ParsingError=FALSE;
 		$Collection=array();
@@ -107,7 +107,7 @@
 		$Results['Message']=$OriginalMessage;
 		return($Results);
 	}
-	
+
 	// Check if global keyword if found and if action is enabled (if KeyEnable is not empty)
 	function CheckMainKeyword($bdd, $MainKeyword, $KeyEnable, $KeyKeywords) {
 		$ActionValid=FALSE;
@@ -142,7 +142,7 @@
 		}
 		return($ActionValid);
 	}
-	
+
 	// Get the main keyword for a global keyword
 	function GetMainKeyword($bdd, $KeyKeywords) {
 		return(GetPrimaryKeyword(ConfigGetString ($bdd, $KeyKeywords)));

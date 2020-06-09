@@ -36,7 +36,7 @@ Satisfy Any
 
 AuthName "ARGUS user"
 AuthType Basic
-AuthUserFile "C:\xampp\security\argus.users"
+AuthUserFile "/var/www/private/userhtaccess"
 require valid-user
 Order allow,deny
 #Uncomment the 2 lines below to authorize Argus Gateway to push messages to the server

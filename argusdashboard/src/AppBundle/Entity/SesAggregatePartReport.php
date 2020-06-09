@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="sesdashboard_AggregatePartReport", options={"collate"="utf8_general_ci"})
+ * @ORM\Table(name="sesdashboard_aggregatepartreport", options={"collate"="utf8_general_ci"})
  */
 class SesAggregatePartReport
 {

@@ -9,47 +9,47 @@
     const ACTION_TEST = 'test';
     const ACTION_OUTGOING = 'outgoing';
     const ACTION_AMQP_STARTED = 'amqp_started';
-        // ACTION_OUTGOING should probably be const ACTION_POLL = 'poll', 
-        // but 'outgoing' maintains backwards compatibility between new phone versions with old servers    
+        // ACTION_OUTGOING should probably be const ACTION_POLL = 'poll',
+        // but 'outgoing' maintains backwards compatibility between new phone versions with old servers
 
     const STATUS_QUEUED = 'queued';
     const STATUS_FAILED = 'failed';
     const STATUS_SENT = 'sent';
     const STATUS_CANCELLED = 'cancelled';
-    
+
     const EVENT_SEND = 'send';
     const EVENT_CANCEL = 'cancel';
     const EVENT_CANCEL_ALL = 'cancel_all';
     const EVENT_LOG = 'log';
     const EVENT_SETTINGS = 'settings';
-    
+
     const DEVICE_STATUS_POWER_CONNECTED = "power_connected";
     const DEVICE_STATUS_POWER_DISCONNECTED = "power_disconnected";
     const DEVICE_STATUS_BATTERY_LOW = "battery_low";
     const DEVICE_STATUS_BATTERY_OKAY = "battery_okay";
     const DEVICE_STATUS_SEND_LIMIT_EXCEEDED = "send_limit_exceeded";
-    
+
     const MESSAGE_TYPE_SMS = 'sms';
-    const MESSAGE_TYPE_MMS = 'mms';    
+    const MESSAGE_TYPE_MMS = 'mms';
     const MESSAGE_TYPE_CALL = 'call';
-    
+
     // power source constants same as from Android's BatteryManager.EXTRA_PLUGGED
     const POWER_SOURCE_BATTERY = 0;
     const POWER_SOURCE_AC = 1;
     const POWER_SOURCE_USB = 2;
-    
+
     static function escape($val)
     {
         return htmlspecialchars($val, ENT_COMPAT, 'UTF-8');
-    }    
-    
+    }
+
     private static $request;
-    
+
     static function get_request()
     {
         if (!isset(self::$request))
         {
-            $version = @$_POST['version'];     
+            $version = @$_POST['version'];
 
             if (isset($_POST['action']))
             {
@@ -59,45 +59,45 @@
             {
                 self::$request = new ArgusSMS_Request();
             }
-            
+
         }
         return self::$request;
-    }                 
+    }
 }
 
 class ArgusSMS_Request
 {
     public $version;
-    
+
     public $version_name;
     public $sdk_int;
     public $manufacturer;
-    public $model;        
-    
+    public $model;
+
     function __construct()
     {
         $this->version = (int)@$_POST['version'];
-        
-        if (preg_match('#/(?P<version_name>[\w\.\-]+) \(Android; SDK (?P<sdk_int>\d+); (?P<manufacturer>[^;]*); (?P<model>[^\)]*)\)#', 
+
+        if (preg_match('#/(?P<version_name>[\w\.\-]+) \(Android; SDK (?P<sdk_int>\d+); (?P<manufacturer>[^;]*); (?P<model>[^\)]*)\)#',
             @$_SERVER['HTTP_USER_AGENT'], $matches))
         {
-            $this->version_name = $matches['version_name'];            
+            $this->version_name = $matches['version_name'];
             $this->sdk_int = $matches['sdk_int'];
             $this->manufacturer = $matches['manufacturer'];
             $this->model = $matches['model'];
-        }        
+        }
     }
 
     function supports_json()
     {
         return $this->version >= 28;
     }
-    
+
     function supports_update_settings()
     {
         return $this->version >= 29;
     }
-    
+
     function get_response_type()
     {
         if ($this->supports_json())
@@ -109,7 +109,7 @@ class ArgusSMS_Request
             return 'text/xml';
         }
     }
-    
+
     function render_response($events = null /* optional array of ArgusSMS_Event objects */)
     {
         if ($this->supports_json())
@@ -117,39 +117,39 @@ class ArgusSMS_Request
             return json_encode(array('events' => $events));
         }
         else
-        {        
+        {
             ob_start();
             echo "<?xml version='1.0' encoding='UTF-8'?>\n";
             echo "<response>";
-            
+
             if ($events)
             {
                 foreach ($events as $event)
-                {            
-                    echo "<messages>";            
+                {
+                    echo "<messages>";
                     if ($event instanceof ArgusSMS_Event_Send)
                     {
                         if ($event->messages)
                         {
                             foreach ($event->messages as $message)
-                            {       
+                            {
                                 $type = isset($message->type) ? $message->type : ArgusSMS::MESSAGE_TYPE_SMS;
                                 $id = isset($message->id) ? " id=\"".ArgusSMS::escape($message->id)."\"" : "";
                                 $to = isset($message->to) ? " to=\"".ArgusSMS::escape($message->to)."\"" : "";
-                                $priority = isset($message->priority) ? " priority=\"".$message->priority."\"" : "";        
+                                $priority = isset($message->priority) ? " priority=\"".$message->priority."\"" : "";
                                 echo "<$type$id$to$priority>".ArgusSMS::escape($message->message)."</$type>";
                             }
                         }
                     }
-                    echo "</messages>";        
+                    echo "</messages>";
                 }
             }
             echo "</response>";
-            return ob_get_clean();            
+            return ob_get_clean();
         }
     }
-    
-    function render_error_response($message)    
+
+    function render_error_response($message)
     {
         if ($this->supports_json())
         {
@@ -170,23 +170,23 @@ class ArgusSMS_Request
 }
 
 class ArgusSMS_ActionRequest extends ArgusSMS_Request
-{   
+{
     private $request_action;
-    
+
     public $settings_version; // integer version of current settings (as provided by server)
     public $phone_number;   // phone number of Android phone
     public $phone_operator; // phone operator
     public $log;            // app log messages since last successful request
     public $now;            // current time (ms since Unix epoch) according to Android clock
     public $network;        // name of network, like WIFI or MOBILE (may vary depending on phone)
-    public $battery;        // battery level as percentage   
+    public $battery;        // battery level as percentage
     public $power;          // power source integer, see ArgusSMS::POWER_SOURCE_*
     public $pollInterval;   // gateway poll interval
-   
+
     function __construct()
     {
         parent::__construct();
-        
+
         $this->phone_number = $_POST['phone_number'];
         $this->phone_operator = $_POST['phone_operator'];
         $this->log = $_POST['log'];
@@ -197,7 +197,7 @@ class ArgusSMS_ActionRequest extends ArgusSMS_Request
         $this->power = @$_POST['power'];
         $this->pollInterval = @$_POST['poll_interval'];
     }
-               
+
     function get_action()
     {
         if (!$this->request_action)
@@ -206,7 +206,7 @@ class ArgusSMS_ActionRequest extends ArgusSMS_Request
         }
         return $this->request_action;
     }
-    
+
     private function _get_action()
     {
         switch (@$_POST['action'])
@@ -228,38 +228,38 @@ class ArgusSMS_ActionRequest extends ArgusSMS_Request
             default:
                 return new ArgusSMS_Action($this);
         }
-    }            
-    
+    }
+
     function is_validated($correct_password)
     {
-        $signature = @$_SERVER['HTTP_X_REQUEST_SIGNATURE'];        
+        $signature = @$_SERVER['HTTP_X_REQUEST_SIGNATURE'];
         if (!$signature)
         {
             return false;
         }
-        
+
         $is_secure = (!empty($_SERVER['HTTPS']) AND filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN));
         $protocol = $is_secure ? 'https' : 'http';
-        $full_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];    
-        
-        $correct_signature = $this->compute_signature($full_url, $_POST, $correct_password);           
-        
+        $full_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+        $correct_signature = $this->compute_signature($full_url, $_POST, $correct_password);
+
         //error_log("Correct signature: '$correct_signature'");
-        
+
         return $signature === $correct_signature;
     }
 
     function compute_signature($url, $data, $password)
     {
         ksort($data);
-        
+
         $input = $url;
         foreach($data as $key => $value)
             $input .= ",$key=$value";
 
         $input .= ",$password";
-        
-        return base64_encode(sha1($input, true));            
+
+        return base64_encode(sha1($input, true));
     }
 }
 
@@ -275,12 +275,12 @@ class ArgusSMS_OutgoingMessage
 /*
  * An 'action' is the term for a HTTP request that app sends to the server.
  */
- 
+
 class ArgusSMS_Action
 {
-    public $type;    
+    public $type;
     public $request;
-    
+
     function __construct($request)
     {
         $this->request = $request;
@@ -303,9 +303,9 @@ class ArgusSMS_MMS_Part
         $this->cid = $args['cid'];
         $this->type = $args['type'];
         $this->filename = $args['filename'];
-        
+
         $file = $_FILES[$this->form_name];
-        
+
         $this->tmp_name = $file['tmp_name'];
         $this->size = $file['size'];
         $this->error = $file['error'];
@@ -313,7 +313,7 @@ class ArgusSMS_MMS_Part
 }
 
 abstract class ArgusSMS_Action_Forward extends ArgusSMS_Action
-{    
+{
     public $message;        // The message body of the SMS, or the content of the text/plain part of the MMS.
     public $message_type;   // ArgusSMS::MESSAGE_TYPE_MMS or ArgusSMS::MESSAGE_TYPE_SMS
     public $mms_parts;      // array of ArgusSMS_MMS_Part instances
@@ -336,12 +336,12 @@ abstract class ArgusSMS_Action_Forward extends ArgusSMS_Action
             {
                 $this->mms_parts[] = new ArgusSMS_MMS_Part($mms_part);
             }
-        }               
+        }
     }
 }
 
 class ArgusSMS_Action_Incoming extends ArgusSMS_Action_Forward
-{    
+{
     public $from;           // Sender phone number
 
     function __construct($request)
@@ -349,11 +349,11 @@ class ArgusSMS_Action_Incoming extends ArgusSMS_Action_Forward
         parent::__construct($request);
         $this->type = ArgusSMS::ACTION_INCOMING;
         $this->from = $_POST['from'];
-    }    
+    }
 }
 
 class ArgusSMS_Action_ForwardSent extends ArgusSMS_Action_Forward
-{    
+{
     public $to;           // Recipient phone number
 
     function __construct($request)
@@ -361,13 +361,13 @@ class ArgusSMS_Action_ForwardSent extends ArgusSMS_Action_Forward
         parent::__construct($request);
         $this->type = ArgusSMS::ACTION_FORWARD_SENT;
         $this->to = $_POST['to'];
-    }    
+    }
 }
 
 class ArgusSMS_Action_AmqpStarted extends ArgusSMS_Action
 {
     public $consumer_tag;
-    
+
     function __construct($request)
     {
         parent::__construct($request);
@@ -377,7 +377,7 @@ class ArgusSMS_Action_AmqpStarted extends ArgusSMS_Action
 }
 
 class ArgusSMS_Action_Outgoing extends ArgusSMS_Action
-{    
+{
     function __construct($request)
     {
         parent::__construct($request);
@@ -386,7 +386,7 @@ class ArgusSMS_Action_Outgoing extends ArgusSMS_Action
 }
 
 class ArgusSMS_Action_Test extends ArgusSMS_Action
-{    
+{
     function __construct($request)
     {
         parent::__construct($request);
@@ -395,34 +395,34 @@ class ArgusSMS_Action_Test extends ArgusSMS_Action
 }
 
 class ArgusSMS_Action_SendStatus extends ArgusSMS_Action
-{    
+{
     public $status;     // ArgusSMS::STATUS_* values
     public $id;         // server ID previously used in ArgusSMS_OutgoingMessage
     public $error;      // textual description of error (if applicable)
-    
+
     function __construct($request)
     {
-        parent::__construct($request);   
+        parent::__construct($request);
         $this->type = ArgusSMS::ACTION_SEND_STATUS;
         $this->status = $_POST['status'];
         $this->id = $_POST['id'];
         $this->error = $_POST['error'];
-    } 
+    }
 }
 
 class ArgusSMS_Action_DeviceStatus extends ArgusSMS_Action
-{    
+{
     public $status;     // ArgusSMS::DEVICE_STATUS_* values
-    
+
     function __construct($request)
     {
-        parent::__construct($request);   
+        parent::__construct($request);
         $this->type = ArgusSMS::ACTION_DEVICE_STATUS;
 
         if (isset($_POST['status'])) {
             $this->status = $_POST['status'];
         }
-    } 
+    }
 }
 
 /*
@@ -433,13 +433,13 @@ class ArgusSMS_Action_DeviceStatus extends ArgusSMS_Action
 class ArgusSMS_Event
 {
     public $event;
-    
+
     /*
      * Formats this event as the body of an AMQP message.
      */
     function render()
     {
-        return json_encode($this);    
+        return json_encode($this);
     }
 }
 
@@ -447,9 +447,9 @@ class ArgusSMS_Event
  * Instruct the phone to send one or more outgoing messages (SMS or USSD)
  */
 class ArgusSMS_Event_Send extends ArgusSMS_Event
-{    
+{
     public $messages;
-    
+
     function __construct($messages /* array of ArgusSMS_OutgoingMessage objects */)
     {
         $this->event = ArgusSMS::EVENT_SEND;
@@ -457,13 +457,13 @@ class ArgusSMS_Event_Send extends ArgusSMS_Event
     }
 }
 
-/* 
+/*
  * Update some of the app's settings.
  */
 class ArgusSMS_Event_Settings extends ArgusSMS_Event
 {
     public $settings;
-    
+
     function __construct($settings /* associative array of key => value pairs (values can be int, bool, or string) */)
     {
         $this->event = ArgusSMS::EVENT_SETTINGS;
@@ -478,7 +478,7 @@ class ArgusSMS_Event_Settings extends ArgusSMS_Event
 class ArgusSMS_Event_Cancel extends ArgusSMS_Event
 {
     public $id;
-    
+
     function __construct($id /* id of previously created ArgusSMS_OutgoingMessage object (string) */)
     {
         $this->event = ArgusSMS::EVENT_CANCEL;
@@ -503,7 +503,7 @@ class ArgusSMS_Event_CancelAll extends ArgusSMS_Event
 class ArgusSMS_Event_Log extends ArgusSMS_Event
 {
     public $message;
-    
+
     function __construct($message)
     {
         $this->event = ArgusSMS::EVENT_LOG;

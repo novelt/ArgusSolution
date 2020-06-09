@@ -169,7 +169,7 @@ class SesDashboardIndicatorDimDateRepository extends BaseRepository
             $qb->setParameter('to', $to);
         }
 
-        $qb->groupBy(sprintf('d2.%s', $dateColumn), sprintf('d2.%s', $yearField));
+        $qb->groupBy(sprintf('d2.%s', $dateColumn), sprintf('d2.%s', $yearField), 'd2.id');
         $qb->orderBy('d2.id');
 
         return $qb;

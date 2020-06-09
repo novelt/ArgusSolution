@@ -29,10 +29,9 @@
 	$config["path_locale"]         		= $config["path_base"]."locale".DIRECTORY_SEPARATOR;
 	$config["path_ressources"]     		= $config["path_base"]."ressources".DIRECTORY_SEPARATOR;
     $config["path_ressources_database"] = $config["path_base"]."ressources".DIRECTORY_SEPARATOR."Database".DIRECTORY_SEPARATOR;
-	$config["path_backup"]         		= "C:\\Backup\\SES\\";
     $config["path_ressources_database_initialization_folders"] = ["01_Install", "02_MySQL_timezones", "03_Functions", "04_Views", "05_Stored procedures", "06_Partitions"];
 
-
+/*
 	//Xampp Installation paths
 	$config["xampp_path"]           	= "C:\\xampp" . DIRECTORY_SEPARATOR;
 	// Php ini
@@ -47,7 +46,7 @@
 	$config["apache_conf_path"]         = $config["xampp_path"]."apache\\conf\\httpd.conf";
 	// Xampp version
 	$config["xampp_version_path"]       = $config["xampp_path"]."htdocs\\xampp\\.version";
-
+*/
 	// XSD schemas
 	$config["path_import_schema"]  		= $config["path_base"]."schemas".DIRECTORY_SEPARATOR."SES-Import.xsd";
 	$config["path_export_schema"]  		= $config["path_base"]."schemas".DIRECTORY_SEPARATOR."SES-Export.xsd";

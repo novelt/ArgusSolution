@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * This example script implements the ArgusSMS API.
  *
  *
@@ -90,7 +90,7 @@ switch ($action->type)
         db_Close($bdd);
 
         return;
-        
+
     case ArgusSMS::ACTION_OUTGOING:
 
         LogMessage($logFileName, 'ArgusSMS : Outgoing Message(s) with phone_number : '.$action->request->phone_number);
@@ -134,7 +134,7 @@ switch ($action->type)
         db_Close($bdd);
 
         return;
-        
+
     case ArgusSMS::ACTION_SEND_STATUS:
 
         $bdd=db_Open(__FUNCTION__,__LINE__,__FILE__);
@@ -191,7 +191,7 @@ switch ($action->type)
 
         db_Close($bdd);
 
-        return;             
+        return;
 
     case ArgusSMS::ACTION_TEST:
 

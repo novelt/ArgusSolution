@@ -1,7 +1,7 @@
 {
   "defaultLanguage": "fr",
   "otherLogo" : "flag.jpg",
-  "serverUrl": "/sesdashboard/web/",
-  "serverReportUrl": "/sesDashboardReports/",
+  "serverUrl": "/argusdashboard/web/",
+  "serverReportUrl": "/argusdashboardreports/",
   "rScriptsUrl": "/ScriptsR/"
 }
