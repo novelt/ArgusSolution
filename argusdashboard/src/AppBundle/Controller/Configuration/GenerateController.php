@@ -7,19 +7,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Form\GenerateReportType;
 use AppBundle\Form\GenerateAlertType;
+use AppBundle\Utils\Epidemiologic;
 
 class GenerateController extends BaseController
 {
-    const REPORT_MESSAGE_TEMPLATE = 'REPORT DISEASE=%s, YEAR=%d, WEEK=%d, ANDROIDID=%d, RID=%d';
-    const ALERT_MESSAGE_TEMPLATE = 'ALERT ANDROIDID=%d';
+    const REPORT_MESSAGE_TEMPLATE = '%s %s=%s, %s=%d, %s=%d, %s=%d, %s=%d';
+    const ALERT_MESSAGE_TEMPLATE = '%s %s=%d';
 
     const ALERT_DATE_FORMAT = 'd/m/Y';
+    const GLOBAL_KEYWORD = 'global_keyword_';
 
     const DISEASE_INPUT_PATTERN = '/\d+_disease_\d+/';
     const VALUE_INPUT_PATTERN = '/(value|alert)_(\d+)/';
-
-    const ARGUS_SECRET = 'argus'; // @TODO: to be changed with ArgusConfig file value
-    const GATEWAY_URI = '/argusconfig/argusGateway.php';
 
     public function listAction(Request $request)
     {
@@ -77,7 +76,7 @@ class GenerateController extends BaseController
     {
         $diseaseValueService = $this->getDiseaseValueService();
 
-        $message = sprintf(self::ALERT_MESSAGE_TEMPLATE, mt_rand(0, 9999));
+        $message = $this->buildAlertMessage(mt_rand(0, 9999));
         foreach ($data AS $key => $value)
         {
             if (preg_match(self::VALUE_INPUT_PATTERN, $key, $match))
@@ -92,8 +91,8 @@ class GenerateController extends BaseController
                 $message .= ', ' . mb_strtoupper($diseaseValue->getKeyword()) . '=' . $value; // concat message to be sent
             }
         }
-
-        $result = $this->runHttpRequest('+228000002', $message);
+        
+        $result = $this->runHttpRequest($data['contact']->getPhoneNumber(), $message);
 
         return $result;
     }
@@ -119,7 +118,7 @@ class GenerateController extends BaseController
             // week = 0 -> generate reports for whole chosen year
             if ($data['week'] == 0)
             {
-                $nbWeeks = $this->getNbWeeksForYear($data['year']);
+                $nbWeeks = Epidemiologic::getNumberOfWeeksInYear($data['year'], $this->getParameter('epi_first_day'));
                 for ($week = 1; $week <= $nbWeeks; $week++)
                 {
                     $message = $this->buildReportMessage($disease->getKeyword(), $data['year'], $week, $androidId, $rid);
@@ -160,14 +159,46 @@ class GenerateController extends BaseController
      */
     private function buildReportMessage($disease, $year, $week, $androidId, $rid)
     {
+        $keywords = $this->getNvcRepository()->getGlobalKeyWords();
+
         return sprintf(
             self::REPORT_MESSAGE_TEMPLATE,
-            $disease,
-            $year,
-            $week,
-            $androidId,
-            $rid
+            $this->getKeywordValue($keywords, 'report'), // REPORT
+
+            $this->getKeywordValue($keywords, 'disease'), $disease, // DISEASE
+            $this->getKeywordValue($keywords, 'year'), $year, // YEAR
+            $this->getKeywordValue($keywords, 'week'), $week, // WEEK
+            $this->getParameter('argus_config')['android_keyword_id'], $androidId, // ANDROIDID
+            $this->getParameter('argus_config')['report_keyword_id'], $rid // RID
         );
+    }
+
+    /**
+     * Build alert message to be sent to Argus gateway
+     * @param int $androidId
+     * @return string
+     */
+    private function buildAlertMessage($androidId)
+    {
+        $keywords = $this->getNvcRepository()->getGlobalKeyWords();
+
+        return sprintf(
+            self::ALERT_MESSAGE_TEMPLATE,
+            $this->getKeywordValue($keywords, 'alert'), // ALERT
+
+            $this->getParameter('argus_config')['android_keyword_id'], $androidId // ANDROIDID
+        );
+    }
+
+    /**
+     * Get global keyword value from nvc
+     * @param array $keywords
+     * @param string $keyword
+     * @return string
+     */
+    private function getKeywordValue($keywords, $keyword)
+    {
+        return $keywords[self::GLOBAL_KEYWORD . $keyword]['valueString'];
     }
 
     // process request
@@ -191,24 +222,6 @@ class GenerateController extends BaseController
     }
 
     /**
-     * Get the number of weeks in the specified year
-     * @param int $year
-     * @return int
-     */
-    private function getNbWeeksForYear($year)
-    {
-        // current year => so return current week number
-        if ($year == date('Y'))
-        {
-            return (int) date('W');
-        }
-
-        $date = new DateTime;
-        $date->setISODate($year, 53);
-        return ($date->format('W') === '53' ? 53 : 52);
-    }
-
-    /**
      * Build signature for HTTP request on gateway
      * @param array $params
      * @return string
@@ -224,7 +237,7 @@ class GenerateController extends BaseController
             $input .= ',' . $key . '=' . $value;
         }
 
-        $input .= ',' . self::ARGUS_SECRET;
+        $input .= ',' . $this->getParameter('argus_config')['gateway_password'];
 
         return base64_encode(sha1($input, true));
     }
@@ -238,7 +251,8 @@ class GenerateController extends BaseController
         $is_secure = (!empty($_SERVER['HTTPS']) && filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN));
         $protocol = $is_secure ? 'https' : 'http';
 
-        return $protocol . '://' . $_SERVER['HTTP_HOST'] . self::GATEWAY_URI;
+        $gatewayUri = $this->getParameter('argus_config')['gateway_uri'];
+        return $protocol . '://' . $_SERVER['HTTP_HOST'] . $gatewayUri;
     }
 
     // send POST request to gateway with cURL
@@ -269,5 +283,11 @@ class GenerateController extends BaseController
         curl_close($ch);
 
         return $res;
+    }
+
+    private function getNvcRepository()
+    {
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('AppBundle:SesNvc');
     }
 }

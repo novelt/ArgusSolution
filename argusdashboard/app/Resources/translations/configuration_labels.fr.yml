@@ -415,6 +415,7 @@ Configuration:
                 Success: La génération s'est déroulée avec succès. Le rapport a bien été créé.
 
             Alert:
+                PhoneNumber: Numéro de téléphone
                 Disease: Maladie
                 SelectDisease: Sélectionner une maladie
                 Tab: Alerte

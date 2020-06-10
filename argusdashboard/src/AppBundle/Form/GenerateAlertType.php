@@ -31,6 +31,12 @@ class GenerateAlertType extends ConfigurationAbstractType
         $diseaseService = $options['disease_service'];
         $translator = $options['translator'];
 
+        $builder->add('contact', 'entity', $this->_getFieldOptions('Configuration.FormItems.Generate.Alert.PhoneNumber', [
+            'class' => 'AppBundle:SesDashboardContact',
+            'property' => 'phone_number',
+            'required' => true
+        ]));
+
         $alertDisease = $diseaseService->getAlertDisease();
         foreach ($alertDisease->getDiseaseValues() AS $diseaseValue)
         {
@@ -43,44 +49,6 @@ class GenerateAlertType extends ConfigurationAbstractType
                 'required' => $diseaseValue->getMandatory() ? true : false
             ]);
         }
-
-        /*$builder->add('disease', 'entity', $this->_getFieldOptions('Configuration.FormItems.Generate.Alert.Disease', [
-            'class' => 'AppBundle:SesDashboardDisease',
-            'placeholder' => $translator->trans('Configuration.FormItems.Generate.Alert.SelectDisease', [], self::TRANSLATION_DOMAIN),
-            'property' => 'name',
-            'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('d')
-                    ->where('d.disease != :disease')
-                    ->setParameter('disease', \AppBundle\Entity\Constant::DISEASE_ALERT);
-            },
-            'required' => true
-        ]));
-
-        $builder->get('disease')->addEventListener(
-            FormEvents::PRE_SUBMIT,
-            function (FormEvent $event) use ($diseaseService)
-            {
-                $form = $event->getForm();
-
-                $disease = $diseaseService->getById($event->getData());
-                if ($disease)
-                {
-                    foreach($disease->getDiseaseValues() AS $diseaseValue)
-                    {
-                        $data = $this->getInputDataFromType($diseaseValue->getDatatype(), $diseaseValue);
-
-                        $form->getParent()->add('value_' . $diseaseValue->getId(), $data['type'], [
-                            'label' => ucfirst($diseaseValue->getValue()),
-                            'constraints' => $data['constraints'],
-                            'data' => $data['data'],
-                            'required' => $diseaseValue->getMandatory() ? true : false
-                        ]);
-                    }
-
-                    //$form->getParent()->get('disease')->getConfig()->setAttribute('read_only', true);
-                }
-            }
-        );*/
     }
 
     private function getInputDataFromType($type, $value)

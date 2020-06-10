@@ -416,6 +416,7 @@ Configuration:
                 Success: The generation was successful. The report has been created well.
 
             Alert:
+                PhoneNumber: Phone number
                 Disease: Disease
                 SelectDisease: Select a disease
                 Tab: Alert
