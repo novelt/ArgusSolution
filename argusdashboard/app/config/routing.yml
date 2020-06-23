@@ -515,6 +515,11 @@ configuration_generate:
     defaults:
         _controller: AppBundle:Configuration\Generate:list
 
+configuration_generate_ajax:
+    path: /configuration/generate/ajax
+    defaults:
+        _controller: AppBundle:Configuration\Generate:ajax
+
 # Language
 configuration_language:
     path: /language/{locale}

@@ -4,8 +4,10 @@ namespace AppBundle\Controller\Configuration;
 
 use AppBundle\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
-use AppBundle\Form\GenerateReportType;
+use AppBundle\Form\GenerateWeeklyReportType;
+use AppBundle\Form\GenerateMonthlyReportType;
 use AppBundle\Form\GenerateAlertType;
 use AppBundle\Utils\Epidemiologic;
 
@@ -23,10 +25,16 @@ class GenerateController extends BaseController
     public function listAction(Request $request)
     {
         $diseaseService = $this->getDiseaseService();
-        $translator = $this->get('translator');
+        $diseaseValueService = $this->getDiseaseValueService();
+        $translator = $this->getTranslator();
 
-        $reportForm = $this->createForm(new GenerateReportType($this->getSupportedLocales()), null, [
-            'disease_service' => $diseaseService,
+        $weeklyReportForm = $this->createForm(new GenerateWeeklyReportType($this->getSupportedLocales()), null, [
+            'disease_value_service' => $diseaseValueService,
+            'translator' => $translator
+        ]);
+
+        $monthlyReportForm = $this->createForm(new GenerateMonthlyReportType($this->getSupportedLocales()), null, [
+            'disease_value_service' => $diseaseValueService,
             'translator' => $translator
         ]);
 
@@ -35,14 +43,22 @@ class GenerateController extends BaseController
             'translator' => $translator
         ]);
 
-        $reportForm->handleRequest($request);
+        $weeklyReportForm->handleRequest($request);
+        $monthlyReportForm->handleRequest($request);
         $alertForm->handleRequest($request);
 
         $viewParams = [
             'report' => [
-                'form' => $reportForm->createView(),
-                'titleKey' => 'Configuration.Titles.GenerateReport',
-                'tab' => 'Configuration.FormItems.Generate.Report.Tab'
+                'weekly' => [
+                    'form' => $weeklyReportForm->createView(),
+                    'titleKey' => 'Configuration.Titles.GenerateWeeklyReport',
+                    'tab' => 'Configuration.FormItems.Generate.Report.Weekly.Tab'
+                ],
+                'monthly' => [
+                    'form' => $monthlyReportForm->createView(),
+                    'titleKey' => 'Configuration.Titles.GenerateMonthlyReport',
+                    'tab' => 'Configuration.FormItems.Generate.Report.Monthly.Tab'
+                ]
             ],
             'alert' => [
                 'form' => $alertForm->createView(),
@@ -51,18 +67,26 @@ class GenerateController extends BaseController
             ],
 
             'actionPathKey' => 'configuration_generate',
-            'active' => 'report'
+            'active' => 'report-weekly'
         ];
 
-        if ($reportForm->isSubmitted() && $reportForm->isValid())
+        if ($weeklyReportForm->isSubmitted() && $weeklyReportForm->isValid())
         {
-            $this->handleReportForm($reportForm->getData());
+            $this->handleWeeklyReportForm($weeklyReportForm->getData());
+        }
+        else if ($monthlyReportForm->isSubmitted() && $monthlyReportForm->isValid())
+        {
+            $this->handleMonthlyReportForm($monthlyReportForm->getData());
+            $viewParams['active'] = 'report-monthly';
         }
         else if ($alertForm->isSubmitted() && $alertForm->isValid())
         {
             $this->handleAlertForm($alertForm->getData());
             $viewParams['active'] = 'alert';
         }
+
+        $viewParams['weeklyReportEnabled'] = $diseaseValueService->hasDiseaseValuesForPeriod('weekly') ? true : false;
+        $viewParams['monthlyReportEnabled'] = $diseaseValueService->hasDiseaseValuesForPeriod('monthly') ? true : false;
 
         return $this->render('configuration/generate/index.html.twig', $viewParams);
     }
@@ -91,13 +115,13 @@ class GenerateController extends BaseController
                 $message .= ', ' . mb_strtoupper($diseaseValue->getKeyword()) . '=' . $value; // concat message to be sent
             }
         }
-        
+
         $result = $this->runHttpRequest($data['contact']->getPhoneNumber(), $message);
 
         return $result;
     }
 
-    private function handleReportForm($data)
+    private function handleWeeklyReportForm($data)
     {
         $diseaseService = $this->getDiseaseService();
 
@@ -118,7 +142,7 @@ class GenerateController extends BaseController
             // week = 0 -> generate reports for whole chosen year
             if ($data['week'] == 0)
             {
-                $nbWeeks = Epidemiologic::getNumberOfWeeksInYear($data['year'], $this->getParameter('epi_first_day'));
+                $nbWeeks = Epidemiologic::getNumberOfWeeksInYear($data['year'], $this->GetEpiFirstDay());
                 for ($week = 1; $week <= $nbWeeks; $week++)
                 {
                     $message = $this->buildReportMessage($disease->getKeyword(), $data['year'], $week, $androidId, $rid);
@@ -127,9 +151,32 @@ class GenerateController extends BaseController
             }
             else
             {
-                $message = $this->buildReportMessage($disease->getKeyword(), $data['year'], $data['week'], $androidId, $rid);
+                $message = $this->buildReportMessage('weekly', $disease->getKeyword(), $data['year'], $data['week'], $androidId, $rid);
                 $result = $this->processRequest($data['contact']->getPhoneNumber(), $value, $message);
             }
+        }
+    }
+
+    private function handleMonthlyReportForm($data)
+    {
+        $diseaseService = $this->getDiseaseService();
+
+        // generate random values for report
+        $androidId = mt_rand(0, 9999);
+        $rid = mt_rand(0, 9999);
+
+        // fetch diseases values in the desired format
+        $diseasesValues = $this->formatDiseasesValues($data);
+        foreach($diseasesValues AS $diseaseId => $value)
+        {
+            $disease = $diseaseService->getById($diseaseId);
+            if (!$disease) // disease not found
+            {
+                continue;
+            }
+
+            $message = $this->buildReportMessage('monthly', $disease->getKeyword(), $data['year'], $data['month'], $androidId, $rid);
+            $result = $this->processRequest($data['contact']->getPhoneNumber(), $value, $message);
         }
     }
 
@@ -157,8 +204,17 @@ class GenerateController extends BaseController
      * @param int $rid
      * @return string
      */
-    private function buildReportMessage($disease, $year, $week, $androidId, $rid)
+    private function buildReportMessage($period, $disease, $year, $weekOrMonth, $androidId, $rid)
     {
+        if ($period == 'weekly')
+        {
+            $periodKeyword = 'week';
+        }
+        else // monthly
+        {
+            $periodKeyword = 'month';
+        }
+
         $keywords = $this->getNvcRepository()->getGlobalKeyWords();
 
         return sprintf(
@@ -167,7 +223,7 @@ class GenerateController extends BaseController
 
             $this->getKeywordValue($keywords, 'disease'), $disease, // DISEASE
             $this->getKeywordValue($keywords, 'year'), $year, // YEAR
-            $this->getKeywordValue($keywords, 'week'), $week, // WEEK
+            $this->getKeywordValue($keywords, $periodKeyword), $weekOrMonth, // WEEK or MONTH
             $this->getParameter('argus_config')['android_keyword_id'], $androidId, // ANDROIDID
             $this->getParameter('argus_config')['report_keyword_id'], $rid // RID
         );

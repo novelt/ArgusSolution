@@ -9,13 +9,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class GenerateReportType extends ConfigurationAbstractType
+class GenerateWeeklyReportType extends ConfigurationAbstractType
 {
-    const INCLUDE_ALERTS = false;
-
     public function __construct($locales)
     {
         parent::__construct($locales);
@@ -23,12 +22,12 @@ class GenerateReportType extends ConfigurationAbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired(['disease_service', 'translator']);
+        $resolver->setRequired(['disease_value_service', 'translator']);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $diseaseService = $options['disease_service'];
+        $diseaseValueService = $options['disease_value_service'];
         $translator = $options['translator'];
 
         $builder->add('year', IntegerType::class, $this->_getFieldOptions('Configuration.FormItems.Generate.Report.Year', [
@@ -49,39 +48,38 @@ class GenerateReportType extends ConfigurationAbstractType
             'required' => true
         ]));
 
-        foreach($diseaseService->getDiseases(null, self::INCLUDE_ALERTS) AS $disease)
+        foreach ($diseaseValueService->getDiseaseValuesByPeriod('weekly') AS $value)
         {
-            foreach($disease->getDiseaseValues() AS $value)
+            switch ($value->getDatatype())
             {
-                switch ($value->getDatatype())
-                {
-                    case 'String':
-                        $type = TextType::class;
-                        $constraints = $value->getMandatory() ? new Assert\NotBlank() : null;
-                        $data = '';
-                        break;
+                case 'String':
+                    $type = TextType::class;
+                    $constraints = $value->getMandatory() ? new Assert\NotBlank() : null;
+                    $data = '';
+                    break;
 
-                    case 'Date':
-                        $type = DateType::class;
-                        $constraints = new Assert\LessThanOrEqual('today');
-                        $data = new \DateTime();
-                        break;
+                case 'Date':
+                    $type = DateType::class;
+                    $constraints = new Assert\LessThanOrEqual('today');
+                    $data = new \DateTime();
+                    break;
 
-                    case 'Integer':
-                    default:
-                        $type = IntegerType::class;
-                        $constraints = new Assert\GreaterThanOrEqual(0);
-                        $data = 0;
-                        break;
-                }
-
-                $builder->add($disease->getId() . '_disease_' . $value->getId(), $type, [
-                    'label' => $translator->trans('Configuration.FormItems.Generate.Report.Disease', ['%disease_name%' => $disease->getName(), '%value%' => ucfirst($value->getValue())], self::TRANSLATION_DOMAIN),
-                    'constraints' => $constraints,
-                    'data' => $data,
-                    'required' => $value->getMandatory() ? true : false
-                ]);
+                case 'Integer':
+                default:
+                    $type = IntegerType::class;
+                    $constraints = new Assert\GreaterThanOrEqual(0);
+                    $data = 0;
+                    break;
             }
+
+            $disease = $value->getParentDisease();
+
+            $builder->add($disease->getId() . '_disease_' . $value->getId(), $type, [
+                'label' => $translator->trans('Configuration.FormItems.Generate.Report.Disease', ['%disease_name%' => $disease->getName(), '%value%' => ucfirst($value->getValue())], self::TRANSLATION_DOMAIN),
+                'constraints' => $constraints,
+                'data' => $data,
+                'required' => $value->getMandatory() ? true : false
+            ]);
         }
     }
 

@@ -42,7 +42,8 @@ Configuration:
         DiseaseListXmlSave: Save a Disease List
         ThresholdListXmlSave: Save a Threshold List
         AllListsXmlSave: Save All Lists
-        GenerateReport: Generate report
+        GenerateWeeklyReport: Generate weekly report
+        GenerateMonthlyReport: Generate monthly report
         GenerateAlert: Generate alert
 
     # Dropdown menu in the navbar
@@ -406,10 +407,14 @@ Configuration:
 
         Generate:
             Report:
+                Weekly:
+                    Tab: Weekly report
+                Monthly:
+                    Tab: Monthly report
                 Year: Year
                 Week: Week number
+                Month: Month number
                 Contact: Contact
-                Tab: Report
                 Disease: %disease_name% - %value%
                 NoSuccess: An error occurred during generation. No report has been created.
                 PartialSuccess: An error occurred during generation. The report has been created but may be incorrect or incomplete.

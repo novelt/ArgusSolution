@@ -5,9 +5,17 @@
 {% block configuration %}
 
     <ul class="nav nav-tabs" id="nav-tab" role="tablist">
-        <li class="nav-item {{ (active == 'report') ? 'active' : ''}}">
-            <a class="nav-link" id="report-tab" data-toggle="tab" href="#nav-report" role="tab" aria-controls="report" aria-selected="true">{{ report.tab | trans({}, 'configuration_labels') }}</a>
-        </li>
+        {% if weeklyReportEnabled %}
+            <li class="nav-item {{ (active == 'report-weekly') ? 'active' : ''}}">
+                <a class="nav-link" id="report-weekly-tab" data-toggle="tab" href="#nav-report-weekly" role="tab" aria-controls="report-weekly" aria-selected="true">{{ report.weekly.tab | trans({}, 'configuration_labels') }}</a>
+            </li>
+        {% endif %}
+
+        {% if monthlyReportEnabled %}
+            <li class="nav-item {{ (active == 'report-monthly') ? 'active' : ''}}">
+                <a class="nav-link" id="report-monthly-tab" data-toggle="tab" href="#nav-report-monthly" role="tab" aria-controls="report-monthly" aria-selected="false">{{ report.monthly.tab | trans({}, 'configuration_labels') }}</a>
+            </li>
+        {% endif %}
 
         <li class="nav-item {{ (active == 'alert') ? 'active' : ''}}">
             <a class="nav-link" id="alert-tab" data-toggle="tab" href="#nav-alert" role="tab" aria-controls="alert" aria-selected="false">{{ alert.tab | trans({}, 'configuration_labels') }}</a>
@@ -15,18 +23,35 @@
     </ul>
 
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade {{ (active == 'report') ? 'in active' : ''}}" id="nav-report" role="tabpanel" aria-labelledby="report-tab">
-            <div class="well col-lg-7">
-                <h2>{{ report.titleKey | trans({}, 'configuration_labels') }}</h2>
+        {% if weeklyReportEnabled %}
+            <div class="tab-pane fade {{ (active == 'report-weekly') ? 'in active' : ''}}" id="nav-report-weekly" role="tabpanel" aria-labelledby="report-weekly-tab">
+                <div class="well col-lg-7">
+                    <h2>{{ report.weekly.titleKey | trans({}, 'configuration_labels') }}</h2>
 
-                {{ form_start(report.form, {'method': 'post', 'action': path(actionPathKey)}) }}
-                {{ form_widget(report.form) }}
-                <div>
-                    <input class="btn btn-danger" type="submit" value="{{ 'Generate'|trans }}" />
+                    {{ form_start(report.weekly.form, {'method': 'post', 'action': path(actionPathKey)}) }}
+                    {{ form_widget(report.weekly.form) }}
+                    <div>
+                        <input class="btn btn-danger" type="submit" value="{{ 'Generate'|trans }}" />
+                    </div>
+                    {{ form_end(report.weekly.form) }}
                 </div>
-                {{ form_end(report.form) }}
             </div>
-        </div>
+        {% endif %}
+
+        {% if monthlyReportEnabled %}
+            <div class="tab-pane fade {{ (active == 'report-monthly') ? 'in active' : ''}}" id="nav-report-monthly" role="tabpanel" aria-labelledby="report-monthly-tab">
+                <div class="well col-lg-7">
+                    <h2>{{ report.monthly.titleKey | trans({}, 'configuration_labels') }}</h2>
+
+                    {{ form_start(report.monthly.form, {'method': 'post', 'action': path(actionPathKey)}) }}
+                    {{ form_widget(report.monthly.form) }}
+                    <div>
+                        <input class="btn btn-danger" type="submit" value="{{ 'Generate'|trans }}" />
+                    </div>
+                    {{ form_end(report.monthly.form) }}
+                </div>
+            </div>
+        {% endif %}
 
         <div class="tab-pane fade {{ (active == 'alert') ? 'in active' : ''}}" id="nav-alert" role="tabpanel" aria-labelledby="alert-tab">
             <div class="well col-lg-7">
