@@ -6,17 +6,12 @@ use Doctrine\ORM\EntityRepository;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class GenerateMonthlyReportType extends ConfigurationAbstractType
+class GenerateMonthlyReportType extends GenerationAbstractType
 {
-    const INCLUDE_ALERTS = false;
-
     public function __construct($locales)
     {
         parent::__construct($locales);
@@ -50,39 +45,7 @@ class GenerateMonthlyReportType extends ConfigurationAbstractType
             'required' => true
         ]));
 
-        foreach ($diseaseValueService->getDiseaseValuesByPeriod('monthly') AS $value)
-        {
-            switch ($value->getDatatype())
-            {
-                case 'String':
-                    $type = TextType::class;
-                    $constraints = $value->getMandatory() ? new Assert\NotBlank() : null;
-                    $data = '';
-                    break;
-
-                case 'Date':
-                    $type = DateType::class;
-                    $constraints = new Assert\LessThanOrEqual('today');
-                    $data = new \DateTime();
-                    break;
-
-                case 'Integer':
-                default:
-                    $type = IntegerType::class;
-                    $constraints = new Assert\GreaterThanOrEqual(0);
-                    $data = 0;
-                    break;
-            }
-
-            $disease = $value->getParentDisease();
-
-            $builder->add($disease->getId() . '_disease_' . $value->getId(), $type, [
-                'label' => $translator->trans('Configuration.FormItems.Generate.Report.Disease', ['%disease_name%' => $disease->getName(), '%value%' => ucfirst($value->getValue())], self::TRANSLATION_DOMAIN),
-                'constraints' => $constraints,
-                'data' => $data,
-                'required' => $value->getMandatory() ? true : false
-            ]);
-        }
+        $this->buildFormValues($builder, 'disease', $diseaseValueService->getDiseaseValuesByPeriod('monthly'), $translator);
     }
 
     public function getName()

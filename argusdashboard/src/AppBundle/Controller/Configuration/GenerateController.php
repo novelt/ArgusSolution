@@ -39,8 +39,7 @@ class GenerateController extends BaseController
         ]);
 
         $alertForm = $this->createForm(new GenerateAlertType($this->getSupportedLocales()), null, [
-            'disease_service' => $diseaseService,
-            'translator' => $translator
+            'disease_service' => $diseaseService
         ]);
 
         $weeklyReportForm->handleRequest($request);
@@ -108,6 +107,8 @@ class GenerateController extends BaseController
                 $diseaseValue = $diseaseValueService->getById($match[2]);
                 if (!$diseaseValue) // disease value not found
                 {
+                    $logger = $this->get('logger');
+                    $logger->error('An error occurred : Impossible to find Alert Value with technical name "' . $diseaseValue->getValue() . '" during alert generation.');
                     continue;
                 }
 
@@ -136,6 +137,8 @@ class GenerateController extends BaseController
             $disease = $diseaseService->getById($diseaseId);
             if (!$disease) // disease not found
             {
+                $logger = $this->get('logger');
+                $logger->error('An error occurred : Impossible to find Disease Value with technical name "' . $disease->getName() . '" during weekly report generation.');
                 continue;
             }
 
@@ -172,6 +175,8 @@ class GenerateController extends BaseController
             $disease = $diseaseService->getById($diseaseId);
             if (!$disease) // disease not found
             {
+                $logger = $this->get('logger');
+                $logger->error('An error occurred : Impossible to find Disease Value with technical name "' . $disease->getName() . '" during monthly report generation.');
                 continue;
             }
 
@@ -336,6 +341,15 @@ class GenerateController extends BaseController
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
         $res = curl_exec($ch);
+
+        if (curl_errno($ch))
+        {
+            $errorMessage = curl_error($ch);
+
+            $logger = $this->get('logger');
+            $logger->error('An error occurred : HTTP request to gateway returned an error. Message : ' . $errorMessage);
+        }
+
         curl_close($ch);
 
         return $res;
