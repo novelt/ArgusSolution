@@ -84,8 +84,10 @@ class GenerateController extends BaseController
             $viewParams['active'] = 'alert';
         }
 
-        $viewParams['weeklyReportEnabled'] = $diseaseValueService->hasDiseaseValuesForPeriod('weekly') ? true : false;
-        $viewParams['monthlyReportEnabled'] = $diseaseValueService->hasDiseaseValuesForPeriod('monthly') ? true : false;
+        $enabledReport = $this->getEnabledReports();
+
+        $viewParams['weeklyReportEnabled'] = $enabledReport['weekly'];
+        $viewParams['monthlyReportEnabled'] = $enabledReport['monthly'];
 
         return $this->render('configuration/generate/index.html.twig', $viewParams);
     }

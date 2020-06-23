@@ -282,7 +282,7 @@ class ReportController extends BaseController
      */
     public function filterTypeAction($siteId)
     {
-        // Diseases
+        /* Diseases
         $diseasesWeekly = $this
             ->getDiseaseService()
             ->getDiseases(Constant::PERIOD_WEEKLY);
@@ -299,20 +299,14 @@ class ReportController extends BaseController
             ->isWeeklyReportEnabled($site, $homeSite, $permissions);
         $enableMonthlyReport = $this
             ->getSesDashboardPermissionHelper()
-            ->isMonthlyReportEnabled($site, $homeSite, $permissions);
+            ->isMonthlyReportEnabled($site, $homeSite, $permissions);*/
+
+        $enabledReport = $this->getEnabledReports();
 
         return $this->render('report/filters-type.html.twig',
             [
-                'enabledWeeklyReport' => (
-                    isset($diseasesWeekly)
-                    && count($diseasesWeekly) > 0
-                    && $enableWeelkyReport
-                ),
-                'enabledMonthlyReport' => (
-                    isset($diseasesMonthly)
-                    && count($diseasesMonthly) > 0
-                    && $enableMonthlyReport
-                )
+                'enabledWeeklyReport' => $enabledReport['weekly'],
+                'enabledMonthlyReport' => $enabledReport['monthly']
             ]
         );
     }
