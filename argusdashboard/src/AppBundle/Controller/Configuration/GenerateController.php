@@ -109,8 +109,7 @@ class GenerateController extends BaseController
                 $diseaseValue = $diseaseValueService->getById($match[2]);
                 if (!$diseaseValue) // disease value not found
                 {
-                    $logger = $this->get('logger');
-                    $logger->error('An error occurred : Impossible to find Alert Value with technical name "' . $diseaseValue->getValue() . '" during alert generation.');
+                    $this->getLogger()->error('An error occurred : Impossible to find Alert Value with technical name "' . $diseaseValue->getValue() . '" during alert generation.');
                     continue;
                 }
 
@@ -139,8 +138,7 @@ class GenerateController extends BaseController
             $disease = $diseaseService->getById($diseaseId);
             if (!$disease) // disease not found
             {
-                $logger = $this->get('logger');
-                $logger->error('An error occurred : Impossible to find Disease Value with technical name "' . $disease->getName() . '" during weekly report generation.');
+                $this->getLogger()->error('An error occurred : Impossible to find Disease Value with technical name "' . $disease->getName() . '" during weekly report generation.');
                 continue;
             }
 
@@ -177,8 +175,7 @@ class GenerateController extends BaseController
             $disease = $diseaseService->getById($diseaseId);
             if (!$disease) // disease not found
             {
-                $logger = $this->get('logger');
-                $logger->error('An error occurred : Impossible to find Disease Value with technical name "' . $disease->getName() . '" during monthly report generation.');
+                $this->getLogger()->error('An error occurred : Impossible to find Disease Value with technical name "' . $disease->getName() . '" during monthly report generation.');
                 continue;
             }
 
@@ -347,9 +344,7 @@ class GenerateController extends BaseController
         if (curl_errno($ch))
         {
             $errorMessage = curl_error($ch);
-
-            $logger = $this->get('logger');
-            $logger->error('An error occurred : HTTP request to gateway returned an error. Message : ' . $errorMessage);
+            $this->getLogger()->error('An error occurred : HTTP request to gateway returned an error. Message : ' . $errorMessage);
         }
 
         curl_close($ch);
