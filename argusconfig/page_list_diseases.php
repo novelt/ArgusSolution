@@ -49,10 +49,10 @@
 		}
 
 	}
-	
+
 	// Sending HTML headers and notification
-	WebHeader(_("Alert and diseases list"));	
-	
+	WebHeader(_("Alert and diseases list"));
+
 	// Get diseases
 	$SQL="
 		SELECT
@@ -60,7 +60,7 @@
 			disease,
 			name,
 			keywords
-		FROM 
+		FROM
 			ses_diseases
 		ORDER BY
 			Alert DESC,
@@ -86,7 +86,7 @@
 			echo('</table>');
             }
 			// Weekly values
-			display_values($bdd,$Diseases[$i]['disease'],'Weekly',_("Weeky values:"));
+			display_values($bdd,$Diseases[$i]['disease'],'Weekly',_("Weekly values:"));
 			// Monthly values
 			display_values($bdd,$Diseases[$i]['disease'],'Monthly',_("Monthly values:"));
 			// Alert values
@@ -99,9 +99,9 @@
 		// No diseases!
 		echo('<p>'._("No disease or alert found, please do an import!").'</p>');
 	}
-	
+
 	// End
 	WebFooter();
 	db_Close($bdd);
-	
+
 ?>

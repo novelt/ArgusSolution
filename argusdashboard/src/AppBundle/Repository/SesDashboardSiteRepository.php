@@ -30,7 +30,7 @@ class SesDashboardSiteRepository extends BaseRepository
             $qb->leftJoin('s.alertRecipients', 'ar')
                 ->addSelect('ar');
         }
- 
+
         return $qb->getQuery()->getArrayResult();
     }
 

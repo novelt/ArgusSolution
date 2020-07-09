@@ -42,6 +42,9 @@ Configuration:
         DiseaseListXmlSave: Save a Disease List
         ThresholdListXmlSave: Save a Threshold List
         AllListsXmlSave: Save All Lists
+        GenerateWeeklyReport: Generate weekly report
+        GenerateMonthlyReport: Generate monthly report
+        GenerateAlert: Generate alert
 
     # Dropdown menu in the navbar
 
@@ -52,6 +55,7 @@ Configuration:
         Diseases: Diseases
         Thresholds: Thresholds
         SaveAllToXml: Synchronize configuration
+        GenerateReportsAlerts: Generate reports / alerts
 
     # All kinds of buttons, at all levels
 
@@ -398,3 +402,26 @@ Configuration:
                 Label: Year
             MaxValue:
                 Label: Max. Value
+
+        # Specific to generate report / alert form
+
+        Generate:
+            Report:
+                Weekly:
+                    Tab: Weekly report
+                Monthly:
+                    Tab: Monthly report
+                Year: Year
+                Week: Week number
+                Month: Month number
+                Contact: Contact
+                Disease: %disease_name% - %value%
+                NoSuccess: An error occurred during generation. No report has been created.
+                PartialSuccess: An error occurred during generation. The report has been created but may be incorrect or incomplete.
+                Success: The generation was successful. The report has been created well.
+
+            Alert:
+                PhoneNumber: Phone number
+                Disease: Disease
+                SelectDisease: Select a disease
+                Tab: Alert

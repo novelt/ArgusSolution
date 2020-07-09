@@ -7,6 +7,7 @@
  */
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Constant;
 use AppBundle\Entity\Security\SesDashboardUser;
 use AppBundle\Entity\SesDashboardSite;
 use AppBundle\Entity\SesFullReport;
@@ -55,7 +56,7 @@ class BaseController extends Controller
 
     /**
      * Bookmark the page
-     * 
+     *
      * @param $listKey
      * @param $page
      */
@@ -751,5 +752,40 @@ class BaseController extends Controller
         }
 
         return $response;
+    }
+
+    protected function getEnabledReports()
+    {
+        // Diseases
+        $diseasesWeekly = $this
+            ->getDiseaseService()
+            ->getDiseases(Constant::PERIOD_WEEKLY);
+        $diseasesMonthly = $this
+            ->getDiseaseService()
+            ->getDiseases(Constant::PERIOD_MONTHLY);
+
+        $site = $this->getSiteService()->getSiteWithoutDependencies($siteId);
+        $homeSite = $this->getHomeSite();
+        $permissions = $this->getUser() != null ? $this->getUser()->getDashboardPermissions() : [];
+
+        $enableWeeklyReport = $this
+            ->getSesDashboardPermissionHelper()
+            ->isWeeklyReportEnabled($site, $homeSite, $permissions);
+        $enableMonthlyReport = $this
+            ->getSesDashboardPermissionHelper()
+            ->isMonthlyReportEnabled($site, $homeSite, $permissions);
+
+        return [
+            'weekly' => (
+                isset($diseasesWeekly)
+                && count($diseasesWeekly) > 0
+                && $enableWeeklyReport
+            ),
+            'monthly' => (
+                isset($diseasesMonthly)
+                && count($diseasesMonthly) > 0
+                && $enableMonthlyReport
+            )
+        ];
     }
 }

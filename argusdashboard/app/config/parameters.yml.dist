@@ -104,6 +104,13 @@ parameters:
             weekly_timeliness_minutes: 1440
             monthly_timeliness_minutes: 10080
 
+    # Argus Config parameters
+    argus_config:
+        gateway_uri: '/argusconfig/argusGateway.php'
+        gateway_password: 'argus'
+        android_keyword_id: 'ANDROIDID'
+        report_keyword_id: 'RID'
+
     # Dashboard Config to limit the numbers of alert displayed
     configuration_alerts:
         max_old_alerts: 50

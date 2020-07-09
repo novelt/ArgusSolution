@@ -238,7 +238,7 @@ class ArgusSMS_ActionRequest extends ArgusSMS_Request
             return false;
         }
 
-        $is_secure = (!empty($_SERVER['HTTPS']) AND filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN));
+        $is_secure = (!empty($_SERVER['HTTPS']) && filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN));
         $protocol = $is_secure ? 'https' : 'http';
         $full_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 

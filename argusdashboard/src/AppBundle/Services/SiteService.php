@@ -451,7 +451,7 @@ class SiteService extends BaseRepositoryService
         $sessionId = date("U");//must be a integer
 
         $results = $this->siteRepository->getChildrenSiteIds($sessionId, $this->getChildrenSitesLogLevel, $siteIds, $sorted, $includeAllSites, $maxSitesRecursiveLevel, $includeSiteIds, $dimDateTypeCode, $dimDateFromId, $dimDateToId);
-
+        
         foreach ($results as $row) {
             if (!in_array($row['siteId'], $childrenSiteIds)) { // avoid duplicate ids
                 $childrenSiteIds[] = $row['siteId'];

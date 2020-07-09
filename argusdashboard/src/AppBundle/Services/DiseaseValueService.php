@@ -61,4 +61,37 @@ class DiseaseValueService
         return $this->diseaseValueRepository->getDiseaseValuesFromQueryString($queryString);
     }
 
+    /**
+     * Return all disease values by period
+     *
+     * @param $period
+     * @return SesDashboardDiseaseValue[]
+     */
+    public function getDiseaseValuesByPeriod($period, $limit = null)
+    {
+        $constant = Constant::PERIOD_WEEKLY;
+        if ($period == 'monthly')
+        {
+            $constant = Constant::PERIOD_MONTHLY;
+        }
+
+        $qb = $this->diseaseValueRepository->createQueryBuilder('d')
+            ->where('d.period = :period')
+            ->setParameter('period', $constant);
+
+        if ($limit)
+        {
+            $qb->setMaxResults(1);
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function hasDiseaseValuesForPeriod($period)
+    {
+        return $this->getDiseaseValuesByPeriod($period, true);
+    }
 }

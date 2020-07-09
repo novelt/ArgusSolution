@@ -90,13 +90,13 @@ class SesFullReportRepository extends BaseRepository
             ->innerJoin('pr.reports', 'r')
             ->groupBy('fr.id')
             //->select('fr, s, pr, r');
-        ->select ('fr.id, 
-                    MIN(r.receptionDate) as receptionDate, 
+        ->select ('fr.id,
+                    MIN(r.receptionDate) as receptionDate,
                     fr.startDate as startDate,
                     fr.createdDate as createdDate,
                     fr.firstValidationDate as firstValidationDate,
                     fr.firstRejectionDate as firstRejectionDate,
-                    s.weeklyTimelinessMinutes as weeklyTimelinessMinutes, 
+                    s.weeklyTimelinessMinutes as weeklyTimelinessMinutes,
                     s.monthlyTimelinessMinutes as monthlyTimelinessMinutes');
 
         $qb
